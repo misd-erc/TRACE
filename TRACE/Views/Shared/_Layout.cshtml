@@ -55,11 +55,11 @@
             <div class="main-menu">
                 <span>Support</span>
                 <ul>
-                    <li>
+                    <li onclick="location.href='@Url.Action("FAQs", "Home")'">
                         <i class='bx bxs-help-circle'></i>
                         <span>FAQs</span>
                     </li>
-                    <li>
+                    <li onclick="location.href='@Url.Action("Settings", "Home")'">
                         <i class='bx bxs-cog'></i>
                         <span>Settings</span>
                     </li>
@@ -99,6 +99,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/drin-theme.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

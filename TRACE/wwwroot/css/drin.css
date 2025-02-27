@@ -4,6 +4,8 @@
     --secondary-color: #F6B37E;
     --body-color: #F2F4F8;
     --active-color: #D3D3D3;
+    --font-color: #444;
+    --heading-color: var(--primary-color);
 
     --font-heading: Montserrat;
     --font-body: Poppins;
@@ -12,6 +14,7 @@
 *{
     margin:0;
     box-sizing:border-box;
+    color: var(--font-color);
 }
 
 body{
@@ -22,6 +25,10 @@ body{
 h1, h2, h3, h3{
     font-family: var(--font-heading);
     font-weight:600;
+}
+
+hr{
+    margin:20px 0px;
 }
 
 /*FLEx*/
@@ -236,3 +243,67 @@ header:hover .main-menu ul li span {
 }
 /*FLOATER*/
 /*SIDE NAVIGATION*/
+
+
+/*CONTAINER*/
+.container{
+    margin:40px 0px 0px 100px;
+    padding:20px;
+}
+/*CONTAINER*/
+
+/*SETTINGS*/
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.drin-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ddd;
+    transition: 0.4s;
+    border-radius: 25px;
+}
+
+.drin-slider:before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3.5px;
+    background: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .drin-slider {
+    background: #333;
+}
+
+input:checked + .drin-slider:before {
+    transform: translateX(25px);
+}
+/*SETTINGS*/
