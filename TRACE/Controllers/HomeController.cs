@@ -19,7 +19,7 @@ namespace TRACE.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult CaseManagement()
         {
             return View();
         }

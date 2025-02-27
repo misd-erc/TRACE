@@ -32,19 +32,19 @@
             <div class="main-menu">
                 <span>Menu</span>
                 <ul>
-                    <li>
+                    <li onclick="location.href='@Url.Action("Dashboard", "Home")'">
                         <img src="~/images/icons/dashboard.png" />
                         <span>Dashboard</span>
                     </li>
-                    <li>
+                    <li onclick="location.href='@Url.Action("CaseManagement", "Home")'">
                         <img src="~/images/icons/case.png" />
                         <span>Case Management</span>
                     </li>
-                    <li>
+                    <li onclick="location.href='@Url.Action("DocumentManagement", "Home")'">
                         <img src="~/images/icons/document.png" />
                         <span>Document Management</span>
                     </li>
-                    <li>
+                    <li onclick="location.href='@Url.Action("Hearings", "Home")'">
                         <img src="~/images/icons/hearing.png" />
                         <span>Hearings</span>
                     </li>
@@ -57,7 +57,7 @@
                 <ul>
                     <li>
                         <i class='bx bxs-help-circle'></i>
-                        <span>Help</span>
+                        <span>FAQs</span>
                     </li>
                     <li>
                         <i class='bx bxs-cog'></i>
@@ -67,6 +67,30 @@
             </div>
         </div>
     </header>
+
+    <div class="floater flex h-center gap-10">
+        <div class="notification-div">
+            <i class='bx bxs-bell'></i>
+        </div>
+        <div class="user-div">
+            <i class='bx bxs-user'></i>
+        </div>
+        <div class="username-div flex h-center gap-10">
+            <div class="name">
+                <p>Juan Dela Cruz</p>
+                <p>Super Admin</p>
+            </div>
+            <div class="arrow-div">
+                <i class='bx bxs-chevron-down'></i>
+            </div>
+
+            <div class="dropdown-menu">
+                <ul>
+                    <li><i class='bx bxs-log-out'></i> Logout</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <main role="main">
             @RenderBody()

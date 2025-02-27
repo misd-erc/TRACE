@@ -138,16 +138,101 @@ header:hover .trace-logo span {
     transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
-/* Show text when hovered */
+
 header:hover .main-menu ul li span {
     opacity: 1;
     transform: translateX(0);
 }
 
-/* Hover effect */
+
 .main-menu ul li:hover {
     background: var(--active-color);
     border-right: 4px solid var(--primary-color);
 }
 
+/*FLOATER*/
+.floater{
+    float:right;
+    position:fixed;
+    right:0;
+    top:0;
+    padding:15px 20px;
+    background:transparent;
+}
+
+.notification-div, .user-div {
+    background: var(--theme);
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.notification-div i, .user-div i, .arrow-div i{
+    font-size:20px;
+    color: var(--primary-color);
+    cursor:pointer;
+}
+
+
+.username-div {
+    cursor: pointer;
+    padding: 5px;
+    position: relative;
+}
+
+.username-div:hover {
+    background: var(--active-color);
+}
+
+.name p:first-of-type {
+    font-weight: 700;
+}
+.name p:last-of-type {
+    font-weight: 200;
+    font-size:10px;
+}
+
+/*DROPDOWN*/
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--theme);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu ul li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    border-right:4px solid var(--theme);
+    font-size:13px;
+}
+
+.dropdown-menu ul li i {
+    color: var(--primary-color);
+    font-size:15px; 
+}
+
+.dropdown-menu ul li:hover {
+    background: var(--active-color);
+    border-right: 4px solid var(--primary-color);
+}
+
+.username-div:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.1s;
+}
+/*FLOATER*/
 /*SIDE NAVIGATION*/
