@@ -1,0 +1,153 @@
+:root {
+    --theme: #FFF;
+    --primary-color: #5E60CE;
+    --secondary-color: #F6B37E;
+    --body-color: #F2F4F8;
+    --active-color: #D3D3D3;
+
+    --font-heading: Montserrat;
+    --font-body: Poppins;
+}
+
+*{
+    margin:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: var(--font-heading);
+    background: var(--body-color);
+}
+
+h1, h2, h3, h3{
+    font-family: var(--font-heading);
+    font-weight:600;
+}
+
+/*FLEx*/
+.flex{
+    display:flex;
+}
+
+.h-center{
+    align-items:center;
+}
+
+.gap-10{
+    gap:10px;
+}
+
+.space-between{
+    justify-content:space-between;
+}
+/*FLEx*/
+
+/*SIDE NAVIGATION*/
+header {
+    width: 80px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--theme);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+header:hover {
+    width: 250px;
+}
+
+.logo-div {
+    padding: 20px;
+    white-space: nowrap;
+}
+
+.logo-div img {
+    width: 49px;
+}
+
+.trace-logo {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.trace-logo span {
+    font-size: 9px;
+    font-style: italic;
+    opacity: 0;
+    display: block;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s; /* Delay hiding */
+}
+
+header:hover .trace-logo {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+header:hover .trace-logo span {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+.logo-div img {
+    width: 39px;
+}
+
+.main-menu span{
+    margin-left:20px;
+    font-size:12px;
+}
+
+.main-menu ul {
+    margin-top: 20px;
+    list-style: none;
+    padding:0px;
+}
+
+.main-menu ul li {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px 12px 29px;
+    cursor: pointer;
+    border-right: 4px solid var(--theme);
+    transition: background 0.3s ease, border-right 0.3s ease;
+    white-space: nowrap;
+}
+
+.main-menu ul li img {
+    width: 21px;
+}
+
+.main-menu ul li i {
+    font-size: 21px;
+}
+
+.main-menu ul li span {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Show text when hovered */
+header:hover .main-menu ul li span {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Hover effect */
+.main-menu ul li:hover {
+    background: var(--active-color);
+    border-right: 4px solid var(--primary-color);
+}
+
+/*SIDE NAVIGATION*/

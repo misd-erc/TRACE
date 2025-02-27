@@ -7688,19 +7688,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
+    "C:\\Users\\aldri\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\TRACE\\TRACE\\TRACE.csproj",
+      "projectUniqueName": "E:\\Work Related\\Github\\TRACE\\TRACE\\TRACE.csproj",
       "projectName": "TRACE",
-      "projectPath": "C:\\Users\\Administrator\\source\\repos\\TRACE\\TRACE\\TRACE.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\source\\repos\\TRACE\\TRACE\\obj\\",
+      "projectPath": "E:\\Work Related\\Github\\TRACE\\TRACE\\TRACE.csproj",
+      "packagesPath": "C:\\Users\\aldri\\.nuget\\packages\\",
+      "outputPath": "E:\\Work Related\\Github\\TRACE\\TRACE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aldri\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7776,7 +7776,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
