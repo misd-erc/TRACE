@@ -1,6 +1,6 @@
 :root {
     --theme: #FFF;
-    --primary-color: #5E60CE;
+    --primary-color: #4A89DC;
     --secondary-color: #F6B37E;
     --body-color: #F2F4F8;
     --active-color: #D3D3D3;
@@ -25,10 +25,15 @@ body{
 h1, h2, h3, h3{
     font-family: var(--font-heading);
     font-weight:600;
+    margin-bottom:15px;
 }
 
 hr{
     margin:20px 0px;
+}
+
+p{
+    margin-bottom: 10px;
 }
 
 /*FLEx*/
@@ -82,6 +87,10 @@ header:hover {
     opacity: 0;
     transform: translateX(-20px);
     transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.trace-logo h3{
+    margin:0px;    
 }
 
 .trace-logo span {
@@ -190,6 +199,10 @@ header:hover .main-menu ul li span {
     background: var(--active-color);
 }
 
+.name p{
+    margin:0px;
+}
+
 .name p:first-of-type {
     font-weight: 700;
 }
@@ -252,14 +265,20 @@ header:hover .main-menu ul li span {
 }
 /*CONTAINER*/
 
-/*SETTINGS*/
+/* SETTINGS */
 .theme-toggle-container {
     display: flex;
     align-items: center;
     gap: 10px;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
-    color: var(--text-color);
+    color: var(--font-color);
+    margin-bottom:10px;
+    margin-left:25px;
+}
+
+.theme-toggle-container p {
+    margin: 0px;
 }
 
 .theme-switch {
@@ -300,10 +319,42 @@ header:hover .main-menu ul li span {
 }
 
 input:checked + .drin-slider {
-    background: #333;
+    background: var(--primary-color);
 }
 
 input:checked + .drin-slider:before {
     transform: translateX(25px);
+}
+
+.color-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+.color-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.color-preview {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--primary-color);
+    transition: 0.4s;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    border: 2px solid #ddd;
+}
+
+.color-switch input:focus + .color-preview {
+    outline: 2px solid #00c955;
 }
 /*SETTINGS*/
