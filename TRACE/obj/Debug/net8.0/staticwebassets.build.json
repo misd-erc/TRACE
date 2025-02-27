@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GbI5h2HLt0g8DaD0jPVg2Pu2MzU7Oj2TTO/VJhlBROI=",
+  "Hash": "wamNgAYAC0ijRh+/sHLY9v5Ul/PNwPSVS6J9TRkFgJg=",
   "Source": "TRACE",
   "BasePath": "_content/TRACE",
   "Mode": "Default",
@@ -131,6 +131,25 @@
       "OriginalItemSpec": "wwwroot\\images\\icons\\case.png"
     },
     {
+      "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\case-white.png",
+      "SourceId": "TRACE",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\",
+      "BasePath": "_content/TRACE",
+      "RelativePath": "images/icons/case-white.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\icons\\case-white.png"
+    },
+    {
       "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\dashboard.png",
       "SourceId": "TRACE",
       "SourceType": "Discovered",
@@ -148,6 +167,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\icons\\dashboard.png"
+    },
+    {
+      "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\dashboard-white.png",
+      "SourceId": "TRACE",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\",
+      "BasePath": "_content/TRACE",
+      "RelativePath": "images/icons/dashboard-white.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\icons\\dashboard-white.png"
     },
     {
       "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\document.png",
@@ -169,6 +207,25 @@
       "OriginalItemSpec": "wwwroot\\images\\icons\\document.png"
     },
     {
+      "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\document-white.png",
+      "SourceId": "TRACE",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\",
+      "BasePath": "_content/TRACE",
+      "RelativePath": "images/icons/document-white.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\icons\\document-white.png"
+    },
+    {
       "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\hearing.png",
       "SourceId": "TRACE",
       "SourceType": "Discovered",
@@ -186,6 +243,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\icons\\hearing.png"
+    },
+    {
+      "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\hearing-white.png",
+      "SourceId": "TRACE",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\",
+      "BasePath": "_content/TRACE",
+      "RelativePath": "images/icons/hearing-white.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\icons\\hearing-white.png"
     },
     {
       "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\drin-theme.js",

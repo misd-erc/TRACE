@@ -17,16 +17,32 @@
       "PackagePath": "staticwebassets\\images\\ERC-LOGO.png"
     },
     {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\case-white.png",
+      "PackagePath": "staticwebassets\\images\\icons\\case-white.png"
+    },
+    {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\case.png",
       "PackagePath": "staticwebassets\\images\\icons\\case.png"
+    },
+    {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\dashboard-white.png",
+      "PackagePath": "staticwebassets\\images\\icons\\dashboard-white.png"
     },
     {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\dashboard.png",
       "PackagePath": "staticwebassets\\images\\icons\\dashboard.png"
     },
     {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\document-white.png",
+      "PackagePath": "staticwebassets\\images\\icons\\document-white.png"
+    },
+    {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\document.png",
       "PackagePath": "staticwebassets\\images\\icons\\document.png"
+    },
+    {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\hearing-white.png",
+      "PackagePath": "staticwebassets\\images\\icons\\hearing-white.png"
     },
     {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\hearing.png",
