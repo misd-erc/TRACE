@@ -1,23 +1,22 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     const themeToggle = document.getElementById("themeToggle");
     const menuIcons = document.querySelectorAll(".main-menu li img");
-    const colorPicker = document.getElementById("colorPicker");
-    const colorPreview = document.querySelector(".color-preview");
+    const colorOptions = document.querySelectorAll(".color-option");
 
     const lightTheme = {
         "--theme": "#FFF",
         "--secondary-color": "#F6B37E",
         "--body-color": "#F2F4F8",
-        "--active-color": "#D3D3D3",
+        "--active-color": "#ffffff31",
         "--font-color": "#444",
         "--heading-color": "#5E60CE",
     };
 
     const darkTheme = {
-        "--theme": "#1E1E1E",
+        "--theme": "#242424",
         "--secondary-color": "#F6B37E",
         "--body-color": "#121212",
-        "--active-color": "#333",
+        "--active-color": "#ffffff31",
         "--font-color": "#EAEAEA",
         "--heading-color": "#8D99FF",
     };
@@ -27,22 +26,32 @@
             document.documentElement.style.setProperty(key, theme[key]);
         });
 
-        menuIcons.forEach(img => {
-            if (img) {
-                let src = img.src;
-                if (isDark) {
-                    img.src = src.replace(".png", "-white.png");
-                } else {
-                    img.src = src.replace("-white.png", ".png");
-                }
-            }
-        });
+        // Optional: Handle menu icon switching if needed
+        // menuIcons.forEach(img => {
+        //     if (img) {
+        //         let src = img.src;
+        //         if (isDark) {
+        //             img.src = src.replace(".png", "-white.png");
+        //         } else {
+        //             img.src = src.replace("-white.png", ".png");
+        //         }
+        //     }
+        // });
     }
 
+    // Load saved theme and primary color
     const savedTheme = localStorage.getItem("theme") || "light";
-    const savedColor = localStorage.getItem("primaryColor") || "#4A89DC";
+    const savedColor = localStorage.getItem("primaryColor") || "#1A33B6";
 
     applyTheme(savedTheme === "dark" ? darkTheme : lightTheme, savedTheme === "dark");
+    document.documentElement.style.setProperty("--primary-color", savedColor);
+
+    // Preselect saved color
+    colorOptions.forEach(option => {
+        if (option.getAttribute("data-color") === savedColor) {
+            option.classList.add("selected");
+        }
+    });
 
     if (themeToggle) {
         themeToggle.checked = savedTheme === "dark";
@@ -60,21 +69,19 @@
         console.warn("Theme toggle element not found.");
     }
 
-    document.documentElement.style.setProperty("--primary-color", savedColor);
+    colorOptions.forEach(option => {
+        option.addEventListener("click", () => {
+            const selectedColor = option.getAttribute("data-color");
 
-    if (colorPicker && colorPreview) {
-        colorPicker.value = savedColor;
-        colorPreview.style.background = savedColor;
+            updatePrimaryColor(selectedColor);
 
-        colorPicker.addEventListener("input", (e) => updatePrimaryColor(e.target.value));
-        colorPreview.addEventListener("click", () => colorPicker.click()); // Open picker on preview click
-    } else {
-        console.warn("Color picker elements not found.");
-    }
+            colorOptions.forEach(opt => opt.classList.remove("selected"));
+            option.classList.add("selected");
+        });
+    });
 
     function updatePrimaryColor(color) {
         document.documentElement.style.setProperty("--primary-color", color);
-        if (colorPreview) colorPreview.style.background = color;
         localStorage.setItem("primaryColor", color);
     }
 });

@@ -16,80 +16,68 @@
     <!--boxicons-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
+    <!--chart-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
     @* <link rel="stylesheet" href="~/TRACE.styles.css" asp-append-version="true" /> *@
 </head>
 <body>
-    <header class="flex space-between">
-        <div class="upper">
-            <div class="logo-div flex h-center gap-10">
-                <img src="~/images/ERC-LOGO.png" />
-                <div class="trace-logo">
-                    <h3>TRACE</h3>
-                    <span>Tracking, Reporting, & Archiving<br /> of Cases in ERC</span>
-                </div>
+    <div class="upper-header grid grid-header h-center gap-20">
+        <div class="grid-menu-div">
+            <i class='bx bxs-grid'></i>
+        </div>
+        <div class="logo-div">
+            <h3>ICDMS/TRACE</h3>
+        </div>
+        <div class="search-bar-div flex">
+            <div class="search-design flex h-center gap-10">
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="Search"/>
             </div>
+        </div>
+        <div class="menu-user-div flex h-center gap-10">
+            <!--Notification-->
+            <i class='bx bxs-bell'></i>
+
+            <!--Settings-->
+            <i class='bx bxs-cog' onclick="location.href='@Url.Action("Settings", "Home")'"></i>
+
+            <!--Help-->
+            <i class='bx bxs-help-circle'></i>
+
+            <!--Profile-->
+            <span class="profile-menu">
+                <i>AC</i>
+            </span>
+        </div>
+    </div>
+    <header class="flex gap-10">
+        <div class="upper">
             <div class="main-menu">
-                <span>Menu</span>
                 <ul>
                     <li onclick="location.href='@Url.Action("Dashboard", "Home")'">
-                        <img src="~/images/icons/dashboard.png" />
+                        <img src="~/images/icons/dashboard-white.png" />
                         <span>Dashboard</span>
                     </li>
                     <li onclick="location.href='@Url.Action("CaseManagement", "Home")'">
-                        <img src="~/images/icons/case.png" />
+                        <img src="~/images/icons/case-white.png" />
                         <span>Case Management</span>
                     </li>
                     <li onclick="location.href='@Url.Action("DocumentManagement", "Home")'">
-                        <img src="~/images/icons/document.png" />
+                        <img src="~/images/icons/document-white.png" />
                         <span>Document Management</span>
                     </li>
                     <li onclick="location.href='@Url.Action("Hearings", "Home")'">
-                        <img src="~/images/icons/hearing.png" />
+                        <img src="~/images/icons/hearing-white.png" />
                         <span>Hearings</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="bottom">
-            <div class="main-menu">
-                <span>Support</span>
-                <ul>
-                    <li onclick="location.href='@Url.Action("FAQs", "Home")'">
-                        <i class='bx bxs-help-circle'></i>
-                        <span>FAQs</span>
-                    </li>
-                    <li onclick="location.href='@Url.Action("Settings", "Home")'">
-                        <i class='bx bxs-cog'></i>
-                        <span>Settings</span>
                     </li>
                 </ul>
             </div>
         </div>
     </header>
 
-    <div class="floater flex h-center gap-10">
-        <div class="notification-div">
-            <i class='bx bxs-bell'></i>
-        </div>
-        <div class="user-div">
-            <i class='bx bxs-user'></i>
-        </div>
-        <div class="username-div flex h-center gap-10">
-            <div class="name">
-                <p>Juan Dela Cruz</p>
-                <p>Super Admin</p>
-            </div>
-            <div class="arrow-div">
-                <i class='bx bxs-chevron-down'></i>
-            </div>
-            <div class="dropdown-menu">
-                <ul>
-                    <li><i class='bx bxs-log-out'></i> Logout</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    
     <div class="container">
         <main role="main">
             @RenderBody()

@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\images\\icons\\hearing.png"
     },
     {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\dbchart.js",
+      "PackagePath": "staticwebassets\\js\\dbchart.js"
+    },
+    {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\drin-theme.js",
       "PackagePath": "staticwebassets\\js\\drin-theme.js"
     },

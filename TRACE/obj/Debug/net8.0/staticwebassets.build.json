@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wamNgAYAC0ijRh+/sHLY9v5Ul/PNwPSVS6J9TRkFgJg=",
+  "Hash": "GSfTgxxXHY6mgk0qUseSEpgQCymAkVtk2r9nI1Cb1Po=",
   "Source": "TRACE",
   "BasePath": "_content/TRACE",
   "Mode": "Default",
@@ -262,6 +262,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\icons\\hearing-white.png"
+    },
+    {
+      "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\dbchart.js",
+      "SourceId": "TRACE",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\",
+      "BasePath": "_content/TRACE",
+      "RelativePath": "js/dbchart.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\dbchart.js"
     },
     {
       "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\drin-theme.js",

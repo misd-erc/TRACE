@@ -1,3 +1,162 @@
 ﻿@{
     ViewData["Title"] = "Dashboard";
 }
+<div class="dashboard">
+    <div class="heading-div">
+        <h1>Welcome Back Aldrin</h1>
+        <p>You have <span class="clickable">2 unread</span> notifications.</p>
+    </div>
+    <strong class="date-today">Friday, 28 February 2025 14:00</strong>
+
+    <!--CARDS-->
+    <div class="grid grid-four-fr gap-10 h-center card-div">
+        <div class="db-card flex h-center gap-10 blue-bg shadow">
+            <span class="count">50</span>
+            <div class="card-desc">
+                <p>Promulgated/Issued Decision</p>
+                <span class="sub-desc up-value"><i class='bx bxs-up-arrow up-value'></i> 10% Compared to previous 30 days</span>
+            </div>
+        </div>
+        <div class="db-card flex h-center gap-10 orange-bg shadow">
+            <span class="count">10</span>
+            <div class="card-desc">
+                <p>Issued Decision</p>
+                <span class="sub-desc stable-value"><i class='bx bxs-square stable-value'></i> Stable rate</span>
+            </div>
+        </div>
+        <div class="db-card flex h-center gap-10 purple-bg shadow">
+            <span class="count">33</span>
+            <div class="card-desc">
+                <p>Submitted for Resolution</p>
+                <span class="sub-desc down-value"><i class='bx bxs-down-arrow down-value'></i> 10% compared to previous 30 days</span>
+            </div>
+        </div>
+        <div class="db-card flex h-center gap-10 green-bg shadow">
+            <span class="count">20</span>
+            <div class="card-desc">
+                <p>Indorsed to Formal Hearing</p>
+                <span class="sub-desc stable-value"><i class='bx bxs-square stable-value'></i> Stable rate</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex gap-10">
+        <!--GRAPHS-->
+        <div class="card-div chart-holder panel border-radius-5 shadow">
+            <div class="card-heading flex h-center space-between">
+                <h3>Case Filing Trends</h3>
+                <div class="filter-design border-radius-5 flex h-center">
+                    <i class='bx bxs-filter-alt'></i>
+                    <select>
+                        <option disabled selected>Today, Last 7 Days, Last 30 Days...</option>
+                        <option>Today</option>
+                        <option>Last 7 Days</option>
+                        <option>Last 30 Days</option>
+                        <option>Custom</option>
+                    </select>
+                </div>
+            </div>
+            <div class="chart-content">
+                <canvas id="categoryLineChart"></canvas>
+            </div>
+            <script src="~/js/dbchart.js"></script>
+        </div>
+        <!--HEARING-->
+        <div class="card-div hearing-holder panel border-radius-5 shadow">
+            <div class="card-heading flex h-center space-between">
+                <h3>Hearing Schedules</h3>
+            </div>
+            <div class="hearing-content">
+                <ol class="hearing-list">
+                    <li class="flex h-center space-between">
+                        <div>
+                            <strong>2001-584 | JU</strong><br />
+                            <span class="venue">ERC Hearing Room (15th Floor)</span>
+                        </div>
+                        <div>
+                            <span class="date">2017-05-02</span><br />
+                            <span class="time">10:00 AM</span>
+                        </div>
+                    </li>
+
+                    <li class="flex h-center space-between">
+                        <div>
+                            <strong>2001-584 | EX</strong><br />
+                            <span class="venue">Board Room</span>
+                        </div>
+                        <div>
+                            <span class="date">2017-05-02</span><br />
+                            <span class="time">10:00 AM</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex gap-10">
+        <!--GRAPHS-->
+        <div class="card-div mycase-holder panel border-radius-5 shadow">
+            <div class="card-heading flex h-center space-between">
+                <h3>My Cases</h3>
+                <div class="filter-design border-radius-5 flex h-center">
+                    <i class='bx bx-search'></i>
+                    <input type="text" placeholder="Enter Case No. or Case Title here.."/>
+                </div>
+            </div>
+            <div class="mycase-content">
+                <ol class="mycase-list">
+                    <li class="flex h-center space-between">
+                        <div>
+                            <strong>2001-584</strong><br />
+                            <span class="type">Violations</span>
+                        </div>
+                        <div>
+                            <span class="date">Regulatory Compliance Check</span><br />
+                            <span class="status">Ongoing</span>
+                        </div>
+                        <div>
+                            <span class="milestone">Filed</span><br />
+                            <span class="milestonedate">08/03/2025</span>
+                        </div>
+                    </li>
+
+                    <li class="flex h-center space-between">
+                        <div>
+                            <strong>2001-584</strong><br />
+                            <span class="type">Billing</span>
+                        </div>
+                        <div>
+                            <span class="date">Regulatory Compliance Check</span><br />
+                            <span class="status">Resolved</span>
+                        </div>
+                        <div>
+                            <span class="milestone">Docketted</span><br />
+                            <span class="milestonedate">08/03/2025</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!--HEARING-->
+        <div class="card-div casereminder-holder panel border-radius-5 shadow">
+            <div class="card-heading flex h-center space-between">
+                <h3>Case Reminders (30 Days Alert)</h3>
+            </div>
+            <div class="casereminder-content">
+                <div class="reminders-tab">
+                    <span>Due for Issuance of Provisional Authority</span>
+                </div>
+                <div class="reminders-tab">
+                    <span>Due for Issuance of Order with Notice of Proposed Rule-Making</span>
+                </div>
+                <div class="reminders-tab">
+                    <span>Due for Issuance of Notice for Public Consultation</span>
+                </div>
+                <div class="reminders-tab">
+                    <span>Due for Issuance of Resolution</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
