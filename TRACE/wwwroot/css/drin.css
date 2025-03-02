@@ -62,6 +62,17 @@ p{
 .space-between{
     justify-content:space-between;
 }
+
+@media screen and (max-width:999px) {
+    .flex-card {
+        flex-direction: column;
+        gap:0px !important;
+    }
+
+    .flex-card div {
+        width: 100%;
+    }
+}
 /*FLEx*/
 
 /*CLICKABLES*/
@@ -93,6 +104,18 @@ p{
 
 .grid-four-fr{
     grid-template-columns:1fr 1fr 1fr 1fr;
+}
+
+@media screen and (max-width:999px){
+    .grid-four-fr{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width:599px) {
+    .grid-four-fr {
+        grid-template-columns: 1fr;
+    }
 }
 /*GRID*/
 
@@ -181,6 +204,12 @@ p{
     font-size:14px;
     border: 1px solid #fff;
     padding:5px;
+}
+
+@media screen and (max-width: 799px){
+    .search-design {
+        width: auto;
+    }
 }
 /*HEADER*/
 
@@ -409,6 +438,13 @@ input:checked + .drin-slider:before {
 
 .card-div{
     margin:5px 0px;
+}
+
+@media screen and (max-width:599px){
+    .dashboard .heading-div {
+        margin-bottom:10px;
+        text-align:left !important;
+    }
 }
 
 

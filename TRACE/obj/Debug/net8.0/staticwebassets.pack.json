@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\drin.css"
     },
     {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\css\\external-css.css",
+      "PackagePath": "staticwebassets\\css\\external-css.css"
+    },
+    {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GSfTgxxXHY6mgk0qUseSEpgQCymAkVtk2r9nI1Cb1Po=",
+  "Hash": "23ZGgq1pgbojycmGNyWRzyRb1f/xqz3CIlQos3Dqm6M=",
   "Source": "TRACE",
   "BasePath": "_content/TRACE",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\drin.css"
+    },
+    {
+      "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\css\\external-css.css",
+      "SourceId": "TRACE",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\",
+      "BasePath": "_content/TRACE",
+      "RelativePath": "css/external-css.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\external-css.css"
     },
     {
       "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\favicon.ico",
