@@ -3,7 +3,7 @@
     --primary-color: #1A33B6;
     --secondary-color: #F6B37E;
     --body-color: #F2F4F8;
-    --active-color: #ffffff31;
+    --active-color: #aeaeae63;
     --font-color: 1E1E1E;
     --heading-color: var(--primary-color);
 
@@ -68,6 +68,7 @@ p{
 .clickable{
     color: var(--primary-color);
     cursor:pointer;
+    font-weight:500;
 }
 
 .clickable:hover{
@@ -191,7 +192,7 @@ header {
     top: 55px;
     left: 0;
     /*background: linear-gradient(to bottom, var(--primary-color) 50%, #410879 100%);*/
-    background: var(--primary-color);
+    background: var(--theme);
     display: flex;
     flex-direction: column;
     z-index: 9999;
@@ -259,13 +260,13 @@ header:hover .trace-logo span {
     align-items: center;
     padding: 12px 20px 12px 20px;
     cursor: pointer;
-    border-right: 4px solid var(--primary-color);
+    border-right: 4px solid var(--theme);
     transition: background 0.3s ease, border-right 0.3s ease;
     white-space: nowrap;
 }
 
 .main-menu ul li span {
-    color: #fff;
+    color: var(--font-color);
 }
 
 .main-menu ul li img {
@@ -291,7 +292,7 @@ header:hover .main-menu ul li span {
 
 .main-menu ul li:hover {
     background: var(--active-color);
-    border-right: 4px solid var(--theme);
+    border-right: 4px solid var(--primary-color);
 }
 /*SIDE NAVIGATION*/
 
