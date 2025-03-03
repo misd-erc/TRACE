@@ -14,7 +14,8 @@ public partial class ErcdbContext : DbContext
         : base(options)
     {
     }
-
+    public virtual DbSet<CaseDetails> CaseDetails { get; set; }
+    public virtual DbSet<CaseLastMile> CaseLastMiles { get; set; }
     public virtual DbSet<Account> Accounts { get; set; }
 
     public virtual DbSet<AccountCategory> AccountCategories { get; set; }
