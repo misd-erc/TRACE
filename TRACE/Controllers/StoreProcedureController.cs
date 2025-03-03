@@ -6,7 +6,7 @@ using TRACE.Models; // Ensure this contains the CaseDetails model
 
 namespace TRACE.Controllers
 {
-
+    [Route("api/storeprocedure")]
     public class StoreProcedureController : Controller
     {
         private readonly ErcdbContext _context;
@@ -33,6 +33,7 @@ namespace TRACE.Controllers
 
             return View(caseDetails);
         }
+        [Route("LastMileCases")]
         public async Task<IActionResult> LastMileCases()
         {
             var cases = await _context.CaseLastMiles
