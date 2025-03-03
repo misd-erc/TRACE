@@ -7,20 +7,24 @@
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\views\\external\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\external\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\wwwroot\\css\\external-css.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\css\\external-css.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\controllers\\externalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\externalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\views\\external\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\external\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\wwwroot\\css\\external-css.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\css\\external-css.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\wwwroot\\css\\drin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -37,18 +41,18 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 280,
+          "DockedWidth": 300,
           "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Program.cs",
               "RelativeDocumentMoniker": "TRACE\\Program.cs",
               "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Program.cs",
               "RelativeToolTip": "TRACE\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAowBkAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAowBkAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-02T07:12:48.783Z",
               "IsPinned": true,
@@ -62,7 +66,7 @@
               "RelativeDocumentMoniker": "TRACE\\Controllers\\HomeController.cs",
               "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Controllers\\HomeController.cs",
               "RelativeToolTip": "TRACE\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAABIAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-27T00:53:14.747Z",
               "IsPinned": true,
@@ -70,17 +74,30 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "ExternalController.cs",
               "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Controllers\\ExternalController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\ExternalController.cs",
               "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Controllers\\ExternalController.cs",
               "RelativeToolTip": "TRACE\\Controllers\\ExternalController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBAAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-02T07:37:57.683Z",
               "IsPinned": true,
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\appsettings.json",
+              "RelativeDocumentMoniker": "TRACE\\appsettings.json",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\appsettings.json",
+              "RelativeToolTip": "TRACE\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-02T09:19:51.994Z",
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -120,52 +137,38 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\External\\Login.cshtml",
+              "RelativeDocumentMoniker": "TRACE\\Views\\External\\Login.cshtml",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\External\\Login.cshtml",
+              "RelativeToolTip": "TRACE\\Views\\External\\Login.cshtml",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAuwBcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-02T09:37:10.319Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 100,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "external-css.css",
               "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\css\\external-css.css",
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\css\\external-css.css",
               "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\css\\external-css.css",
               "RelativeToolTip": "TRACE\\wwwroot\\css\\external-css.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAAAEAAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-03-02T07:49:41.484Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\External\\Login.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\External\\Login.cshtml",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\External\\Login.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\External\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-02T07:41:48.275Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 120,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "drin-theme.js",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\drin-theme.js",
-              "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\drin-theme.js",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\drin-theme.js",
-              "RelativeToolTip": "TRACE\\wwwroot\\js\\drin-theme.js",
-              "ViewState": "AgIAADcAAAAAAAAAAAAQwEsAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-02-28T08:24:59.155Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "drin.css",
               "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\css\\drin.css",
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\css\\drin.css",
@@ -173,8 +176,19 @@
               "RelativeToolTip": "TRACE\\wwwroot\\css\\drin.css",
               "ViewState": "AgIAAJYBAAAAAAAAAAAuwLYBAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-02-27T00:44:26.443Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-27T00:44:26.443Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "drin-theme.js",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\drin-theme.js",
+              "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\drin-theme.js",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\drin-theme.js",
+              "RelativeToolTip": "TRACE\\wwwroot\\js\\drin-theme.js",
+              "ViewState": "AgIAADcAAAAAAAAAAAAQwEsAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-28T08:24:59.155Z"
             }
           ]
         }

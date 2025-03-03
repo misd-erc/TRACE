@@ -53,6 +53,10 @@
       "PackagePath": "staticwebassets\\images\\icons\\hearing.png"
     },
     {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\login-bg.jpg",
+      "PackagePath": "staticwebassets\\images\\login-bg.jpg"
+    },
+    {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\dbchart.js",
       "PackagePath": "staticwebassets\\js\\dbchart.js"
     },
