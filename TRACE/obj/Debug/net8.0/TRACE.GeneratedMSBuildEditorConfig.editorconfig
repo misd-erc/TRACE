@@ -26,6 +26,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Administrator\Documents\GitHub\TRACE\TRACE
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseDetails/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZURldGFpbHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseDetails/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZURldGFpbHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseDetails/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZURldGFpbHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseDetails/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZURldGFpbHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseDetails/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZURldGFpbHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/External/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXh0ZXJuYWxcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

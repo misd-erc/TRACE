@@ -1,0 +1,74 @@
+@model TRACE.Models.CaseDetails
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>CaseDetails</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ERCCaseID" />
+            <div class="form-group">
+                <label asp-for="CaseTitle" class="control-label"></label>
+                <input asp-for="CaseTitle" class="form-control" />
+                <span asp-validation-for="CaseTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseNumber" class="control-label"></label>
+                <input asp-for="CaseNumber" class="form-control" />
+                <span asp-validation-for="CaseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseCategory" class="control-label"></label>
+                <input asp-for="CaseCategory" class="form-control" />
+                <span asp-validation-for="CaseCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseNature" class="control-label"></label>
+                <input asp-for="CaseNature" class="form-control" />
+                <span asp-validation-for="CaseNature" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseStatus" class="control-label"></label>
+                <input asp-for="CaseStatus" class="form-control" />
+                <span asp-validation-for="CaseStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasPrayedForPA" /> @Html.DisplayNameFor(model => model.HasPrayedForPA)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateFiled" class="control-label"></label>
+                <input asp-for="DateFiled" class="form-control" />
+                <span asp-validation-for="DateFiled" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Complainant" class="control-label"></label>
+                <input asp-for="Complainant" class="form-control" />
+                <span asp-validation-for="Complainant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Respondent" class="control-label"></label>
+                <input asp-for="Respondent" class="form-control" />
+                <span asp-validation-for="Respondent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

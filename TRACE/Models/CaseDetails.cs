@@ -1,7 +1,10 @@
-﻿namespace TRACE.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TRACE.Models
 {
     public class CaseDetails
     {
+        [Key]
         public long ERCCaseID { get; set; }
         public string CaseTitle { get; set; }
         public string CaseNumber { get; set; }

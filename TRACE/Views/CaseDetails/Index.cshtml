@@ -1,0 +1,83 @@
+@model IEnumerable<TRACE.Models.CaseDetails>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseNature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasPrayedForPA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateFiled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Complainant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Respondent)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaseTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaseCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaseNature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaseStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasPrayedForPA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFiled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complainant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Respondent)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ERCCaseID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ERCCaseID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ERCCaseID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
