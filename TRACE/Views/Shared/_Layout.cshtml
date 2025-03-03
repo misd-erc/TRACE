@@ -50,10 +50,20 @@
             <i class='bx bxs-help-circle'></i>
 
             <!--Profile-->
-            <span class="profile-menu">
-                <i title="@CurrentUser.Email">@(GetInitials(CurrentUser.Name))</i>
-            </span>
+            <div class="profile-menu-wrapper">
+                <span class="profile-menu" onclick="toggleProfileMenu()">
+                    <i title="@CurrentUser.Email">@(GetInitials(CurrentUser.Name))</i>
+                </span>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="user-info">
+                        <span class="user-name">@CurrentUser.Name</span>
+                        <span class="user-email">@CurrentUser.Email</span>
+                    </div>
+                    <a href="@Url.Action("Logout", "External")">Logout</a>
+                </div>
+            </div>
         </div>
+
     </div>
     <header class="flex gap-10 shadow">
         <div class="upper">
@@ -94,7 +104,7 @@
 </body>
 </html>
 
-@functions {
+@functions { 
     string GetInitials(string fullName)
     {
         if (string.IsNullOrWhiteSpace(fullName)) return "NA";

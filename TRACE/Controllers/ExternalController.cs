@@ -14,6 +14,15 @@ namespace TRACE.Controllers
             return View();
         }
 
+        [Route("Logout")]
+        public IActionResult Logout()
+        {
+            return SignOut(
+                new AuthenticationProperties { RedirectUri = "/" },
+                OpenIdConnectDefaults.AuthenticationScheme,
+                "Cookies");
+        }
+
         [Route("RedirectToMicrosoftLogin")]
         public IActionResult RedirectToMicrosoftLogin()
         {

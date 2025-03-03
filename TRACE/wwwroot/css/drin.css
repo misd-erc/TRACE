@@ -136,10 +136,6 @@ p{
     padding:10px 15px;
 }
 
-.upper-header div{
-    position:relative;
-}
-
 .grid-menu-div i{   
     cursor:pointer;
     color: #fff;
@@ -183,27 +179,88 @@ p{
     font-family: var(--font-body);
 }
 
-.menu-user-div{
-    justify-content:flex-end;
+.menu-user-div {
+    justify-content: flex-end;
 }
 
-.menu-user-div i{
-    color:#fff;
-    cursor:pointer;
-    font-size:25px;
-    padding:5px;
-    border-radius:50px;
+.menu-user-div i {
+    color: #fff;
+    cursor: pointer;
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 50px;
 }
 
-.menu-user-div i:hover{
+.menu-user-div i:hover {
     background: var(--active-color);
 }
 
+.profile-menu-wrapper {
+    position: relative;
+    display: inline-block;
+}
 
-.profile-menu i{
-    font-size:14px;
+.profile-menu i {
+    font-size: 14px;
     border: 1px solid #fff;
-    padding:10px 6px;
+    padding: 10px 6px;
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--theme);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 999;
+    min-width: 200px;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.profile-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.profile-dropdown span {
+    display: block;
+    font-size: 14px;
+    color: var(--font-color);
+}
+
+
+.profile-dropdown .user-name {
+    color:var(--primary-color);
+}
+
+.profile-dropdown .user-email{
+    font-size:11px;
+}
+
+.user-info{
+    padding:10px;
+}
+
+.profile-dropdown{
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 10px;
+    color: var(--font-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.profile-dropdown a:hover {
+    background-color: var(--active-color);
 }
 
 @media screen and (max-width: 799px){
