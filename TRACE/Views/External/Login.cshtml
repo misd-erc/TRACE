@@ -32,7 +32,10 @@
                     </h1>
                     <p>Tracking, Reporting & Archiving of Cases, All in One Place</p>
                     <div class="input-design">
-                        <button><i class='bx bxl-microsoft'></i> Login Using Microsoft Account</button>
+                        <button onclick="location.href='@Url.Action("RedirectToMicrosoftLogin", "External")'">
+                            <i class='bx bxl-microsoft'></i> Login Using Microsoft Account
+                        </button>
+
                     </div>
                 </div>
 

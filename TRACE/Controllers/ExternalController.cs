@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TRACE.Controllers
 {
@@ -11,5 +13,17 @@ namespace TRACE.Controllers
         {
             return View();
         }
+
+        [Route("RedirectToMicrosoftLogin")]
+        public IActionResult RedirectToMicrosoftLogin()
+        {
+            var properties = new AuthenticationProperties
+            {
+                RedirectUri = Url.Action("authentication", "Home")
+            };
+
+            return Challenge(properties, OpenIdConnectDefaults.AuthenticationScheme);
+        }
+
     }
 }

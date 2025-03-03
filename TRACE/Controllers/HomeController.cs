@@ -15,36 +15,50 @@ namespace TRACE.Controllers
         {
             _logger = logger;
         }
-        
+
         //[Authorize]
-        [Route("dashboard")]
-        public IActionResult Dashboard()
+        [Route("auth")]
+        public IActionResult authentication()
         {
             return View();
         }
 
-        //[Authorize]
+        [Authorize]
+        [Route("dashboard")]
+        public IActionResult Dashboard()
+        {
+
+            var name = User.FindFirst("name")?.Value;
+            var email = User.FindFirst("preferred_username")?.Value;
+
+            ViewBag.Name = name;
+            ViewBag.Email = email;
+
+            return View();
+        }
+
+        [Authorize]
         [Route("cases")]
         public IActionResult CaseManagement()
         {
             return View();
         }
 
-        //[Authorize]
+        [Authorize]
         [Route("documents")]
         public IActionResult DocumentManagement()
         {
             return View();
         }
 
-        //[Authorize]
+        [Authorize]
         [Route("hearings")]
         public IActionResult Hearings()
         {
             return View();
         }
 
-        //[Authorize]
+        [Authorize]
         [Route("settings")]
         public IActionResult Settings()
         {
