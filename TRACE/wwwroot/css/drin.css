@@ -203,7 +203,7 @@ p{
 .profile-menu i{
     font-size:14px;
     border: 1px solid #fff;
-    padding:5px;
+    padding:10px 6px;
 }
 
 @media screen and (max-width: 799px){

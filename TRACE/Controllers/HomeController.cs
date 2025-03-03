@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -10,13 +10,15 @@ namespace TRACE.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly CurrentUserHelper _currentUser;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, CurrentUserHelper currentUser)
         {
             _logger = logger;
+            _currentUser = currentUser;
         }
 
-        //[Authorize]
+        [Authorize]
         [Route("auth")]
         public IActionResult authentication()
         {
@@ -27,9 +29,8 @@ namespace TRACE.Controllers
         [Route("dashboard")]
         public IActionResult Dashboard()
         {
-
-            var name = User.FindFirst("name")?.Value;
-            var email = User.FindFirst("preferred_username")?.Value;
+            var name = _currentUser.Name;
+            var email = _currentUser.Email;
 
             ViewBag.Name = name;
             ViewBag.Email = email;

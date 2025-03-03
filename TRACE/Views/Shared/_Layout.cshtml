@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using TRACE.Helpers
+@inject CurrentUserHelper CurrentUser
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -48,7 +51,7 @@
 
             <!--Profile-->
             <span class="profile-menu">
-                <i>AC</i>
+                <i title="@CurrentUser.Email">@(GetInitials(CurrentUser.Name))</i>
             </span>
         </div>
     </div>
@@ -90,3 +93,22 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+@functions {
+    string GetInitials(string fullName)
+    {
+        if (string.IsNullOrWhiteSpace(fullName)) return "NA";
+
+        var parts = fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length == 1)
+        {
+            return parts[0][0].ToString().ToUpper();
+        }
+        else
+        {
+            var firstInitial = parts[0][0];
+            var lastInitial = parts[^1][0];
+            return $"{firstInitial}{lastInitial}".ToUpper();
+        }
+    }
+}
