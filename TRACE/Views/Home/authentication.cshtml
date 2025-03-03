@@ -1,5 +1,103 @@
 ﻿@{
-    ViewData["Title"] = "OTP Page";
+    ViewData["Title"] = "One Time Passcode";
+    var email = ViewBag.Email as string;
     Layout = null;
 }
-<h1>@ViewData["Title"]</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>@ViewData["Title"] - TRACE</title>
+
+    <!--Main CSS-->
+    <link rel="stylesheet" href="~/css/external-css.css" asp-append-version="true" />
+
+    <!--Ol reliable google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!--boxicons-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <section class="login-section">
+        <div class="login-wrapper">
+            <div class="login-card">
+                <div class="card-content">
+                    <h1>
+                        <span>ONE TIME PASSCODE</span>
+                        <span id="otp-timer">180</span>
+                    </h1>
+                    <p>We sent a 6-digit OTP code to your email: <b>@email</b></p>
+                    @if (!string.IsNullOrEmpty(ViewBag.Error))
+                    {
+                        <p style="color:red;">@ViewBag.Error</p>
+                    }
+                    
+                    <form method="post" action="@Url.Action("VerifyOtp", "Home")">
+                        <div class="input-designer">
+                            <input type="text" id="otpInput" name="otp" placeholder="Enter OTP" maxlength="6" required />
+                        </div>
+                        <button type="submit" id="verifyButton"><i class='bx bx-log-in-circle'></i> Verify</button>
+                    </form>
+
+                    <div id="resendOtpContainer" style="display: none; margin-top: 10px;">
+                        <a href="@Url.Action("Authentication", "Home")" id="resendOtpLink">Resend OTP</a>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const otpInput = document.getElementById('otpInput');
+        otpInput.addEventListener('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+
+        function startOtpCountdown(totalSeconds) {
+            const timerDisplay = document.getElementById('otp-timer');
+            const otpInput = document.getElementById('otpInput');
+            const verifyButton = document.getElementById('verifyButton');
+            const resendOtpContainer = document.getElementById('resendOtpContainer');
+
+            let timeLeft = totalSeconds;
+
+            function updateTimerDisplay() {
+                timerDisplay.textContent = `${timeLeft}`;
+            }
+
+            updateTimerDisplay();
+
+            const countdown = setInterval(() => {
+                timeLeft -= 1;
+                updateTimerDisplay();
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    timerDisplay.textContent = "EXPIRED";
+                    timerDisplay.style.color = "#dc3545";
+
+                    otpInput.disabled = true;
+                    verifyButton.disabled = true;
+
+                    verifyButton.style.display = "none";
+
+                    resendOtpContainer.style.display = "block";
+                }
+            }, 1000);
+        }
+
+        startOtpCountdown(180);
+    });
+</script>
