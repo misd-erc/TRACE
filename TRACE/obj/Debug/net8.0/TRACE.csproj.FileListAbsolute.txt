@@ -557,3 +557,15 @@ E:\Work Related\Github\TRACE\TRACE\obj\Debug\net8.0\refint\TRACE.dll
 E:\Work Related\Github\TRACE\TRACE\obj\Debug\net8.0\TRACE.pdb
 E:\Work Related\Github\TRACE\TRACE\obj\Debug\net8.0\TRACE.genruntimeconfig.cache
 E:\Work Related\Github\TRACE\TRACE\obj\Debug\net8.0\ref\TRACE.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.csproj.AssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.AssemblyInfoInputs.cache
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.AssemblyInfo.cs
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.RazorAssemblyInfo.cache
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.RazorAssemblyInfo.cs
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.sourcelink.json
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\refint\TRACE.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.pdb
