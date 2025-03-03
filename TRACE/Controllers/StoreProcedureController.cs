@@ -6,7 +6,7 @@ using TRACE.Models; // Ensure this contains the CaseDetails model
 
 namespace TRACE.Controllers
 {
-    [Route("")]
+
     public class StoreProcedureController : Controller
     {
         private readonly ErcdbContext _context;
