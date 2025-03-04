@@ -45,7 +45,29 @@
         </div>
         <div class="menu-user-div flex h-center gap-10">
             <!--Notification-->
-            <i class='bx bxs-bell'></i>
+            
+            <div class="profile-menu-wrapper">
+                <i class='bx bxs-bell' onclick="toggleNotifMenu()"></i>
+                <div class="notif-dropdown" id="notifDropdown">
+                    <ul class="notif-list">
+                        <li>
+                            <strong>Sample Notification 1</strong>
+                            <span class="ndesc">Sample description</span>
+                            <span class="ndate">01-20-2025</span>
+                        </li>
+                        <li>
+                            <strong>Sample Notification 2</strong>
+                            <span class="ndesc">Sample description</span>
+                            <span class="ndate">05-20-2024</span>
+                        </li>
+                        <li>
+                            <strong>Sample Notification 3</strong>
+                            <span class="ndesc">Sample description</span>
+                            <span class="ndate">07-20-2023</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
             <!--Settings-->
             <i class='bx bxs-cog' onclick="location.href='@Url.Action("Settings", "Home")'"></i>
@@ -63,7 +85,7 @@
                         <span class="user-name">@CurrentUser.Name</span>
                         <span class="user-email">@CurrentUser.Email</span>
                     </div>
-                    <a href="@Url.Action("Logout", "External")">Logout</a>
+                    <a href="@Url.Action("Logout", "External")"><span class='bx bx-log-out'></span> Logout</a>
                 </div>
             </div>
         </div>

@@ -267,14 +267,39 @@ p{
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
+.notif-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--theme);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 999;
+    min-width: 300px;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.notif-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 .profile-dropdown.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
+.user-info span{
+    display:block;
+}
+
 .profile-dropdown span {
-    display: block;
     font-size: 14px;
     color: var(--font-color);
 }
@@ -307,7 +332,45 @@ p{
     background-color: var(--active-color);
 }
 
-@media screen and (max-width: 799px){
+.notif-list{
+    list-style:none;
+    padding:0px;
+}
+
+.notif-list li{
+    padding:10px 20px;
+    border-bottom:1px solid #b9b9b9;
+    cursor:pointer;
+}
+
+.notif-list li:hover {
+    background: var(--active-color);
+}
+
+.notif-list li:last-of-type{
+    border-bottom: none;
+}
+
+.notif-list li strong{
+    display:block;
+    color: var(--primary-color);
+    margin-bottom:10px;
+}
+
+.notif-list li .ndesc {
+    font-size: 13px;
+    margin-bottom:10px;
+    color: #989898;
+    display:block;
+}
+
+.notif-list li .ndate {
+    font-size:11px;
+    color:#989898;
+    font-style:italic;
+}
+
+@media screen and (max-width: 799px) {
     .search-design {
         width: auto;
     }
