@@ -146,6 +146,10 @@ p{
     grid-template-columns:1fr 1fr 1fr 1fr;
 }
 
+.grid-cms{
+    grid-template-columns:300px 1fr;
+}
+
 @media screen and (max-width:999px){
     .grid-four-fr{
         grid-template-columns: 1fr 1fr;
@@ -498,11 +502,44 @@ header:hover .main-menu ul li span {
 /*CONTAINER*/
 
 /* SETTINGS */
+.settings-tab {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    gap: 10px;
+}
+
+.settings-tab .tab {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--font-color);
+    background-color: var(--theme);
+    transition: background-color 0.2s, color 0.2s;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.settings-tab .tab:hover {
+    background-color: var(--active-color);
+    color: var(--font-color);
+}
+
+.settings-tab .tab.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+}
+
+.setting-card{
+    background: var(--theme);
+    padding:20px;
+}
+
 .theme-toggle-container {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-heading);
     font-size: 14px;
     color: var(--font-color);
     margin-bottom:10px;
@@ -799,5 +836,9 @@ canvas {
 
 .reminders-tab:hover {
     background: var(--secondary-color);
+}
+
+.bx-help-circle{
+    cursor:pointer;
 }
 /*DASHBOARD*/

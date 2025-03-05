@@ -74,6 +74,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXR0aW5ncy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Components/AppearanceSettings/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQXBwZWFyYW5jZVNldHRpbmdzXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Components/ContentManagementSettings/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ29udGVudE1hbmFnZW1lbnRTZXR0aW5nc1xEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Components/NotificationsSettings/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTm90aWZpY2F0aW9uc1NldHRpbmdzXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Components/SettingsTab/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcU2V0dGluZ3NUYWJcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Components/UserManagementSettings/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVXNlck1hbmFnZW1lbnRTZXR0aW5nc1xEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Work Related/Github/TRACE/TRACE/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

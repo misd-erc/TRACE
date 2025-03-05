@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\js\\drin-theme.js"
     },
     {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\settingsTab.js",
+      "PackagePath": "staticwebassets\\js\\settingsTab.js"
+    },
+    {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
