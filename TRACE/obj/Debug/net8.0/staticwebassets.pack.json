@@ -57,6 +57,10 @@
       "PackagePath": "staticwebassets\\images\\login-bg.jpg"
     },
     {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\contentManagement.js",
+      "PackagePath": "staticwebassets\\js\\contentManagement.js"
+    },
+    {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\dbchart.js",
       "PackagePath": "staticwebassets\\js\\dbchart.js"
     },

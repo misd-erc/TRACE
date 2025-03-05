@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uLVECaTec+2wfda6OecnfJZ+9PwFwgXiliqQ3rG3Fmo=",
+  "Hash": "vqxBW+mtDwRlR3n9US/8cF0U5RueO7Vzx0LbXClNyLU=",
   "Source": "TRACE",
   "BasePath": "_content/TRACE",
   "Mode": "Default",
@@ -300,6 +300,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\login-bg.jpg"
+    },
+    {
+      "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\contentManagement.js",
+      "SourceId": "TRACE",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\",
+      "BasePath": "_content/TRACE",
+      "RelativePath": "js/contentManagement.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\contentManagement.js"
     },
     {
       "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\dbchart.js",
