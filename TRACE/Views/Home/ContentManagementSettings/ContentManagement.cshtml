@@ -47,45 +47,38 @@
 <div id="cmsModal" class="cms-modal">
     <div class="cms-modal-content">
         <div class="modal-heading flex h-center space-between">
-            <h3 id="modalTitle">Content Details</h3>
-            <span class="cms-modal-close" onclick="closeModal()">&times;</span>
-        </div>
-        <div class="modal-content grid grid-cms gap-20">
-            <div class="form-modal-div">
-                <form id="modalForm">
-                </form>
-            </div>
-            <div class="info-table-div">
+            <div class="flex h-center gap-20">
+                <h3 id="modalTitle">Content Details</h3>
                 <div class="filter-design border-radius-5 flex h-center">
                     <i class='bx bx-search'></i>
                     <input type="text" placeholder="Search filter" />
                 </div>
-
+            </div>
+            <span class="cms-modal-close" onclick="closeModal()">&times;</span>
+        </div>
+        <div class="modal-content">
+            <button class="modal-btn"></button>
+            <div class="table-wrapper">
                 <table id="DynamicTable" class="cms-table">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Action</th>
+                            <th>NAME</th>
+                            <th>DESCRIPTION</th>
+                            <th>ACTION</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr >
-                            <td>Sample</td>
-                            <td>Sample</td>
-                            <td><button><i class='bx bxs-edit-alt'></i> Edit</button></td>
+                        <tr>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            @await Html.PartialAsync("Components/Loader/Mini-Loader")
         </div>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-
-
-    $(document).ready(function () {
+<script>$(document).ready(function () {
         function checkTitleAndLoadData() {
             if ($("#modalTitle").text().trim() === "Customize Case Category") {
                 loadCaseCategories();
@@ -96,19 +89,14 @@
              
         }
 
-        // Run once when the page loads
         checkTitleAndLoadData();
 
-        // Observe changes to #modalTitle
         const observer = new MutationObserver(() => {
             checkTitleAndLoadData();
         });
 
         observer.observe(document.getElementById("modalTitle"), { childList: true, subtree: true });
     });
-
-    
-
 </script>
 
 <script src="~/js/contentManagement.js"></script>

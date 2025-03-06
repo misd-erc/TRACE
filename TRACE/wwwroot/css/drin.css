@@ -42,7 +42,7 @@ p{
     margin-bottom: 10px;
 }
 
-button{
+button, input[type="submit"]{
     background: var(--primary-color);
     color:#fff;
     cursor:pointer;
@@ -51,13 +51,17 @@ button{
     font-family:var(--font-body);
 }
 
-button:hover {
+button:hover, input[type="submit"]:hover {
     background: var(--secondary-color);
 }
 
-.submit-div{
-    display:flex;
-    justify-content:flex-end;
+button .bx-plus{
+    color:#fff;
+}
+
+.submit-div {
+    display: flex;
+    justify-content: flex-end;
 }
 
 /*LOADER CADS*/
@@ -77,6 +81,26 @@ button:hover {
     color: var(--font-color);
     font-weight: bold;
 }
+
+.mini-loader-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--theme);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    flex-direction: column;
+    font-size: 18px;
+    color: var(--font-color);
+    font-weight: bold;
+    pointer-events: none;
+}
+
+
 
 .loader-spinner {
     width: 50px;
@@ -706,6 +730,10 @@ ul.content-list li:hover {
 }
 
 /*CMS MODAL*/
+.modal-btn{
+    margin:0px 0px 20px 0px;
+}
+
 .cms-modal {
     display: none;
     position: fixed;
@@ -739,8 +767,8 @@ ul.content-list li:hover {
 
 .cms-modal-content .modal-content {
     padding: 20px;
-    max-height:450px;
-    overflow-y:auto;
+    max-height: 650px;
+    position: relative;
 }
 
 .cms-modal-close {
@@ -819,6 +847,11 @@ ul.content-list li:hover {
     width:100%
 }
 
+.modal-content .table-wrapper {
+    height: 500px;
+    overflow-y: auto;
+}
+
 .cms-table {
     width: 100%;
     border-collapse: collapse;
@@ -830,30 +863,43 @@ ul.content-list li:hover {
     overflow: hidden;
 }
 
+
+.cms-table tbody tr td button a{
+    color:#fff;
+    text-decoration:none;
+}
+
 .cms-table tbody tr td button i{
     color:#fff
 }
 
 .cms-table thead {
-    background-color: var(--theme);
-    color: #fff;
+    background-color: var(--primary-color);
     font-weight: bold;
 }
 
 .cms-table th,
 .cms-table td {
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--active-color);
 }
 
 .cms-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: var(--body-color);
+}
+
+.cms-table th:nth-child(3),
+.cms-table td:nth-child(3) {
+    width: 1%;
+    white-space: nowrap;
+    text-align: center;
 }
 
 .cms-table th {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-size: 14px;
+    color:#fff;
 }
 
 /*CMS TABLE*/

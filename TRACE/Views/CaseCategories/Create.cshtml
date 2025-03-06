@@ -6,7 +6,7 @@
 
 <h1>Create</h1>
 
-<h4>CaseCategory</h4>
+<p>This page is for creating new Case Category.</p>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,7 +24,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="IsInternal" class="control-label"></label>
-                <input asp-for="IsInternal" class="form-control" />
+                <select asp-for="IsInternal" class="form-control">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
                 <span asp-validation-for="IsInternal" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -32,10 +35,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
