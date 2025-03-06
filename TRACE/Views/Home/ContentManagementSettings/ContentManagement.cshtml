@@ -83,6 +83,9 @@
             if ($("#modalTitle").text().trim() === "Customize Case Category") {
                 loadCaseCategories();
             }
+            else if (($("#modalTitle").text().trim() === "Customize Case Event Types")){
+                loadCaseEventTypes();
+            }
             else{ 
                  $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
             }

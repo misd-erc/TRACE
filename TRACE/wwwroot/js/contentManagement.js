@@ -93,3 +93,32 @@ $(document).ready(function () {
         });
     });
 });
+function loadCaseEventTypes() {
+    $.ajax({
+        url: "/CaseEventTypes/GetCaseEventTypes",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            console.log(response); // Debugging
+
+            if (response && response.data && response.data.length > 0) {
+                let rows = "";
+                response.data.forEach(item => {
+                    rows += `
+                            <tr>
+                                <td>${item.caseEventTypeId}</td>
+                                <td>${item.eventType}</td>
+                                <td><button><i class='bx bxs-edit-alt'></i>  <a href="/CaseEventTypes/Edit/${item.caseEventTypeId}">Edit</a></button></td>
+                               
+                            </tr>`;
+                });
+                $("#DynamicTable tbody").html(rows);
+            } else {
+                $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+            }
+        },
+        error: function () {
+            alert("Error loading case categories.");
+        }
+    });
+}
