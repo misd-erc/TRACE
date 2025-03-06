@@ -1,6 +1,8 @@
-﻿<h2>Content Management Settings</h2>
+﻿@{
+    ViewData["Title"] = "Content Management";
+}
+<h1>@ViewData["Title"]</h1>
 <p>Easily Manage reference data in the system</p>
-<hr />
 <div class="grid gap-20 grid-cms">
     <div class="cms-nav">
         <ul>
@@ -23,7 +25,7 @@
                 <li><i class='bx bxs-edit-alt'></i> Hearing Venues</li>
                 <li><i class='bx bxs-edit-alt'></i> Milestone Templates</li>
             </ul>
-        </div>  
+        </div>
 
         <div id="documents" class="cms-content">
             <h3><i class='bx bxs-file'></i> Document Related Contents</h3>
@@ -41,6 +43,7 @@
     </div>
 </div>
 
+
 <div id="cmsModal" class="cms-modal">
     <div class="cms-modal-content">
         <div class="modal-heading flex h-center space-between">
@@ -50,14 +53,13 @@
         <div class="modal-content grid grid-cms gap-20">
             <div class="form-modal-div">
                 <form id="modalForm">
-                    <!-- Fields will be injected here dynamically based on selection -->
                 </form>
             </div>
             <div class="info-table-div">
-                @*<div class="filter-design border-radius-5 flex h-center">
+                <div class="filter-design border-radius-5 flex h-center">
                     <i class='bx bx-search'></i>
                     <input type="text" placeholder="Search filter" />
-                </div> *@
+                </div>
 
                 <table class="cms-table">
                     <thead>
@@ -79,5 +81,6 @@
         </div>
     </div>
 </div>
+
 
 <script src="~/js/contentManagement.js"></script>

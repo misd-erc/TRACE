@@ -489,7 +489,7 @@ header:hover .trace-logo span {
 }
 
 .main-menu ul li i {
-    font-size: 21px;
+    font-size: 25px;
 }
 
 .main-menu ul li span {
@@ -643,7 +643,6 @@ input:checked + .drin-slider:before {
 
 /*CMS*/
 .cms-nav {
-    background-color: var(--theme);
     padding: 20px 0;
 }
 
@@ -656,7 +655,6 @@ input:checked + .drin-slider:before {
 .cms-nav li {
     padding: 15px 20px;
     cursor: pointer;
-    background-color: var(--theme);
 }
 
 .cms-nav li.active {
@@ -675,7 +673,6 @@ input:checked + .drin-slider:before {
 
 .cms-wrap {
     flex: 1;
-    padding: 20px;
     overflow-y: auto;
 }
 
@@ -790,6 +787,17 @@ ul.content-list li:hover {
 }
 
 .form-group textarea {
+    width: 100%;
+    padding: 10px 10px;
+    border: 2px solid var(--primary-color);
+    outline: none;
+    font-family: var(--font-body);
+    background: var(--theme);
+    color: var(--font-color);
+    margin-bottom: 20px;
+}
+
+.form-group select {
     width: 100%;
     padding: 10px 10px;
     border: 2px solid var(--primary-color);

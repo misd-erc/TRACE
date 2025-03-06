@@ -131,6 +131,30 @@ namespace TRACE.Controllers
         }
 
         [Authorize]
+        [Route("contentmanagement")]
+        public IActionResult ContentManagement()
+        {
+            if (HttpContext.Session.GetString("IsVerified") != "true")
+            {
+                return RedirectToAction("Logout", "External");
+
+            }
+            return View("ContentManagementSettings/ContentManagement");
+        }
+
+        [Authorize]
+        [Route("usermanagement")]
+        public IActionResult UserManagement()
+        {
+            if (HttpContext.Session.GetString("IsVerified") != "true")
+            {
+                return RedirectToAction("Logout", "External");
+
+            }
+            return View("UserManagementSettings/UserManagement");
+        }
+
+        [Authorize]
         [Route("settings")]
         public IActionResult Settings()
         {

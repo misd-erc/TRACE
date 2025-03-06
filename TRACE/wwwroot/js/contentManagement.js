@@ -12,16 +12,65 @@
     event.target.classList.add('active');
 }
 
+
 /*FOR CMS MODAL FIELD TEMPLATES*/
 const fieldTemplates = {
     'Case Category': [
-        { label: 'Category Name', type: 'text', name: 'categoryName' },
+        { label: 'Case Category Name', type: 'text', name: 'categoryName' },
         { label: 'Description', type: 'textarea', name: 'description' },
         { label: 'Is Internal?', type: 'checkbox', name: 'isInternal' }
     ],
     'Case Event Types': [
-        { label: 'Event Type Name', type: 'text', name: 'eventType' },
+        { label: 'Event Type Name', type: 'text', name: 'eventType' }
     ],
+    'Case Statuses': [
+        { label: 'Status', type: 'text', name: 'caseStatus' },
+        { label: 'Description', type: 'textarea', name: 'description' }
+    ],
+    'Case Milestones': [
+        { label: 'Milestone', type: 'text', name: 'caseMilestone' },
+        { label: 'Description', type: 'textarea', name: 'description' }
+    ],
+    'Handling Officer Types': [
+        { label: 'Officer Type', type: 'text', name: 'officerType' },
+        { label: 'Description', type: 'textarea', name: 'description' }
+    ],
+    'Hearing Categories': [
+        { label: 'Hearing Category Name', type: 'text', name: 'categoryName' },
+        { label: 'Description', type: 'textarea', name: 'description' }
+    ],
+    'Hearing Types': [
+        { label: 'Hearing Type Name', type: 'text', name: 'eventType' },
+        { label: 'Description', type: 'textarea', name: 'description' }
+    ],
+    'Hearing Venues': [
+        { label: 'Hearing Venue Name', type: 'text', name: 'hearingVenue' },
+        { label: 'Street Address', type: 'textarea', name: 'description' },
+        {
+            label: 'City',
+            type: 'select',
+            name: 'city',
+            options: [
+                { value: '1', label: 'Sample One' },
+                { value: '2', label: 'Sample Two' },
+                { value: '3', label: 'Sample Three' }
+            ]
+        }
+    ],
+    'Milestone Templates': [
+        { label: 'Template Name', type: 'text', name: 'templateName' },
+        {
+            label: 'Case Category',
+            type: 'select',
+            name: 'caseCategoryID',
+            options: [
+                { value: '1', label: 'Case Category One' },
+                { value: '2', label: 'Case Category Two' },
+                { value: '3', label: 'Case Category Three' }
+            ]
+        }
+    ],
+
 };
 
 
@@ -38,7 +87,7 @@ let currentContentName = '';
 function openModal(contentName) {
     currentContentName = contentName;
     document.getElementById('cmsModal').style.display = 'flex';
-    document.getElementById('modalTitle').innerText = "Customize "+contentName;
+    document.getElementById('modalTitle').innerText = "Customize " + contentName;
 
     const form = document.getElementById('modalForm');
     form.innerHTML = '';
@@ -62,10 +111,11 @@ function openModal(contentName) {
             input = document.createElement('select');
             input.name = field.name;
             input.required = true;
+
             field.options.forEach(option => {
                 const opt = document.createElement('option');
-                opt.value = option;
-                opt.innerText = option;
+                opt.value = option.value;
+                opt.innerText = option.label;
                 input.appendChild(opt);
             });
         }
@@ -146,3 +196,4 @@ function handleFormSubmit(event) {
 
     closeModal();
 }
+
