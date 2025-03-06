@@ -19,9 +19,24 @@ namespace TRACE.Controllers
         }
 
         // GET: CaseCategories
+
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CaseCategories.ToListAsync());
+            var categories = await _context.CaseCategories.ToListAsync();
+            return View(categories);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetCaseCategories()
+        {
+            var categories = await _context.CaseCategories.ToListAsync();
+
+            if (categories == null || !categories.Any())
+            {
+                return Json(new { success = false, message = "No categories found." });
+            }
+
+            return Json(new { success = true, data = categories });
         }
 
         // GET: CaseCategories/Details/5

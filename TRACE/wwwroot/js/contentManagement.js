@@ -197,3 +197,34 @@ function handleFormSubmit(event) {
     closeModal();
 }
 
+
+
+function loadCaseCategories() {
+    $.ajax({
+        url: "/CaseCategories/GetCaseCategories",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            console.log(response); // Debugging
+
+            if (response && response.data && response.data.length > 0) {
+                let rows = "";
+                response.data.forEach(item => {
+                    rows += `
+                            <tr>
+                                <td>${item.category}</td>
+                                <td>${item.description}</td>
+                                <td><button><i class='bx bxs-edit-alt'></i>  <a href="/CaseCategories/Edit/${item.caseCategoryId}">Edit</a></button></td>
+                               
+                            </tr>`;
+                });
+                $("#DynamicTable tbody").html(rows);
+            } else {
+                $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+            }
+        },
+        error: function () {
+            alert("Error loading case categories.");
+        }
+    });
+}

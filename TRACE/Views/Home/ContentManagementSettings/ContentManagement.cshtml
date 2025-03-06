@@ -61,7 +61,7 @@
                     <input type="text" placeholder="Search filter" />
                 </div>
 
-                <table class="cms-table">
+                <table id="DynamicTable" class="cms-table">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -70,7 +70,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr >
                             <td>Sample</td>
                             <td>Sample</td>
                             <td><button><i class='bx bxs-edit-alt'></i> Edit</button></td>
@@ -81,6 +81,34 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
 
+
+    $(document).ready(function () {
+        function checkTitleAndLoadData() {
+            if ($("#modalTitle").text().trim() === "Customize Case Category") {
+                loadCaseCategories();
+            }
+            else{ 
+                 $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+            }
+             
+        }
+
+        // Run once when the page loads
+        checkTitleAndLoadData();
+
+        // Observe changes to #modalTitle
+        const observer = new MutationObserver(() => {
+            checkTitleAndLoadData();
+        });
+
+        observer.observe(document.getElementById("modalTitle"), { childList: true, subtree: true });
+    });
+
+    
+
+</script>
 
 <script src="~/js/contentManagement.js"></script>
