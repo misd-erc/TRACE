@@ -76,3 +76,20 @@ function loadCaseCategories() {
         }
     });
 }
+
+/*SEARCH FILTER*/
+$(document).ready(function () {
+    $("#searchFilter").on("input", function () {
+        const searchText = $(this).val().toLowerCase();
+
+        $("#DynamicTable tbody tr").each(function () {
+            const rowText = $(this).text().toLowerCase();
+
+            if (rowText.includes(searchText)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+});
