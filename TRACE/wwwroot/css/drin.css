@@ -42,6 +42,16 @@ p{
     margin-bottom: 10px;
 }
 
+a{
+    text-decoration:none;
+    color: var(--primary-color);
+    font-weight:500;
+}
+
+a:hover{
+    color: var(--secondary-color);
+}
+
 button, input[type="submit"]{
     background: var(--primary-color);
     color:#fff;
@@ -62,6 +72,11 @@ button .bx-plus{
 .submit-div {
     display: flex;
     justify-content: flex-end;
+}
+
+.crumbs{
+    margin:20px 0px;
+    color:#444;
 }
 
 /*LOADER CADS*/
@@ -806,7 +821,7 @@ ul.content-list li:hover {
     width:100%;
     height:25px;
     padding:20px 10px;
-    border:2px solid var(--primary-color);
+    border:1px solid var(--active-color);
     outline:none;
     font-family:var(--font-body);
     background: var(--theme);
@@ -817,7 +832,7 @@ ul.content-list li:hover {
 .form-group textarea {
     width: 100%;
     padding: 10px 10px;
-    border: 2px solid var(--primary-color);
+    border: 1px solid var(--active-color);
     outline: none;
     font-family: var(--font-body);
     background: var(--theme);
@@ -828,8 +843,8 @@ ul.content-list li:hover {
 .form-group select {
     width: 100%;
     padding: 10px 10px;
-    border: 2px solid var(--primary-color);
     outline: none;
+    border: 1px solid var(--active-color);
     font-family: var(--font-body);
     background: var(--theme);
     color: var(--font-color);
