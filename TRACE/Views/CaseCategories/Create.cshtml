@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Create";
 }
+<div class="crumbs">
+    <a href="/contentmanagement">Content Management</a> > Create
+</div>
 
 <h1>Create</h1>
 
@@ -18,7 +21,7 @@
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
+                <label asp-for="Description" class="control-label" ></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
