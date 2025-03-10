@@ -30,7 +30,7 @@ namespace TRACE.Controllers
 
             if (string.IsNullOrEmpty(email))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Logout", "External");
             }
 
             var otp = _generateOtp.GenerateOtp();
