@@ -23,6 +23,22 @@ body{
     background: var(--body-color);
 }
 
+.swal2-popup {
+    background-color: var(--theme) !important;
+    color: var(--font-color) !important;
+}
+
+.swal2-confirm {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.swal2-confirm:hover {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+
 h1, h2, h3, h4{
     font-family: var(--font-heading);
     font-weight:600;

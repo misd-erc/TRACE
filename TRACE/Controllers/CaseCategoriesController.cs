@@ -76,9 +76,10 @@ namespace TRACE.Controllers
             {
                 _context.Add(caseCategory);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
-            return View(caseCategory);
+
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseCategories/Edit/5
@@ -106,7 +107,7 @@ namespace TRACE.Controllers
         {
             if (id != caseCategory.CaseCategoryId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Invalid request. Category ID mismatch." });
             }
 
             if (ModelState.IsValid)
@@ -115,21 +116,21 @@ namespace TRACE.Controllers
                 {
                     _context.Update(caseCategory);
                     await _context.SaveChangesAsync();
+                    return Json(new { success = true, message = "Success! Case category has been updated." });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CaseCategoryExists(caseCategory.CaseCategoryId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "Error! Case category not found." });
                     }
                     else
                     {
-                        throw;
+                        return Json(new { success = false, message = "Error! A concurrency issue occurred." });
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(caseCategory);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseCategories/Delete/5

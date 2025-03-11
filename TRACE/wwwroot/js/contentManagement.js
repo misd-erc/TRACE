@@ -126,7 +126,7 @@ function loadCaseStatuses() {
                     rows += `
                             <tr>
                                 <td>${item.status}</td>
-                                <td>${item.description}</td>
+                                <td>${item.description ? item.description : "No Data Entry"}</td>
                                 <td><a href="/CaseStatus/Edit/${item.caseStatusId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                                
                             </tr>`;
@@ -159,7 +159,7 @@ function loadCaseMilestones() {
                     rows += `
                             <tr>
                                 <td>${item.milestone}</td>
-                                <td>${item.description}</td>
+                                <td>${item.description ? item.description : "No Data Entry"}</td>
                                 <td><a href="/CaseMilestone/Edit/${item.caseMilestoneId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                                
                             </tr>`;
@@ -224,7 +224,7 @@ function loadHearingCategories() {
                     rows += `
                             <tr>
                                 <td>${item.category}</td>
-                                <td>${item.description}</td>
+                                <td>${item.description ? item.description : "No Data Entry"}</td>
                                 <td><a href="/HearingCategory/Edit/${item.hearingCategoryId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                                
                             </tr>`;
