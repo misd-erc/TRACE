@@ -72,9 +72,10 @@ namespace TRACE.Controllers
             {
                 _context.Add(caseEventType);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
-            return View(caseEventType);
+
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseEventType/Edit/5
