@@ -60,7 +60,7 @@ namespace TRACE.Controllers
         // GET: HearingVenue/Create
         public IActionResult Create()
         {
-            ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityId");
+            ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityName");
             return View();
         }
 
