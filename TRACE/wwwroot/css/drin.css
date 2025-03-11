@@ -1290,7 +1290,7 @@ canvas {
 
 .case-filter-dropdown {
     width: 450px;
-    background: white;
+    background: var(--theme);
     position: absolute;
     top: 45px;
     right: 0;
@@ -1323,9 +1323,13 @@ canvas {
     margin-top:10px;
 }
 
-.case-date-filter div input[type=date]{
-    font-family:var(--font-body);
-    padding:5px 10px;
+.case-date-filter div input[type=date] {
+    font-family: var(--font-body);
+    padding: 5px 10px;
+    background: var(--body-color);
+    color: var(--font-color);
+    border: none;
+    color-scheme: dark light;
 }
 
 .case-date-filter div label {
@@ -1355,8 +1359,6 @@ canvas {
     font-size:14px;
     text-align:center;
 }
-
-
 
 .all-cases-table tbody tr:nth-of-type(2n+2){
     background: var(--body-color);
