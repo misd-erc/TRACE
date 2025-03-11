@@ -72,9 +72,10 @@ namespace TRACE.Controllers
             {
                 _context.Add(caseMilestone);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
-            return View(caseMilestone);
+
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseMilestone/Edit/5
@@ -102,7 +103,7 @@ namespace TRACE.Controllers
         {
             if (id != caseMilestone.CaseMilestoneId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error! Data not found." });
             }
 
             if (ModelState.IsValid)
@@ -111,21 +112,22 @@ namespace TRACE.Controllers
                 {
                     _context.Update(caseMilestone);
                     await _context.SaveChangesAsync();
+                
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CaseMilestoneExists(caseMilestone.CaseMilestoneId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "Error! Data not found." });
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been updated." });
             }
-            return View(caseMilestone);
+            return Json(new { success = true, message = "Success! Data has been updated." });
         }
 
         // GET: CaseMilestone/Delete/5

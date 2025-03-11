@@ -73,9 +73,10 @@ namespace TRACE.Controllers
             {
                 _context.Add(hearingCategory);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
-            return View(hearingCategory);
+
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: HearingCategory/Edit/5
@@ -103,7 +104,7 @@ namespace TRACE.Controllers
         {
             if (id != hearingCategory.HearingCategoryId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error! Data not found." });
             }
 
             if (ModelState.IsValid)
@@ -117,16 +118,16 @@ namespace TRACE.Controllers
                 {
                     if (!HearingCategoryExists(hearingCategory.HearingCategoryId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "Error! Data not found." });
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been updated." });
             }
-            return View(hearingCategory);
+            return Json(new { success = true, message = "Success! Data has been updated." });
         }
 
         // GET: HearingCategory/Delete/5

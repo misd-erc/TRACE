@@ -103,7 +103,7 @@ namespace TRACE.Controllers
         {
             if (id != caseEventType.CaseEventTypeId)
             {
-                return NotFound();
+                 return Json(new { success = true, message = "Success! Data has been updated." });
             }
 
             if (ModelState.IsValid)
@@ -112,21 +112,22 @@ namespace TRACE.Controllers
                 {
                     _context.Update(caseEventType);
                     await _context.SaveChangesAsync();
+                    return Json(new { success = true, message = "Success! Data has been updated." });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CaseEventTypeExists(caseEventType.CaseEventTypeId))
                     {
-                        return NotFound();
+                        return Json(new { success = true, message = "Success! Data has been updated." });
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+             
             }
-            return View(caseEventType);
+            return Json(new { success = true, message = "Success! Data has been updated." });
         }
 
         // GET: CaseEventType/Delete/5

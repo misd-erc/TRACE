@@ -73,9 +73,10 @@ namespace TRACE.Controllers
             {
                 _context.Add(caseStatus);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
-            return View(caseStatus);
+
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseStatus/Edit/5
@@ -103,7 +104,7 @@ namespace TRACE.Controllers
         {
             if (id != caseStatus.CaseStatusId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error! Data not found." });
             }
 
             if (ModelState.IsValid)
@@ -117,16 +118,16 @@ namespace TRACE.Controllers
                 {
                     if (!CaseStatusExists(caseStatus.CaseStatusId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "Error! Data not found." });
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been updated." });
             }
-            return View(caseStatus);
+            return Json(new { success = true, message = "Success! Data has been updated." });
         }
 
         // GET: CaseStatus/Delete/5

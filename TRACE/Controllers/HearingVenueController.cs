@@ -75,10 +75,12 @@ namespace TRACE.Controllers
             {
                 _context.Add(hearingVenue);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
+
+          
             ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityId", hearingVenue.CityId);
-            return View(hearingVenue);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: HearingVenue/Edit/5
@@ -107,7 +109,7 @@ namespace TRACE.Controllers
         {
             if (id != hearingVenue.HearingVenueId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error! Data not found." });
             }
 
             if (ModelState.IsValid)
@@ -121,17 +123,17 @@ namespace TRACE.Controllers
                 {
                     if (!HearingVenueExists(hearingVenue.HearingVenueId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "Error! Data not found." });
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been updated." });
             }
             ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityId", hearingVenue.CityId);
-            return View(hearingVenue);
+            return Json(new { success = true, message = "Success! Data has been updated." });
         }
 
         // GET: HearingVenue/Delete/5

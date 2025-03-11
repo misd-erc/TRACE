@@ -73,9 +73,10 @@ namespace TRACE.Controllers
             {
                 _context.Add(hearingOfficerType);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
-            return View(hearingOfficerType);
+
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: HearingOfficerType/Edit/5
@@ -103,7 +104,7 @@ namespace TRACE.Controllers
         {
             if (id != hearingOfficerType.HearingOfficerTypeId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error! Data not found." });
             }
 
             if (ModelState.IsValid)
@@ -117,16 +118,16 @@ namespace TRACE.Controllers
                 {
                     if (!HearingOfficerTypeExists(hearingOfficerType.HearingOfficerTypeId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "Error! Data not found." });
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been updated." });
             }
-            return View(hearingOfficerType);
+            return Json(new { success = true, message = "Success! Data has been updated." });
         }
 
         // GET: HearingOfficerType/Delete/5

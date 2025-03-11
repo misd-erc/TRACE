@@ -13,7 +13,8 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+
+        <form id="editForm" asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="HearingTypeId" />
             <div class="form-group">
@@ -34,5 +35,54 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            $("#editForm").submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Success!",
+                                text: response.message,
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                customClass: {
+                                    popup: "swal2-popup",
+                                    title: "swal2-title",
+                                    content: "swal2-content",
+                                    confirmButton: "swal2-confirm"
+                                }
+                            }).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Error!",
+                                text: response.message,
+                                icon: "error",
+                                confirmButtonText: "Try Again"
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Oops!",
+                            text: "Something went wrong. Please try again.",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 }
