@@ -92,8 +92,8 @@ function loadCaseEventTypes() {
                 response.data.forEach(item => {
                     rows += `
                             <tr>
-                                <td>${item.caseEventTypeId}</td>
                                 <td>${item.eventType}</td>
+                                <td>${item.description}</td>
                                 <td><a href="/CaseEventType/Edit/${item.caseEventTypeId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                                
                             </tr>`;
