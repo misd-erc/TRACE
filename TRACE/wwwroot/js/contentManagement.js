@@ -78,7 +78,7 @@ function loadCaseCategories() {
 }
 function loadCaseEventTypes() {
     $(".cms-modal .modal-content .modal-btn")
-        .html("<i class='bx bx-plus'></i> Add New EventType")
+        .html("<i class='bx bx-plus'></i> Add New Case Event Type")
         .attr("onclick", "window.location.href='/CaseEventType/Create'");
     $.ajax({
         url: "/CaseEventType/GetCaseEventTypes",
@@ -109,9 +109,9 @@ function loadCaseEventTypes() {
     });
 }
 
-function loadCaseStatus() {
+function loadCaseStatuses() {
     $(".cms-modal .modal-content .modal-btn")
-        .html("<i class='bx bx-plus'></i> Add New EventType")
+        .html("<i class='bx bx-plus'></i> Add New Case Status")
         .attr("onclick", "window.location.href='/CaseStatus/Create'");
     $.ajax({
         url: "/CaseStatus/GetCaseStatus",
@@ -125,9 +125,173 @@ function loadCaseStatus() {
                 response.data.forEach(item => {
                     rows += `
                             <tr>
-                                <td>${item.caseEventTypeId}</td>
-                                <td>${item.eventType}</td>
-                                <td><a href="/CaseEventType/Edit/${item.caseEventTypeId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+                                <td>${item.status}</td>
+                                <td>${item.description}</td>
+                                <td><a href="/CaseStatus/Edit/${item.caseStatusId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+                               
+                            </tr>`;
+                });
+                $("#DynamicTable tbody").html(rows);
+            } else {
+                $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+            }
+        },
+        error: function () {
+            alert("Error loading case event types.");
+        }
+    });
+}
+
+function loadCaseMilestones() {
+    $(".cms-modal .modal-content .modal-btn")
+        .html("<i class='bx bx-plus'></i> Add New Case Milestone")
+        .attr("onclick", "window.location.href='/CaseMilestone/Create'");
+    $.ajax({
+        url: "/CaseMilestone/GetCaseMilestones",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            console.log(response); // Debugging
+
+            if (response && response.data && response.data.length > 0) {
+                let rows = "";
+                response.data.forEach(item => {
+                    rows += `
+                            <tr>
+                                <td>${item.milestone}</td>
+                                <td>${item.description}</td>
+                                <td><a href="/CaseMilestone/Edit/${item.caseMilestoneId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+                               
+                            </tr>`;
+                });
+                $("#DynamicTable tbody").html(rows);
+            } else {
+                $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+            }
+        },
+        error: function () {
+            alert("Error loading case event types.");
+        }
+    });
+}
+
+function loadHandlingOfficerTypes() {
+    $(".cms-modal .modal-content .modal-btn")
+        .html("<i class='bx bx-plus'></i> Add New Handling OfficerType")
+        .attr("onclick", "window.location.href='/HandlingOfficerType/Create'");
+    $.ajax({
+        url: "/HandlingOfficerType/GetHearingOfficerTypes",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            console.log(response); // Debugging
+
+            if (response && response.data && response.data.length > 0) {
+                let rows = "";
+                response.data.forEach(item => {
+                    rows += `
+                            <tr>
+                                <td>${item.officerType}</td>
+                                <td>${item.description}</td>
+                                <td><a href="/HandlingOfficerType/Edit/${item.handlingOfficerTypeId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+                               
+                            </tr>`;
+                });
+                $("#DynamicTable tbody").html(rows);
+            } else {
+                $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+            }
+        },
+        error: function () {
+            alert("Error loading case event types.");
+        }
+    });
+}
+function loadHearingCategories() {
+    $(".cms-modal .modal-content .modal-btn")
+        .html("<i class='bx bx-plus'></i> Add New Hearing Category")
+        .attr("onclick", "window.location.href='/HearingCategory/Create'");
+    $.ajax({
+        url: "/HearingCategory/GetHearingCategories",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            console.log(response); // Debugging
+
+            if (response && response.data && response.data.length > 0) {
+                let rows = "";
+                response.data.forEach(item => {
+                    rows += `
+                            <tr>
+                                <td>${item.category}</td>
+                                <td>${item.description}</td>
+                                <td><a href="/HearingCategory/Edit/${item.hearingCategoryId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+                               
+                            </tr>`;
+                });
+                $("#DynamicTable tbody").html(rows);
+            } else {
+                $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+            }
+        },
+        error: function () {
+            alert("Error loading case event types.");
+        }
+    });
+}
+
+function loadHearingTypes() {
+    $(".cms-modal .modal-content .modal-btn")
+        .html("<i class='bx bx-plus'></i> Add New Hearing Type")
+        .attr("onclick", "window.location.href='/HearingType/Create'");
+    $.ajax({
+        url: "/HearingType/GetHearingTypes",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            console.log(response); // Debugging
+
+            if (response && response.data && response.data.length > 0) {
+                let rows = "";
+                response.data.forEach(item => {
+                    rows += `
+                            <tr>
+                                <td>${item.typeOfHearing}</td>
+                                <td>${item.description}</td>
+                                <td><a href="/HearingType/Edit/${item.hearingTypeId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+                               
+                            </tr>`;
+                });
+                $("#DynamicTable tbody").html(rows);
+            } else {
+                $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+            }
+        },
+        error: function () {
+            alert("Error loading case event types.");
+        }
+    });
+}
+
+function loadHearingVenues() {
+    $(".cms-modal .modal-content .modal-btn")
+        .html("<i class='bx bx-plus'></i> Add New Hearing Venue")
+        .attr("onclick", "window.location.href='/HearingVenue/Create'");
+    $.ajax({
+        url: "/HearingVenue/GetHearingVenues",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            console.log(response); // Debugging
+
+            if (response && response.data && response.data.length > 0) {
+                let rows = "";
+                response.data.forEach(item => {
+                    rows += `
+                            <tr>
+                                <td>${item.hearingVenueId}</td>
+                                <td>${item.venueName}</td>
+                                <td><a href="/HearingVenue/Edit/${item.hearingVenueId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                                
                             </tr>`;
                 });

@@ -86,6 +86,25 @@
             else if (($("#modalTitle").text().trim() === "Customize Case Event Types")){
                 loadCaseEventTypes();
             }
+             else if (($("#modalTitle").text().trim() === "Customize Case Statuses")){
+                loadCaseStatuses();
+            }
+            else if (($("#modalTitle").text().trim() === "Customize Case Milestones")){
+                loadCaseMilestones();
+            }
+             else if (($("#modalTitle").text().trim() === "Customize Handling Officer Types")){
+                loadHandlingOfficerTypes();
+            }
+             else if (($("#modalTitle").text().trim() === "Customize Hearing Categories")){
+                loadHearingCategories();
+            }
+             else if (($("#modalTitle").text().trim() === "Customize Hearing Types")){
+                loadHearingTypes();
+            }
+             else if (($("#modalTitle").text().trim() === "Customize Hearing Venues")){
+                loadHearingVenues();
+         
+             }
             else{ 
                  $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
             }
