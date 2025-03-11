@@ -1,0 +1,30 @@
+@model TRACE.Models.CaseMilestone
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>CaseMilestone</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Milestone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Milestone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.CaseMilestoneId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

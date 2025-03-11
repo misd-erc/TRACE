@@ -78,10 +78,10 @@ function loadCaseCategories() {
 }
 function loadCaseEventTypes() {
     $(".cms-modal .modal-content .modal-btn")
-        .html("<i class='bx bx-plus'></i> Add New Category")
-        .attr("onclick", "window.location.href='/CaseEventTypes/Create'");
+        .html("<i class='bx bx-plus'></i> Add New EventType")
+        .attr("onclick", "window.location.href='/CaseEventType/Create'");
     $.ajax({
-        url: "/CaseEventTypes/GetCaseEventTypes",
+        url: "/CaseEventType/GetCaseEventTypes",
         type: "GET",
         dataType: "json",
         success: function (response) {
@@ -94,7 +94,40 @@ function loadCaseEventTypes() {
                             <tr>
                                 <td>${item.caseEventTypeId}</td>
                                 <td>${item.eventType}</td>
-                                <td><a href="/CaseEventTypes/Edit/${item.caseEventTypeId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+                                <td><a href="/CaseEventType/Edit/${item.caseEventTypeId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+                               
+                            </tr>`;
+                });
+                $("#DynamicTable tbody").html(rows);
+            } else {
+                $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+            }
+        },
+        error: function () {
+            alert("Error loading case event types.");
+        }
+    });
+}
+
+function loadCaseStatus() {
+    $(".cms-modal .modal-content .modal-btn")
+        .html("<i class='bx bx-plus'></i> Add New EventType")
+        .attr("onclick", "window.location.href='/CaseStatus/Create'");
+    $.ajax({
+        url: "/CaseStatus/GetCaseStatus",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            console.log(response); // Debugging
+
+            if (response && response.data && response.data.length > 0) {
+                let rows = "";
+                response.data.forEach(item => {
+                    rows += `
+                            <tr>
+                                <td>${item.caseEventTypeId}</td>
+                                <td>${item.eventType}</td>
+                                <td><a href="/CaseEventType/Edit/${item.caseEventTypeId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                                
                             </tr>`;
                 });
