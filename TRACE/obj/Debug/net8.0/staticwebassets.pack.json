@@ -61,6 +61,10 @@
       "PackagePath": "staticwebassets\\images\\whitetech.jpg"
     },
     {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\CM-AllCases.js",
+      "PackagePath": "staticwebassets\\js\\CM-AllCases.js"
+    },
+    {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\contentManagement.js",
       "PackagePath": "staticwebassets\\js\\contentManagement.js"
     },

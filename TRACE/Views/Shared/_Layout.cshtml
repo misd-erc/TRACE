@@ -105,11 +105,11 @@
                     </li>
                     <li class="has-dropdown" onclick="toggleCollapse(event)">
                         <img src="~/images/icons/case.png" />
-                        <span>Case Management</span>
+                        <span>Case Management <i class='bx bx-chevron-down'></i></span>
                     </li>
                     <ul class="cads-dropdown">
-                        <li onclick="location.href='@Url.Action("CaseManagement", "Home", new { v = "all" })'">All Cases</li>
-                        <li onclick="location.href='@Url.Action("CaseManagement", "Home", new { v = "my" })'">My Cases</li>
+                        <li onclick="location.href='@Url.Action("CaseManagement", "Home", new { type = "all" })'">All Cases</li>
+                        <li onclick="location.href='@Url.Action("CaseManagement", "Home", new { type = "my" })'">My Cases</li>
                     </ul>
                     <li onclick="location.href='@Url.Action("DocumentManagement", "Home")'">
                         <img src="~/images/icons/document.png" />

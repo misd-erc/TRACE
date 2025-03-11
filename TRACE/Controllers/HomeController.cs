@@ -96,13 +96,14 @@ namespace TRACE.Controllers
 
         [Authorize]
         [Route("cases")]
-        public IActionResult CaseManagement()
+        public IActionResult CaseManagement(string type)
         {
             if (HttpContext.Session.GetString("IsVerified") != "true")
             {
                 return RedirectToAction("Logout", "External");
 
             }
+            ViewBag.viewType = type;
             return View();
         }
 

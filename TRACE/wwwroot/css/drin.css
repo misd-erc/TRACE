@@ -19,7 +19,7 @@
 }
 
 body{
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     background: var(--body-color);
 }
 
@@ -27,6 +27,10 @@ h1, h2, h3, h4{
     font-family: var(--font-heading);
     font-weight:600;
     margin-bottom:15px;
+}
+
+label{
+    font-family:var(--font-body);
 }
 
 
@@ -40,6 +44,7 @@ hr{
 
 p{
     margin-bottom: 10px;
+    font-weight:500;
 }
 
 a{
@@ -138,6 +143,10 @@ button .bx-plus{
 }
 /*LOADER CADS*/
 
+/*MAINHEADER*/
+.main-head-div{
+}
+/*MAINHEADER*/
 
 /*FLEx*/
 .flex{
@@ -203,6 +212,10 @@ button .bx-plus{
     grid-template-columns:1fr 1fr 1fr 1fr;
 }
 
+.grid-two-fr, .grid-two-fr-filter {
+    grid-template-columns: 1fr 1fr;
+}
+
 .grid-cms{
     grid-template-columns:300px 1fr;
 }
@@ -214,7 +227,7 @@ button .bx-plus{
 }
 
 @media screen and (max-width:599px) {
-    .grid-four-fr {
+    .grid-four-fr, .grid-two-fr {
         grid-template-columns: 1fr;
     }
 }
@@ -552,6 +565,18 @@ header:hover .main-menu ul li span {
 .has-dropdown {
     cursor: pointer;
 }
+
+.has-dropdown span{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.has-dropdown span .bx{
+    font-size:13px;
+}
+
 
 .has-dropdown.open {
     background: var(--active-color);
@@ -1186,3 +1211,182 @@ canvas {
     cursor:pointer;
 }
 /*DASHBOARD*/
+
+/*PAGINATION*/
+.pagination{
+    padding:20px;
+    justify-content:flex-end;
+}
+
+.pagination span.next, .pagination span.prev {
+    padding: 5px 10px;
+    background: var(--primary-color);
+    cursor:pointer;
+}
+
+.pagination span.next:hover, .pagination span.prev:hover {
+    background: var(--secondary-color);
+}
+
+.pagination span i {
+    color: #fff;
+}
+/*PAGINATION*/
+
+/*CASE MANAGEMENT*/
+.main-head-div{
+    
+}
+
+.title-div h3 {
+    margin: 0px;
+    font-size: 25px;
+}
+
+.title-div p{
+    font-size:13px;
+}
+
+.case-filter-wrap{
+    position:relative;
+}
+
+.case-filter{
+    background:var(--theme);
+    padding:10px 15px;
+    display:flex;
+    align-items:center;
+    cursor:pointer;
+}
+
+.case-filter:hover{
+    background: var(--secondary-color);
+
+}
+
+.case-filter:hover i, .case-filter:hover span {
+    color: #fff;
+}
+
+.case-filter .bxs-down-arrow{
+    font-size:9px;
+}
+
+.case-filter-dropdown {
+    width: 450px;
+    background: white;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    display: none;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.case-filter-dropdown.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.case-filter-dropdown div label{
+    display:block;
+    font-size:13px;
+}
+
+.case-filter-dropdown div label input[type="checkbox"] {
+    margin-right:10px;
+}
+
+.case-date-filter{
+    margin-top:10px;
+}
+
+.case-date-filter div input[type=date]{
+    font-family:var(--font-body);
+    padding:5px 10px;
+}
+
+.case-date-filter div label {
+    font-weight:700;
+}
+
+/*ALL CASES*/
+.all-case-count {
+    color: var(--primary-color);
+}
+
+.case-card{
+    background:var(--theme);
+    min-height:480px;
+    flex-direction:column;
+}
+
+.all-cases-table {
+    width: 100%;
+    border: 0;
+    border-collapse: collapse;
+}
+
+.all-cases-table td{
+    border:0;
+    padding:20px;
+    font-size:14px;
+    text-align:center;
+}
+
+.all-cases-table tbody tr:nth-of-type(2n+2){
+    background: var(--body-color);
+}
+
+.case-filter-btn-div{
+    display:flex;
+    justify-content:flex-end;
+    padding:20px 0px 0px 0px;
+}
+
+@media screen and (max-width: 899px) {
+    .main-head-div {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .all-cases-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .all-cases-table thead {
+        display: none;
+    }
+
+    .all-cases-table tbody,
+    .all-cases-table tr,
+    .all-cases-table td {
+        display: block;
+        width: 100%;
+        padding:5px;
+    }
+
+    .all-cases-table td {
+        text-align: left;
+        /*position: relative;
+        padding-left: 50%;*/
+    }
+
+    /*.all-cases-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+    }*/
+}
+/*ALL CASES*/
+/*CASE MANAGEMENT*/
