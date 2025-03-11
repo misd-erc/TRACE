@@ -93,7 +93,7 @@ function loadCaseEventTypes() {
                     rows += `
                             <tr>
                                 <td>${item.eventType}</td>
-                                <td>${item.description}</td>
+                                <td>No Description Needed</td>
                                 <td><a href="/CaseEventType/Edit/${item.caseEventTypeId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                                
                             </tr>`;
@@ -137,7 +137,7 @@ function loadCaseStatuses() {
             }
         },
         error: function () {
-            alert("Error loading case event types.");
+            alert("Error loading case status.");
         }
     });
 }
@@ -170,7 +170,7 @@ function loadCaseMilestones() {
             }
         },
         error: function () {
-            alert("Error loading case event types.");
+            alert("Error loading case milestone.");
         }
     });
 }
@@ -192,7 +192,7 @@ function loadHandlingOfficerTypes() {
                     rows += `
                             <tr>
                                 <td>${item.officerType}</td>
-                                <td>${item.description}</td>
+                                <td>No Description Needed</td>
                                 <td><a href="/HandlingOfficerType/Edit/${item.hearingOfficerTypeId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                                
                             </tr>`;
@@ -203,7 +203,7 @@ function loadHandlingOfficerTypes() {
             }
         },
         error: function () {
-            alert("Error loading case event types.");
+            alert("Error loading handling officer.");
         }
     });
 }
@@ -235,7 +235,7 @@ function loadHearingCategories() {
             }
         },
         error: function () {
-            alert("Error loading case event types.");
+            alert("Error loading hearing category.");
         }
     });
 }
@@ -268,7 +268,7 @@ function loadHearingTypes() {
             }
         },
         error: function () {
-            alert("Error loading case event types.");
+            alert("Error loading hearing type.");
         }
     });
 }
@@ -289,8 +289,8 @@ function loadHearingVenues() {
                 response.data.forEach(item => {
                     rows += `
                             <tr>
-                                <td>${item.hearingVenueId}</td>
                                 <td>${item.venueName}</td>
+                                <td>No Description Needed</td>
                                 <td><a href="/HearingVenue/Edit/${item.hearingVenueId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                                
                             </tr>`;
@@ -301,7 +301,7 @@ function loadHearingVenues() {
             }
         },
         error: function () {
-            alert("Error loading case event types.");
+            alert("Error loading hearing venue.");
         }
     });
 }
