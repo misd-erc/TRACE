@@ -4,9 +4,13 @@
     ViewData["Title"] = "Edit";
 }
 
+<div class="crumbs">
+    <a href="/contentmanagement">Content Management</a> > Edit
+</div>
+
 <h1>Edit</h1>
 
-<h4>CaseEventType</h4>
+<p>This page is for editing Case Event Type.</p>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,9 +29,6 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

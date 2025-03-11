@@ -177,7 +177,7 @@ function loadCaseMilestones() {
 
 function loadHandlingOfficerTypes() {
     $(".cms-modal .modal-content .modal-btn")
-        .html("<i class='bx bx-plus'></i> Add New Handling OfficerType")
+        .html("<i class='bx bx-plus'></i> Add New Handling Officer Type")
         .attr("onclick", "window.location.href='/HandlingOfficerType/Create'");
     $.ajax({
         url: "/HandlingOfficerType/GetHearingOfficerTypes",
@@ -193,7 +193,7 @@ function loadHandlingOfficerTypes() {
                             <tr>
                                 <td>${item.officerType}</td>
                                 <td>${item.description}</td>
-                                <td><a href="/HandlingOfficerType/Edit/${item.handlingOfficerTypeId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+                                <td><a href="/HandlingOfficerType/Edit/${item.hearingOfficerTypeId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                                
                             </tr>`;
                 });
