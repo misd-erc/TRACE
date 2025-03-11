@@ -14,3 +14,42 @@ function toggleNotifMenu() {
     _profilemenu.classList.remove('show')
     _notifmenu.classList.toggle('show');
 }
+
+function toggleDropdown(event) {
+    event.stopPropagation();
+    let dropdown = event.currentTarget.querySelector(".cads-dropdown");
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+}
+
+function toggleCollapse(event) {
+    event.stopPropagation();
+
+    let parentLi = event.currentTarget;
+    let dropdown = parentLi.nextElementSibling;
+
+    if (dropdown && dropdown.classList.contains("cads-dropdown")) {
+
+        document.querySelectorAll(".has-dropdown").forEach(item => {
+            if (item !== parentLi) {
+                item.classList.remove("open");
+                item.nextElementSibling.style.maxHeight = "0px";
+            }
+        });
+
+
+        parentLi.classList.toggle("open");
+        if (parentLi.classList.contains("open")) {
+            dropdown.style.maxHeight = dropdown.scrollHeight + "px";
+        } else {
+            dropdown.style.maxHeight = "0px";
+        }
+    }
+}
+
+
+document.querySelector("header").addEventListener("mouseleave", function () {
+    document.querySelectorAll(".has-dropdown").forEach(item => {
+        item.classList.remove("open");
+        item.nextElementSibling.style.maxHeight = "0px";
+    });
+});
