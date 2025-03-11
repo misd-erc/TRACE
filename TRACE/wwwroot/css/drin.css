@@ -1234,6 +1234,13 @@ canvas {
     justify-content:flex-end;
 }
 
+.pagination select{
+    background: var(--body-color);
+    padding:5px 10px;
+    outline:none;
+    border:none;
+}
+
 .pagination span.next, .pagination span.prev {
     padding: 5px 10px;
     background: var(--primary-color);
