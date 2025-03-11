@@ -1356,8 +1356,15 @@ canvas {
     text-align:center;
 }
 
+
+
 .all-cases-table tbody tr:nth-of-type(2n+2){
     background: var(--body-color);
+}
+
+.all-cases-table tr:hover {
+    background: var(--active-color) !important;
+    cursor:pointer;
 }
 
 .case-filter-btn-div{
