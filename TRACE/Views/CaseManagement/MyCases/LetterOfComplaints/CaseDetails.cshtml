@@ -1,0 +1,123 @@
+﻿@{
+    ViewData["Title"] = "My Cases - Case No.";
+}
+
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > Case Management (My Cases) > <a href="/letterofcomplaints">Letter Of Complaints</a> > Case Title > Milestone
+</div>
+
+<div class="case-card-details shadow border-radius-5">
+    <div class="case-details grid grid-four-fr gap-20">
+        <div>
+            <span><strong>ERC Case No.: </strong> <i>2016-0076-CC</i></span>
+            <span><strong>Case Title: </strong> <i>Test Verified Complaint</i></span>
+            <span><strong>Case Category: </strong> <i>Complaint Case</i></span>
+        </div>
+        <div>
+            <span><strong>Case Nature: </strong> <i>Altered Connection</i></span>
+            <span><strong>Date Filed: </strong> <i>03/09/2016</i></span>
+            <span><strong>Date Docketted: </strong> <i>03/09/2016</i></span>
+        </div>
+        <div>
+            <span><strong>Docketted By: </strong> <i>mccgines</i></span>
+            <span><strong>Applicant: </strong> <i>Mr. Michael B. Bonagua</i></span>
+            <span><strong>Respondent: </strong> <i>No Data Yet</i></span>
+        </div>
+        <div>
+            <span><strong>No. of Folders: </strong> <i>1</i></span>
+            <span><strong>Date Approved: </strong> <i>03/16/2025 10:00 AM</i></span>
+            <span><strong class="green-txt">APPROVED</strong></span>
+        </div>
+        
+    </div>
+</div>
+
+<div class="grid gap-20 grid-cms">
+    <div class="cms-nav">
+        <ul>
+            <li onclick="showTab('milestones')" class="active"><i class='bx bx-check-circle'></i> Milestones</li>
+            <li onclick="showTab('activities')"><i class='bx bxs-calendar'></i> Activities/Events</li>
+            <li onclick="showTab('documents')"><i class='bx bxs-file'></i> Documents</li>
+            <li onclick="showTab('assignpersonnel')"><i class='bx bxs-user-check'></i> Assigned Personnel</li>
+            <li onclick="showTab('hearings')"><i class='bx bxs-book-bookmark'></i> Hearings</li>
+            <li onclick="showTab('tasks')"><i class='bx bx-list-check'></i> My Tasks</li>
+            <li onclick="showTab('notes')"><i class='bx bxs-note'></i> My Notes</li>
+        </ul>
+    </div>
+
+    <div class="cms-wrap shadow border-radius-5">
+        <div id="milestones" class="cms-content active">
+            <h3>Milestones</h3>
+            <div class="case-milestone-wrapper">
+                <div class="progress-container">
+                    <div class="step completed">
+                        <div class="circle">✔</div>
+                        <div class="label">FILED</div>
+                        <div class="progress-line active"></div>
+                    </div>
+                    <div class="step completed">
+                        <div class="circle">✔</div>
+                        <div class="label">DOCKETED</div>
+                        <div class="progress-line active"></div>
+                    </div>
+                    <div class="step completed">
+                        <div class="circle">✔</div>
+                        <div class="label">ACKNOWLEDGED RECEIPT</div>
+                        <div class="progress-line active"></div>
+                    </div>
+                    <div class="step active">
+                        <div class="circle"></div>
+                        <div class="label">SET FOR SERIES OF CONFERENCE</div>
+                        <div class="progress-line"></div>
+                    </div>
+                    <div class="step">
+                        <div class="circle"></div>
+                        <div class="label">SETTLEMENT</div>
+                        <div class="progress-line"></div>
+                    </div>
+                    <div class="step">
+                        <div class="circle"></div>
+                        <div class="label">RECEIPT OF FOE</div>
+                        <div class="progress-line"></div>
+                    </div>
+                    <div class="step">
+                        <div class="circle"></div>
+                        <div class="label">ISSUANCE OF RESOLUTION</div>
+                        <div class="progress-line"></div>
+                    </div>
+                    <div class="step">
+                        <div class="circle"></div>
+                        <div class="label">CLOSED</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="activities" class="cms-content">
+            <h3>Activities/Events</h3>
+        </div>
+
+        <div id="documents" class="cms-content">
+            <h3>Documents</h3>
+        </div>
+
+        <div id="assignpersonnel" class="cms-content">
+            <h3>Assigned Personnel</h3>
+        </div>
+
+        <div id="hearings" class="cms-content">
+            <h3>Hearings</h3>
+        </div>
+
+        <div id="tasks" class="cms-content">
+            <h3>My Tasks</h3>
+        </div>
+
+        <div id="notes" class="cms-content">
+            <h3>My Notes</h3>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/CaseDetails.js"></script>

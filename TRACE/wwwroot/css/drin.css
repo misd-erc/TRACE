@@ -21,6 +21,11 @@
 body{
     font-family: var(--font-body);
     background: var(--body-color);
+    font-size:13px;
+}
+
+.green-txt{
+    color: #01e841;
 }
 
 .swal2-popup {
@@ -812,6 +817,7 @@ input:checked + .drin-slider:before {
 .cms-wrap {
     flex: 1;
     overflow-y: auto;
+    background: var(--theme);
 }
 
 .cms-content {
@@ -1372,6 +1378,12 @@ canvas {
     flex-direction:column;
 }
 
+.case-card-details{
+    background: var(--theme);
+    margin-bottom:20px;
+}
+
+
 .all-cases-table {
     width: 100%;
     border: 0;
@@ -1562,7 +1574,7 @@ canvas {
     justify-content:flex-end;
 }
 
-/*CREATE LC*/
+/*CREATE CASE*/
 .form-div{
     padding:20px;
 }
@@ -1597,8 +1609,113 @@ canvas {
 .create-lc{
     height:600px;
 }
+/*CREATE CASE*/
+/*CASE DETAiLS*/
+.case-details{
+    padding:10px 40px;
+}
 
+.case-details div{
+    padding:0px 20px;
+}
 
-/*CREATE LC*/
+.case-details div span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+/*MILESTONE*/
+.progress-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 120px;
+}
+
+.step .circle {
+    width: 50px;
+    height: 50px;
+    background-color: lightgray;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    z-index: 2;
+}
+
+.step.completed .circle {
+    background-color: #2ecc71;
+}
+
+.step.active .circle {
+    background-color: #27ae60;
+}
+
+.step .label {
+    margin-top: 6px;
+    margin-bottom:15px;
+    font-size: 12px;
+    text-align: center;
+    max-width: 80px;
+}
+
+.progress-line {
+    height: 5px;
+    background-color: lightgray;
+    position: absolute;
+    width: 80px;
+    top: 25px;
+    left: 100%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.progress-line.active {
+    background-color: #2ecc71;
+}
+
+@media (max-width: 999px) {
+    .progress-container {
+        flex-direction: column;
+        align-items: center;
+        gap:20px;
+    }
+
+    .step {
+        width: 100px;
+    }
+
+    .step .circle {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+
+    .progress-line {
+        width: 5px;
+        height: 40px;
+        left: 50%;
+        top: auto;
+        bottom: -30px;
+        transform: translateX(-50%);
+    }
+}
+
+/*MILESTONE*/
+
+/*CASE DETAiLS*/
 /*MY CASES*/
 /*CASE MANAGEMENT*/

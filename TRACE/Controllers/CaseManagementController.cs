@@ -36,7 +36,18 @@ namespace TRACE.Controllers
                 return RedirectToAction("Logout", "External");
 
             }
-            return View("MyCases/LetterOfComplaints/CreateLetterOfComplaints");
+            return View("MyCases/LetterOfComplaints/CreateCase");
+        }
+
+        [Route("letterofcomplaints/casedetails")]
+        public IActionResult CaseDetails()
+        {
+            if (HttpContext.Session.GetString("IsVerified") != "true")
+            {
+                return RedirectToAction("Logout", "External");
+
+            }
+            return View("MyCases/LetterOfComplaints/CaseDetails");
         }
 
         [Route("dockettedcases")]
