@@ -8,6 +8,7 @@ using TRACE.Models;
 
 namespace TRACE.Controllers
 {
+    [Authorize]
     [Route("")]
     public class HomeController : Controller
     {
@@ -22,7 +23,6 @@ namespace TRACE.Controllers
             _generateOtp = generateOtp;
         }
 
-        [Authorize]
         [Route("auth")]
         public IActionResult authentication()
         {
@@ -79,7 +79,6 @@ namespace TRACE.Controllers
             }
         }
 
-        [Authorize]
         [Route("dashboard")]
         public IActionResult Dashboard()
         {
@@ -92,67 +91,6 @@ namespace TRACE.Controllers
             var name = User.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
             ViewBag.Name = name;
             return View();
-        }
-
-        [Authorize]
-        [Route("cases")]
-        public IActionResult CaseManagement(string type)
-        {
-            if (HttpContext.Session.GetString("IsVerified") != "true")
-            {
-                return RedirectToAction("Logout", "External");
-
-            }
-            ViewBag.viewType = type;
-            return View();
-        }
-
-        [Authorize]
-        [Route("documents")]
-        public IActionResult DocumentManagement()
-        {
-            if (HttpContext.Session.GetString("IsVerified") != "true")
-            {
-                return RedirectToAction("Logout", "External");
-
-            }
-            return View();
-        }
-
-        [Authorize]
-        [Route("hearings")]
-        public IActionResult Hearings()
-        {
-            if (HttpContext.Session.GetString("IsVerified") != "true")
-            {
-                return RedirectToAction("Logout", "External");
-
-            }
-            return View();
-        }
-
-        [Authorize]
-        [Route("contentmanagement")]
-        public IActionResult ContentManagement()
-        {
-            if (HttpContext.Session.GetString("IsVerified") != "true")
-            {
-                return RedirectToAction("Logout", "External");
-
-            }
-            return View("ContentManagementSettings/ContentManagement");
-        }
-
-        [Authorize]
-        [Route("usermanagement")]
-        public IActionResult UserManagement()
-        {
-            if (HttpContext.Session.GetString("IsVerified") != "true")
-            {
-                return RedirectToAction("Logout", "External");
-
-            }
-            return View("UserManagementSettings/UserManagement");
         }
 
         [Authorize]

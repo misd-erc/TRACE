@@ -98,6 +98,8 @@ button .bx-plus{
 .crumbs{
     margin:20px 0px;
     color: var(--font-color);
+    font-size:10px;
+    font-style:italic;
 }
 
 /*LOADER CADS*/
@@ -336,7 +338,7 @@ button .bx-plus{
     border: 1px solid #fff;
     padding: 10px 6px;
     cursor: pointer;
-    width: 40px;
+    width: 43px;
     display: flex;
     justify-content: center;
 }
@@ -591,7 +593,7 @@ header:hover .main-menu ul li span {
 }
 
 .has-dropdown span .bx{
-    font-size:13px;
+    font-size:17px;
 }
 
 
@@ -1422,4 +1424,105 @@ canvas {
     }*/
 }
 /*ALL CASES*/
+
+/*MY CASES*/
+.cases-tab {
+    display: flex;
+    gap: 10px;
+    margin-bottom:20px;
+}
+
+.cases-tab .tab {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--font-color);
+    background-color: var(--theme);
+    transition: background-color 0.2s, color 0.2s;
+    border-radius:5px;
+}
+
+.cases-tab .tab:hover {
+    background-color: var(--active-color);
+    color: var(--font-color);
+}
+
+.cases-tab .tab.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+}
+
+.my-cases-table {
+    width: 100%;
+    border: 0;
+    border-collapse: collapse;
+}
+
+.my-cases-table td {
+    border: 0;
+    padding: 20px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.my-cases-table th {
+    padding: 10px 20px;
+    font-size: 14px;
+    text-align: left;
+    background: var(--primary-color);
+    color:#fff;
+}
+
+.my-cases-table thead th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.my-cases-table thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.my-cases-table tbody tr:nth-of-type(2n+2) {
+    background: var(--body-color);
+}
+
+.my-cases-table tbody tr:hover {
+    background: var(--active-color) !important;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 899px) {
+
+    .my-cases-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .my-cases-table thead {
+        display: none;
+    }
+
+    .my-cases-table tbody,
+    .my-cases-table tr,
+    .my-cases-table td {
+        display: block;
+        width: 100%;
+        padding: 5px;
+    }
+
+    .my-cases-table td {
+        text-align: left;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    .my-cases-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+    }
+}
+/*MY CASES*/
 /*CASE MANAGEMENT*/

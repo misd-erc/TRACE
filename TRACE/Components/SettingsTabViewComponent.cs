@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace YourNamespace.Components
+namespace TRACE.Components
 {
     public class SettingsTabViewComponent : ViewComponent
     {

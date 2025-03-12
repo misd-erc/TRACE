@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "My Cases - Letter Of Compliance";
+}
+
+
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > Case Management (My Cases) > Letter Of Complaints
+</div>
+
+@await Component.InvokeAsync("MyCasesMenu")
+
+
+<div class="main-head-div flex h-center space-between">
+    <div class="title-div">
+        <h3>LETTER OF COMPLAINTS</h3>
+        <p>Manage your letter of complaints</p>
+    </div>
+    <div class="case-btn">
+        <button>+ CREATE CASE</button>
+
+    </div>
+</div>
+
+<div class="case-card shadow border-radius-5 flex space-between">
+    <div class="case-table-div">
+        <table class="my-cases-table">
+            <thead>
+                <tr>
+                    <th>CASE NO.</th>
+                    <th>CASE TITLE</th>
+                    <th>DATE FILED</th>
+                    <th>CASE STATUS</th>
+                    <th>APPLICANT/PETITIONER</th>
+                    <th>RESPONDENT</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="CASE NO.">2016-0076-CC</td>
+                    <td data-label="CASE TITLE">Test Verified Complaint</td>
+                    <td data-label="DATE FILED">03/09/2016</td>
+                    <td data-label="CASE STATUS">Ongoing</td>
+                    <td data-label="APPLICANT/PETITIONER">Juan Dela Cruz</td>
+                    <td data-label="RESPONDENT">Manila Electric Company</td>
+                    <td data-label="ACTIONS"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination flex h-center gap-10">
+        <span>Current Page: </span>
+        <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
+        <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
+    </div>
+</div>

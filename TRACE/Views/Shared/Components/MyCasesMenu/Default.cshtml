@@ -1,0 +1,12 @@
+﻿@{
+    string activeTab = ViewData["ActiveTab"] as string;
+}
+
+<div class="cases-tab">
+    <div class="tab @(activeTab == "_loc" ? "active" : "")" onclick="location.href='@Url.Action("LetterOfComplaints", "CaseManagement")'">
+        Letter Of Complaints
+    </div>
+    <div class="tab @(activeTab == "_dc" ? "active" : "")" onclick="location.href='@Url.Action("DockettedCases", "CaseManagement")'">
+        Docketed Cases
+    </div>
+</div>

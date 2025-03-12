@@ -108,22 +108,22 @@
                         <span>Case Management <i class='bx bx-chevron-down'></i></span>
                     </li>
                     <ul class="cads-dropdown">
-                        <li onclick="location.href='@Url.Action("CaseManagement", "Home", new { type = "all" })'">All Cases</li>
-                        <li onclick="location.href='@Url.Action("CaseManagement", "Home", new { type = "my" })'">My Cases</li>
+                        <li onclick="location.href='@Url.Action("AllCases", "CaseManagement")'">All Cases</li>
+                        <li onclick="location.href='@Url.Action("LetterOfComplaints", "CaseManagement")'">My Cases</li>
                     </ul>
-                    <li onclick="location.href='@Url.Action("DocumentManagement", "Home")'">
+                    <li onclick="location.href='@Url.Action("DocumentManagement", "DocumentManagement")'">
                         <img src="~/images/icons/document.png" />
                         <span>Document Management</span>
                     </li>
-                    <li onclick="location.href='@Url.Action("Hearings", "Home")'">
+                    <li onclick="location.href='@Url.Action("Hearings", "Hearings")'">
                         <img src="~/images/icons/hearing.png" />
                         <span>Hearings</span>
                     </li>
-                    <li onclick="location.href='@Url.Action("ContentManagement", "Home")'">
+                    <li onclick="location.href='@Url.Action("ContentManagement", "ContentManagement")'">
                         <i class='bx bxs-book-content'></i>
                         <span>Content Management</span>
                     </li>
-                    <li onclick="location.href='@Url.Action("UserManagement", "Home")'">
+                    <li onclick="location.href='@Url.Action("UserManagement", "UserManagement")'">
                         <i class='bx bxs-user-detail'></i>
                         <span>User Management</span>
                     </li>
