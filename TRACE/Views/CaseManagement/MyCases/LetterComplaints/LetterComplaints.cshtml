@@ -1,10 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "My Cases - Letter Of Complaints";
+    ViewData["Title"] = "My Cases - Letter Complaints";
 }
 
 
 <div class="crumbs">
-    <a href="/dashboard">Dashboard</a> > Case Management (My Cases) > Letter Of Complaints
+    <a href="/dashboard">Dashboard</a> > Case Management (My Cases) > Letter Complaints
 </div>
 
 @await Component.InvokeAsync("MyCasesMenu")
@@ -12,11 +12,11 @@
 
 <div class="main-head-div flex h-center space-between">
     <div class="title-div">
-        <h3>LETTER OF COMPLAINTS</h3>
-        <p>Manage your letter of complaints</p>
+        <h3>LETTER COMPLAINTS</h3>
+        <p>Manage your letter complaints</p>
     </div>
     <div class="btn-div">
-        <a href="/letterofcomplaints/create"><button>+ CREATE CASE</button></a>
+        <a href="/lettercomplaints/create"><button>+ CREATE CASE</button></a>
     </div>
 </div>
 
@@ -36,7 +36,7 @@
             </thead>
             <tbody>
                 <tr onclick="location.href='@Url.Action("CaseDetails", "CaseManagement")'">
-                    <!--ALDRIN: ADD CASE ID URL PARAMETER HERE. URL SHOULD BE /letterofcomplaints/milestone/caseID-->
+                    <!--ALDRIN: ADD CASE ID URL PARAMETER HERE. URL SHOULD BE /lettercomplaints/milestone/caseID-->
                     <td data-label="CASE NO.">2016-0076-CC</td>
                     <td data-label="CASE TITLE">Test Verified Complaint</td>
                     <td data-label="DATE FILED">03/09/2016</td>
@@ -44,7 +44,7 @@
                     <td data-label="APPLICANT/PETITIONER">Juan Dela Cruz</td>
                     <td data-label="RESPONDENT">Manila Electric Company</td>
                     <td class="actions" data-label="ACTIONS">
-                        <i class='bx bxs-edit' tile="Edit"></i>
+                        <i class='bx bxs-edit' title="Edit"></i>
                         <i class='bx bxs-x-circle' title="Archive"></i>
                     </td>
                 </tr>

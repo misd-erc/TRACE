@@ -3,10 +3,10 @@
 }
 
 <div class="cases-tab">
-    <div class="tab @(activeTab == "_loc" ? "active" : "")" onclick="location.href='@Url.Action("LetterOfComplaints", "CaseManagement")'">
-        Letter Of Complaints
+    <div class="tab @(activeTab == "_loc" ? "active" : "")" onclick="location.href='@Url.Action("LetterComplaints", "CaseManagement")'">
+        Letter Complaints
     </div>
-    <div class="tab @(activeTab == "_dc" ? "active" : "")" onclick="location.href='@Url.Action("DockettedCases", "CaseManagement")'">
+    <div class="tab @(activeTab == "_dc" ? "active" : "")" onclick="location.href='@Url.Action("DocketedCases", "CaseManagement")'">
         Docketed Cases
     </div>
 </div>

@@ -9,11 +9,11 @@ namespace TRACE.Components
             string currentPath = HttpContext.Request.Path.ToString().ToLower();
             string activeTab = "";
 
-            if (currentPath.Contains("letterofcomplaints"))
+            if (currentPath.Contains("lettercomplaints"))
             {
                 activeTab = "_loc";
             }
-            else if (currentPath.Contains("dockettedcases"))
+            else if (currentPath.Contains("Docketedcases"))
             {
                 activeTab = "_dc";
             }

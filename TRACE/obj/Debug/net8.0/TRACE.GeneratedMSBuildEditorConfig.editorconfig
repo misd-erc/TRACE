@@ -94,16 +94,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcTXlDYXNlc1xEb2NrZXR0ZWRDYXNlc1xEb2NrZXR0ZWRDYXNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Work Related/Github/TRACE/TRACE/Views/CaseManagement/MyCases/LetterOfComplaints/CaseDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcTXlDYXNlc1xMZXR0ZXJPZkNvbXBsYWludHNcQ2FzZURldGFpbHMuY3NodG1s
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseManagement/MyCases/LetterComplaints/CaseDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcTXlDYXNlc1xMZXR0ZXJDb21wbGFpbnRzXENhc2VEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Work Related/Github/TRACE/TRACE/Views/CaseManagement/MyCases/LetterOfComplaints/CreateCase.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcTXlDYXNlc1xMZXR0ZXJPZkNvbXBsYWludHNcQ3JlYXRlQ2FzZS5jc2h0bWw=
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseManagement/MyCases/LetterComplaints/CreateCase.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcTXlDYXNlc1xMZXR0ZXJDb21wbGFpbnRzXENyZWF0ZUNhc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Work Related/Github/TRACE/TRACE/Views/CaseManagement/MyCases/LetterOfComplaints/LetterOfComplaints.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcTXlDYXNlc1xMZXR0ZXJPZkNvbXBsYWludHNcTGV0dGVyT2ZDb21wbGFpbnRzLmNzaHRtbA==
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseManagement/MyCases/LetterComplaints/LetterComplaints.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcTXlDYXNlc1xMZXR0ZXJDb21wbGFpbnRzXExldHRlckNvbXBsYWludHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Work Related/Github/TRACE/TRACE/Views/CaseMilestone/Create.cshtml]

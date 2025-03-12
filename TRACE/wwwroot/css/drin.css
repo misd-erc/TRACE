@@ -1393,7 +1393,7 @@ canvas {
 .all-cases-table td{
     border:0;
     padding:20px;
-    font-size:14px;
+    font-size:12px;
     text-align:center;
 }
 
@@ -1489,7 +1489,7 @@ canvas {
 .my-cases-table td {
     border: 0;
     padding: 10px 20px;
-    font-size: 14px;
+    font-size: 12px;
     text-align: left;
 }
 
@@ -1533,8 +1533,8 @@ canvas {
     color: var(--secondary-color) !important;
 }
 
-@media screen and (max-width: 899px) {
 
+@media screen and (max-width: 899px) {
     .my-cases-table {
         display: block;
         overflow-x: auto;
@@ -1557,6 +1557,7 @@ canvas {
         text-align: left;
         position: relative;
         padding-left: 50%;
+        white-space:normal;
     }
 
     .my-cases-table td::before {
@@ -1724,8 +1725,11 @@ canvas {
         transform: translateX(-50%);
     }
 }
-
 /*MILESTONE*/
+
+.cdeets{
+    margin-bottom:10px;
+}
 
 /*CASE DETAiLS*/
 /*MY CASES*/

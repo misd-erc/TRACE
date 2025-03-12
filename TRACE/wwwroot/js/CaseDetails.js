@@ -12,5 +12,5 @@
 
     const breadcrumb = document.querySelector(".crumbs");
     const tabText = event.target.innerText.trim();
-    breadcrumb.innerHTML = `<a href="/dashboard">Dashboard</a> > Case Management (My Cases) > <a href="/letterofcomplaints">Letter Of Complaints</a> > Case Title > ${tabText}`;
+    breadcrumb.innerHTML = `<a href="/dashboard">Dashboard</a> > Case Management (My Cases) > <a href="/letterofcomplaints">Letter Complaints</a> > Case Title > ${tabText}`;
 }

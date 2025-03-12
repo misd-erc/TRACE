@@ -17,29 +17,29 @@ namespace TRACE.Controllers
             return View("AllCases/AllCases");
         }
 
-        [Route("letterofcomplaints")]
-        public IActionResult LetterOfComplaints()
+        [Route("lettercomplaints")]
+        public IActionResult LetterComplaints()
         {
             if (HttpContext.Session.GetString("IsVerified") != "true")
             {
                 return RedirectToAction("Logout", "External");
 
             }
-            return View("MyCases/LetterOfComplaints/LetterOfComplaints");
+            return View("MyCases/LetterComplaints/LetterComplaints");
         }
 
-        [Route("letterofcomplaints/create")]
-        public IActionResult CreateLetterOfComplaints()
+        [Route("lettercomplaints/create")]
+        public IActionResult CreateCase()
         {
             if (HttpContext.Session.GetString("IsVerified") != "true")
             {
                 return RedirectToAction("Logout", "External");
 
             }
-            return View("MyCases/LetterOfComplaints/CreateCase");
+            return View("MyCases/LetterComplaints/CreateCase");
         }
 
-        [Route("letterofcomplaints/casedetails")]
+        [Route("lettercomplaints/casedetails")]
         public IActionResult CaseDetails()
         {
             if (HttpContext.Session.GetString("IsVerified") != "true")
@@ -47,18 +47,18 @@ namespace TRACE.Controllers
                 return RedirectToAction("Logout", "External");
 
             }
-            return View("MyCases/LetterOfComplaints/CaseDetails");
+            return View("MyCases/LetterComplaints/CaseDetails");
         }
 
-        [Route("dockettedcases")]
-        public IActionResult DockettedCases()
+        [Route("Docketedcases")]
+        public IActionResult DocketedCases()
         {
             if (HttpContext.Session.GetString("IsVerified") != "true")
             {
                 return RedirectToAction("Logout", "External");
 
             }
-            return View("MyCases/DockettedCases/DockettedCases");
+            return View("MyCases/DocketedCases/DocketedCases");
         }
     }
 }
