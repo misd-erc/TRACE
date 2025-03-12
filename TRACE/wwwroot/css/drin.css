@@ -556,6 +556,7 @@ header:hover .trace-logo span {
 }
 
 .main-menu ul li i {
+    margin-right:-5px;
     font-size: 25px;
 }
 
