@@ -1687,7 +1687,18 @@ canvas {
     background-color: #2ecc71;
 }
 
+.milestone-details span{
+    margin-right:10px;
+}
+
+.milestone-details{
+    padding:0px 0px 20px 0px;
+}
+
 @media (max-width: 999px) {
+    .milestone-details span {
+        display:block;
+    }
     .progress-container {
         flex-direction: column;
         align-items: center;
