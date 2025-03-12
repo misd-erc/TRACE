@@ -28,6 +28,17 @@ namespace TRACE.Controllers
             return View("MyCases/LetterOfComplaints/LetterOfComplaints");
         }
 
+        [Route("letterofcomplaints/create")]
+        public IActionResult CreateLetterOfComplaints()
+        {
+            if (HttpContext.Session.GetString("IsVerified") != "true")
+            {
+                return RedirectToAction("Logout", "External");
+
+            }
+            return View("MyCases/LetterOfComplaints/CreateLetterOfComplaints");
+        }
+
         [Route("dockettedcases")]
         public IActionResult DockettedCases()
         {

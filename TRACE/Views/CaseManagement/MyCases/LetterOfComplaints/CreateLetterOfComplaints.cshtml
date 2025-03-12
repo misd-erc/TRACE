@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Create - Letter Of Complaints";
+}
+
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > Case Management (My Cases) > <a href="/letterofcomplaints">Letter Of Complaints</a> > Create
+</div>
+
+<div class="main-head-div flex h-center space-between">
+    <div class="title-div">
+        <h3>CREATE LETTER OF COMPLAINT</h3>
+        <p>Create letter of complaint</p>
+    </div>
+    <div class="btn-div">
+        <button>SUBMIT</button>
+    </div>
+</div>
+
+<div class="case-card shadow border-radius-5">
+    <div class="form-div  create-lc">
+        <div class="grid grid-three-fr gap-10">
+            <div class="form-input-div">
+                <label>Category</label>
+                <select>
+                    <option selected disabled>Select Case Category</option>
+                    <option>Category1</option>
+                    <option>Category2</option>
+                </select>
+            </div>
+            <div class="form-input-div">
+                <label>Case No. <i>(Auto Generated)</i></label>
+                <input type="text" disabled/>
+            </div>
+            <div class="form-input-div">
+                <label>Case Nature</label>
+                <select>
+                    <option selected disabled>Select Case Nature</option>
+                    <option>Nature1</option>
+                    <option>Nature2</option>
+                </select>
+            </div>
+            <div class="form-input-div">
+                <label>Case Title</label>
+                <textarea></textarea>
+            </div>
+            <div class="form-input-div">
+                <label>Remarks</label>
+                <textarea></textarea>
+            </div>
+            <div class="form-input-div">
+                <label>Meter SIN</label>
+                <input type="text" />
+            </div>
+        </div>
+
+        <div class="grid grid-five-fr gap-10">
+            <div class="form-input-div">
+                <label>Date Filed</label>
+                <input type="date" />
+            </div>
+            <div class="form-input-div">
+                <label>Date Docketted</label>
+                <input type="date" />
+            </div>
+            <div class="form-input-div">
+                <label>No. of Folders</label>
+                <input type="number" />
+            </div>
+            <div class="form-input-div">
+                <label>Amount Claimed</label>
+                <input type="text" />
+            </div>
+            <div class="form-input-div">
+                <label>Amount Settled</label>
+                <input type="text" />
+            </div>
+            <div class="form-input-div">
+                <label>Target PA Issuance</label>
+                <input type="date" />
+            </div>
+            <div class="form-input-div">
+                <label>TARGET FA Issuance</label>
+                <input type="date" />
+            </div>
+            <div class="form-input-div">
+                <label>PA Deliberation Date</label>
+                <input type="date" />
+            </div>
+            <div class="form-input-div">
+                <label>FA Deliberation Date</label>
+                <input type="date" />
+            </div>
+            <div class="form-input-div">
+                <label>PA Target Order</label>
+                <input type="date" />
+            </div>
+            <div class="form-input-div">
+                <label>FA Target Order</label>
+                <input type="date" />
+            </div>
+            <div class="form-input-div">
+                <label>Sypnosis</label>
+                <input type="text" />
+            </div>
+            <div class="form-input-div">
+                <label>Submitted for Resolution?</label>
+                <select>
+                    <option selected disabled>Select Answer</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

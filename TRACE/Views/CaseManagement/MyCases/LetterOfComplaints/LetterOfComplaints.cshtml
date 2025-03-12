@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "My Cases - Letter Of Compliance";
+    ViewData["Title"] = "My Cases - Letter Of Complaints";
 }
 
 
@@ -15,9 +15,8 @@
         <h3>LETTER OF COMPLAINTS</h3>
         <p>Manage your letter of complaints</p>
     </div>
-    <div class="case-btn">
-        <button>+ CREATE CASE</button>
-
+    <div class="btn-div">
+        <a href="/letterofcomplaints/create"><button>+ CREATE CASE</button></a>
     </div>
 </div>
 
@@ -43,7 +42,10 @@
                     <td data-label="CASE STATUS">Ongoing</td>
                     <td data-label="APPLICANT/PETITIONER">Juan Dela Cruz</td>
                     <td data-label="RESPONDENT">Manila Electric Company</td>
-                    <td data-label="ACTIONS"></td>
+                    <td class="actions" data-label="ACTIONS">
+                        <i class='bx bxs-edit' tile="Edit"></i>
+                        <i class='bx bxs-x-circle' title="Archive"></i>
+                    </td>
                 </tr>
             </tbody>
         </table>

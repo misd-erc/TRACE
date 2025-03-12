@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "E:\\Work Related\\Github\\TRACE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\views\\shared\\components\\appearancesettings\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\shared\\components\\appearancesettings\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\views\\contentmanagement\\contentmanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\contentmanagement\\contentmanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\views\\home\\settings.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\home\\settings.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\views\\casemanagement\\mycases\\letterofcomplaints\\letterofcomplaints.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\casemanagement\\mycases\\letterofcomplaints\\letterofcomplaints.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\views\\casemanagement\\mycases\\letterofcomplaints\\createletterofcomplaints.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\casemanagement\\mycases\\letterofcomplaints\\createletterofcomplaints.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\wwwroot\\css\\drin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -73,40 +69,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Default.cshtml",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\Shared\\Components\\AppearanceSettings\\Default.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\Shared\\Components\\AppearanceSettings\\Default.cshtml",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\Shared\\Components\\AppearanceSettings\\Default.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\Shared\\Components\\AppearanceSettings\\Default.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACIAAABkAAAAAAAAAA==",
+              "Title": "ContentManagement.cshtml",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\ContentManagement\\ContentManagement.cshtml",
+              "RelativeDocumentMoniker": "TRACE\\Views\\ContentManagement\\ContentManagement.cshtml",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\ContentManagement\\ContentManagement.cshtml",
+              "RelativeToolTip": "TRACE\\Views\\ContentManagement\\ContentManagement.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-12T03:36:46.29Z",
+              "WhenOpened": "2025-03-12T04:52:58.236Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Settings.cshtml",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\Home\\Settings.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\Home\\Settings.cshtml",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\Home\\Settings.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\Home\\Settings.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "CreateLetterOfComplaints.cshtml",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\CaseManagement\\MyCases\\LetterOfComplaints\\CreateLetterOfComplaints.cshtml",
+              "RelativeDocumentMoniker": "TRACE\\Views\\CaseManagement\\MyCases\\LetterOfComplaints\\CreateLetterOfComplaints.cshtml",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\CaseManagement\\MyCases\\LetterOfComplaints\\CreateLetterOfComplaints.cshtml",
+              "RelativeToolTip": "TRACE\\Views\\CaseManagement\\MyCases\\LetterOfComplaints\\CreateLetterOfComplaints.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-12T03:36:39.816Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LetterOfComplaints.cshtml",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\CaseManagement\\MyCases\\LetterOfComplaints\\LetterOfComplaints.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\CaseManagement\\MyCases\\LetterOfComplaints\\LetterOfComplaints.cshtml",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\CaseManagement\\MyCases\\LetterOfComplaints\\LetterOfComplaints.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\CaseManagement\\MyCases\\LetterOfComplaints\\LetterOfComplaints.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-12T02:47:59.481Z",
+              "WhenOpened": "2025-03-12T03:51:48.015Z",
               "EditorCaption": ""
             }
           ]
@@ -117,13 +100,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "drin.css",
               "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\css\\drin.css",
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\css\\drin.css",
               "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\css\\drin.css",
               "RelativeToolTip": "TRACE\\wwwroot\\css\\drin.css",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAnwGMAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAACgGAAAAAAAAAAAAAD0GAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-03-11T09:42:55.037Z",
               "EditorCaption": ""
