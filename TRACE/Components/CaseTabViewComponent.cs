@@ -13,7 +13,7 @@ namespace TRACE.Components
             {
                 activeTab = "_loc";
             }
-            else if (currentPath.Contains("Docketedcases"))
+            else if (currentPath.Contains("docketedcases"))
             {
                 activeTab = "_dc";
             }

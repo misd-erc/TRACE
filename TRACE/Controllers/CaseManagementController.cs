@@ -50,7 +50,7 @@ namespace TRACE.Controllers
             return View("MyCases/LetterComplaints/CaseDetails");
         }
 
-        [Route("Docketedcases")]
+        [Route("docketedcases")]
         public IActionResult DocketedCases()
         {
             if (HttpContext.Session.GetString("IsVerified") != "true")
