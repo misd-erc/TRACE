@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
 using Microsoft.EntityFrameworkCore;
-using TRACE.Models;
 using TRACE.Helpers;
+using TRACE.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -12,4 +12,11 @@ public partial class User
     public string? Department { get; set; }
 
     public string? Username { get; set; }
+    public string? Fullname { get; set; }
+    public string? Designation { get; set; }
+    public bool IsSystemNotif { get; set; }
+    public bool? IsArchive { get; set; }
+
+
+
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using TRACE.Models; // Ensure this contains the CaseDetails model
+using TRACE.Context;
 
 namespace TRACE.Controllers
 {

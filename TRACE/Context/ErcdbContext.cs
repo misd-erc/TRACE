@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using TRACE.Models;
 
-namespace TRACE.Models;
+namespace TRACE.Context;
 
 public partial class ErcdbContext : DbContext
 {
