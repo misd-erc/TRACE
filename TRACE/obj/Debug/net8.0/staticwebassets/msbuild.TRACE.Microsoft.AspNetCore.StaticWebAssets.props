@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>4xylmupyfq</Fingerprint>
-      <Integrity>CMIG3bDYNGtcsR6AmmJ0XSehmYET4qBjbjUtmsdINGk=</Integrity>
+      <Fingerprint>3nx1g7h59p</Fingerprint>
+      <Integrity>ccMlDc1jmk3UOxBhqSvr/Y0pVZsf/aTYcUbBit3U9ek=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\drin.css'))</OriginalItemSpec>

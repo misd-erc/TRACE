@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8mawD8/04Y5Q6Hya0e4HqxHXyI71aPHFLAxQpJrOfo4=",
+  "Hash": "PZqjDc5iZhTunr1HeBkWCugZItd/KTy5PUqJRTqE598=",
   "Source": "TRACE",
   "BasePath": "_content/TRACE",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "4xylmupyfq",
-      "Integrity": "CMIG3bDYNGtcsR6AmmJ0XSehmYET4qBjbjUtmsdINGk=",
+      "Fingerprint": "3nx1g7h59p",
+      "Integrity": "ccMlDc1jmk3UOxBhqSvr/Y0pVZsf/aTYcUbBit3U9ek=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\drin.css"
@@ -1699,7 +1699,7 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/drin.4xylmupyfq.css",
+      "Route": "css/drin.3nx1g7h59p.css",
       "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\css\\drin.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1709,7 +1709,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "29994"
+          "Value": "30369"
         },
         {
           "Name": "Content-Type",
@@ -1717,11 +1717,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"CMIG3bDYNGtcsR6AmmJ0XSehmYET4qBjbjUtmsdINGk=\""
+          "Value": "\"ccMlDc1jmk3UOxBhqSvr/Y0pVZsf/aTYcUbBit3U9ek=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 04:57:37 GMT"
+          "Value": "Thu, 13 Mar 2025 05:59:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1731,7 +1731,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "4xylmupyfq"
+          "Value": "3nx1g7h59p"
         },
         {
           "Name": "label",
@@ -1739,7 +1739,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-CMIG3bDYNGtcsR6AmmJ0XSehmYET4qBjbjUtmsdINGk="
+          "Value": "sha256-ccMlDc1jmk3UOxBhqSvr/Y0pVZsf/aTYcUbBit3U9ek="
         }
       ]
     },
@@ -1754,7 +1754,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "29994"
+          "Value": "30369"
         },
         {
           "Name": "Content-Type",
@@ -1762,11 +1762,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"CMIG3bDYNGtcsR6AmmJ0XSehmYET4qBjbjUtmsdINGk=\""
+          "Value": "\"ccMlDc1jmk3UOxBhqSvr/Y0pVZsf/aTYcUbBit3U9ek=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 04:57:37 GMT"
+          "Value": "Thu, 13 Mar 2025 05:59:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1776,7 +1776,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-CMIG3bDYNGtcsR6AmmJ0XSehmYET4qBjbjUtmsdINGk="
+          "Value": "sha256-ccMlDc1jmk3UOxBhqSvr/Y0pVZsf/aTYcUbBit3U9ek="
         }
       ]
     },
@@ -8117,7 +8117,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 04:04:17 GMT"
+          "Value": "Thu, 13 Mar 2025 05:32:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8154,7 +8154,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 04:04:17 GMT"
+          "Value": "Thu, 13 Mar 2025 05:32:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8199,7 +8199,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 04:04:17 GMT"
+          "Value": "Thu, 13 Mar 2025 05:32:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8244,7 +8244,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 04:04:17 GMT"
+          "Value": "Thu, 13 Mar 2025 05:32:38 GMT"
         },
         {
           "Name": "Cache-Control",
