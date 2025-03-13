@@ -1613,11 +1613,11 @@ canvas {
 /*CREATE CASE*/
 /*CASE DETAiLS*/
 .case-details{
-    padding:10px 40px;
+    padding:10px 20px;
 }
 
 .case-details div{
-    padding:0px 20px;
+    padding:0px 0px;
 }
 
 .case-details div span {
@@ -1640,12 +1640,12 @@ canvas {
     flex-direction: column;
     align-items: center;
     position: relative;
-    width: 120px;
+    width: 110px;
 }
 
 .step .circle {
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     background-color: lightgray;
     border-radius: 50%;
     display: flex;
@@ -1673,13 +1673,24 @@ canvas {
     max-width: 80px;
 }
 
+.progress-line:first-of-type {
+    height: 5px;
+    background-color: lightgray;
+    position: absolute;
+    width: 40px;
+    top: 15px;
+    left: 19%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
 .progress-line {
     height: 5px;
     background-color: lightgray;
     position: absolute;
-    width: 80px;
-    top: 25px;
-    left: 100%;
+    width:40px;
+    top: 15px;
+    left: 83%;
     transform: translateX(-50%);
     z-index: 1;
 }
@@ -1697,33 +1708,37 @@ canvas {
 }
 
 @media (max-width: 999px) {
-    .milestone-details span {
-        display:block;
-    }
-    .progress-container {
-        flex-direction: column;
-        align-items: center;
-        gap:20px;
-    }
+        .milestone-details span {
+            display:block;
+        }
+        .progress-container {
+            flex-direction: column;
+            align-items: center;
+            gap:20px;
+        }
 
-    .step {
-        width: 100px;
-    }
+        .step {
+            width: 100px;
+        }
 
-    .step .circle {
-        width: 40px;
-        height: 40px;
-        font-size: 12px;
-    }
+        .step .circle {
+            width: 40px;
+            height: 40px;
+            font-size: 12px;
+        }
 
-    .progress-line {
-        width: 5px;
-        height: 40px;
-        left: 50%;
-        top: auto;
-        bottom: -30px;
-        transform: translateX(-50%);
-    }
+        .progress-line:first-of-type{
+            display:none;
+        }
+
+        .progress-line {
+            width: 5px;
+            height: 40px;
+            left: 50%;
+            top: auto;
+            bottom: -30px;
+            transform: translateX(-50%);
+        }
 }
 /*MILESTONE*/
 
