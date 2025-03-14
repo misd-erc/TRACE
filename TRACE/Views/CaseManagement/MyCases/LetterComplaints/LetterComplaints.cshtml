@@ -35,10 +35,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr onclick="location.href='@Url.Action("CaseDetails", "CaseManagement")'">
+                <tr >
                     <!--ALDRIN: ADD CASE ID URL PARAMETER HERE. URL SHOULD BE /casedetails/caseID-->
-                    <td data-label="CASE NO.">2016-0076-CC</td>
-                    <td data-label="CASE TITLE">Test Verified Complaint</td>
+                    <td data-label="CASE NO.">2016-0076-LC</td>
+                    <td data-label="CASE TITLE" class="clickable" onclick="location.href='@Url.Action("CaseDetails", "CaseManagement")'">
+                        Test Verified Complaint</td>
                     <td data-label="DATE FILED">03/09/2016</td>
                     <td data-label="CASE STATUS">Ongoing</td>
                     <td data-label="APPLICANT/PETITIONER">Juan Dela Cruz</td>
@@ -62,5 +63,5 @@
         <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
         <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
     </div>
-    @await Html.PartialAsync("Components/Loader/Mini-Loader")
+    @* @await Html.PartialAsync("Components/Loader/Mini-Loader") *@
 </div>

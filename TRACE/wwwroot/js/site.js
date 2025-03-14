@@ -1,13 +1,14 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
         document.getElementById("loader").style.display = "none";
-    }, 3000);
+    }, 2000);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
         document.getElementById("loader2").style.display = "none";
-    }, 5000);
+        document.getElementById("loader3").style.display = "none";
+    }, 4000);
 });
 
 const _notifmenu = document.getElementById('notifDropdown');

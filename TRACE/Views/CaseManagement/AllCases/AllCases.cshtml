@@ -100,14 +100,15 @@
             let paginatedItems = filteredData.slice(start, end);
 
             $.each(paginatedItems, function (index, item) {
-                let row = "<tr>" +
-                    "<td>" + item.CaseNo + "</td>" +
-                    "<td>" + item.Title + "</td>" +
-                    "<td>" + formatDate(item.DateFiled) + "</td>" +
-                    "<td>" + item.CaseStatus + "</td>" +
-                    "<td>" + (item.CorrespondentLastName ?? 'N/A') + "</td>" +
-                    "<td>" + (item.CompanyName ?? 'N/A') + "</td>" +
-                    "</tr>";
+            let row = `
+                <tr onclick="location.href='@Url.Action("CaseDetails", "CaseManagement")'">
+                    <td>${item.CaseNo}</td>
+                    <td>${item.Title}</td>
+                    <td>${formatDate(item.DateFiled)}</td>
+                    <td>${item.CaseStatus}</td>
+                    <td>${item.CorrespondentLastName ?? 'N/A'}</td>
+                    <td>${item.CompanyName ?? 'N/A'}</td>
+                </tr>`;
                 tableBody.append(row);
             });
         }

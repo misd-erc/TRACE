@@ -854,6 +854,7 @@ input:checked + .drin-slider:before {
     display: none;
     background: var(--theme);
     padding: 20px;
+    position:relative;
 }
 
 .cms-content h3 i{
@@ -1412,6 +1413,7 @@ canvas {
 .case-card-details{
     background: var(--theme);
     margin-bottom:20px;
+    position:relative;
 }
 
 
@@ -1545,9 +1547,14 @@ canvas {
     background: var(--body-color);
 }
 
-.my-cases-table tbody tr:hover {
-    background: var(--active-color) !important;
+.my-cases-table tbody td.clickable {
+    background: #00000016 !important;
     cursor: pointer;
+}
+
+.my-cases-table tbody td.clickable:hover {
+    background: var(--active-color) !important;
+
 }
 
 .my-cases-table tbody tr td.actions i {
@@ -1556,6 +1563,7 @@ canvas {
     margin-right:5px;
     cursor:pointer;
 }
+
 
 .my-cases-table tbody tr td.actions .bxs-x-circle {
     color: red !important;
@@ -1656,6 +1664,10 @@ canvas {
     justify-content: space-between;
     align-items: center;
     margin: 10px 0px;
+}
+
+.case-details div span i{
+    text-align:right;
 }
 
 /*MILESTONE*/

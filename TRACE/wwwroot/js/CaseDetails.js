@@ -10,6 +10,7 @@
     document.getElementById(tabName).classList.add('active');
     event.target.classList.add('active');
 
+
     const breadcrumb = document.querySelector(".crumbs");
     const tabText = event.target.innerText.trim();
     breadcrumb.innerHTML = `<a href="/dashboard">Dashboard</a> > Case Management (My Cases) > <a href="/letterofcomplaints">Letter Complaints</a> > Case Title > ${tabText}`;
