@@ -28,7 +28,7 @@ namespace TRACE.Controllers
             return View("MyCases/LetterComplaints/LetterComplaints");
         }
 
-        [Route("lettercomplaints/create")]
+        [Route("casemanagement/create")]
         public IActionResult CreateCase()
         {
             if (HttpContext.Session.GetString("IsVerified") != "true")
@@ -36,10 +36,10 @@ namespace TRACE.Controllers
                 return RedirectToAction("Logout", "External");
 
             }
-            return View("MyCases/LetterComplaints/CreateCase");
+            return View("CreateCase/CreateCase");
         }
 
-        [Route("lettercomplaints/casedetails")]
+        [Route("casedetails")]
         public IActionResult CaseDetails()
         {
             if (HttpContext.Session.GetString("IsVerified") != "true")
@@ -47,7 +47,7 @@ namespace TRACE.Controllers
                 return RedirectToAction("Logout", "External");
 
             }
-            return View("MyCases/LetterComplaints/CaseDetails");
+            return View("CaseDetails/CaseDetails");
         }
 
         [Route("docketedcases")]

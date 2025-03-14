@@ -16,7 +16,7 @@
         <p>Manage your letter complaints</p>
     </div>
     <div class="btn-div">
-        <a href="/lettercomplaints/create"><button>+ CREATE CASE</button></a>
+        <a href="/casemanagement/create"><button>+ CREATE CASE</button></a>
     </div>
 </div>
 
@@ -36,7 +36,7 @@
             </thead>
             <tbody>
                 <tr onclick="location.href='@Url.Action("CaseDetails", "CaseManagement")'">
-                    <!--ALDRIN: ADD CASE ID URL PARAMETER HERE. URL SHOULD BE /lettercomplaints/casedetails/caseID-->
+                    <!--ALDRIN: ADD CASE ID URL PARAMETER HERE. URL SHOULD BE /casedetails/caseID-->
                     <td data-label="CASE NO.">2016-0076-CC</td>
                     <td data-label="CASE TITLE">Test Verified Complaint</td>
                     <td data-label="DATE FILED">03/09/2016</td>
