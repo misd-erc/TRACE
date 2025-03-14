@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>@ViewData["Title"] - TRACE</title>
+    <title>@ViewData["Title"] - ICDMS</title>
 
     <!--Main CSS-->
     <link rel="stylesheet" href="~/css/drin.css" asp-append-version="true" />
@@ -66,7 +66,7 @@
                             <span class="ndate">01 March 2025</span>
                         </li>
                     </ul>
-                    <div class="see-more-notif border-radius-5"><strong>See All Notifiations</strong></div>
+                    <div class="see-more-notif border-radius-5" onclick="location.href='@Url.Action("Notifications", "NotificationManagement")'"><strong>See All Notifiations</strong></div>
                 </div>
             </div>
 
