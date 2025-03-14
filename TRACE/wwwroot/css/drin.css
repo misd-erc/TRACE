@@ -145,6 +145,7 @@ button .bx-plus{
     color: var(--font-color);
     font-weight: bold;
     pointer-events: none;
+    border-radius:5px;
 }
 
 .loader-spinner {
@@ -1405,6 +1406,7 @@ canvas {
     background:var(--theme);
     min-height:480px;
     flex-direction:column;
+    position:relative;
 }
 
 .case-card-details{
@@ -1532,11 +1534,11 @@ canvas {
 }
 
 .my-cases-table thead th:first-child {
-    border-top-left-radius: 10px;
+    border-top-left-radius: 5px;
 }
 
 .my-cases-table thead th:last-child {
-    border-top-right-radius: 10px;
+    border-top-right-radius: 5px;
 }
 
 .my-cases-table tbody tr:nth-of-type(2n+2) {

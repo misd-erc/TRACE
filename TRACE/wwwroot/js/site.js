@@ -3,6 +3,13 @@
         document.getElementById("loader").style.display = "none";
     }, 3000);
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+        document.getElementById("loader2").style.display = "none";
+    }, 5000);
+});
+
 const _notifmenu = document.getElementById('notifDropdown');
 const _profilemenu = document.getElementById('profileDropdown');
 function toggleProfileMenu() {
