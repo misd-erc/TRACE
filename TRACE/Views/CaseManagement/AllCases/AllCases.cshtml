@@ -85,34 +85,85 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
+        let currentPage = 1;
+        const rowsPerPage = 9;
+        let caseData = [];
+
+        function displayTablePage(page) {
+            const tableBody = $("#caseRespondentsTable tbody");
+            tableBody.empty();
+
+            let start = (page - 1) * rowsPerPage;
+            let end = start + rowsPerPage;
+            let paginatedItems = caseData.slice(start, end);
+
+            $.each(paginatedItems, function (index, item) {
+                let row = "<tr>" +
+                    "<td>" + item.CaseNo + "</td>" +
+                    "<td>" + item.Title + "</td>" +
+                    "<td>" + formatDate(item.DateFiled) + "</td>" +
+                    "<td>" + item.CaseStatus + "</td>" +
+                    "<td>" + (item.CorrespondentLastName ?? 'N/A') + "</td>" +
+                    "<td>" + (item.CompanyName ?? 'N/A') + "</td>" +
+                    "</tr>";
+                tableBody.append(row);
+            });
+        }
+
+        function updatePaginationControls() {
+            let totalPages = Math.ceil(caseData.length / rowsPerPage);
+            $(".prev").toggle(currentPage > 1);
+            $(".next").toggle(currentPage < totalPages);
+
+            let paginationSelect = $(".pagination select");
+            paginationSelect.empty();
+            for (let i = 1; i <= totalPages; i++) {
+                paginationSelect.append(`<option value='${i}' ${i === currentPage ? 'selected' : ''}>${i}</option>`);
+            }
+        }
+
         $.ajax({
             url: "/Erccase/GetCaseRespondents",
             type: "GET",
             dataType: "json",
             success: function (data) {
-                console.log(data)
-                var tableBody = $("#caseRespondentsTable tbody");
-                tableBody.empty(); // Clear existing data
-
-                $.each(data, function (index, item) {
-                    var row = "<tr>" +
-                        "<td>" + item.CaseNo + "</td>" +
-                        "<td>" + item.Title + "</td>" +
-                        "<td>" + formatDate(item.DateFiled) + "</td>" +
-                        "<td>" + item.CaseStatus + "</td>" +
-                        "<td>" + (item.CorrespondentLastName ?? 'N/A') + "</td>" +
-                        "<td>" + (item.CompanyName ?? 'N/A') + "</td>" +
-                      
-                        "</tr>";
-                   
-
-                    tableBody.append(row);
-                });
+                caseData = data;
+                displayTablePage(currentPage);
+                updatePaginationControls();
             },
             error: function () {
                 alert("Failed to fetch data.");
             }
         });
+
+        $(".next").click(function () {
+            let totalPages = Math.ceil(caseData.length / rowsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayTablePage(currentPage);
+                updatePaginationControls();
+            }
+        });
+
+        $(".prev").click(function () {
+            if (currentPage > 1) {
+                currentPage--;
+                displayTablePage(currentPage);
+                updatePaginationControls();
+            }
+        });
+
+        $(".pagination select").change(function () {
+            currentPage = parseInt($(this).val());
+            displayTablePage(currentPage);
+            updatePaginationControls();
+        });
+
+        function formatDate(dateString) {
+            if (!dateString) return "N/A";
+            let date = new Date(dateString);
+            return date.toLocaleDateString();
+        }
     });
 
     // Function to format date

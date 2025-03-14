@@ -39,7 +39,7 @@ namespace TRACE.Controllers
                 await connection.OpenAsync(); // Ensure connection opens
 
                 var sql = @"
-            SELECT TOP (20)
+            SELECT 
                 cr.CaseRespondentID,
                 cr.ERCCaseID,
                 cr.Remarks AS RespondentRemarks,

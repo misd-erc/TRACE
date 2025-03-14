@@ -3,15 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\erccasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\erccasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Administrator\\AppData\\Local\\Temp\\.vsdbgsrc\\4dcf567db33b8407e8e7e85491df71d46c06985d33f5ad8d904e52c3b325c6c5\\ExecutionContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\views\\casemanagement\\allcases\\allcases.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -212,58 +205,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\appsettings.json",
-              "RelativeDocumentMoniker": "TRACE\\appsettings.json",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\appsettings.json",
-              "RelativeToolTip": "TRACE\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-14T06:29:09.634Z",
+              "Title": "ErccaseController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
+              "RelativeDocumentMoniker": "TRACE\\Controllers\\ErccaseController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
+              "RelativeToolTip": "TRACE\\Controllers\\ErccaseController.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowCgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-14T06:39:19.825Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ExecutionContext.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\.vsdbgsrc\\4dcf567db33b8407e8e7e85491df71d46c06985d33f5ad8d904e52c3b325c6c5\\ExecutionContext.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\4dcf567db33b8407e8e7e85491df71d46c06985d33f5ad8d904e52c3b325c6c5\\ExecutionContext.cs",
-              "ToolTip": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\.vsdbgsrc\\4dcf567db33b8407e8e7e85491df71d46c06985d33f5ad8d904e52c3b325c6c5\\ExecutionContext.cs [Read Only]",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\4dcf567db33b8407e8e7e85491df71d46c06985d33f5ad8d904e52c3b325c6c5\\ExecutionContext.cs [Read Only]",
-              "ViewState": "AgIAAHoAAAAAAAAAAAArwIkAAAADAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T06:28:16.242Z",
-              "EditorCaption": " [Read Only]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "AllCases.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseManagement\\AllCases\\AllCases.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseManagement\\AllCases\\AllCases.cshtml",
               "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseManagement\\AllCases\\AllCases.cshtml",
               "RelativeToolTip": "TRACE\\Views\\CaseManagement\\AllCases\\AllCases.cshtml",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAUwGcAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAG0AAAAAAAAAAADwv3QAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-14T06:20:28.424Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ErccaseController.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
-              "RelativeDocumentMoniker": "TRACE\\Controllers\\ErccaseController.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
-              "RelativeToolTip": "TRACE\\Controllers\\ErccaseController.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAArwEcAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T06:14:14.572Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "HearingTypeController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\HearingTypeController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\HearingTypeController.cs",
@@ -276,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "HearingCategoryController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\HearingCategoryController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\HearingCategoryController.cs",
@@ -288,7 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "HandlingOfficerTypeController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\HandlingOfficerTypeController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\HandlingOfficerTypeController.cs",
@@ -300,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 9,
               "Title": "ExternalController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ExternalController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\ExternalController.cs",
@@ -312,7 +279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "CaseStatusController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseStatusController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseStatusController.cs",
@@ -324,7 +291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "CaseMilestoneController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseMilestoneController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseMilestoneController.cs",
@@ -336,7 +303,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 10,
               "Title": "CaseDetailsController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseDetailsController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseDetailsController.cs",
@@ -348,7 +315,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 11,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\HearingVenue\\Edit.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\HearingVenue\\Edit.cshtml",
@@ -360,7 +327,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 12,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\HearingType\\Edit.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\HearingType\\Edit.cshtml",
@@ -372,7 +339,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 13,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\HearingCategory\\Edit.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\HearingCategory\\Edit.cshtml",
@@ -384,7 +351,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 14,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\HandlingOfficerType\\Edit.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\HandlingOfficerType\\Edit.cshtml",
@@ -396,7 +363,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 15,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\City\\Edit.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\City\\Edit.cshtml",
@@ -408,7 +375,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 16,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseStatus\\Edit.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseStatus\\Edit.cshtml",
@@ -420,7 +387,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 20,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseCategories\\Index.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseCategories\\Index.cshtml",
@@ -432,7 +399,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 21,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\HearingVenue\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\HearingVenue\\Create.cshtml",
@@ -444,7 +411,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 22,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\HearingType\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\HearingType\\Create.cshtml",
@@ -456,7 +423,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 23,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\HearingCategory\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\HearingCategory\\Create.cshtml",
@@ -468,7 +435,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 24,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\HandlingOfficerType\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\HandlingOfficerType\\Create.cshtml",
@@ -480,7 +447,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 17,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseStatus\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseStatus\\Create.cshtml",
@@ -492,7 +459,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 26,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseMilestone\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseMilestone\\Create.cshtml",
@@ -504,7 +471,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 18,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseEventType\\Edit.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseEventType\\Edit.cshtml",
@@ -516,7 +483,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 19,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseCategories\\Edit.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseCategories\\Edit.cshtml",
@@ -528,7 +495,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 28,
               "Title": "CaseCategoriesController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseCategoriesController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseCategoriesController.cs",
@@ -540,7 +507,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 8,
               "Title": "CaseEventTypeController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseEventTypeController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseEventTypeController.cs",
@@ -552,7 +519,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 27,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseEventType\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseEventType\\Create.cshtml",
@@ -564,7 +531,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 29,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseDetails\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseDetails\\Create.cshtml",
@@ -576,7 +543,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 30,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseCategories\\Delete.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseCategories\\Delete.cshtml",
@@ -588,7 +555,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "CityController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CityController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CityController.cs",
@@ -600,7 +567,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 25,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\City\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\City\\Create.cshtml",
@@ -612,7 +579,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 31,
               "Title": "CaseEventType.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Models\\CaseEventType.cs",
               "RelativeDocumentMoniker": "TRACE\\Models\\CaseEventType.cs",
@@ -624,7 +591,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 33,
               "Title": "HandlingOfficerType.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Models\\HandlingOfficerType.cs",
               "RelativeDocumentMoniker": "TRACE\\Models\\HandlingOfficerType.cs",
@@ -636,7 +603,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 32,
               "Title": "HearingOfficerType.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Models\\HearingOfficerType.cs",
               "RelativeDocumentMoniker": "TRACE\\Models\\HearingOfficerType.cs",
@@ -648,7 +615,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 34,
               "Title": "CM-AllCases.js",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\CM-AllCases.js",
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\CM-AllCases.js",
@@ -660,7 +627,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 35,
               "Title": "drin.css",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\css\\drin.css",
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\css\\drin.css",
