@@ -1182,3 +1182,4 @@ C:\Users\acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.pdb
 C:\Users\acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.genruntimeconfig.cache
 C:\Users\acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\ref\TRACE.dll
 C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Dapper.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Dapper.dll
