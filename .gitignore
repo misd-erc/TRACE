@@ -35,3 +35,5 @@ TRACE/obj/TRACE.csproj.nuget.g.props
 /.vs/TRACE
 /TRACE/bin
 *.cache
+/.vs/TRACE/v17
+/TRACE/obj
