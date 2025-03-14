@@ -1,7 +1,7 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
         document.getElementById("loader").style.display = "none";
-    }, 2000);
+    }, 3000);
 });
 const _notifmenu = document.getElementById('notifDropdown');
 const _profilemenu = document.getElementById('profileDropdown');

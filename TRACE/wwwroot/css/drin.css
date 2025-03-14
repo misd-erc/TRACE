@@ -1394,7 +1394,8 @@ canvas {
     border:0;
     padding:20px;
     font-size:12px;
-    text-align:center;
+    text-align:left;
+    white-space:normal;
 }
 
 .all-cases-table tbody tr:nth-of-type(2n+2){
