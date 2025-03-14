@@ -143,8 +143,6 @@ button .bx-plus{
     pointer-events: none;
 }
 
-
-
 .loader-spinner {
     width: 50px;
     height: 50px;
@@ -167,7 +165,15 @@ button .bx-plus{
 /*LOADER CADS*/
 
 /*MAINHEADER*/
-.main-head-div{
+.main-head-div .filter-design{
+    background: var(--theme);
+    padding:10px 20px;
+    margin-bottom:10px;
+    width: 300px;
+}
+
+.main-head-div .filter-design input {
+    width: 100%;
 }
 /*MAINHEADER*/
 

@@ -12,6 +12,10 @@
         <h3>CASES/COMPLAINTS</h3>
         <p>ALL CASES: <span class="all-case-count">2,542 records found</span></p>
     </div>
+    <div class="filter-design border-radius-5 flex h-center">
+        <i class='bx bx-search'></i>
+        <input type="text" placeholder="Enter Case No. or Case Title here.." />
+    </div>
     <div class="case-filter-wrap">
         <div class="case-filter shadow border-radius-5 gap-20">
             <i class='bx bxs-filter-alt'></i> <span>Filter by...</span> <i class='bx bxs-down-arrow'></i>
@@ -63,7 +67,6 @@
     <div class="case-table-div">
         <table id="caseRespondentsTable" class="all-cases-table">
             <tbody>
-                <!--NOTE: PLEASE MAKE SURE TO ONLY SHOW 9 ROWS PER PAGE - ALDRIN -->
                 
             </tbody>
         </table>
@@ -89,13 +92,13 @@
         const rowsPerPage = 9;
         let caseData = [];
 
-        function displayTablePage(page) {
+        function displayTablePage(page, filteredData = caseData) {
             const tableBody = $("#caseRespondentsTable tbody");
             tableBody.empty();
 
             let start = (page - 1) * rowsPerPage;
             let end = start + rowsPerPage;
-            let paginatedItems = caseData.slice(start, end);
+            let paginatedItems = filteredData.slice(start, end);
 
             $.each(paginatedItems, function (index, item) {
                 let row = "<tr>" +
@@ -110,8 +113,8 @@
             });
         }
 
-        function updatePaginationControls() {
-            let totalPages = Math.ceil(caseData.length / rowsPerPage);
+        function updatePaginationControls(filteredData = caseData) {
+            let totalPages = Math.ceil(filteredData.length / rowsPerPage);
             $(".prev").toggle(currentPage > 1);
             $(".next").toggle(currentPage < totalPages);
 
@@ -161,15 +164,22 @@
 
         function formatDate(dateString) {
             if (!dateString) return "N/A";
-            let date = new Date(dateString);
+            var date = new Date(dateString);
             return date.toLocaleDateString();
         }
+
+        // Dynamic search filter
+        $(".filter-design input").on("input", function () {
+            let searchTerm = $(this).val().toLowerCase();
+            let filteredData = caseData.filter(item =>
+                item.CaseNo.toLowerCase().includes(searchTerm) ||
+                item.Title.toLowerCase().includes(searchTerm)
+            );
+
+            currentPage = 1;
+            displayTablePage(currentPage, filteredData);
+            updatePaginationControls(filteredData);
+        });
     });
 
-    // Function to format date
-    function formatDate(dateString) {
-        if (!dateString) return "N/A";
-        var date = new Date(dateString);
-        return date.toLocaleDateString();
-    }
 </script>
