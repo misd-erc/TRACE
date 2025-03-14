@@ -2,49 +2,32 @@
     ViewData["Title"] = "Notifications";
 }
 <div class="crumbs">
-    <a href="/dashboard">Dashboard</a> > Notifications
+    <a href="javascript:history.back();" id="goBackLink">Go Back</a> > Notifications
 </div>
 
 <h1>@ViewData["Title"]</h1>
 <p>Easily Manage your system notifications.</p>
-
+    
 <div class="grid gap-20 grid-cms">
     <div class="cms-nav">
         <ul>
-            <li onclick="showTab('cases')" class="active"><i class='bx bxs-briefcase'></i> Case Related Contents</li>
-            <li onclick="showTab('documents')"><i class='bx bxs-file'></i> Document Related Contents</li>
+            <li onclick="showTab('all')" class="active"> All Notifications</li>
+            <li onclick="showTab('unread')"> Unread</li>
+            <li onclick="showTab('archive')"> Archived</li>
         </ul>
     </div>
 
     <div class="cms-wrap shadow">
-        <div id="cases" class="cms-content active">
-            <h3><i class='bx bxs-briefcase'></i> Case Related Contents</h3>
-            <ul class="content-list">
-                <li><i class='bx bxs-edit-alt'></i> Case Category</li>
-                <li><i class='bx bxs-edit-alt'></i> Case Event Types</li>
-                <li><i class='bx bxs-edit-alt'></i> Case Statuses</li>
-                <li><i class='bx bxs-edit-alt'></i> Case Milestones</li>
-                <li><i class='bx bxs-edit-alt'></i> Handling Officer Types</li>
-                <li><i class='bx bxs-edit-alt'></i> Hearing Categories</li>
-                <li><i class='bx bxs-edit-alt'></i> Hearing Types</li>
-                <li><i class='bx bxs-edit-alt'></i> Hearing Venues</li>
-                <li><i class='bx bxs-edit-alt'></i> Milestone Templates</li>
-                <li><i class='bx bxs-edit-alt'></i> City</li>
-            </ul>
+        <div id="all" class="cms-content active">
+            
         </div>
 
-        <div id="documents" class="cms-content">
-            <h3><i class='bx bxs-file'></i> Document Related Contents</h3>
-            <ul class="content-list">
-                <li><i class='bx bxs-edit-alt'></i> Action Types</li>
-                <li><i class='bx bxs-edit-alt'></i> Delivery Methods</li>
-                <li><i class='bx bxs-edit-alt'></i> Distribution Lists</li>
-                <li><i class='bx bxs-edit-alt'></i> Document Categories</li>
-                <li><i class='bx bxs-edit-alt'></i> Document Filing Types</li>
-                <li><i class='bx bxs-edit-alt'></i> Document Needed Actions</li>
-                <li><i class='bx bxs-edit-alt'></i> Document Version Statuses</li>
-                <li><i class='bx bxs-edit-alt'></i> Intranet Location Mapping</li>
-            </ul>
+        <div id="unread" class="cms-content">
+            
+        </div>
+
+        <div id="archive" class="cms-content">
+
         </div>
     </div>
 </div>

@@ -61,3 +61,25 @@ document.querySelector("header").addEventListener("mouseleave", function () {
         item.nextElementSibling.style.maxHeight = "0px";
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let goBackLink = document.getElementById("goBackLink");
+
+    if (document.referrer) {
+        let referrerUrl = new URL(document.referrer);
+
+        if (referrerUrl.origin === window.location.origin) {
+            let pageName = referrerUrl.pathname.split("/").filter(Boolean).pop() || "Home";
+            pageName = pageName.replace(/[-_]/g, " ");
+            pageName = pageName.charAt(0).toUpperCase() + pageName.slice(1);
+
+            goBackLink.href = document.referrer;
+            goBackLink.textContent = pageName;
+        } else {
+            goBackLink.style.display = "none";
+        }
+    } else {
+        goBackLink.style.display = "none";
+    }
+});
