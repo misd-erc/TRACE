@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
 using TRACE.Models;
@@ -13,10 +15,12 @@ namespace TRACE.Controllers
     public class ErccaseController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly string _connectionString;
 
-        public ErccaseController(ErcdbContext context)
+        public ErccaseController(ErcdbContext context, IConfiguration configuration)
         {
             _context = context;
+            _connectionString = configuration.GetConnectionString("ErcDatabase");
         }
 
         // GET: Erccase
@@ -25,6 +29,48 @@ namespace TRACE.Controllers
             var ercdbContext = _context.Erccases.Include(e => e.CaseCategory).Include(e => e.CaseNature).Include(e => e.CaseStatus);
             return View(await ercdbContext.ToListAsync());
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetCaseRespondents()
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync(); // Ensure connection opens
+
+                var sql = @"
+            SELECT TOP (20)
+                cr.CaseRespondentID,
+                cr.ERCCaseID,
+                cr.Remarks AS RespondentRemarks,
+                cr.CorrespondentID AS RespondentCorrespondentID,
+                cr.CompanyID AS RespondentCompanyID,
+                
+                c.CaseNo,
+                c.Title,
+                (SELECT Category FROM cases.CaseCategories WHERE CaseCategoryID = c.CaseCategoryID) AS Category,
+                ISNULL((SELECT Nature FROM cases.CaseNatures WHERE CaseNatureID = c.CaseNatureID), 'NOT SET') AS Nature,
+                c.DateFiled,
+                c.DateDocketed,
+                c.DocketedBy,
+                (SELECT [Status] FROM cases.CaseStatuses WHERE CaseStatusID = c.CaseStatusID) AS CaseStatus,
+                comp.CompanyName,  
+                cor.LastName + ' ' + cor.FirstName AS CorrespondentLastName  
+            FROM ercdb.cases.CaseRespondents cr
+            JOIN cases.ERCCases c ON cr.ERCCaseID = c.ERCCaseID
+            LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
+            LEFT JOIN ercdb.cases.CaseApplicants ca ON cr.ERCCaseID = ca.ERCCaseID  
+            LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID";
+
+                var result = await connection.QueryAsync<dynamic>(sql);
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
+
 
         // GET: Erccase/Details/5
         public async Task<IActionResult> Details(long? id)

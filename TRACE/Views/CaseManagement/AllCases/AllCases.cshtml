@@ -61,81 +61,10 @@
 
 <div class="case-card shadow border-radius-5 flex space-between">
     <div class="case-table-div">
-        <table class="all-cases-table">
+        <table id="caseRespondentsTable" class="all-cases-table">
             <tbody>
                 <!--NOTE: PLEASE MAKE SURE TO ONLY SHOW 9 ROWS PER PAGE - ALDRIN -->
-                <tr>
-                    <td>2016-0076-CC</td>
-                    <td>Test Verified Complaint</td>
-                    <td>03/09/2016</td>
-                    <td>Ongoing</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Manila Electric Company</td>
-                </tr>
-                <tr>
-                    <td>2016-0075-CC</td>
-                    <td>Test Verified Complaint</td>
-                    <td>03/08/2016</td>
-                    <td>Ongoing</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Manila Electric Company</td>
-                </tr>
-                <tr>
-                    <td>2016-0074-CC</td>
-                    <td>Test Verified Complaint</td>
-                    <td>03/04/2016</td>
-                    <td>Ongoing</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Manila Electric Company</td>
-                </tr>
-                <tr>
-                    <td>2016-0074-CC</td>
-                    <td>Test Verified Complaint</td>
-                    <td>03/04/2016</td>
-                    <td>Ongoing</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Manila Electric Company</td>
-                </tr>
-                <tr>
-                    <td>2016-0074-CC</td>
-                    <td>Test Verified Complaint</td>
-                    <td>03/04/2016</td>
-                    <td>Ongoing</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Manila Electric Company</td>
-                </tr>
-                <tr>
-                    <td>2016-0074-CC</td>
-                    <td>Test Verified Complaint</td>
-                    <td>03/04/2016</td>
-                    <td>Ongoing</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Manila Electric Company</td>
-                </tr>
-                <tr>
-                    <td>2016-0071-CC</td>
-                    <td>Test Verified Complaint</td>
-                    <td>03/01/2016</td>
-                    <td>Ongoing</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Manila Electric Company</td>
-                </tr>
-                <tr>
-                    <td>2016-0071-CC</td>
-                    <td>Test Verified Complaint</td>
-                    <td>03/01/2016</td>
-                    <td>Ongoing</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Manila Electric Company</td>
-                </tr>
-                <tr>
-                    <td>2016-0071-CC</td>
-                    <td>Test Verified Complaint</td>
-                    <td>03/01/2016</td>
-                    <td>Ongoing</td>
-                    <td>Juan Dela Cruz</td>
-                    <td>Manila Electric Company</td>
-                </tr>
+                
             </tbody>
         </table>
     </div>
@@ -153,3 +82,43 @@
 </div>
 
 <script src="~/js/CM-AllCases.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: "/Erccase/GetCaseRespondents",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                var tableBody = $("#caseRespondentsTable tbody");
+                tableBody.empty(); // Clear existing data
+
+                $.each(data, function (index, item) {
+                    var row = "<tr>" +
+                        "<td>" + item.CaseNo + "</td>" +
+                        "<td>" + item.Title + "</td>" +
+                        "<td>" + formatDate(item.DateFiled) + "</td>" +
+                        "<td>" + item.CaseStatus + "</td>" +
+                        "<td>" + (item.CorrespondentLastName ?? 'N/A') + "</td>" +
+                        "<td>" + (item.CompanyName ?? 'N/A') + "</td>" +
+                      
+                        "</tr>";
+                   
+
+                    tableBody.append(row);
+                });
+            },
+            error: function () {
+                alert("Failed to fetch data.");
+            }
+        });
+    });
+
+    // Function to format date
+    function formatDate(dateString) {
+        if (!dateString) return "N/A";
+        var date = new Date(dateString);
+        return date.toLocaleDateString();
+    }
+</script>
