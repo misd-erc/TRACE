@@ -1,0 +1,197 @@
+@model IEnumerable<TRACE.Models.Erccase>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateFiled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDocketed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocketedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Synopsis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfFolders)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MeterSin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountClaimed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountSettled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsArchived)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetPaissuance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualPaissuance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetFaissuance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualFaissuance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubmittedForResolution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrayedForPa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatetimeApproved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseBoxLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PadeliberationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FadeliberationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatargetOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FatargetOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseNature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaseNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFiled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDocketed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocketedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Synopsis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfFolders)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeterSin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountClaimed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountSettled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsArchived)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetPaissuance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualPaissuance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetFaissuance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualFaissuance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubmittedForResolution)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrayedForPa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsApproved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatetimeApproved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaseBoxLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PadeliberationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FadeliberationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatargetOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FatargetOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaseCategory.CaseCategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaseNature.CaseNatureId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaseStatus.CaseStatusId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ErccaseId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ErccaseId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ErccaseId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

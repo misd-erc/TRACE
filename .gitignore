@@ -31,3 +31,6 @@ TRACE/obj/project.assets.json
 TRACE/obj/project.nuget.cache
 TRACE/obj/TRACE.csproj.nuget.dgspec.json
 TRACE/obj/TRACE.csproj.nuget.g.props
+/TRACE/obj/Debug
+/.vs/TRACE
+/TRACE/bin
