@@ -1,7 +1,7 @@
 ﻿@{
-    ViewData["Title"] = "Create - Letter Of Complaints";
+    ViewData["Title"] = "Create";
 }
-
+@model TRACE.Models.Erccase
 <div class="crumbs">
     <a href="/dashboard">Dashboard</a> > Case Management (My Cases) > <a href="/lettercomplaints">Letter Complaints</a> > Create
 </div>
@@ -15,97 +15,99 @@
         <button>SUBMIT</button>
     </div>
 </div>
-
 <div class="case-card shadow border-radius-5">
-    <div class="form-div  create-lc">
-        <div class="grid grid-three-fr gap-10">
-            <div class="form-input-div">
-                <label>Category</label>
-                <select>
-                    <option selected disabled>Select Case Category</option>
-                    <option>Category1</option>
-                    <option>Category2</option>
-                </select>
+    <div class="form-div create-lc">
+        <form asp-action="Create" method="post" asp-antiforgery="true">
+            <div class="grid grid-three-fr gap-10">
+                <div class="form-group">
+                    <label asp-for="CaseCategory" class="control-label">CaseCategory</label>
+                    <select asp-for="CaseCategory" class="form-control" asp-items="ViewBag.CaseCategoryId"></select>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="CaseNature" class="control-label">CaseCategory</label>
+                    <select asp-for="CaseNature" class="form-control" asp-items="ViewBag.Case"></select>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="Title">Case Title</label>
+                    <textarea asp-for="Title" class="form-control"></textarea>
+                </div>
+                <div class="form-input-div">
+                    <label >Remarks</label>
+                    <textarea  class="form-control"></textarea>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="MeterSin">Meter SIN</label>
+                    <input asp-for="MeterSin" type="text" class="form-control" />
+                </div>
             </div>
-            <div class="form-input-div">
-                <label>Case Nature</label>
-                <select>
-                    <option selected disabled>Select Case Nature</option>
-                    <option>Nature1</option>
-                    <option>Nature2</option>
-                </select>
-            </div>
-            <div class="form-input-div">
-                <label>Case Title</label>
-                <textarea></textarea>
-            </div>
-            <div class="form-input-div">
-                <label>Remarks</label>
-                <textarea></textarea>
-            </div>
-            <div class="form-input-div">
-                <label>Meter SIN</label>
-                <input type="text" />
-            </div>
-        </div>
 
-        <div class="grid grid-five-fr gap-10">
-            <div class="form-input-div">
-                <label>Date Filed</label>
-                <input type="date" />
+            <div class="grid grid-five-fr gap-10">
+                <div class="form-input-div">
+                    <label asp-for="DateFiled">Date Filed</label>
+                    <input asp-for="DateFiled" type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="DateDocketed">Date Docketed</label>
+                    <input asp-for="DateDocketed" type="date" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="NoOfFolders">No. of Folders</label>
+                    <input asp-for="NoOfFolders" type="number" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="AmountClaimed">Amount Claimed</label>
+                    <input asp-for="AmountClaimed" type="text" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="AmountSettled">Amount Settled</label>
+                    <input asp-for="AmountSettled" type="text" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="TargetPaissuance">Target PA Issuance</label>
+                    <input asp-for="TargetPaissuance" type="date" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="TargetFaissuance">TARGET FA Issuance</label>
+                    <input asp-for="TargetFaissuance" type="date" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="PadeliberationDate">PA Deliberation Date</label>
+                    <input asp-for="PadeliberationDate" type="date" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="FadeliberationDate">FA Deliberation Date</label>
+                    <input asp-for="FadeliberationDate" type="date" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="PadeliberationDate">PA Target Order</label>
+                    <input asp-for="PadeliberationDate" type="date" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="FatargetOrder">FA Target Order</label>
+                    <input asp-for="FatargetOrder" type="date" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="Synopsis">Sypnosis</label>
+                    <input asp-for="Synopsis" type="text" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="SubmittedForResolution">Submitted for Resolution?</label>
+                    <select asp-for="SubmittedForResolution" class="form-control">
+                        <option selected disabled>Select Answer</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="btn-div">
+                    <button>SUBMIT</button>
+                </div>
+
             </div>
-            <div class="form-input-div">
-                <label>Date Docketed</label>
-                <input type="date" />
-            </div>
-            <div class="form-input-div">
-                <label>No. of Folders</label>
-                <input type="number" />
-            </div>
-            <div class="form-input-div">
-                <label>Amount Claimed</label>
-                <input type="text" />
-            </div>
-            <div class="form-input-div">
-                <label>Amount Settled</label>
-                <input type="text" />
-            </div>
-            <div class="form-input-div">
-                <label>Target PA Issuance</label>
-                <input type="date" />
-            </div>
-            <div class="form-input-div">
-                <label>TARGET FA Issuance</label>
-                <input type="date" />
-            </div>
-            <div class="form-input-div">
-                <label>PA Deliberation Date</label>
-                <input type="date" />
-            </div>
-            <div class="form-input-div">
-                <label>FA Deliberation Date</label>
-                <input type="date" />
-            </div>
-            <div class="form-input-div">
-                <label>PA Target Order</label>
-                <input type="date" />
-            </div>
-            <div class="form-input-div">
-                <label>FA Target Order</label>
-                <input type="date" />
-            </div>
-            <div class="form-input-div">
-                <label>Sypnosis</label>
-                <input type="text" />
-            </div>
-            <div class="form-input-div">
-                <label>Submitted for Resolution?</label>
-                <select>
-                    <option selected disabled>Select Answer</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </select>
-            </div>
-        </div>
+
+          
+        </form>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>

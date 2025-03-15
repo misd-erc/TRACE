@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
@@ -96,9 +97,9 @@ namespace TRACE.Controllers
         // GET: Erccase/Create
         public IActionResult Create()
         {
-            ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "CaseCategoryId");
-            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNatureId");
-            ViewData["CaseStatusId"] = new SelectList(_context.CaseStatuses, "CaseStatusId", "CaseStatusId");
+            ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "Description");
+            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "Nature");
+            ViewData["CaseStatusId"] = new SelectList(_context.CaseStatuses, "CaseStatusId", "Description");
             return View();
         }
 
@@ -109,16 +110,53 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ErccaseId,CaseNo,CaseCategoryId,Title,CaseNatureId,DateFiled,DateDocketed,DocketedBy,CaseStatusId,Synopsis,NoOfFolders,MeterSin,AmountClaimed,AmountSettled,IsArchived,TargetPaissuance,ActualPaissuance,TargetFaissuance,ActualFaissuance,SubmittedForResolution,PrayedForPa,IsApproved,ApprovedBy,DatetimeApproved,CaseBoxLocation,PadeliberationDate,FadeliberationDate,PatargetOrder,FatargetOrder")] Erccase erccase)
         {
+            var year = DateTime.Now.ToString("yyyy-MM");
+
+            var designatedCaseNo = _context.Erccases.Where(c => c.CaseNo.Contains("-LC") && c.CaseNo.Contains(year)).OrderByDescending(c => c.ErccaseId).FirstOrDefault(); 
+            if(designatedCaseNo == null)
+            {
+                erccase.CaseNo = year +"-0001-LC";
+            }
+            else
+            {
+                string newCaseNumber;
+                if (designatedCaseNo != null)
+                {
+                    // Extract the numeric part and increment
+                    var parts = designatedCaseNo.CaseNo.Split('-');
+                    int numericPart = int.Parse(parts[2]) + 1;
+
+                    // Format with leading zeros (e.g., 0001, 0002, etc.)
+                    erccase.CaseNo = $"{year}-{numericPart:D4}-LC";
+                }
+                else
+                {
+                    // If no previous case exists, start from 0001
+                    erccase.CaseNo = $"{year}-0001-LC";
+                }
+            }
+
+           
+            erccase.CaseStatus =  _context.CaseStatuses.FirstOrDefault(cs => cs.CaseStatusId == 1); 
+            erccase.CaseCategory = _context.CaseCategories.FirstOrDefault(cs => cs.CaseCategoryId == 1);
+            ModelState.Remove("CaseStatus");
+            ModelState.Remove("CaseCategory");
+            ModelState.Remove("CaseNo");
+
             if (ModelState.IsValid)
             {
                 _context.Add(erccase);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
-            ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "CaseCategoryId", erccase.CaseCategoryId);
-            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNatureId", erccase.CaseNatureId);
-            ViewData["CaseStatusId"] = new SelectList(_context.CaseStatuses, "CaseStatusId", "CaseStatusId", erccase.CaseStatusId);
-            return View(erccase);
+            ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "Description");
+            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNature");
+
+            ViewData["CaseStatusId"] = new SelectList(_context.CaseStatuses, "CaseStatusId", "Description");
+        var errors = ModelState.Where(m => m.Value.Errors.Count > 0)
+                       .ToDictionary(m => m.Key, m => m.Value.Errors.Select(e => e.ErrorMessage).ToList());
+
+return Json(new { success = false, message = "Validation failed!", errors });
         }
 
         // GET: Erccase/Edit/5
