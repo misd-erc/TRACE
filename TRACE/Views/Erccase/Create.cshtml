@@ -6,122 +6,115 @@
 
 
 <div class="crumbs">
-    <a href="/dashboard">Dashboard</a> > Case Management (My Cases) > <a href="/lettercomplaints">Letter Complaints</a> > Create
+    <a href="/dashboard">Dashboard</a> >  <a href="javascript:history.back();">Case Management (My Cases)</a> > Create
 </div>
-
-<div class="main-head-div flex h-center space-between">
-    <div class="title-div">
-        <h3>CREATE LETTER COMPLAINT</h3>
-        <p>Create letter of complaint</p>
-    </div>
+<form id="createForm" asp-action="Create">
+    <div class="main-head-div flex h-center space-between">
+        <div class="title-div">
+            <h3>CREATE CASE</h3>
+            <p>This page is for creating erc case</p>
+        </div>
     
-</div>
-
-<div class="case-card shadow border-radius-5">
-    <div class="form-div  create-lc">
-        <form id="createForm" asp-action="Create">
-            <div class="grid grid-three-fr gap-10">
-
-                <div class="form-input-div">
-                    <label asp-for="CaseCategoryId" class="control-label"></label>
-                    <select asp-for="CaseCategoryId" class="form-control" asp-items="ViewBag.CaseCategoryId"></select>
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="CaseNature" class="control-label"></label>
-                    <select asp-for="CaseNatureId" class="form-control" asp-items="ViewBag.CaseNatureId"></select>
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="Title" class="control-label"></label>
-                    <textarea asp-for="Title" class="form-control"></textarea>
-                 
-                </div>
-                <div class="form-input-div">
-                    <label>Remarks</label>
-                    <textarea></textarea>
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="MeterSin" class="control-label">Meter Sin</label>
-                    <input asp-for="MeterSin" class="form-control" />
-                  
-                </div>
-            </div>
-
-            <div class="grid grid-five-fr gap-10">
-                <div class="form-input-div">
-                    <label asp-for="DateFiled" class="control-label">Date Filed</label>
-                    <input asp-for="DateFiled" class="form-control" type="date" />
-
-                 
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="DateDocketed" class="control-label">Date Docketed</label>
-                    <input asp-for="DateDocketed" class="form-control" type="date" />
-                   
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="MeterSin" class="control-label">No. of Folders</label>
-                    <input asp-for="MeterSin" class="form-control" type="number" />
-                 
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="AmountClaimed" class="control-label">Amount Claimed</label>
-                    <input asp-for="AmountClaimed" class="form-control" type="text" />
-                  
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="AmountSettled" class="control-label">Amount Settled</label>
-                    <input asp-for="AmountSettled" class="form-control" type="text" />
-                   
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="TargetPaissuance" class="control-label">Target PA Issuance</label>
-                    <input asp-for="TargetPaissuance" class="form-control" type="date" />
-                    <label>Target PA Issuance</label>
-                    <input type="date" />
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="TargetPaissuance" class="control-label">TARGET FA Issuance</label>
-                    <input asp-for="TargetPaissuance" class="form-control" type="date" />
-                   
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="PadeliberationDate" class="control-label">PA Deliberation Date</label>
-                    <input asp-for="PadeliberationDate" class="form-control" type="date" />
-                 
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="FadeliberationDate" class="control-label">FA Deliberation Date</label>
-                    <input asp-for="FadeliberationDate" class="form-control" type="date" />
-                   
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="PatargetOrder" class="control-label">PA Target Order</label>
-                    <input asp-for="PatargetOrder" class="form-control" type="date" />
-                   
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="FatargetOrder" class="control-label">FA Target Order</label>
-                    <input asp-for="FatargetOrder" class="form-control" type="date" />
-                   
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="Synopsis" class="control-label">Synopsis</label>
-                    <input asp-for="Synopsis" class="form-control" type="text" />
-                   
-                </div>
-                <div class="form-input-div">
-                    <label asp-for="SubmittedForResolution" class="control-label">Submitted for Resolution</label>
-                    <input asp-for="SubmittedForResolution" class="form-control" type="date" />
-                </div>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        <div class="btn-div">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
     </div>
-</div>
 
+    <div class="case-card shadow border-radius-5">
+        <div class="form-div  create-lc">
+                <div class="grid grid-three-fr gap-10">
+
+                    <div class="form-input-div">
+                        <label asp-for="CaseCategoryId" class="control-label"></label>
+                        <select asp-for="CaseCategoryId" class="form-control" asp-items="ViewBag.CaseCategoryId">
+                            <option selected disabled>Select Case Category</option>
+                        </select>
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="CaseNature" class="control-label"></label>
+                        <select asp-for="CaseNatureId" class="form-control" asp-items="ViewBag.CaseNatureId">
+                            <option selected disabled>Select Case Nature</option>
+                        </select>
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="MeterSin" class="control-label">Meter Sin</label>
+                        <input asp-for="MeterSin" class="form-control" />
+                    </div>
+                    <div class="form-input-div">
+                        <label>Remarks</label>
+                        <textarea></textarea>
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="Title" class="control-label"></label>
+                        <textarea asp-for="Title" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="grid grid-five-fr gap-10">
+                    <div class="form-input-div">
+                        <label asp-for="DateFiled" class="control-label">Date Filed</label>
+                        <input asp-for="DateFiled" class="form-control" type="date" />
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="DateDocketed" class="control-label">Date Docketed</label>
+                        <input asp-for="DateDocketed" class="form-control" type="date" />
+                   
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="MeterSin" class="control-label">No. of Folders</label>
+                        <input asp-for="MeterSin" class="form-control" type="number" />
+                 
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="AmountClaimed" class="control-label">Amount Claimed</label>
+                        <input asp-for="AmountClaimed" class="form-control" type="text" />
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="AmountSettled" class="control-label">Amount Settled</label>
+                        <input asp-for="AmountSettled" class="form-control" type="text" />
+                   
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="TargetPaissuance" class="control-label">Target PA Issuance</label>
+                        <input asp-for="TargetPaissuance" class="form-control" type="date" />
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="TargetPaissuance" class="control-label">TARGET FA Issuance</label>
+                        <input asp-for="TargetPaissuance" class="form-control" type="date" />
+                   
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="PadeliberationDate" class="control-label">PA Deliberation Date</label>
+                        <input asp-for="PadeliberationDate" class="form-control" type="date" />
+                 
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="FadeliberationDate" class="control-label">FA Deliberation Date</label>
+                        <input asp-for="FadeliberationDate" class="form-control" type="date" />
+                   
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="PatargetOrder" class="control-label">PA Target Order</label>
+                        <input asp-for="PatargetOrder" class="form-control" type="date" />
+                   
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="FatargetOrder" class="control-label">FA Target Order</label>
+                        <input asp-for="FatargetOrder" class="form-control" type="date" />
+                   
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="Synopsis" class="control-label">Synopsis</label>
+                        <input asp-for="Synopsis" class="form-control" type="text" />
+                    </div>
+                    <div class="form-input-div">
+                        <label asp-for="SubmittedForResolution" class="control-label">Submitted for Resolution</label>
+                        <input asp-for="SubmittedForResolution" class="form-control" type="date" />
+                    </div>
+                </div>
+        </div>
+    </div>
+ </form>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
@@ -153,7 +146,7 @@
                         } else {
                             Swal.fire({
                                 title: "Error!",
-                                text: response.message,
+                                text: "Please make sure all fields are filled up! " + response.message,
                                 icon: "error",
                                 confirmButtonText: "Try Again"
                             });
