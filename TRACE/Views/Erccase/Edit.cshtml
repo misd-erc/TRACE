@@ -6,7 +6,7 @@
 <div class="crumbs">
     <a href="/dashboard">Dashboard</a> > <a href="javascript:history.back();">Case Management (My Cases)</a> > Edit
 </div>
-<form asp-action="Edit" id="createForm">
+<form asp-action="Edit" id="editForm">
     <div class="main-head-div flex h-center space-between">
         <div class="title-div">
             <h3>EDIT CASE</h3>
@@ -122,7 +122,7 @@
 
     <script>
         $(document).ready(function () {
-            $("#createForm").submit(function (event) {
+            $("#editForm").submit(function (event) {
                 event.preventDefault();
 
                 $.ajax({
