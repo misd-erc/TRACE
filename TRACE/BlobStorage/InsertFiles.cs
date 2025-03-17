@@ -12,11 +12,7 @@ namespace TRACE.BlobStorage
         private readonly string _connectionString = "";
         private readonly string _containerName = "tracecontainer";
 
-        public FileUploadService(string connectionString, string containerName)
-        {
-            _connectionString = connectionString;
-            _containerName = containerName;
-        }
+      
 
         public async Task<string> UploadFileAsync(IFormFile file)
         {
@@ -47,29 +43,46 @@ namespace TRACE.BlobStorage
             }
         }
 
-        public async Task CreateFolders(string folderName)
+        public async Task CreateFolders(string folderName, int numberOfSubFolders)
         {
             try
             {
                 BlobServiceClient blobServiceClient = new BlobServiceClient(_connectionString);
                 BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(_containerName);
-                // Ensure the folder name ends with a "/"
+
+                // Ensure the main folder name ends with a "/"
                 folderName = folderName.TrimEnd('/') + "/";
 
-                // Create an empty blob to simulate a folder
-                BlobClient blobClient = containerClient.GetBlobClient(folderName);
+                // Upload dummy file to simulate the main folder
+                await UploadEmptyBlob(containerClient, folderName);
 
-                using var emptyStream = new MemoryStream(new byte[0]); // Empty file
-                await blobClient.UploadAsync(emptyStream, overwrite: true);
+                Console.WriteLine($"📁 Main folder '{folderName}' created successfully in Blob Storage.");
 
-                Console.WriteLine($"📁 Folder '{folderName}' created successfully in Blob Storage.");
+                for (int i = 1; i <= numberOfSubFolders; i++)
+                {
+                    string subFolderPath = $"{folderName}{i}/";
+                    await UploadEmptyBlob(containerClient, subFolderPath);
+                    Console.WriteLine($"📂 Subfolder '{subFolderPath}' created successfully.");
+
+                   
+                 
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error creating folder '{folderName}': {ex.Message}");
+                Console.WriteLine($"❌ Error: {ex.Message}");
             }
         }
 
-
+        private async Task UploadEmptyBlob(BlobContainerClient containerClient, string blobName)
+        {
+            BlobClient blobClient = containerClient.GetBlobClient(blobName);
+            using var emptyStream = new MemoryStream(new byte[0]);
+            await blobClient.UploadAsync(emptyStream, overwrite: true);
+        }
     }
+
+
+
+    
 }

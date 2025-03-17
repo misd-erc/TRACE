@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using TRACE.BlobStorage;
 using TRACE.Context;
 using TRACE.Models;
 
@@ -201,6 +202,7 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ErccaseId,CaseNo,CaseCategoryId,Title,CaseNatureId,DateFiled,DateDocketed,DocketedBy,CaseStatusId,Synopsis,NoOfFolders,MeterSin,AmountClaimed,AmountSettled,IsArchived,TargetPaissuance,ActualPaissuance,TargetFaissuance,ActualFaissuance,SubmittedForResolution,PrayedForPa,IsApproved,ApprovedBy,DatetimeApproved,CaseBoxLocation,PadeliberationDate,FadeliberationDate,PatargetOrder,FatargetOrder")] Erccase erccase)
         {
+            
             var year = DateTime.Now.ToString("yyyy-MM");
 
             var designatedCaseNo = _context.Erccases.Where(c => c.CaseNo.Contains("-LC") && c.CaseNo.Contains(year)).OrderByDescending(c => c.ErccaseId).FirstOrDefault(); 
@@ -236,6 +238,9 @@ namespace TRACE.Controllers
 
             if (ModelState.IsValid)
             {
+                FileUploadService fileUploadService = new FileUploadService();
+                int folderCount = erccase.NoOfFolders ?? 1;
+               await fileUploadService.CreateFolders(erccase.CaseNo, folderCount);
                 _context.Add(erccase);
                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Success! Data has been saved." });
