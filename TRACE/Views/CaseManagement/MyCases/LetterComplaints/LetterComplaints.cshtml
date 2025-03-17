@@ -77,7 +77,7 @@
                         <td>${item.CorrespondentLastName ?? 'N/A'}</td>
                         <td>${item.CompanyName ?? 'N/A'}</td>
                         <td class="actions" data-label="ACTIONS">
-                                    <a href="/erccase/edit/${item.ERCCaseID}"><i class='bx bxs-edit' title="Edit"></i></a><!--PUT CASE ID HERE FOR EDIT-->
+                                <a href="@Url.Action("Edit", "ERCCase")/${item.ERCCaseID}"><i class='bx bxs-edit' title="Edit"></i></a>
                             <i class='bx bxs-x-circle' title="Archive"></i><!--SOFT DELETE/ARCHIVING-->
                         </td>
                     </tr>`;
