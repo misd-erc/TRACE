@@ -1183,3 +1183,6 @@ C:\Users\acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.genruntimeconf
 C:\Users\acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\ref\TRACE.dll
 C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Dapper.dll
 E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Dapper.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Azure.Storage.Blobs.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Azure.Storage.Common.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\System.IO.Hashing.dll

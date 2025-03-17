@@ -41,6 +41,8 @@ namespace TRACE.Controllers
 
                 var sql = @"
                     SELECT 
+	                cr.ERCCaseID,
+
                         cr.CaseRespondentID,
                         cr.ERCCaseID,
                         cr.Remarks AS RespondentRemarks,
@@ -57,11 +59,55 @@ namespace TRACE.Controllers
                         (SELECT [Status] FROM cases.CaseStatuses WHERE CaseStatusID = c.CaseStatusID) AS CaseStatus,
                         comp.CompanyName,  
                         cor.LastName + ' ' + cor.FirstName AS CorrespondentLastName  
+                        FROM ercdb.cases.CaseRespondents cr
+                        JOIN cases.ERCCases c ON cr.ERCCaseID = c.ERCCaseID
+                        LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
+                        LEFT JOIN ercdb.cases.CaseApplicants ca ON cr.ERCCaseID = ca.ERCCaseID  
+                        LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID";
+
+                var result = await connection.QueryAsync<dynamic>(sql);
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> GetAllLetterComplaints()
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync(); // Ensure connection opens
+
+                var sql = @"
+                    SELECT 
+	                cr.ERCCaseID,
+                     cr.CaseRespondentID,
+                     cr.ERCCaseID,
+                     cr.Remarks AS RespondentRemarks,
+                     cr.CorrespondentID AS RespondentCorrespondentID,
+                     cr.CompanyID AS RespondentCompanyID,
+                
+                     c.CaseNo,
+                     c.Title,
+                     (SELECT Category FROM cases.CaseCategories WHERE CaseCategoryID = c.CaseCategoryID) AS Category,
+                     ISNULL((SELECT Nature FROM cases.CaseNatures WHERE CaseNatureID = c.CaseNatureID), 'NOT SET') AS Nature,
+                     c.DateFiled,
+                     c.DateDocketed,
+                     c.DocketedBy,
+                     (SELECT [Status] FROM cases.CaseStatuses WHERE CaseStatusID = c.CaseStatusID) AS CaseStatus,
+                     comp.CompanyName,  
+                     cor.LastName + ' ' + cor.FirstName AS CorrespondentLastName  
                     FROM ercdb.cases.CaseRespondents cr
                     JOIN cases.ERCCases c ON cr.ERCCaseID = c.ERCCaseID
                     LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
                     LEFT JOIN ercdb.cases.CaseApplicants ca ON cr.ERCCaseID = ca.ERCCaseID  
-                    LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID";
+                    LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+                    WHERE c.CaseNo LIKE '%-LC%'"
+                    ;
 
                 var result = await connection.QueryAsync<dynamic>(sql);
                 return Json(result);
