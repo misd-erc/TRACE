@@ -64,14 +64,25 @@ namespace TRACE.BlobStorage
                     await UploadEmptyBlob(containerClient, subFolderPath);
                     Console.WriteLine($"📂 Subfolder '{subFolderPath}' created successfully.");
 
-                   
-                 
+                    // Add actual files inside each subfolder
+                    for (int j = 1; j <= 1; j++)
+                    {
+                        string filePath = $"{subFolderPath}SampleFile{j}.txt";
+                        await UploadTextFile(containerClient, filePath, $"This is content for {filePath}");
+                        Console.WriteLine($"📄 File '{filePath}' uploaded successfully.");
+                    }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"❌ Error: {ex.Message}");
             }
+        }
+        private async Task UploadTextFile(BlobContainerClient containerClient, string filePath, string content)
+        {
+            BlobClient blobClient = containerClient.GetBlobClient(filePath);
+            using var stream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(content));
+            await blobClient.UploadAsync(stream, overwrite: true);
         }
 
         private async Task UploadEmptyBlob(BlobContainerClient containerClient, string blobName)
