@@ -283,7 +283,7 @@ namespace TRACE.Controllers
         {
             if (id != erccase.ErccaseId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Case not found." });
             }
 
             if (ModelState.IsValid)
@@ -292,24 +292,22 @@ namespace TRACE.Controllers
                 {
                     _context.Update(erccase);
                     await _context.SaveChangesAsync();
+                    return Json(new { success = true, message = "Case updated successfully!" });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ErccaseExists(erccase.ErccaseId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "Case no longer exists." });
                     }
                     else
                     {
-                        throw;
+                        return Json(new { success = false, message = "An error occurred while updating." });
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "CaseCategoryId", erccase.CaseCategoryId);
-            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNatureId", erccase.CaseNatureId);
-            ViewData["CaseStatusId"] = new SelectList(_context.CaseStatuses, "CaseStatusId", "CaseStatusId", erccase.CaseStatusId);
-            return View(erccase);
+
+            return Json(new { success = false, message = "Validation failed." });
         }
 
         // GET: Erccase/Delete/5

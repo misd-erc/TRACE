@@ -1186,3 +1186,6 @@ E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Dapper.dll
 C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Azure.Storage.Blobs.dll
 C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Azure.Storage.Common.dll
 C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\System.IO.Hashing.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Azure.Storage.Blobs.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Azure.Storage.Common.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\System.IO.Hashing.dll
