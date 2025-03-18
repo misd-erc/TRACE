@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "E:\\Work Related\\Github\\TRACE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\views\\erccase\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\erccase\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\wwwroot\\js\\notifications.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\js\\notifications.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\controllers\\erccasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\erccasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\models\\erccase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\models\\erccase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\views\\notificationmanagement\\notifications.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\notificationmanagement\\notifications.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -26,8 +22,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 482,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\appsettings.json",
+              "RelativeDocumentMoniker": "TRACE\\appsettings.json",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\appsettings.json",
+              "RelativeToolTip": "TRACE\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-18T00:10:54.612Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Notifications.js",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\Notifications.js",
+              "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\Notifications.js",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\Notifications.js",
+              "RelativeToolTip": "TRACE\\wwwroot\\js\\Notifications.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAIAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-03-18T00:38:57.516Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -70,54 +93,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Erccase.cs",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Models\\Erccase.cs",
-              "RelativeDocumentMoniker": "TRACE\\Models\\Erccase.cs",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Models\\Erccase.cs",
-              "RelativeToolTip": "TRACE\\Models\\Erccase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T11:04:09.546Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ErccaseController.cs",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
-              "RelativeDocumentMoniker": "TRACE\\Controllers\\ErccaseController.cs",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
-              "RelativeToolTip": "TRACE\\Controllers\\ErccaseController.cs",
-              "ViewState": "AgIAABYBAAAAAAAAAAAuwCEBAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T10:44:15.665Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\Erccase\\Edit.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\Erccase\\Edit.cshtml",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\Erccase\\Edit.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\Erccase\\Edit.cshtml",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAABgAAABRAAAAAAAAAA==",
+              "Title": "Notifications.cshtml",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\NotificationManagement\\Notifications.cshtml",
+              "RelativeDocumentMoniker": "TRACE\\Views\\NotificationManagement\\Notifications.cshtml",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\NotificationManagement\\Notifications.cshtml",
+              "RelativeToolTip": "TRACE\\Views\\NotificationManagement\\Notifications.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-17T10:41:56.386Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\appsettings.json",
-              "RelativeDocumentMoniker": "TRACE\\appsettings.json",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\appsettings.json",
-              "RelativeToolTip": "TRACE\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-17T10:39:59.015Z",
+              "WhenOpened": "2025-03-18T00:37:11.677Z",
               "EditorCaption": ""
             }
           ]

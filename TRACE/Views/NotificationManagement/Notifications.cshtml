@@ -6,28 +6,149 @@
 </div>
 
 <h1>@ViewData["Title"]</h1>
-<p>Easily Manage your system notifications.</p>
+<p>Easily Manage and read your system notifications.</p>
     
 <div class="grid gap-20 grid-cms">
     <div class="cms-nav">
         <ul>
-            <li onclick="showTab('all')" class="active"> All Notifications</li>
-            <li onclick="showTab('unread')"> Unread</li>
-            <li onclick="showTab('archive')"> Archived</li>
+            <li onclick="showTab2('all')" class="flex space-between h-center active"> All Notifications <span class="counter">3</span></li>
+            <li onclick="showTab2('unread')" class="flex space-between h-center"> Unread <span class="counter">2</span></li>
+            <li onclick="showTab2('archive')" class="flex space-between h-center"> Archived <span class="counter">1</span></li>
         </ul>
     </div>
 
     <div class="cms-wrap shadow">
-        <div id="all" class="cms-content active">
-            
+
+
+        <div id="all" class="cms-content-notif active">
+            <div class="main-head-div flex h-center space-between">
+                <h2>All Notifications</h2>
+                <div class="btn-div flex h-center gap-10">
+                    <button id="selectAllBtn">SELECT ALL</button>
+                    <button class="red-btn" id="deselectall" disabled>DESELECT ALL</button>
+                    <button id="archiveselected" disabled>ARCHIVE SELECTED</button>
+                </div>
+            </div>
+
+            <ul class="notifications-list">
+                <li>
+                    <div class="action-div flex h-center gap-10">
+                        <input type="checkbox" title="Select this notification." />
+                        <i class="bx bxs-archive" title="Archive this notification."></i>
+                    </div>
+                    <div class="flex h-center space-between notif-item-wrap">
+                        <div class="notif-content-div">
+                            <span>A milestone has been achieved for case number: </span><strong>2025-0001-LC</strong>.
+                        </div>
+                        <div class="notif-timestamp">
+                            <span>09:00 AM</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="action-div flex h-center gap-10">
+                        <input type="checkbox" title="Select this notification." />
+                        <i class="bx bxs-archive" title="Archive this notification."></i>
+                    </div>
+                    <div class="flex h-center space-between notif-item-wrap gap-10">
+                        <div class="notif-content-div">
+                            <span>A milestone has been achieved for case number: </span><strong>2025-0002-LC</strong>.
+                        </div>
+                        <div class="notif-timestamp">
+                            <span>07:00 AM</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="action-div flex h-center gap-10">
+                        <input type="checkbox" title="Select this notification." />
+                        <i class="bx bxs-archive" title="Archive this notification."></i>
+                    </div>
+                    <div class="flex h-center space-between notif-item-wrap">
+                        <div class="notif-content-div">
+                            <span>A milestone has been achieved for case number: </span><strong>2025-0003-LC</strong>.
+                        </div>
+                        <div class="notif-timestamp">
+                            <span>05:00 AM</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
 
-        <div id="unread" class="cms-content">
-            
+        <div id="unread" class="cms-content-notif">
+            <div class="main-head-div flex h-center space-between">
+                <h2>Unread Notifications</h2>
+                <div class="btn-div flex h-center gap-10">
+                    <button id="selectUnreadBtn">SELECT ALL</button>
+                    <button class="red-btn" id="deselectunread" disabled>DESELECT ALL</button>
+                    <button id="archiveselectedunread" disabled>ARCHIVE SELECTED</button>
+                </div>
+            </div>
+
+            <ul class="notifications-list">
+                <li>
+                    <div class="action-div flex h-center gap-10">
+                        <input type="checkbox" title="Select this notification." />
+                        <i class="bx bxs-archive" title="Archive this notification."></i>
+                    </div>
+                    <div class="flex h-center space-between notif-item-wrap">
+                        <div class="notif-content-div">
+                            <span>A milestone has been achieved for case number: </span><strong>2025-0011-LC</strong>.
+                        </div>
+                        <div class="notif-timestamp">
+                            <span>07:00 AM</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="action-div flex h-center gap-10">
+                        <input type="checkbox" title="Select this notification." />
+                        <i class="bx bxs-archive" title="Archive this notification."></i>
+                    </div>
+                    <div class="flex h-center space-between notif-item-wrap gap-10">
+                        <div class="notif-content-div">
+                            <span>A milestone has been achieved for case number: </span><strong>2025-0012-LC</strong>.
+                        </div>
+                        <div class="notif-timestamp">
+                            <span>06:00 AM</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
 
-        <div id="archive" class="cms-content">
+        <div id="archive" class="cms-content-notif">
+            <div class="main-head-div flex h-center space-between">
+                <h2>Archived Notifications</h2>
+                <div class="btn-div flex h-center gap-10">
+                    <button id="selectarchiveBtn">SELECT ALL</button>
+                    <button class="red-btn" id="deselectarchive" disabled>DESELECT ALL</button>
+                    <button id="unarchiveselected" disabled>UNARCHIVE SELECTED</button>
+                </div>
+            </div>
 
+            <ul class="notifications-list">
+                <li>
+                    <div class="action-div flex h-center gap-10">
+                        <input type="checkbox" title="Select this notification." />
+                        <i class='bx bxs-archive-out' title="Archive this notification."></i>
+                    </div>
+                    <div class="flex h-center space-between notif-item-wrap">
+                        <div class="notif-content-div">
+                            <span>A milestone has been achieved for case number: </span><strong>2025-0021-LC</strong>.
+                        </div>
+                        <div class="notif-timestamp">
+                            <span>07:00 AM</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
+
+<script src="/js//Notifications.js"></script>

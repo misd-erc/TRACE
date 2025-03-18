@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gj+39aJBNUR+o5uV4hNetnQcdCcGuH7+FJS+S2qYKLg=",
+  "Hash": "lC9CgLrmkQuWJEe+n+3bKQTZ9gkaKSvR/Shxzhe0ues=",
   "Source": "TRACE",
   "BasePath": "_content/TRACE",
   "Mode": "Default",
@@ -414,6 +414,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\drin-theme.js"
+    },
+    {
+      "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\Notifications.js",
+      "SourceId": "TRACE",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\",
+      "BasePath": "_content/TRACE",
+      "RelativePath": "js/Notifications.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Notifications.js"
     },
     {
       "Identity": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\settingsTab.js",
