@@ -39,3 +39,5 @@ TRACE/obj/TRACE.csproj.nuget.g.props
 /TRACE/obj
 TRACE/appsettings.json
 TRACE/bin/Debug/net8.0/appsettings.json
+TRACE/appsettings.json
+TRACE/bin/Debug/net8.0/appsettings.json
