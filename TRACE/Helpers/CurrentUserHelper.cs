@@ -24,11 +24,11 @@ namespace TRACE.Helpers
         public string Name => _user.FindFirst("name")?.Value ?? "Unknown";
         public string Email => _user.FindFirst("preferred_username")?.Value ?? "Unknown";
 
-        private string _department = "Unknown"; // Default value
+        private string _department = "Unknown";
 
         public async Task<string> GetDepartmentAsync()
         {
-            if (_department != "Unknown") return _department; // Return cached value
+            if (_department != "Unknown") return _department;
 
             try
             {
@@ -49,7 +49,7 @@ namespace TRACE.Helpers
             }
             catch
             {
-                _department = "Unknown"; // Handle error
+                _department = "Unknown";
             }
 
             return _department;
