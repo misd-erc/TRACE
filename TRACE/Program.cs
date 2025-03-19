@@ -11,8 +11,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ErcdbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ErcDatabase")));
 
+// Register authentication and identity services
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
+    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"))
+    .EnableTokenAcquisitionToCallDownstreamApi() // Required for token acquisition
+    .AddInMemoryTokenCaches(); // ?? Fix: Adds an in-memory token cache
 
 builder.Services.AddAuthorization();
 
@@ -26,10 +29,15 @@ builder.Services.AddSession(options =>
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<GenerateOTPHelper>();
+
+// Fix: Register CurrentUserHelper with required dependencies
 builder.Services.AddScoped<CurrentUserHelper>(provider =>
 {
     var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
-    return new CurrentUserHelper(httpContextAccessor.HttpContext?.User!);
+    var tokenAcquisition = provider.GetRequiredService<ITokenAcquisition>();
+    var configuration = provider.GetRequiredService<IConfiguration>();
+
+    return new CurrentUserHelper(httpContextAccessor.HttpContext?.User!, tokenAcquisition, configuration);
 });
 
 var app = builder.Build();

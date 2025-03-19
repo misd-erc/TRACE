@@ -446,6 +446,9 @@ button .bx-plus{
 .profile-dropdown .user-email{
     font-size:11px;
 }
+.profile-dropdown .user-department {
+    font-size: 11px;
+}
 
 .user-info{
     padding:10px;

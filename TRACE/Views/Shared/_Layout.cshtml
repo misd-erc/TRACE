@@ -89,6 +89,7 @@
                     <div class="user-info">
                         <span class="user-name">@CurrentUser.Name</span>
                         <span class="user-email">@CurrentUser.Email</span>
+                        <span class="user-department">@await CurrentUser.GetDepartmentAsync()</span>
                     </div>
                     <a href="#"><span class='bx bxs-user-circle'></span> Account Settings</a>
                     <a href="@Url.Action("Logout", "External")"><span class='bx bx-log-out'></span> Logout</a>
