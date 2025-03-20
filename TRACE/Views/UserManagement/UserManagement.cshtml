@@ -72,7 +72,7 @@
 
         const table = document.querySelector("#ADuserTable tbody");
         const rows = Array.from(table.getElementsByTagName("tr"));
-        let filteredRows = [...rows]; // Copy of rows for search filtering
+        let filteredRows = [...rows];
         const totalPages = () => Math.ceil(filteredRows.length / rowsPerPage);
 
         const searchInput = document.querySelector("#userSearch");
@@ -84,8 +84,8 @@
             const start = (currentPage - 1) * rowsPerPage;
             const end = start + rowsPerPage;
 
-            rows.forEach(row => row.style.display = "none"); // Hide all rows
-            filteredRows.slice(start, end).forEach(row => row.style.display = "table-row"); // Show filtered rows
+            rows.forEach(row => row.style.display = "none");
+            filteredRows.slice(start, end).forEach(row => row.style.display = "table-row");
 
             updatePaginationControls();
         }
@@ -133,7 +133,7 @@
                 )
             );
 
-            currentPage = 1; // Reset to first page after filtering
+            currentPage = 1;
             displayRows();
         });
 

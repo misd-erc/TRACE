@@ -46,7 +46,7 @@ namespace TRACE.Controllers
             {
                 string accessToken = await _tokenAcquisition.GetAccessTokenForUserAsync(new[] { "https://graph.microsoft.com/.default" });
 
-                // Set up HttpClient with Authorization
+
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 var response = await _httpClient.GetAsync($"https://graph.microsoft.com/v1.0/groups/{groupId}/members?$select=id,displayName,mail,department");
 
