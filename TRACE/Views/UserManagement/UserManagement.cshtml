@@ -37,15 +37,17 @@
                             <th>Full Name</th>
                             <th>Email Address</th>
                             <th>Department</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @for (var i = 0; i < Model.Count; i++)
                         {
                             <tr>
-                                <td>@Model[i].DisplayName</td>
-                                <td>@(string.IsNullOrEmpty(Model[i].Email) ? "N/A" : Model[i].Email)</td>
-                                <td>@(string.IsNullOrEmpty(Model[i].Department) ? "N/A" : Model[i].Department)</td>
+                                <td data-label="Full Name">@Model[i].DisplayName</td>
+                                <td data-label="Email Address">@(string.IsNullOrEmpty(Model[i].Email) ? "N/A" : Model[i].Email)</td>
+                                <td data-label="Department">@(string.IsNullOrEmpty(Model[i].Department) ? "N/A" : Model[i].Department)</td>
+                                <td data-label="Action"></td>
                             </tr>
                         }
                     </tbody>
