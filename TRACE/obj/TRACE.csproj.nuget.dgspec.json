@@ -70,6 +70,10 @@
               "target": "Package",
               "version": "[9.0.2, )"
             },
+            "Microsoft.Graph": {
+              "target": "Package",
+              "version": "[5.74.0, )"
+            },
             "Microsoft.Identity.Web": {
               "target": "Package",
               "version": "[3.7.1, )"

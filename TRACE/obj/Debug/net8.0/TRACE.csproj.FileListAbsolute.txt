@@ -1189,3 +1189,13 @@ C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\System.IO.H
 E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Azure.Storage.Blobs.dll
 E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Azure.Storage.Common.dll
 E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\System.IO.Hashing.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Graph.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Graph.Core.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Abstractions.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Authentication.Azure.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Http.HttpClientLibrary.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Form.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Json.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Multipart.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Text.dll
+E:\Work Related\Github\TRACE\TRACE\bin\Debug\net8.0\Std.UriTemplate.dll

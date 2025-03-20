@@ -1,2 +1,142 @@
-﻿<h2>User Management Settings</h2>
-<p>Manage user access and permissions here.</p>
+﻿@model List<TRACE.Controllers.UserDto>
+
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > @ViewData["Title"]
+</div>
+
+<h1>@ViewData["Title"]</h1>
+<p>Easily Manage user data in the system</p>
+
+<div class="grid gap-20 grid-cms">
+    <div class="cms-nav">
+        <ul>
+            <li onclick="showTab('users')" class="active">
+                <i class='bx bxs-user-account'></i> Users From Azure AD
+            </li>
+        </ul>
+    </div>
+
+    <div class="cms-wrap shadow">
+        <div id="users" class="cms-content active">
+            <h3><i class='bx bxs-user-account'></i> Users From Azure AD</h3>
+
+            @if (Model != null && Model.Any())
+            {
+                <div class="filter-design border-radius-5 flex h-center" style="margin-bottom:20px;">
+                    <i class='bx bx-search'></i>
+                    <input type="text" id="userSearch" placeholder="Name, Email or Department.." style="width:100% !important;"/>
+                </div>
+
+                <table class="my-cases-table" id="ADuserTable">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email Address</th>
+                            <th>Department</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.Count; i++)
+                        {
+                            <tr>
+                                <td>@Model[i].DisplayName</td>
+                                <td>@(string.IsNullOrEmpty(Model[i].Email) ? "N/A" : Model[i].Email)</td>
+                                <td>@(string.IsNullOrEmpty(Model[i].Department) ? "N/A" : Model[i].Department)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="pagination flex h-center gap-10">
+                    <span>Current Page: </span>
+                    <select id="userPagination"></select>
+                    <span id="prevPage" class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
+                    <span id="nextPage" class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
+                </div>
+            }
+            else
+            {
+                <p>No users found in this group.</p>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const rowsPerPage = 5;
+        let currentPage = 1;
+
+        const table = document.querySelector("#ADuserTable tbody");
+        const rows = Array.from(table.getElementsByTagName("tr"));
+        let filteredRows = [...rows]; // Copy of rows for search filtering
+        const totalPages = () => Math.ceil(filteredRows.length / rowsPerPage);
+
+        const searchInput = document.querySelector("#userSearch");
+        const paginationDropdown = document.querySelector("#userPagination");
+        const prevButton = document.querySelector("#prevPage");
+        const nextButton = document.querySelector("#nextPage");
+
+        function displayRows() {
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+
+            rows.forEach(row => row.style.display = "none"); // Hide all rows
+            filteredRows.slice(start, end).forEach(row => row.style.display = "table-row"); // Show filtered rows
+
+            updatePaginationControls();
+        }
+
+        function updatePaginationControls() {
+            paginationDropdown.innerHTML = "";
+            for (let i = 1; i <= totalPages(); i++) {
+                const option = document.createElement("option");
+                option.value = i;
+                option.textContent = i;
+                if (i === currentPage) option.selected = true;
+                paginationDropdown.appendChild(option);
+            }
+
+            prevButton.style.opacity = currentPage === 1 ? "0.5" : "1";
+            nextButton.style.opacity = currentPage === totalPages() ? "0.5" : "1";
+        }
+
+        paginationDropdown.addEventListener("change", function () {
+            currentPage = parseInt(this.value);
+            displayRows();
+        });
+
+        prevButton.addEventListener("click", function () {
+            if (currentPage > 1) {
+                currentPage--;
+                displayRows();
+                paginationDropdown.value = currentPage;
+            }
+        });
+
+        nextButton.addEventListener("click", function () {
+            if (currentPage < totalPages()) {
+                currentPage++;
+                displayRows();
+                paginationDropdown.value = currentPage;
+            }
+        });
+
+        searchInput.addEventListener("input", function () {
+            const query = this.value.toLowerCase();
+            filteredRows = rows.filter(row =>
+                Array.from(row.getElementsByTagName("td")).some(td =>
+                    td.textContent.toLowerCase().includes(query)
+                )
+            );
+
+            currentPage = 1; // Reset to first page after filtering
+            displayRows();
+        });
+
+        displayRows();
+    });
+</script>
