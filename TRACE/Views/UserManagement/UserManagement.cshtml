@@ -17,6 +17,9 @@
             <li onclick="showTab('users')" class="active">
                 <i class='bx bxs-user-account'></i> Users From Azure AD
             </li>
+            <li onclick="showTab('userroles')">
+                <i class='bx bxs-user-plus'></i> Manage User Roles
+            </li>
         </ul>
     </div>
 
@@ -47,7 +50,7 @@
                                 <td data-label="Full Name">@Model[i].DisplayName</td>
                                 <td data-label="Email Address">@(string.IsNullOrEmpty(Model[i].Email) ? "N/A" : Model[i].Email)</td>
                                 <td data-label="Department">@(string.IsNullOrEmpty(Model[i].Department) ? "N/A" : Model[i].Department)</td>
-                                <td data-label="Action"></td>
+                                <td data-label="Action"><button title="Register this AD Account to the ICDMS System">Register Account</button></td>
                             </tr>
                         }
                     </tbody>
@@ -64,6 +67,12 @@
             {
                 <p>No users found in this group.</p>
             }
+        </div>
+
+        <div id="userroles" class="cms-content">
+            <h3><i class='bx bxs-user-plus'></i> Manage User Role</h3>
+
+            
         </div>
     </div>
 </div>

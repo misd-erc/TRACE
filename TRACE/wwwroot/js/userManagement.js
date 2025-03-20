@@ -1,23 +1,42 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
+﻿function showTab(tabName) {
+    document.querySelectorAll('.cms-content').forEach(function (content) {
+        content.classList.remove('active');
+    });
+
+    document.querySelectorAll('.cms-nav li').forEach(function (navItem) {
+        navItem.classList.remove('active');
+    });
+
+    document.getElementById(tabName).classList.add('active');
+
+    event.target.classList.add('active');
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
     const rowsPerPage = 5;
     let currentPage = 1;
 
-    const table = document.querySelector("#ADuserTable tbody");
-    const rows = Array.from(table.getElementsByTagName("tr"));
+    const tableBody = document.querySelector("#ADuserTable tbody");
+    const rows = Array.from(tableBody.getElementsByTagName("tr"));
     let filteredRows = [...rows];
-    const totalPages = () => Math.ceil(filteredRows.length / rowsPerPage);
 
     const searchInput = document.querySelector("#userSearch");
     const paginationDropdown = document.querySelector("#userPagination");
     const prevButton = document.querySelector("#prevPage");
     const nextButton = document.querySelector("#nextPage");
 
+    function totalPages() {
+        return Math.ceil(filteredRows.length / rowsPerPage);
+    }
+
     function displayRows() {
         const start = (currentPage - 1) * rowsPerPage;
         const end = start + rowsPerPage;
 
-        rows.forEach(row => row.style.display = "none");
-        filteredRows.slice(start, end).forEach(row => row.style.display = "table-row");
+        tableBody.innerHTML = "";
+        filteredRows.slice(start, end).forEach(row => tableBody.appendChild(row));
 
         updatePaginationControls();
     }
