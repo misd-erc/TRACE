@@ -1892,3 +1892,49 @@ canvas {
 }
 
 /*NOTIFICATIONS MANAGEMENT*/
+
+/*MODULAR SEARCH*/
+.search-bar-div {
+    position: relative;
+}
+
+.search-results {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 11.9%;
+    width: 76%;
+    background: var(--theme);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.search-results ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-results li {
+    padding:8px 10px;
+    border-bottom: 1px solid var(--active-color);
+}
+
+.search-results li:last-child {
+    border-bottom: none;
+}
+
+.search-results a {
+    text-decoration: none;
+    color: var(--font-color);
+    display: block;
+}
+
+.search-results li:hover {
+    background-color: var(--active-color)
+}
+
+.goto{
+    margin:20px 10px 10px 10px;
+}
+/*MODULAR SEARCH*/

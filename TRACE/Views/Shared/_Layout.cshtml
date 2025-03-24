@@ -43,8 +43,9 @@
         <div class="search-bar-div flex">
             <div class="search-design flex h-center gap-10">
                 <i class='bx bx-search'></i>
-                <input type="text" placeholder="Search"/>
+                <input type="text" id="searchInput" placeholder="Search" autocomplete="off" />
             </div>
+            <div class="search-results" id="searchResults"></div>
         </div>
         <div class="menu-user-div flex h-center gap-10">
             <!--Notification-->
@@ -167,3 +168,44 @@
         }
     }
 }
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#searchInput").on("input", function () {
+            var query = $(this).val().trim();
+
+            if (query === "") {
+                $("#searchResults").empty().hide();
+                return;
+            }
+
+            $.ajax({
+                url: "/Search/SearchModules",
+                type: "GET",
+                data: { query: query },
+                success: function (data) {
+                    if (data.length === 0) {
+                        $("#searchResults").html("<p>No results found</p>").show();
+                        return;
+                    }
+
+                    var resultsHtml = "<h3 class='goto'>Are you looking for?</h3><ul>";
+                    data.forEach(function (module) {
+                        resultsHtml += "<li><a href='" + module.link + "'>" + module.name + "</a></li>";
+                    });
+                    resultsHtml += "</ul>";
+
+                    $("#searchResults").html(resultsHtml).show();
+                }
+            });
+        });
+
+        // Hide results when clicking outside the search bar
+        $(document).on("click", function (e) {
+            if (!$(e.target).closest(".search-bar-div").length) {
+                $("#searchResults").hide();
+            }
+        });
+    });
+</script>
