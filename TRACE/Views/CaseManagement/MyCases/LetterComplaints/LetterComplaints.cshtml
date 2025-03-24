@@ -15,6 +15,10 @@
         <h3>LETTER COMPLAINTS</h3>
         <p>Manage your letter complaints</p>
     </div>
+    <div class="filter-design border-radius-5 flex h-center">
+        <i class='bx bx-search'></i>
+        <input type="text" placeholder="Enter Case No. or Case Title here.." />
+    </div>
     <div class="btn-div">
         <a href="/erccase/create"><button>+ CREATE CASE</button></a>
     </div>
@@ -54,104 +58,108 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
-        let currentPage = 1;
-        const rowsPerPage = 9;
-        let caseData = [];
+$(document).ready(function () {
+let currentPage = 1;
+const rowsPerPage = 9;
+let caseData = [];
+let filteredCaseData = [];
 
-        function displayTablePage(page, filteredData = caseData) {
-            const tableBody = $("#casesTable tbody");
-            tableBody.empty();
+function displayTablePage(page) {
+    const tableBody = $("#casesTable tbody");
+    tableBody.empty();
 
-            let start = (page - 1) * rowsPerPage;
-            let end = start + rowsPerPage;
-            let paginatedItems = filteredData.slice(start, end);
+    let start = (page - 1) * rowsPerPage;
+    let end = start + rowsPerPage;
+    let paginatedItems = filteredCaseData.slice(start, end);
 
-            $.each(paginatedItems, function (index, item) {
-                let row = `
-                    <tr onclick="location.href='@Url.Action("CaseDetails", "CaseManagement")'">
-                        <td data-label="Case No.">${item.CaseNo}</td>
-                        <td data-label="Case Title">${item.Title}</td>
-                        <td data-label="Date Filed">${formatDate(item.DateFiled)}</td>
-                        <td data-label="Status">${item.CaseStatus}</td>
-                        <td data-label="Applicant/Petitioner">${item.CorrespondentLastName ?? 'N/A'}</td>
-                        <td data-label="Respondent">${item.CompanyName ?? 'N/A'}</td>
-                        <td class="actions" data-label="ACTIONS">
-                                <a href="@Url.Action("Edit", "ERCCase")/${item.ERCCaseID}"><i class='bx bxs-edit' title="Edit"></i></a>
-                            <i class='bx bxs-x-circle' title="Archive"></i><!--SOFT DELETE/ARCHIVING-->
-                        </td>
-                    </tr>`;
-                tableBody.append(row);
-            });
-        }
-
-        function updatePaginationControls(filteredData = caseData) {
-            let totalPages = Math.ceil(filteredData.length / rowsPerPage);
-            $(".prev").toggle(currentPage > 1);
-            $(".next").toggle(currentPage < totalPages);
-
-            let paginationSelect = $(".pagination select");
-            paginationSelect.empty();
-            for (let i = 1; i <= totalPages; i++) {
-                paginationSelect.append(`<option value='${i}' ${i === currentPage ? 'selected' : ''}>${i}</option>`);
-            }
-        }
-
-        $.ajax({
-            url: "/Erccase/GetAllLetterComplaints",
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                caseData = data;
-                displayTablePage(currentPage);
-                updatePaginationControls();
-            },
-            error: function () {
-                alert("Failed to fetch data.");
-            }
-        });
-
-        $(".next").click(function () {
-            let totalPages = Math.ceil(caseData.length / rowsPerPage);
-            if (currentPage < totalPages) {
-                currentPage++;
-                displayTablePage(currentPage);
-                updatePaginationControls();
-            }
-        });
-
-        $(".prev").click(function () {
-            if (currentPage > 1) {
-                currentPage--;
-                displayTablePage(currentPage);
-                updatePaginationControls();
-            }
-        });
-
-        $(".pagination select").change(function () {
-            currentPage = parseInt($(this).val());
-            displayTablePage(currentPage);
-            updatePaginationControls();
-        });
-
-        function formatDate(dateString) {
-            if (!dateString) return "N/A";
-            var date = new Date(dateString);
-            return date.toLocaleDateString();
-        }
-
-        // Dynamic search filter
-        $(".filter-design input").on("input", function () {
-            let searchTerm = $(this).val().toLowerCase();
-            let filteredData = caseData.filter(item =>
-                item.CaseNo.toLowerCase().includes(searchTerm) ||
-                item.Title.toLowerCase().includes(searchTerm)
-            );
-
-            currentPage = 1;
-            displayTablePage(currentPage, filteredData);
-            updatePaginationControls(filteredData);
-        });
+    $.each(paginatedItems, function (index, item) {
+        let row = `
+            <tr>
+                <td data-label="Case No.">${item.CaseNo}</td>
+                <td data-label="Case Title" class="case-title" onclick="location.href='@Url.Action("CaseDetails", "CaseManagement")'">${item.Title}</td>
+                <td data-label="Date Filed">${formatDate(item.DateFiled)}</td>
+                <td data-label="Status">${item.CaseStatus}</td>
+                <td data-label="Applicant/Petitioner">${item.CorrespondentLastName ?? 'N/A'}</td>
+                <td data-label="Respondent">${item.CompanyName ?? 'N/A'}</td>
+                <td class="actions" data-label="ACTIONS">
+                    <a href="@Url.Action("Edit", "ERCCase")/${item.ERCCaseID}"><i class='bx bxs-edit' title="Edit"></i></a>
+                    <i class='bx bxs-x-circle' title="Archive"></i>
+                </td>
+            </tr>`;
+        tableBody.append(row);
     });
+}
+
+function updatePaginationControls() {
+    let totalPages = Math.ceil(filteredCaseData.length / rowsPerPage);
+    $(".prev").toggle(currentPage > 1);
+    $(".next").toggle(currentPage < totalPages);
+
+    let paginationSelect = $(".pagination select");
+    paginationSelect.empty();
+    for (let i = 1; i <= totalPages; i++) {
+        paginationSelect.append(`<option value='${i}' ${i === currentPage ? 'selected' : ''}>${i}</option>`);
+    }
+}
+
+$.ajax({
+    url: "/Erccase/GetAllLetterComplaints",
+    type: "GET",
+    dataType: "json",
+    success: function (data) {
+        caseData = data;
+        filteredCaseData = [...caseData]; // Initialize filteredData with all data
+        displayTablePage(currentPage);
+        updatePaginationControls();
+    },
+    error: function () {
+        alert("Failed to fetch data.");
+    }
+});
+
+$(".next").click(function () {
+    let totalPages = Math.ceil(filteredCaseData.length / rowsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        displayTablePage(currentPage);
+        updatePaginationControls();
+    }
+});
+
+$(".prev").click(function () {
+    if (currentPage > 1) {
+        currentPage--;
+        displayTablePage(currentPage);
+        updatePaginationControls();
+    }
+});
+
+$(".pagination select").change(function () {
+    currentPage = parseInt($(this).val());
+    displayTablePage(currentPage);
+    updatePaginationControls();
+});
+
+function formatDate(dateString) {
+    if (!dateString) return "N/A";
+    var date = new Date(dateString);
+    return date.toLocaleDateString();
+}
+
+// Dynamic search filter
+$(".filter-design input").on("input", function () {
+    let searchTerm = $(this).val().toLowerCase();
+    filteredCaseData = caseData.filter(item =>
+        item.CaseNo.toLowerCase().includes(searchTerm) ||
+        item.Title.toLowerCase().includes(searchTerm) ||
+        item.CaseStatus.toLowerCase().includes(searchTerm)
+    );
+
+    currentPage = 1; // Reset to page 1 when filtering
+    displayTablePage(currentPage);
+    updatePaginationControls();
+});
+});
+
 
 </script>

@@ -232,6 +232,11 @@ button .bx-plus{
 .clickable:hover{
     color: var(--secondary-color);
 }
+
+.case-title:hover{
+    background: var(--active-color);
+    cursor:pointer;
+}
 /*CLICKABLES*/
 
 /*borders*/
