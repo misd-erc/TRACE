@@ -1546,13 +1546,13 @@ canvas {
 
 .my-cases-table td {
     border: 0;
-    padding: 10px 20px;
+    padding: 10px 10px;
     font-size: 12px;
     text-align: left;
 }
 
 .my-cases-table th {
-    padding: 10px 20px;
+    padding: 10px 10px;
     font-size: 14px;
     text-align: left;
     background: var(--primary-color);
@@ -1586,6 +1586,10 @@ canvas {
     color: var(--primary-color);
     margin-right:5px;
     cursor:pointer;
+}
+
+.my-cases-table td:first-of-type{
+    width:130px;
 }
 
 
