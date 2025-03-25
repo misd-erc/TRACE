@@ -4,80 +4,78 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserCategory)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsEmailNotif)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fullname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Designation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Department)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsSystemNotif)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsArchive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Username)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserCategory)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsEmailNotif)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fullname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Designation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Department)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsSystemNotif)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsArchive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > @ViewData["Title"]
+</div>
+
+<h1>@ViewData["Title"]</h1>
+<p>Easily Manage user data in the system</p>
+
+<div class="grid gap-20 grid-cms">
+    <div class="cms-nav">
+        <ul>
+            <li onclick="showTab('users')" class="active">
+                <i class='bx bxs-user-account'></i> Users From Azure AD
+            </li>
+            <li onclick="showTab('userroles')">
+                <i class='bx bxs-user-plus'></i> Manage User Roles
+            </li>
+        </ul>
+    </div>
+
+    <div class="cms-wrap shadow">
+        <div id="users" class="cms-content active">
+            <h3><i class='bx bxs-user-account'></i> Users From Azure AD</h3>
+
+            @if (Model != null && Model.Any())
+            {
+                <div class="filter-design border-radius-5 flex h-center" style="margin-bottom:20px;">
+                    <i class='bx bx-search'></i>
+                    <input type="text" id="userSearch" placeholder="Name, Email or Department.." style="width:100% !important;" />
+                </div>
+
+                <table class="my-cases-table" id="ADuserTable">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email Address</th>
+                            <th>Department</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td data-label="Full Name"> @Html.DisplayFor(modelItem => item.Fullname)</td>
+                                <td data-label="Email Address">@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td data-label="Department">@Html.DisplayFor(modelItem => item.Department)</td>
+                                <td data-label="Action"><a asp-action="Edit" asp-route-id="@item.Id"><button title="Register this AD Account to the ICDMS System">Register Account</button></a></td>
+                            </tr>
+                        }
+                        
+                    </tbody>
+                </table>
+
+                <div class="pagination flex h-center gap-10">
+                    <span>Current Page: </span>
+                    <select id="userPagination"></select>
+                    <span id="prevPage" class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
+                    <span id="nextPage" class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
+                </div>
+            }
+            else
+            {
+                <p>No users found in this group.</p>
+            }
+        </div>
+
+        <div id="userroles" class="cms-content">
+            <h3><i class='bx bxs-user-plus'></i> Manage User Role</h3>
+
+
+        </div>
+    </div>
+</div>
+<script src="~/js/userManagement.js"></script>
