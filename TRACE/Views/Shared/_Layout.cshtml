@@ -29,6 +29,7 @@
     @* <link rel="stylesheet" href="~/TRACE.styles.css" asp-append-version="true" /> *@
 </head>
 <body>
+    @Html.AntiForgeryToken();
     <div class="loader-overlay" id="loader">
         <div class="loader-spinner"></div>
         <p>Loading...</p>
@@ -208,4 +209,41 @@
             }
         });
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        createUser();
+    });
+
+    async function createUser() {
+        const user = {
+            Id: 0, // Assuming Id is auto-generated or default
+            Email: document.querySelector('.user-email')?.textContent.trim(),
+            UserCategory: "Admin", // Adjust as needed
+            IsEmailNotif: true,
+            Fullname: document.querySelector('.user-name')?.textContent.trim(),
+            Designation: "Developer", // Adjust as needed
+            Department: document.querySelector('.user-department')?.textContent.trim(),
+            IsSystemNotif: true,
+            IsArchive: false,
+            Username: document.querySelector('.user-name')?.textContent.trim()
+        };
+        try {
+            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+            const response = await fetch('/Users/Create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': token
+                },
+                body: JSON.stringify(user)
+            });
+
+            const result = await response.json();
+            console.log(result);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
 </script>

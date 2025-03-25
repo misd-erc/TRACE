@@ -1513,3 +1513,13 @@ C:\Users\jerem\OneDrive\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\refint\TRA
 C:\Users\jerem\OneDrive\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.pdb
 C:\Users\jerem\OneDrive\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.genruntimeconfig.cache
 C:\Users\jerem\OneDrive\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\ref\TRACE.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Graph.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Graph.Core.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Abstractions.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Authentication.Azure.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Http.HttpClientLibrary.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Form.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Json.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Multipart.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Text.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Std.UriTemplate.dll

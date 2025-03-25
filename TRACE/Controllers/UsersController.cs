@@ -54,16 +54,34 @@ namespace TRACE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,UserCategory,IsEmailNotif,Fullname,Designation,Department,IsSystemNotif,IsArchive,Username")] User user)
+        public async Task<IActionResult> Create([FromBody] User user)
         {
+            if (string.IsNullOrWhiteSpace(user.Email))
+            {
+                return Json(new { success = false, message = "Email is required." });
+            }
+
+            var a = user.Email;
+            // Check if a user with the same Email exists
+            var existingUser = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == user.Email);
+
+            if (existingUser != null)
+            {
+                return Json(new { success = false, message = "User with the same Email already exists." });
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "User created successfully!" });
             }
-            return View(user);
+
+            return Json(new { success = false, errors = ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage)) });
         }
+
+
 
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
