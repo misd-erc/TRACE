@@ -20,7 +20,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="UserCategory" class="control-label"></label>
-                <input asp-for="UserCategory" class="form-control" />
+                <select asp-for="UserCategory" class="form-control" >
+                    <option value="System Admin">System Admin</option>
+                    <option value="Case Related">Case Related</option>
+                </select>
                 <span asp-validation-for="UserCategory" class="text-danger"></span>
             </div>
             <div class="form-group">

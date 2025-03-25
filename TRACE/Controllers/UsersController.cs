@@ -96,6 +96,7 @@ namespace TRACE.Controllers
             {
                 return NotFound();
             }
+
             return View(user);
         }
 
