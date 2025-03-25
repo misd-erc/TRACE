@@ -41,3 +41,17 @@ TRACE/appsettings.json
 TRACE/bin/Debug/net8.0/appsettings.json
 TRACE/appsettings.json
 TRACE/bin/Debug/net8.0/appsettings.json
+TRACE/obj/Debug/net8.0/staticwebassets.build.json
+TRACE/obj/Debug/net8.0/staticwebassets.development.json
+TRACE/obj/Debug/net8.0/staticwebassets.pack.json
+TRACE/obj/Debug/net8.0/TRACE.AssemblyInfo.cs
+TRACE/obj/Debug/net8.0/TRACE.AssemblyInfoInputs.cache
+TRACE/obj/Debug/net8.0/TRACE.assets.cache
+TRACE/obj/Debug/net8.0/TRACE.dll
+TRACE/obj/Debug/net8.0/TRACE.GeneratedMSBuildEditorConfig.editorconfig
+TRACE/obj/Debug/net8.0/TRACE.genruntimeconfig.cache
+TRACE/obj/Debug/net8.0/TRACE.pdb
+TRACE/obj/Debug/net8.0/TRACE.sourcelink.json
+TRACE/obj/project.nuget.cache
+TRACE/obj/TRACE.csproj.nuget.dgspec.json
+TRACE/bin/Debug/net8.0/TRACE.staticwebassets.runtime.json

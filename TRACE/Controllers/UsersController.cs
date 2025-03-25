@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,6 @@ using TRACE.Models;
 
 namespace TRACE.Controllers
 {
-    [Authorize]
     public class UsersController : Controller
     {
         private readonly ErcdbContext _context;
@@ -27,19 +25,6 @@ namespace TRACE.Controllers
             return View(await _context.Users.ToListAsync());
         }
 
-        [HttpGet]
-        public JsonResult GetUsers()
-        {
-            var users = _context.Users.Select(u => new
-            {
-                u.Id,
-                u.Username,
-                u.Email
-            }).ToList();
-            var a = users;
-
-            return Json(users); // ✅ Returns JSON instead of HTML
-        }
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -69,7 +54,7 @@ namespace TRACE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,Department,Username")] User user)
+        public async Task<IActionResult> Create([Bind("Id,Email,UserCategory,IsEmailNotif,Fullname,Designation,Department,IsSystemNotif,IsArchive,Username")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +86,7 @@ namespace TRACE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,Department,Username")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,UserCategory,IsEmailNotif,Fullname,Designation,Department,IsSystemNotif,IsArchive,Username")] User user)
         {
             if (id != user.Id)
             {

@@ -15,8 +15,7 @@ public partial class ErcdbContext : DbContext
         : base(options)
     {
     }
-    public virtual DbSet<CaseDetails> CaseDetails { get; set; }
-    public virtual DbSet<CaseLastMile> CaseLastMiles { get; set; }
+
     public virtual DbSet<Account> Accounts { get; set; }
 
     public virtual DbSet<AccountCategory> AccountCategories { get; set; }
@@ -210,6 +209,8 @@ public partial class ErcdbContext : DbContext
     public virtual DbSet<UserTokenCache> UserTokenCaches { get; set; }
 
     public virtual DbSet<VersionStatus> VersionStatuses { get; set; }
+    public virtual DbSet<CaseDetails> CaseDetails { get; set; }
+    public virtual DbSet<CaseLastMile> CaseLastMiles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=ErcDatabase");
@@ -2336,6 +2337,23 @@ public partial class ErcdbContext : DbContext
             entity.HasOne(d => d.DocumentType).WithMany(p => p.Subscriptions)
                 .HasForeignKey(d => d.DocumentTypeId)
                 .HasConstraintName("FK_DocumentTypePerDivisions_DocumentTypes");
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07823061C7");
+
+            entity.HasIndex(e => e.Username, "UQ__Users__536C85E4C72B1D4C").IsUnique();
+
+            entity.Property(e => e.Department).HasMaxLength(150);
+            entity.Property(e => e.Designation).HasMaxLength(150);
+            entity.Property(e => e.Email).HasMaxLength(255);
+            entity.Property(e => e.Fullname).HasMaxLength(255);
+            entity.Property(e => e.IsArchive).HasDefaultValue(false);
+            entity.Property(e => e.IsEmailNotif).HasDefaultValue(false);
+            entity.Property(e => e.IsSystemNotif).HasDefaultValue(false);
+            entity.Property(e => e.UserCategory).HasMaxLength(100);
+            entity.Property(e => e.Username).HasMaxLength(100);
         });
 
         modelBuilder.Entity<UserAction>(entity =>
