@@ -44,6 +44,17 @@ body{
     border-color: var(--secondary-color) !important;
 }
 
+.swal2-cancel {
+    background-color: red !important;
+    border-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.swal2-cancel:hover {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+
 h1, h2, h3, h4{
     font-family: var(--font-heading);
     font-weight:600;
@@ -1597,6 +1608,10 @@ canvas {
     width:130px;
 }
 
+#ADuserTable td:first-of-type {
+    width: fit-content;
+}
+
 
 .my-cases-table tbody tr td.actions .bxs-x-circle {
     color: red !important;
@@ -1938,3 +1953,12 @@ canvas {
     margin:20px 10px 10px 10px;
 }
 /*MODULAR SEARCH*/
+
+/*USER MANAGEMENT*/
+.form-control[readonly] {
+    background-color: #f0f0f0 !important;
+    color: #6c757d !important;
+    border: 1px solid #ccc !important;
+    cursor: not-allowed;
+}
+/*USER MANAGEMENT*/

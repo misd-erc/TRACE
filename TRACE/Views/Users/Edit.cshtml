@@ -1,77 +1,161 @@
 @model TRACE.Models.User
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Manage User";
 }
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > <a href="/usermanagement">User Management</a> > @ViewData["Title"]
+</div>
+<form asp-action="Edit" asp-controller="Users" id="editForm">
+    <div class="main-head-div flex h-center space-between">
+        <div class="title-div">
+            <h1>@ViewData["Title"]</h1>
+            <p>Easily Manage user data in the system</p>
+        </div>
 
-<h1>Edit</h1>
-
-<h4>User</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserCategory" class="control-label"></label>
-                <select asp-for="UserCategory" class="form-control" >
-                    <option value="System Admin">System Admin</option>
-                    <option value="Case Related">Case Related</option>
-                </select>
-                <span asp-validation-for="UserCategory" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsEmailNotif" class="control-label"></label>
-                <input asp-for="IsEmailNotif" class="form-control" />
-                <span asp-validation-for="IsEmailNotif" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fullname" class="control-label"></label>
-                <input asp-for="Fullname" class="form-control" />
-                <span asp-validation-for="Fullname" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Designation" class="control-label"></label>
-                <input asp-for="Designation" class="form-control" />
-                <span asp-validation-for="Designation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Department" class="control-label"></label>
-                <input asp-for="Department" class="form-control" />
-                <span asp-validation-for="Department" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsSystemNotif" class="control-label"></label>
-                <input asp-for="IsSystemNotif" class="form-control" />
-                <span asp-validation-for="IsSystemNotif" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IsArchive" class="control-label"></label>
-                <input asp-for="IsArchive" class="form-control" />
-                <span asp-validation-for="IsArchive" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        <div class="btn-div">
+            <input type="submit" value="Save Changes" class="btn btn-primary" />
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="case-card shadow border-radius-5">
+        <div class="form-div  create-lc">
+            <h2>I. User Information</h2>
+            <div class="grid grid-three-fr gap-10">
+                <div class="form-input-div">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" readonly title="This field can only be changed from Azure AD"/>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="Fullname" class="control-label"></label>
+                    <input asp-for="Fullname" class="form-control" readonly title="This field can only be changed from Azure AD" />
+                    <span asp-validation-for="Fullname" class="text-danger"></span>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="Username" class="control-label"></label>
+                    <input asp-for="Username" class="form-control" readonly title="This field can only be changed from Azure AD" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="Department" class="control-label"></label>
+                    <input asp-for="Department" class="form-control" readonly title="This field can only be changed from Azure AD" />
+                    <span asp-validation-for="Department" class="text-danger"></span>
+                </div>
+            </div>
+            <hr />
+            <h2>II. User Roles and Designations</h2>
+            <div class="grid grid-five-fr gap-10">
+                <div class="form-input-div">
+                    <label asp-for="UserCategory" class="control-label"></label>
+                    <select asp-for="UserCategory" class="form-control">
+                        <option value="System Admin">System Admin</option>
+                        <option value="Case Related">Case Related</option>
+                    </select>
+                    <span asp-validation-for="UserCategory" class="text-danger"></span>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="Designation" class="control-label"></label>
+                    <input asp-for="Designation" class="form-control" />
+                    <span asp-validation-for="Designation" class="text-danger"></span>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="IsSystemNotif" class="control-label"></label>
+                    <select asp-for="IsSystemNotif" class="form-control">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                    <span asp-validation-for="IsSystemNotif" class="text-danger"></span>
+                </div>
+
+                <div class="form-input-div">
+                    <label asp-for="IsEmailNotif" class="control-label"></label>
+                    <select asp-for="IsEmailNotif" class="form-control">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                    <span asp-validation-for="IsEmailNotif" class="text-danger"></span>
+                </div>
+
+                <div class="form-input-div">
+                    <label asp-for="IsArchive" class="control-label"></label>
+                    <select asp-for="IsArchive" class="form-control">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                    <span asp-validation-for="IsArchive" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $("#editForm").submit(function (event) {
+            event.preventDefault();
+
+            var form = $(this);
+            var formData = form.serialize();
+
+            console.log(formData);
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to save changes?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, Save it!",
+                cancelButtonText: "No, Cancel"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: form.attr("action"),
+                        type: "POST",
+                        data: formData,
+                        dataType: "json",
+                        success: function (response) {
+                            console.log("Server Response:", response);
+                            if (response.success) {
+                                Swal.fire({
+                                    title: "Success!",
+                                    text: response.message,
+                                    icon: "success",
+                                    confirmButtonText: "OK"
+                                }).then(() => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: response.message,
+                                    icon: "error",
+                                    confirmButtonText: "Try Again"
+                                });
+                            }
+                        },
+                        error: function (xhr) {
+                            console.log("AJAX Error:", xhr.responseText);
+                            Swal.fire({
+                                title: "Oops!",
+                                text: "Something went wrong. Please try again.",
+                                icon: "error",
+                                confirmButtonText: "OK"
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+
+
+
+    </script>
 }

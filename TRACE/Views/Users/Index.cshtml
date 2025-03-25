@@ -1,7 +1,7 @@
 @model IEnumerable<TRACE.Models.User>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "User Management";
 }
 
 
@@ -16,17 +16,14 @@
     <div class="cms-nav">
         <ul>
             <li onclick="showTab('users')" class="active">
-                <i class='bx bxs-user-account'></i> Users From Azure AD
-            </li>
-            <li onclick="showTab('userroles')">
-                <i class='bx bxs-user-plus'></i> Manage User Roles
+                <i class='bx bxs-user-account'></i> Manage Users From Azure AD
             </li>
         </ul>
     </div>
 
     <div class="cms-wrap shadow">
         <div id="users" class="cms-content active">
-            <h3><i class='bx bxs-user-account'></i> Users From Azure AD</h3>
+            <h3><i class='bx bxs-user-account'></i> Manage Users From Azure AD</h3>
 
             @if (Model != null && Model.Any())
             {
@@ -51,7 +48,7 @@
                                 <td data-label="Full Name"> @Html.DisplayFor(modelItem => item.Fullname)</td>
                                 <td data-label="Email Address">@Html.DisplayFor(modelItem => item.Email)</td>
                                 <td data-label="Department">@Html.DisplayFor(modelItem => item.Department)</td>
-                                <td data-label="Action"><a asp-action="Edit" asp-route-id="@item.Id"><button title="Register this AD Account to the ICDMS System">Register Account</button></a></td>
+                                <td data-label="Action"><a asp-action="Edit" asp-route-id="@item.Id"><button title="Manage role for this user">Manage</button></a></td>
                             </tr>
                         }
                         
@@ -79,3 +76,92 @@
     </div>
 </div>
 <script src="~/js/userManagement.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const table = document.querySelector("#ADuserTable");
+        if (!table) {
+            console.error("Table with ID 'ADuserTable' not found.");
+            return;
+        }
+
+        const tableBody = table.querySelector("tbody");
+        if (!tableBody) {
+            console.error("Tbody inside '#ADuserTable' not found.");
+            return;
+        }
+
+        const rowsPerPage = 5;
+        let currentPage = 1;
+        const rows = Array.from(tableBody.getElementsByTagName("tr"));
+        let filteredRows = [...rows];
+
+        const searchInput = document.querySelector("#userSearch");
+        const paginationDropdown = document.querySelector("#userPagination");
+        const prevButton = document.querySelector("#prevPage");
+        const nextButton = document.querySelector("#nextPage");
+
+        function totalPages() {
+            return Math.ceil(filteredRows.length / rowsPerPage);
+        }
+
+        function displayRows() {
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+
+            tableBody.innerHTML = "";
+            filteredRows.slice(start, end).forEach(row => tableBody.appendChild(row));
+
+            updatePaginationControls();
+        }
+
+        function updatePaginationControls() {
+            paginationDropdown.innerHTML = "";
+            for (let i = 1; i <= totalPages(); i++) {
+                const option = document.createElement("option");
+                option.value = i;
+                option.textContent = i;
+                if (i === currentPage) option.selected = true;
+                paginationDropdown.appendChild(option);
+            }
+
+            prevButton.style.opacity = currentPage === 1 ? "0.5" : "1";
+            nextButton.style.opacity = currentPage === totalPages() ? "0.5" : "1";
+        }
+
+        paginationDropdown.addEventListener("change", function () {
+            currentPage = parseInt(this.value);
+            displayRows();
+        });
+
+        prevButton.addEventListener("click", function () {
+            if (currentPage > 1) {
+                currentPage--;
+                displayRows();
+                paginationDropdown.value = currentPage;
+            }
+        });
+
+        nextButton.addEventListener("click", function () {
+            if (currentPage < totalPages()) {
+                currentPage++;
+                displayRows();
+                paginationDropdown.value = currentPage;
+            }
+        });
+
+        searchInput.addEventListener("input", function () {
+            const query = this.value.toLowerCase();
+            filteredRows = rows.filter(row =>
+                Array.from(row.getElementsByTagName("td")).some(td =>
+                    td.textContent.toLowerCase().includes(query)
+                )
+            );
+
+            currentPage = 1;
+            displayRows();
+        });
+
+        displayRows();
+    });
+
+</script>

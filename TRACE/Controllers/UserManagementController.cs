@@ -25,7 +25,7 @@ namespace TRACE.Controllers
             _httpClient = httpClientFactory.CreateClient();
         }
 
-        [Route("usermanagement")]
+        [Route("adusers")]
         public async Task<IActionResult> UserManagement()
         {
             if (HttpContext.Session.GetString("IsVerified") != "true")

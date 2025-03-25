@@ -40,7 +40,7 @@ namespace TRACE.Helpers
             var mailMessage = new MailMessage
             {
                 From = new MailAddress("test5@erc.ph", "ERC Support"),
-                Subject = "ICMDS OTP",
+                Subject = "ICDMS OTP",
                 Body = emailBody,
                 IsBodyHtml = true
             };

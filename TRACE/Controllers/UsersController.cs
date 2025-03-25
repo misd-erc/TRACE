@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using TRACE.Models;
 
 namespace TRACE.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly ErcdbContext _context;
@@ -20,6 +22,7 @@ namespace TRACE.Controllers
         }
 
         // GET: Users
+        [Route("usermanagement")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Users.ToListAsync());
@@ -84,56 +87,51 @@ namespace TRACE.Controllers
 
 
         // GET: Users/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        [HttpGet]
+        [Route("users/edit/{id:int}")]
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
-
             return View(user);
         }
 
         // POST: Users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Route("users/edit/{id:int}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Email,UserCategory,IsEmailNotif,Fullname,Designation,Department,IsSystemNotif,IsArchive,Username")] User user)
         {
             if (id != user.Id)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Invalid user ID." });
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(user);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UserExists(user.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                return Json(new { success = false, message = string.Join(", ", errors) });
             }
-            return View(user);
+
+            try
+            {
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, message = "User updated successfully!" });
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Users.Any(e => e.Id == id))
+                {
+                    return Json(new { success = false, message = "User not found." });
+                }
+                return Json(new { success = false, message = "A database error occurred. Please try again." });
+            }
         }
+
 
         // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)

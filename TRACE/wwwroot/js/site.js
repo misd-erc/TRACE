@@ -6,8 +6,11 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
-        document.getElementById("loader2").style.display = "none";
-        document.getElementById("loader3").style.display = "none";
+        let loader2 = document.getElementById("loader2");
+        let loader3 = document.getElementById("loader3");
+
+        if (loader2) loader2.style.display = "none";
+        if (loader3) loader3.style.display = "none";
     }, 4000);
 });
 
