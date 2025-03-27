@@ -1,0 +1,59 @@
+@model IEnumerable<TRACE.Models.CaseAssignment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAssigned)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Erccase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HandlingOfficerType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAssigned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssignedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Erccase.ErccaseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HandlingOfficerType.HandlingOfficerTypeId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CaseAssignmentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CaseAssignmentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CaseAssignmentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

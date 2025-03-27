@@ -1,0 +1,69 @@
+@model TRACE.Models.CaseTask
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>CaseTask</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CaseTaskId" />
+            <div class="form-group">
+                <label asp-for="ErccaseId" class="control-label"></label>
+                <select asp-for="ErccaseId" class="form-control" asp-items="ViewBag.ErccaseId"></select>
+                <span asp-validation-for="ErccaseId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Task" class="control-label"></label>
+                <input asp-for="Task" class="form-control" />
+                <span asp-validation-for="Task" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskedBy" class="control-label"></label>
+                <input asp-for="TaskedBy" class="form-control" />
+                <span asp-validation-for="TaskedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatetimeCreated" class="control-label"></label>
+                <input asp-for="DatetimeCreated" class="form-control" />
+                <span asp-validation-for="DatetimeCreated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetCompletionDate" class="control-label"></label>
+                <input asp-for="TargetCompletionDate" class="form-control" />
+                <span asp-validation-for="TargetCompletionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActualCompletionDate" class="control-label"></label>
+                <input asp-for="ActualCompletionDate" class="form-control" />
+                <span asp-validation-for="ActualCompletionDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocumentId" class="control-label"></label>
+                <select asp-for="DocumentId" class="form-control" asp-items="ViewBag.DocumentId"></select>
+                <span asp-validation-for="DocumentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

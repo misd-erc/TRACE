@@ -1,0 +1,53 @@
+@model IEnumerable<TRACE.Models.RelatedCase>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RelatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatetimeRelated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Erccase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ErccaseRelated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RelatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatetimeRelated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Erccase.ErccaseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ErccaseRelated.ErccaseId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RelatedCaseId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RelatedCaseId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RelatedCaseId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

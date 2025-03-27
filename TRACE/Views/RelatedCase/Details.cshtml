@@ -1,0 +1,42 @@
+@model TRACE.Models.RelatedCase
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>RelatedCase</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RelatedBy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RelatedBy)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DatetimeRelated)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DatetimeRelated)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Erccase)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Erccase.ErccaseId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ErccaseRelated)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ErccaseRelated.ErccaseId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.RelatedCaseId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

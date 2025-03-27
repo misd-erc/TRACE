@@ -1,0 +1,77 @@
+@model IEnumerable<TRACE.Models.CaseTask>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Task)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatetimeCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TargetCompletionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualCompletionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Document)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Erccase)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatetimeCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TargetCompletionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualCompletionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Document.DocumentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Erccase.ErccaseId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CaseTaskId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CaseTaskId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CaseTaskId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
