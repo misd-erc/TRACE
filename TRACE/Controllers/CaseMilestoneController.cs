@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
 using TRACE.Models;
@@ -15,10 +17,12 @@ namespace TRACE.Controllers
     public class CaseMilestoneController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly string _connectionString;
 
-        public CaseMilestoneController(ErcdbContext context)
+        public CaseMilestoneController(ErcdbContext context, IConfiguration configuration)
         {
             _context = context;
+            _connectionString = configuration.GetConnectionString("ErcDatabase");
         }
 
         // GET: CaseMilestone
@@ -26,6 +30,37 @@ namespace TRACE.Controllers
         {
             return View(await _context.CaseMilestones.ToListAsync());
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMilestoneOfCases(int id)
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync(); // Ensure connection opens
+
+                var sql = @"
+                    SELECT 
+                        cmtm.CaseMilestoneTemplateID,
+                        cmtm.CaseMilestoneID,
+                        cm.Milestone,
+                        cm.Description
+                    FROM 
+                        [ercdb].[cases].[CaseMilestoneTemplateMembers] cmtm
+                    JOIN 
+                        [ercdb].[cases].[CaseMilestones] cm ON cmtm.CaseMilestoneID = cm.CaseMilestoneID
+                    WHERE 
+                        cmtm.CaseMilestoneTemplateID = @id";
+
+                var result = await connection.QueryAsync<dynamic>(sql, new { id });
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetCaseMilestones()
         {

@@ -54,8 +54,8 @@
                 <span><strong>Case Age: </strong> <i>453 day(s)</i></span>
                 <span><strong>Current Milestone Age: </strong> <i>53 day(s)</i></span>
             </div>
-            <div class="case-milestone-wrapper">
-                <div class="progress-container">
+            <div class="case-milestone-wrapper" >
+                <div class="progress-container" id="casemilestone">
                     <div class="step completed">
                         <div class="circle">✔</div>
                         <div class="label">FILED</div>
@@ -432,6 +432,7 @@
 
         if (caseId) {
             fetchCaseDetails(caseId);
+            
         } else {
             console.error('No case ID found in URL.');
         }
@@ -448,7 +449,7 @@
             .then(data => {
                 if (data.length > 0) {
                     const caseData = data[0];
-
+                    displayCaseMilestone(caseData.CaseCategoryID);
                     // Update values dynamically
                     const caseDetailsDiv = document.getElementById('caseDetails');
                     caseDetailsDiv.innerHTML = `
@@ -482,6 +483,38 @@
             });
     }
 
+
+    function displayCaseMilestone(caseId) {
+        fetch(`/CaseMilestone/GetMilestoneOfCases?id=${caseId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+               
+                const tableBody = document.getElementById('casemilestone');
+                tableBody.innerHTML = ''; // Clear existing rows if any
+
+                data.forEach(item => {
+                    const row = `
+                        
+                         <div class="step active">
+                            <div class="progress-line active"></div>
+                            <div class="circle"></div>
+                                <div class="label">${item.Milestone}</div>
+                            <div class="progress-line"></div>
+                          </div>
+                `;
+                    tableBody.innerHTML += row;
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching case details:', error);
+            });
+      
+    }
 
     
 
