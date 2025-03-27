@@ -230,6 +230,8 @@ function fetchCaseDetails(caseId) {
                 updateBreadcrumb();
                 displayCaseMilestone(caseData.CaseCategoryID);
                 const caseDetailsDiv = document.getElementById('caseDetails');
+                const caseage = document.getElementById('caseage');
+                caseage.innerHTML = calculateDays(caseData.DateFiled) + "Days";
                 caseDetailsDiv.innerHTML = `
                       <div>
                           <span><strong>ERC Case No.: </strong> <i>${caseData.CaseNo}</i></span>
@@ -272,6 +274,8 @@ async function milestoneIsAchieved(milestoneId) {
         }
 
         const data = await response.json();
+        const currentmilestone = document.getElementById('currentmilestoneage');
+        currentmilestone.innerHTML = calculateDays1(data[0].DatetimeAchieved) + "Days";
         return data.length > 0;
     } catch (error) {
         console.error('Error fetching milestone data:', error);
@@ -324,4 +328,38 @@ async function displayCaseMilestone(caseId) {
     } catch (error) {
         console.error('Error fetching case details:', error);
     }
+}
+
+function calculateDays(dateFiled) {
+    const filedDate = new Date(dateFiled);
+    const currentDate = new Date();
+
+    // Calculate the difference in milliseconds
+    const timeDifference = currentDate - filedDate;
+
+    // Convert milliseconds to days
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+    return daysDifference;
+}
+
+function calculateDays1(dateFiled) {
+    console.log(dateFiled)
+    const filedDate = new Date(dateFiled);
+
+    if (isNaN(filedDate.getTime())) {
+        console.error('Invalid date format');
+        return;
+    }
+
+    const currentDate = new Date();
+
+    // Calculate the difference in milliseconds
+    const timeDifference = currentDate.getTime() - filedDate.getTime();
+
+    // Convert milliseconds to days
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+    console.log(`Days since filed: ${daysDifference} days`);
+    return daysDifference;
 }
