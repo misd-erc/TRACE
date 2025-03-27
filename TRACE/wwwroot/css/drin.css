@@ -1718,6 +1718,12 @@ canvas {
     text-align:right;
 }
 
+.nopaginationdiv {
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom:20px;
+}
+
 /*MILESTONE*/
 .progress-container {
     display: flex;
@@ -1962,3 +1968,5 @@ canvas {
     cursor: not-allowed;
 }
 /*USER MANAGEMENT*/
+
+
