@@ -1,5 +1,9 @@
 ﻿var caseId1 = 0;
 let caseTitle = "";
+
+let tableDataMap = {};
+const itemsPerPage = 5;
+
 ; document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const caseId = urlParams.get('id');

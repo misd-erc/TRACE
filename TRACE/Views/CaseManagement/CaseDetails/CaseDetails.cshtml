@@ -55,26 +55,9 @@
                     </tr>
                 </thead>
                 <tbody id="caseeventbody">
-                    <!--ALDRIN: Please allow only 5 rows per page and use pagination-->
-                    <tr>
-                        <td data-label="BY">jmvteope</td>
-                        <td data-label="DESCRIPTION">
-                            Set for CAS Pre-Hearing Conference on 11/12/2015
-                            at 10:00 AM
-                        </td>
-                        <td data-label="DATE">03/09/2016</td>
-                    </tr>
-                    <tr>
-                        <td data-label="BY">jmvteope</td>
-                        <td data-label="DESCRIPTION">
-                            Set for CAS Pre-Hearing Conference on 11/12/2015
-                            at 10:00 AM
-                        </td>
-                        <td data-label="DATE">03/09/2016</td>
-                    </tr>
                 </tbody>
             </table>
-            <div class="pagination flex h-center gap-10">
+            <div class="pagination flex h-center gap-10" id="caseEventpagination">
                 <span>Current Page: </span>
                 <select>
                     <option>1</option>
@@ -95,77 +78,48 @@
                 <h3>Current Assigned Personnel</h3>
                 <button>+ Assign Personnel</button>
             </div>
-            <table class="my-cases-table">
-                <thead>
-                    <tr>
-                        <th>OFFICER TYPE</th>
-                        <th>ASSIGNED PERSONEL</th>
-                        <th>DATE ASSIGNED</th>
-                        <th>ASSIGNED BY</th>
-                        <th>ACTIONS</th>
-                    </tr>
-                </thead>
-                <tbody id="caseassignment">
-                    <!--ALDRIN: Please allow only 5 rows per page and use pagination-->
-                    <tr>
-                        <td data-label="OFFICER TYPE">LHO</td>
-                        <td data-label="ASSIGNED PERSONEL">amqcadiente</td>
-                        <td data-label="DATE ASSIGNED">03/09/2016</td>
-                        <td data-label="ASSIGNED BY">agacosta</td>
-                        <td data-label="ACTION" class="actions">
-                            <i class='bx bxs-x-circle' title="Archive"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-label="OFFICER TYPE">LHO</td>
-                        <td data-label="ASSIGNED PERSONEL">jmvteope</td>
-                        <td data-label="DATE ASSIGNED">03/09/2016</td>
-                        <td data-label="ASSIGNED BY">agacosta</td>
-                        <td data-label="ACTION" class="actions">
-                            <i class='bx bxs-x-circle' title="Archive"></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="pagination flex h-center gap-10">
-                <span>Current Page: </span>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-                <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
-                <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
+            <div style="height:300px; overflow-y:auto;">
+                <table class="my-cases-table">
+                    <thead>
+                        <tr>
+                            <th>OFFICER TYPE</th>
+                            <th>ASSIGNED PERSONEL</th>
+                            <th>DATE ASSIGNED</th>
+                            <th>ASSIGNED BY</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="caseassignment">
+
+                    </tbody>
+                </table>
             </div>
 
-            <h3>Case Assignment History</h3>
-            <table class="my-cases-table">
-                <thead>
-                    <tr>
-                        <th>PERSONNEL</th>
-                        <th>DATE ASSIGNED</th>
-                        <th>DATE REMOVED</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!--ALDRIN: Please allow only 5 rows per page and use pagination-->
-                    <tr>
-                        <td data-label="PERSONNEL">jdelacruz</td>
-                        <td data-label="DATE ASSIGNED">03/09/2016</td>
-                        <td data-label="DATE REMOVED">03/09/2016</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="pagination flex h-center gap-10">
-                <span>Current Page: </span>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-                <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
-                <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
+            <div style="height:300px; overflow-y:auto;">
+                <h3>Case Assignment History</h3>
+                <table class="my-cases-table">
+                    <thead>
+                        <tr>
+                            <th>PERSONNEL</th>
+                            <th>DATE ASSIGNED</th>
+                            <th>DATE REMOVED</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="PERSONNEL">jdelacruz</td>
+                            <td data-label="DATE ASSIGNED">03/09/2016</td>
+                            <td data-label="DATE REMOVED">03/09/2016</td>
+                        </tr>
+                        <tr>
+                            <td data-label="PERSONNEL">adelacruz</td>
+                            <td data-label="DATE ASSIGNED">03/09/2016</td>
+                            <td data-label="DATE REMOVED">03/09/2016</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+            
         </div>
 
         <div id="relatedcases" class="cms-content">
