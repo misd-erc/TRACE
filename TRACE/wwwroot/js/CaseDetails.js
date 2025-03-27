@@ -235,25 +235,29 @@ async function displayCaseMilestone(caseId) {
 
         tableBody.innerHTML = '';
 
-        for (const item of data) {
+        for (const [index, item] of data.entries()) {
             const isAchieved = await milestoneIsAchieved(item.CaseMilestoneID);
-            console.log(isAchieved)
+            console.log(isAchieved);
+
+            const isLast = index === data.length - 1;
+
             const row = isAchieved
                 ? `
-                        <div class="step completed">
-                            <div class="circle">✔</div>
-                            <div class="label">${item.Milestone}</div>
-                            <div class="progress-line active"></div>
-                        </div>
-                    `
+            <div class="step completed">
+                <div class="circle">✔</div>
+                <div class="label">${item.Milestone.replace("/", "<wbr>/")}</div>
+                ${!isLast ? '<div class="progress-line active"></div>' : ''}
+            </div>
+        `
                 : `
-                        <div class="step">
-                            <div class="progress-line"></div>
-                            <div class="circle"></div>
-                            <div class="label">${item.Milestone}</div>
-                            <div class="progress-line"></div>
-                        </div>
-                    `;
+            <div class="step">
+                <div class="progress-line"></div>
+                <div class="circle"></div>
+                <div class="label">${item.Milestone.replace("/", "<wbr>/")}</div>
+                ${!isLast ? '<div class="progress-line"></div>' : ''}
+            </div>
+        `;
+
             tableBody.innerHTML += row;
         }
     } catch (error) {
