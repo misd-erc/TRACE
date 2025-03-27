@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
 using TRACE.Models;
@@ -13,10 +15,12 @@ namespace TRACE.Controllers
     public class CaseAssignmentController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly string _connectionString;
 
-        public CaseAssignmentController(ErcdbContext context)
+        public CaseAssignmentController(ErcdbContext context, IConfiguration configuration)
         {
             _context = context;
+            _connectionString = configuration.GetConnectionString("ErcDatabase");
         }
 
         // GET: CaseAssignment
@@ -29,14 +33,34 @@ namespace TRACE.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCaseAssignmentByErcID(int id)
         {
-            var categories = await _context.CaseAssignments.Where(x => x.ErccaseId == id).ToListAsync();
-
-            if (categories == null || !categories.Any())
+            try
             {
-                return Json(new { success = false, message = "No categories found." });
-            }
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync(); // Ensure connection opens
 
-            return Json(new { success = true, data = categories });
+                var sql = @"SELECT TOP (1000) 
+                                ca.CaseAssignmentID,
+                                ca.UserID,
+                                ca.ERCCaseID,
+                                ca.DateAssigned,
+                                ca.AssignedBy,
+                                ca.HandlingOfficerTypeID,
+                                ho.OfficerType,
+                                ho.Description AS OfficerDescription
+                            FROM 
+                                [ercdb].[cases].[CaseAssignments] ca
+                            LEFT JOIN 
+                                [ercdb].[cases].[HandlingOfficerTypes] ho ON ca.HandlingOfficerTypeID = ho.HandlingOfficerTypeID
+                            WHERE 
+                                ca.ERCCaseID = @id";
+
+                var result = await connection.QueryAsync<dynamic>(sql, new { id });
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
         }
         // GET: CaseAssignment/Details/5
         public async Task<IActionResult> Details(long? id)

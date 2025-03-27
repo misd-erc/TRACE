@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
 using TRACE.Models;
@@ -13,10 +15,12 @@ namespace TRACE.Controllers
     public class HearingController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly string _connectionString;
 
-        public HearingController(ErcdbContext context)
+        public HearingController(ErcdbContext context, IConfiguration configuration)
         {
             _context = context;
+            _connectionString = configuration.GetConnectionString("ErcDatabase");
         }
 
         // GET: Hearing
@@ -28,14 +32,47 @@ namespace TRACE.Controllers
         [HttpGet]
         public async Task<IActionResult> GetHearingByErcID(int id)
         {
-            var categories = await _context.Hearings.Where(x => x.ErccaseId == id).ToListAsync();
-
-            if (categories == null || !categories.Any())
+            try
             {
-                return Json(new { success = false, message = "No categories found." });
-            }
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync(); // Ensure connection opens
 
-            return Json(new { success = true, data = categories });
+                var sql = @"
+                   SELECT  
+                        h.HearingID,
+                        h.ERCCaseID,
+                        h.HearingDate,
+                        h.[Time],
+                        h.HearingVenueID,
+                        hv.VenueName AS HearingVenue,
+                        h.Remarks,
+                        h.HearingCategoryID,
+                        hc.Category AS HearingCategory,
+                        h.IsApproved,
+                        h.ApprovedBy,
+                        h.DatetimeApproved,
+                        h.OtherVenue,
+                        ht.TypeOfHearing AS HearingType,
+                        ht.Description AS HearingTypeDescription
+                    FROM 
+                        [ercdb].[cases].[Hearings] h
+                    LEFT JOIN 
+                        [ercdb].[cases].[HearingVenues] hv ON h.HearingVenueID = hv.HearingVenueID
+                    LEFT JOIN 
+                        [ercdb].[cases].[HearingCategories] hc ON h.HearingCategoryID = hc.HearingCategoryID
+                    LEFT JOIN 
+                        [ercdb].[cases].[HearingsInHearingType] htm ON h.HearingID = htm.HearingID
+                    LEFT JOIN
+                        [ercdb].[cases].[HearingTypes] ht ON htm.HearingTypeID = ht.HearingTypeID
+	                    where h.ERCCaseID = @id";
+
+                var result = await connection.QueryAsync<dynamic>(sql, new { id });
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
         }
 
         // GET: Hearing/Details/5
