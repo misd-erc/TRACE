@@ -76,7 +76,7 @@ function displayTablePage(page) {
         let row = `
             <tr>
                 <td data-label="Case No.">${item.CaseNo}</td>
-                <td data-label="Case Title" class="case-title" onclick="location.href='@Url.Action("CaseDetails", "CaseManagement")'">${item.Title}</td>
+                            <td data-label="Case Title" class="case-title" onclick="location.href='/CaseDetails?id=${item.ERCCaseID}'", "CaseManagement")'">${item.Title}</td>
                 <td data-label="Date Filed">${formatDate(item.DateFiled)}</td>
                 <td data-label="Status">${item.CaseStatus}</td>
                 <td data-label="Applicant/Petitioner">${item.CorrespondentLastName ?? 'N/A'}</td>

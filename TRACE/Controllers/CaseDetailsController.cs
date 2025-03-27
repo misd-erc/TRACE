@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
 using TRACE.Models;
@@ -15,10 +17,12 @@ namespace TRACE.Controllers
     public class CaseDetailsController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly string _connectionString;
 
-        public CaseDetailsController(ErcdbContext context)
+        public CaseDetailsController(ErcdbContext context, IConfiguration configuration)
         {
             _context = context;
+            _connectionString = configuration.GetConnectionString("ErcDatabase");
         }
 
         // GET: CaseDetails
@@ -26,7 +30,37 @@ namespace TRACE.Controllers
         {
             return View(await _context.CaseDetails.ToListAsync());
         }
+        [HttpGet]
+        public async Task<IActionResult> GetCaseDetails(int id)
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync(); // Ensure connection opens
 
+                var sql = @"
+                    SELECT 
+                        a.*,
+                        (SELECT [Description] FROM cases.CaseCategories WHERE CaseCategoryID = a.CaseCategoryID) AS CaseCategory,
+                        (SELECT [Description] FROM cases.CaseNatures WHERE CaseNatureID = a.CaseNatureID) AS CaseNature,
+                        (SELECT [Status] FROM cases.CaseStatuses WHERE CaseStatusID = a.CaseStatusID) AS CaseStatus,
+                        (CASE WHEN a.PrayedForPA = 1 THEN 'Yes' ELSE 'No' END) AS hasPrayedForPA,
+                        comp.CompanyName,
+                        cor.LastName + ' ' + cor.FirstName AS CorrespondentLastName
+                    FROM cases.ERCCases a
+                    LEFT JOIN ercdb.cases.CaseRespondents cr ON cr.ERCCaseID = a.ERCCaseID
+                    LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID
+                    LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+                    WHERE a.ERCCaseID = @id;";
+
+                var result = await connection.QueryAsync<dynamic>(sql, new { id });
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
         // GET: CaseDetails/Details/5
         public async Task<IActionResult> Details(long? id)
         {

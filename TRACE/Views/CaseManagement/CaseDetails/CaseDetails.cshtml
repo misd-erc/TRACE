@@ -7,7 +7,7 @@
 </div>
 
 <div class="case-card-details shadow border-radius-5">
-    <div class="case-details grid grid-four-fr gap-20">
+    <div class="case-details grid grid-four-fr gap-20" id="caseDetails">
         <div>
             <span><strong>ERC Case No.: </strong> <i>2016-0076-CC</i></span>
             <span><strong>Case Title: </strong> <i>Test Verified Complaint</i></span>
@@ -424,5 +424,67 @@
 
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const caseId = urlParams.get('id');
 
+        if (caseId) {
+            fetchCaseDetails(caseId);
+        } else {
+            console.error('No case ID found in URL.');
+        }
+    });
+
+    function fetchCaseDetails(caseId) {
+        fetch(`/CaseDetails/GetCaseDetails?id=${caseId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.length > 0) {
+                    const caseData = data[0];
+
+                    // Update values dynamically
+                    const caseDetailsDiv = document.getElementById('caseDetails');
+                    caseDetailsDiv.innerHTML = `
+                      <div>
+                          <span><strong>ERC Case No.: </strong> <i>${caseData.CaseNo}</i></span>
+                          <span><strong>Case Title: </strong> <i>${caseData.Title}</i></span>
+                          <span><strong>Case Category: </strong> <i>${caseData.Category}</i></span>
+                      </div>
+                      <div>
+                          <span><strong>Case Nature: </strong> <i>${caseData.CaseNature}</i></span>
+                          <span><strong>Date Filed: </strong> <i>${caseData.DateFiled}</i></span>
+                          <span><strong>Date Docketed: </strong> <i>${caseData.DateDocketed}</i></span>
+                      </div>
+                      <div>
+                              <span><strong>Docketed By: </strong> <i>${caseData.DocketedBy ?? 'N/A'}</i></span>
+                                  <span><strong>Applicant: </strong> <i>${caseData.CompanyName ?? 'N/A'}</i></span>
+                              <span><strong>Respondent: </strong> <i>${caseData.CorrespondentName ?? 'No Data Yet'}</i></span>
+                      </div>
+                      <div>
+                          <span><strong>No. of Folders: </strong> <i>${caseData.NoOfFolders ?? 'N/A'}</i></span>
+                          <span><strong>Date Approved: </strong> <i>${caseData.DatetimeApproved ?? 'N/A'}</i></span>
+                          <span><strong class="green-txt">${caseData.CaseStatus}</strong></span>
+                      </div>
+                    `;
+                } else {
+                    alert('Case not found!');
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching case details:', error);
+            });
+    }
+
+
+    
+
+
+</script>
 <script src="~/js/CaseDetails.js"></script>
