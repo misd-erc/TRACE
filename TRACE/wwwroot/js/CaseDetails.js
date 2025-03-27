@@ -13,6 +13,7 @@ const itemsPerPage = 5;
         fetchCaseEvent(caseId);
         fetchCaseAssignmentWithErcId(caseId);
         fetchCaseHearingWithErcId(caseId);
+        fetchCaseTaskWithErcId(caseId);
 
     } else {
         console.error('No case ID found in URL.');
@@ -79,6 +80,56 @@ function fetchCaseEvent(caseId) {
         })
         .catch(error => {
             console.error('Error fetching case details:', error);
+        });
+}
+
+function fetchCaseTaskWithErcId(caseId) {
+    const caseassignment = document.getElementById('pendingtask');
+    const caseassignment1 = document.getElementById('completedTask');
+
+    // Clear the existing content
+    caseassignment.innerHTML = '';
+    caseassignment1.innerHTML = '';
+
+    fetch(`/CaseTask/GetCaseTaskByErcID?id=${caseId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(result => {
+            if (!result.success || !result.data || result.data.length === 0) {
+                caseassignment.innerHTML = `<tr><td colspan="4">No Pending Tasks Found</td></tr>`;
+                caseassignment1.innerHTML = `<tr><td colspan="4">No Completed Tasks Found</td></tr>`;
+                return;
+            }
+
+            result.data.forEach(event => {
+                const row = `
+                        <tr>
+                            <td data-label="TASKED TO">${event.UserID || 'N/A'}</td>
+                            <td data-label="DETAILS">${event.Task || 'N/A'}</td>
+                            <td data-label="TARGET DATE">${event.TargetCompletionDate || 'N/A'}</td>
+                            <td data-label="ACTION" class="actions">
+                                <i class='bx bxs-check-circle' title="Mark as complete"></i>
+                                <i class='bx bxs-x-circle' title="Pin task"></i>
+                            </td>
+                        </tr>
+                    `;
+
+                // Check if TargetCompletionDate exists
+                if (event.ActualCompletionDate) {
+                    caseassignment1.innerHTML += row; // Completed Task
+                } else {
+                    caseassignment.innerHTML += row; // Pending Task
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching case details:', error);
+            caseassignment.innerHTML = `<tr><td colspan="4">Error fetching data</td></tr>`;
+            caseassignment1.innerHTML = `<tr><td colspan="4">Error fetching data</td></tr>`;
         });
 }
 
