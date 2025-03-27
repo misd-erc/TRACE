@@ -15,6 +15,11 @@ let caseTitle = "";
     }
 });
 
+function updateBreadcrumb() {
+    const breadcrumb = document.querySelector(".crumbs");
+    breadcrumb.innerHTML = `<a href="/dashboard">Dashboard</a> > <a href='javascript:history.back();'>Case Management</a> > ${caseTitle}`;
+}
+
 function showTab(tabName) {
     document.querySelectorAll('.cms-content').forEach(function (content) {
         content.classList.remove('active');
@@ -72,6 +77,7 @@ function fetchCaseEvent(caseId) {
             console.error('Error fetching case details:', error);
         });
 }
+
 function fetchCaseAssignmentWithErcId(caseId) {
     fetch(`/CaseAssignment/GetCaseAssignmentByErcID?id=${caseId}`)
         .then(response => {
@@ -166,6 +172,7 @@ function fetchCaseDetails(caseId) {
             if (data.length > 0) {
                 const caseData = data[0];
                 caseTitle = caseData.Title;
+                updateBreadcrumb();
                 displayCaseMilestone(caseData.CaseCategoryID);
                 const caseDetailsDiv = document.getElementById('caseDetails');
                 caseDetailsDiv.innerHTML = `
@@ -198,7 +205,6 @@ function fetchCaseDetails(caseId) {
             console.error('Error fetching case details:', error);
         });
 }
-
 
 async function milestoneIsAchieved(milestoneId) {
     const urlParams = new URLSearchParams(window.location.search);
