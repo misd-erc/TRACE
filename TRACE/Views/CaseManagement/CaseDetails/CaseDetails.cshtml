@@ -107,12 +107,12 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-label="PERSONNEL">jdelacruz</td>
+                            <td data-label="PERSONNEL">sampleguy</td>
                             <td data-label="DATE ASSIGNED">03/09/2016</td>
                             <td data-label="DATE REMOVED">03/09/2016</td>
                         </tr>
                         <tr>
-                            <td data-label="PERSONNEL">adelacruz</td>
+                            <td data-label="PERSONNEL">sampleguy</td>
                             <td data-label="DATE ASSIGNED">03/09/2016</td>
                             <td data-label="DATE REMOVED">03/09/2016</td>
                         </tr>
@@ -140,23 +140,13 @@
                     <!--ALDRIN: Please allow only 5 rows per page and use pagination-->
                     <tr>
                         <td data-label="CASE NO.">2016-0080-CC</td>
-                        <td data-label="CASE TITLE">Another Altered Connection</td>
+                        <td data-label="CASE TITLE">SAMPLE Altered Connection</td>
                         <td data-label="ACTION" class="actions">
                             <i class='bx bxs-x-circle' title="Archive"></i>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="pagination flex h-center gap-10">
-                <span>Current Page: </span>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-                <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
-                <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
-            </div>
         </div>
 
         <div id="hearings" class="cms-content">
@@ -176,30 +166,8 @@
                     </tr>
                 </thead>
                 <tbody id="casehearing">
-                    <!--ALDRIN: Please allow only 5 rows per page and use pagination-->
-                    <tr>
-                        <td data-label="HEARING CATEGORY">CAS Hearing</td>
-                        <td data-label="DATE AND TIME">03/07/2025 10:00:00</td>
-                        <td data-label="VENUE">CAS Conference Room</td>
-                        <td data-label="TYPE">Expository (EX)</td>
-                        <td data-label="REMARKS">Sample Remarks</td>
-                        <td data-label="ACTION" class="actions">
-                            <i class='bx bxs-edit' title="Edit"></i>
-                            <i class='bx bxs-x-circle' title="Archive"></i>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
-            <div class="pagination flex h-center gap-10">
-                <span>Current Page: </span>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-                <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
-                <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
-            </div>
         </div>
 
         <div id="tasks" class="cms-content">
@@ -207,69 +175,36 @@
                 <h3>Tasks</h3>
                 <button>+ Assign New Task</button>
             </div>
-            <h4>Pending Tasks</h4>
-            <table class="my-cases-table">
-                <thead>
-                    <tr>
-                        <th>TASKED TO</th>
-                        <th>DETAILS</th>
-                        <th>TARGET DATE</th>
-                        <th>ACTION</th>
-                    </tr>
-                </thead>
-                <tbody id="pendingtask">
-                    <!--ALDRIN: Please allow only 5 rows per page and use pagination-->
-                    <tr >
-                        <td data-label="TASKED TO">jmvteope</td>
-                        <td data-label="DETAILS">Task detail here</td>
-                        <td data-label="TARGET DATE">12/25/2025</td>
-                        <td data-label="ACTION" class="actions">
-                            <i class='bx bxs-check-circle' title="Mark as complete"></i>
-                            <i class='bx bxs-x-circle' title="Pin task"></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="pagination flex h-center gap-10">
-                <span>Current Page: </span>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-                <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
-                <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
+            <div style="height:300px; overflow-y:auto;">
+                <h4>Pending Tasks</h4>
+                <table class="my-cases-table">
+                    <thead>
+                        <tr>
+                            <th>TASKED TO</th>
+                            <th>DETAILS</th>
+                            <th>TARGET DATE</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pendingtask">
+                    </tbody>
+                </table>
             </div>
 
-            <h4>Completed Tasks</h4>
-            <table class="my-cases-table">
-                <thead>
-                    <tr>
-                        <th>TASKED TO</th>
-                        <th>DETAILS</th>
-                        <th>TARGET DATE</th>
-                        <th>COMPLETED DATE</th>
-                    </tr>
-                </thead>
-                <tbody id="completedTask">
-                    <!--ALDRIN: Please allow only 5 rows per page and use pagination-->
-                    <tr>
-                        <td data-label="TASKED TO">jmvteope</td>
-                        <td data-label="DETAILS">Sample task for viewing</td>
-                        <td data-label="TARGET DATE">03/09/2016</td>
-                        <td data-label="COMPLETED DATE">03/09/2016</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="pagination flex h-center gap-10">
-                <span>Current Page: </span>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-                <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
-                <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
+            <div style="height:300px; overflow-y:auto;">
+                <h4>Completed Tasks</h4>
+                <table class="my-cases-table">
+                    <thead>
+                        <tr>
+                            <th>TASKED TO</th>
+                            <th>DETAILS</th>
+                            <th>TARGET DATE</th>
+                            <th>COMPLETED DATE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="completedTask">
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -288,7 +223,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!--ALDRIN: Please allow only 5 rows per page and use pagination-->
                     <tr>
                         <td data-label="TITLE">IMPORTANT READ!</td>
                         <td data-label="DESCRIPTION">Please read the comments in source code left by FE developer</td>
@@ -300,16 +234,6 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="pagination flex h-center gap-10">
-                <span>Current Page: </span>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                </select>
-                <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
-                <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
-            </div>
         </div>
 
     </div>
