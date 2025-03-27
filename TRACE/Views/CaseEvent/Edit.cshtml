@@ -1,0 +1,59 @@
+@model TRACE.Models.CaseEvent
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>CaseEvent</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CaseEventId" />
+            <div class="form-group">
+                <label asp-for="ErccaseId" class="control-label"></label>
+                <select asp-for="ErccaseId" class="form-control" asp-items="ViewBag.ErccaseId"></select>
+                <span asp-validation-for="ErccaseId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDatetime" class="control-label"></label>
+                <input asp-for="EventDatetime" class="form-control" />
+                <span asp-validation-for="EventDatetime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDescription" class="control-label"></label>
+                <input asp-for="EventDescription" class="form-control" />
+                <span asp-validation-for="EventDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsUserAction" class="control-label"></label>
+                <input asp-for="IsUserAction" class="form-control" />
+                <span asp-validation-for="IsUserAction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseEventTypeId" class="control-label"></label>
+                <select asp-for="CaseEventTypeId" class="form-control" asp-items="ViewBag.CaseEventTypeId"></select>
+                <span asp-validation-for="CaseEventTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

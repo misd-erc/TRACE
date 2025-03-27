@@ -118,7 +118,7 @@
                         <th>DATE</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="caseeventbody">
                     <!--ALDRIN: Please allow only 5 rows per page and use pagination-->
                     <tr>
                         <td data-label="BY">jmvteope</td>
@@ -433,11 +433,53 @@
          caseid1 = caseId;
         if (caseId) {
             fetchCaseDetails(caseId);
+            fetchCaseEvent(caseId);
             
         } else {
             console.error('No case ID found in URL.');
         }
     });
+
+    function fetchCaseEvent(caseId) {
+        fetch(`/CaseEvent/GetCaseEventByErcID?id=${caseId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (!result.success) {
+                    console.error('No events found:', result.message);
+                    return;
+                }
+
+                const data = result.data;
+                const caseeventbody = document.getElementById('caseeventbody');
+                if (!caseeventbody) {
+                    console.error('Table body not found');
+                    return;
+                }
+
+                caseeventbody.innerHTML = ''; // Clear existing rows
+
+                data.forEach(event => {
+                 
+                    const row = `
+                        <tr>
+                            <td data-label="BY">${event.userID || 'N/A'}</td>
+                            <td data-label="DESCRIPTION">${event.eventDescription || 'N/A'}</td>
+                            <td data-label="DATE">${event.eventDatetime || 'N/A'}</td>
+                        </tr>
+                    `;
+                    caseeventbody.innerHTML += row;
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching case details:', error);
+            });
+    }
+
 
     function fetchCaseDetails(caseId) {
         fetch(`/CaseDetails/GetCaseDetails?id=${caseId}`)
