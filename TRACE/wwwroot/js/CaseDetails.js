@@ -151,10 +151,10 @@ function fetchCaseAssignmentWithErcId(caseId) {
                 caseassignment.innerHTML = `
                                <tr>
                                 <td data-label="OFFICER TYPE">${caseData.OfficerType}</td>
-                            <td data-label="ASSIGNED PERSONEL">amqcadiente</td>
-                            <td data-label="DATE ASSIGNED">03/09/2016</td>
-                            <td data-label="ASSIGNED BY">agacosta</td>
-                            <td data-label="ACTION" class="actions">
+                                <td data-label="ASSIGNED PERSONEL">amqcadiente</td>
+                                <td data-label="DATE ASSIGNED">03/09/2016</td>
+                                <td data-label="ASSIGNED BY">agacosta</td>
+                                <td data-label="ACTION" class="actions">
                                 <i class='bx bxs-x-circle' title="Archive"></i>
                             </td>
                         </tr>
@@ -162,7 +162,7 @@ function fetchCaseAssignmentWithErcId(caseId) {
             } else {
                 caseassignment.innerHTML = `
                             <tr>
-                                  <td >Data Not Found</td>
+                                  <td colspan="5">No Case Assignment</td>
                             </tr>
                         `;
             }
@@ -190,11 +190,11 @@ function fetchCaseHearingWithErcId(caseId) {
                 const casehearing = document.getElementById('casehearing');
                 casehearing.innerHTML = `
                                         <tr>
-                                                <td data-label="HEARING CATEGORY">${caseData.HearingCategory}</td>
-                                                        <td data-label="DATE AND TIME">${caseData.HearingDate} ${caseData.Time}</td>
-                                                    <td data-label="VENUE">${caseData.HearingVenue}</td>
-                                                            <td data-label="TYPE">${caseData.HearingTypeDescription} (${caseData.HearingType})</td>
-                                                    <td data-label="REMARKS">${caseData.Remarks}</td>
+                                            <td data-label="HEARING CATEGORY">${caseData.HearingCategory}</td>
+                                            <td data-label="DATE AND TIME">${caseData.HearingDate} ${caseData.Time}</td>
+                                            <td data-label="VENUE">${caseData.HearingVenue}</td>
+                                            <td data-label="TYPE">${caseData.HearingTypeDescription} (${caseData.HearingType})</td>
+                                            <td data-label="REMARKS">${caseData.Remarks}</td>
                                             <td data-label="ACTION" class="actions">
                                                 <i class='bx bxs-edit' title="Edit"></i>
                                                 <i class='bx bxs-x-circle' title="Archive"></i>
@@ -204,7 +204,7 @@ function fetchCaseHearingWithErcId(caseId) {
             } else {
                 casehearing.innerHTML = `
                                 <tr>
-                                      <td >Data Not Found</td>
+                                    <td colspan="6">No Hearings Found</td>
                                 </tr>
                             `;
             }
