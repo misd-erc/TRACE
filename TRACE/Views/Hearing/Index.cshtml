@@ -1,0 +1,89 @@
+@model IEnumerable<TRACE.Models.Hearing>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HearingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsApproved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatetimeApproved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherVenue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Erccase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HearingCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HearingVenue)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HearingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsApproved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatetimeApproved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OtherVenue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Erccase.ErccaseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HearingCategory.HearingCategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HearingVenue.HearingVenueId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.HearingId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.HearingId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.HearingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

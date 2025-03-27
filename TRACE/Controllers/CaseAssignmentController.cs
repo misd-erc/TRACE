@@ -26,6 +26,18 @@ namespace TRACE.Controllers
             return View(await ercdbContext.ToListAsync());
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetCaseAssignmentByErcID(int id)
+        {
+            var categories = await _context.CaseAssignments.Where(x => x.ErccaseId == id).ToListAsync();
+
+            if (categories == null || !categories.Any())
+            {
+                return Json(new { success = false, message = "No categories found." });
+            }
+
+            return Json(new { success = true, data = categories });
+        }
         // GET: CaseAssignment/Details/5
         public async Task<IActionResult> Details(long? id)
         {

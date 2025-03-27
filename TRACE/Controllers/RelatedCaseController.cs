@@ -25,6 +25,18 @@ namespace TRACE.Controllers
             var ercdbContext = _context.RelatedCases.Include(r => r.Erccase).Include(r => r.ErccaseRelated);
             return View(await ercdbContext.ToListAsync());
         }
+        [HttpGet]
+        public async Task<IActionResult> GetCaseRelatedByErcID(int id)
+        {
+            var categories = await _context.RelatedCases.Where(x => x.ErccaseId == id).ToListAsync();
+
+            if (categories == null || !categories.Any())
+            {
+                return Json(new { success = false, message = "No categories found." });
+            }
+
+            return Json(new { success = true, data = categories });
+        }
 
         // GET: RelatedCase/Details/5
         public async Task<IActionResult> Details(long? id)
