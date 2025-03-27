@@ -30,6 +30,34 @@ namespace TRACE.Controllers
         {
             return View(await _context.CaseMilestones.ToListAsync());
         }
+        [HttpGet]
+        public async Task<IActionResult> CheckMilestoneIsAchieved(int erccaseId, int casemilestoneId)
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync(); // Ensure connection opens
+
+                var sql = @"
+            SELECT [MilestoneAchievedID],
+                   [ERCCaseID],
+                   [CaseMilestoneID],
+                   [DatetimeAchieved],
+                   [PercentAchieved]
+            FROM [ercdb].[cases].[MilestonesAchieved]
+            WHERE ERCCaseID = @erccaseId AND CaseMilestoneID = @casemilestoneId";
+
+                // Pass both parameters correctly
+                var result = await connection.QueryAsync<dynamic>(sql, new { erccaseId, casemilestoneId });
+
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> GetMilestoneOfCases(int id)
