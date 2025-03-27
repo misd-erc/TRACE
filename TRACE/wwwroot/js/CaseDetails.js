@@ -154,7 +154,6 @@ function fetchCaseHearingWithErcId(caseId) {
         });
 }
 
-
 function fetchCaseDetails(caseId) {
     fetch(`/CaseDetails/GetCaseDetails?id=${caseId}`)
         .then(response => {
@@ -212,10 +211,10 @@ async function milestoneIsAchieved(milestoneId) {
         }
 
         const data = await response.json();
-        return data.length > 0; // Return true if data exists, false otherwise
+        return data.length > 0;
     } catch (error) {
         console.error('Error fetching milestone data:', error);
-        return false; // Return false on error
+        return false;
     }
 }
 
@@ -234,7 +233,7 @@ async function displayCaseMilestone(caseId) {
             return;
         }
 
-        tableBody.innerHTML = ''; // Clear previous data
+        tableBody.innerHTML = '';
 
         for (const item of data) {
             const isAchieved = await milestoneIsAchieved(item.CaseMilestoneID);
@@ -248,14 +247,13 @@ async function displayCaseMilestone(caseId) {
                         </div>
                     `
                 : `
-                        <div class="step active">
-                            <div class="progress-line active"></div>
+                        <div class="step">
+                            <div class="progress-line"></div>
                             <div class="circle"></div>
                             <div class="label">${item.Milestone}</div>
                             <div class="progress-line"></div>
                         </div>
                     `;
-
             tableBody.innerHTML += row;
         }
     } catch (error) {
