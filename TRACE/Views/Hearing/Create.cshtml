@@ -10,24 +10,24 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form id="createForm" asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ErccaseId" class="control-label"></label>
-                <select asp-for="ErccaseId" class ="form-control" asp-items="ViewBag.ErccaseId"></select>
+                
+                <input asp-for="ErccaseId" type="hidden" class="form-control" id="ErccaseId" />
             </div>
             <div class="form-group">
-                <label asp-for="HearingDate" class="control-label"></label>
-                <input asp-for="HearingDate" class="form-control" />
+                <label asp-for="HearingDate" class="control-label">Hearing Date</label>
+                <input asp-for="HearingDate" type="date" class="form-control" />
                 <span asp-validation-for="HearingDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Time" class="control-label"></label>
-                <input asp-for="Time" class="form-control" />
+                <select asp-for="Time" id="timeDropdown"></select>
                 <span asp-validation-for="Time" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HearingVenueId" class="control-label"></label>
+                <label asp-for="HearingVenueId" class="control-label"> Hearing Venue</label>
                 <select asp-for="HearingVenueId" class ="form-control" asp-items="ViewBag.HearingVenueId"></select>
             </div>
             <div class="form-group">
@@ -36,26 +36,21 @@
                 <span asp-validation-for="Remarks" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HearingCategoryId" class="control-label"></label>
+                <label asp-for="HearingCategoryId" class="control-label">Hearing Category</label>
                 <select asp-for="HearingCategoryId" class ="form-control" asp-items="ViewBag.HearingCategoryId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="IsApproved" class="control-label"></label>
+                <label asp-for="IsApproved" class="control-label">Approved</label>
                 <input asp-for="IsApproved" class="form-control" />
-                <span asp-validation-for="IsApproved" class="text-danger"></span>
+                <select asp-for="IsApproved" class="form-control" >
+                    <option value="true">YES</option>
+                    <option value="false">NO</option>
+                </select>
             </div>
+           
+          
             <div class="form-group">
-                <label asp-for="ApprovedBy" class="control-label"></label>
-                <input asp-for="ApprovedBy" class="form-control" />
-                <span asp-validation-for="ApprovedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DatetimeApproved" class="control-label"></label>
-                <input asp-for="DatetimeApproved" class="form-control" />
-                <span asp-validation-for="DatetimeApproved" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OtherVenue" class="control-label"></label>
+                <label asp-for="OtherVenue" class="control-label">Other Venue</label>
                 <input asp-for="OtherVenue" class="form-control" />
                 <span asp-validation-for="OtherVenue" class="text-danger"></span>
             </div>
@@ -66,10 +61,94 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            $("#createForm").submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Success!",
+                                text: response.message,
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                customClass: {
+                                    popup: "swal2-popup",
+                                    confirmButton: "swal2-confirm"
+                                }
+                            }).then(() => {
+                                $("#createForm")[0].reset();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Error!",
+                                text: response.message,
+                                icon: "error",
+                                confirmButtonText: "Try Again"
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Oops!",
+                            text: "Something went wrong. Please try again.",
+                            icon: "error",
+                            confirmButtonText: "OK",
+                            customClass: {
+                                popup: "swal2-popup",
+                                confirmButton: "swal2-confirm"
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 }
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const erccaseId = urlParams.get('id');
+        createTimeDropdown();
+        // Set the hidden input field value if erccaseId exists
+        if (erccaseId) {
+            const inputElement = document.getElementById('ErccaseId');
+
+            if (inputElement) {
+                inputElement.value = erccaseId;
+            } else {
+                console.error('ErccaseId input not found');
+            }
+        }
+    });
+    function createTimeDropdown() {
+        const select = document.getElementById('timeDropdown');
+
+        for (let hour = 0; hour < 24; hour++) {
+            for (let minute = 0; minute < 60; minute += 30) { // Interval every 30 minutes
+                const formattedHour = hour.toString().padStart(2, '0');
+                const formattedMinute = minute.toString().padStart(2, '0');
+                const time = `${formattedHour}:${formattedMinute}`;
+
+                const option = document.createElement('option');
+                option.value = time;
+                option.textContent = time;
+                select.appendChild(option);
+            }
+        }
+    }
+
+</script>

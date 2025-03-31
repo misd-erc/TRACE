@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -16,11 +17,13 @@ namespace TRACE.Controllers
     {
         private readonly ErcdbContext _context;
         private readonly string _connectionString;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public HearingController(ErcdbContext context, IConfiguration configuration)
+        public HearingController(ErcdbContext context, IConfiguration configuration, CurrentUserHelper currentUserHelper)
         {
             _context = context;
             _connectionString = configuration.GetConnectionString("ErcDatabase");
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: Hearing
@@ -99,9 +102,9 @@ namespace TRACE.Controllers
         // GET: Hearing/Create
         public IActionResult Create()
         {
-            ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
-            ViewData["HearingCategoryId"] = new SelectList(_context.HearingCategories, "HearingCategoryId", "HearingCategoryId");
-            ViewData["HearingVenueId"] = new SelectList(_context.HearingVenues, "HearingVenueId", "HearingVenueId");
+            
+            ViewData["HearingCategoryId"] = new SelectList(_context.HearingCategories, "HearingCategoryId", "Category");
+            ViewData["HearingVenueId"] = new SelectList(_context.HearingVenues, "HearingVenueId", "VenueName");
             return View();
         }
 
@@ -112,16 +115,23 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("HearingId,ErccaseId,HearingDate,Time,HearingVenueId,Remarks,HearingCategoryId,IsApproved,ApprovedBy,DatetimeApproved,OtherVenue")] Hearing hearing)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+               if(hearing.IsApproved == true)
+                {
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    hearing.ApprovedBy = user.Username;
+               
+                }
                 _context.Add(hearing);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", hearing.ErccaseId);
             ViewData["HearingCategoryId"] = new SelectList(_context.HearingCategories, "HearingCategoryId", "HearingCategoryId", hearing.HearingCategoryId);
             ViewData["HearingVenueId"] = new SelectList(_context.HearingVenues, "HearingVenueId", "HearingVenueId", hearing.HearingVenueId);
-            return View(hearing);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: Hearing/Edit/5
