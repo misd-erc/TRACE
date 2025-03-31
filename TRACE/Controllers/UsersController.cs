@@ -41,6 +41,18 @@ namespace TRACE.Controllers
 
             return View(users);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var categories = await _context.Users.Where(x=>x.IsArchive == false).ToListAsync();
+
+            if (categories == null || !categories.Any())
+            {
+                return Json(new { success = false, message = "No categories found." });
+            }
+
+            return Json(new { success = true, data = categories });
+        }
 
 
         // GET: Users/Details/5
