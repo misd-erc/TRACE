@@ -14,6 +14,7 @@ const itemsPerPage = 5;
         fetchCaseAssignmentWithErcId(caseId);
         fetchCaseHearingWithErcId(caseId);
         fetchCaseTaskWithErcId(caseId);
+        fetchCaseNoteWithErcId(caseId);
 
     } else {
         console.error('No case ID found in URL.');
@@ -142,13 +143,12 @@ function fetchCaseAssignmentWithErcId(caseId) {
             return response.json();
         })
         .then(data => {
-
+            const caseassignment = document.getElementById('caseassignment');
+            caseassignment.innerHTML = '';
             if (data.length > 0) {
                 const caseData = data[0];
-
-                // Update values dynamically
-                const caseassignment = document.getElementById('caseassignment');
-                caseassignment.innerHTML = `
+                data.forEach(event => {
+                    caseassignment.innerHTML += `
                                <tr>
                                 <td data-label="OFFICER TYPE">${caseData.OfficerType}</td>
                                 <td data-label="ASSIGNED PERSONEL">amqcadiente</td>
@@ -159,6 +159,10 @@ function fetchCaseAssignmentWithErcId(caseId) {
                             </td>
                         </tr>
                         `;
+                })
+                // Update values dynamically
+               
+               
             } else {
                 caseassignment.innerHTML = `
                             <tr>
@@ -182,13 +186,12 @@ function fetchCaseHearingWithErcId(caseId) {
             return response.json();
         })
         .then(data => {
-
+            const casehearing = document.getElementById('casehearing');
+            casehearing.innerHTML = '';
             if (data.length > 0) {
-                const caseData = data[0];
-
-                // Update values dynamically
-                const casehearing = document.getElementById('casehearing');
-                casehearing.innerHTML = `
+                data.forEach(event => {
+                    const caseData = event;
+                    casehearing.innerHTML += `
                                         <tr>
                                             <td data-label="HEARING CATEGORY">${caseData.HearingCategory}</td>
                                             <td data-label="DATE AND TIME">${caseData.HearingDate} ${caseData.Time}</td>
@@ -201,10 +204,60 @@ function fetchCaseHearingWithErcId(caseId) {
                                             </td>
                                         </tr>
                             `;
+                })
+             
+
+                // Update values dynamically
+              
+            
             } else {
                 casehearing.innerHTML = `
                                 <tr>
                                     <td colspan="6">No Hearings Found</td>
+                                </tr>
+                            `;
+            }
+
+        })
+        .catch(error => {
+            console.error('Error fetching case details:', error);
+        });
+}
+function fetchCaseNoteWithErcId(caseId) {
+    fetch(`/CaseNote/GetCaseNoteByErcID?id=${caseId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const casehearing = document.getElementById('casenote');
+            casehearing.innerHTML = '';
+            if (data.length > 0) {
+                data.forEach(event => {
+                    const caseData = event; 
+               
+                    casehearing.innerHTML += `
+                                       <tr >
+                                            <td data-label="NotedBy">${caseData.NotedBy}</td>
+                                            <td data-label="DESCRIPTION">${caseData.Notes}</td>
+                                            <td data-label="DATE">${caseData.DatetimeCreated}</td>
+                                            <td data-label="ACTION" class="actions">
+                                                <i class='bx bxs-edit' title="Edit"></i>
+                                                <i class='bx bxs-x-circle' title="Archive"></i>
+                                            </td>
+                                        </tr>
+                            `;
+                })
+               
+
+                // Update values dynamically
+              
+            } else {
+                casehearing.innerHTML = `
+                                <tr>
+                                    <td colspan="6">No Data Found</td>
                                 </tr>
                             `;
             }
@@ -275,7 +328,10 @@ async function milestoneIsAchieved(milestoneId) {
 
         const data = await response.json();
         const currentmilestone = document.getElementById('currentmilestoneage');
-        currentmilestone.innerHTML = calculateDays1(data[0].DatetimeAchieved) + "Days";
+        if (data.length > 0) {
+            currentmilestone.innerHTML = calculateDays1(data[0].DatetimeAchieved) + "Days";
+        }
+       
         return data.length > 0;
     } catch (error) {
         console.error('Error fetching milestone data:', error);
