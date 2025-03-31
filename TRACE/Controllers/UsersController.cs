@@ -23,35 +23,33 @@ namespace TRACE.Controllers
         }
 
         // GET: Users
-        [Authorize(Roles = "System Admin")]
+        //[Authorize(Roles = "System Admin")]
         [Route("usermanagement")]
         [HttpGet]
-        public async Task<IActionResult> Index([FromServices] CurrentUserHelper currentUserHelper)
+        public async Task<IActionResult> Index()
         {
             if (HttpContext.Session.GetString("IsVerified") != "true")
             {
                 return RedirectToAction("Logout", "External");
             }
 
-            string userDepartment = await currentUserHelper.GetDepartmentAsync();
+            return View();
+        }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers([FromServices] CurrentUserHelper currentUserHelper)
+        {
+            string userDepartment = await currentUserHelper.GetDepartmentAsync();
             var users = await _context.Users
-                .Where(u => u.Department == userDepartment)
+                .Where(x => x.IsArchive == false && x.Department == userDepartment)
                 .ToListAsync();
 
-            return View(users);
-        }
-        [HttpGet]
-        public async Task<IActionResult> GetAllUsers()
-        {
-            var categories = await _context.Users.Where(x=>x.IsArchive == false).ToListAsync();
-
-            if (categories == null || !categories.Any())
+            if (users == null || !users.Any())
             {
-                return Json(new { success = false, message = "No categories found." });
+                return Json(new { success = false, message = "No users found." });
             }
 
-            return Json(new { success = true, data = categories });
+            return Json(new { success = true, data = users });
         }
 
 
