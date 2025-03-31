@@ -97,6 +97,7 @@ function fetchCaseTaskWithErcId(caseId) {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+
             return response.json();
         })
         .then(result => {
@@ -105,13 +106,15 @@ function fetchCaseTaskWithErcId(caseId) {
                 caseassignment1.innerHTML = `<tr><td colspan="4">No Completed Tasks Found</td></tr>`;
                 return;
             }
+            console.log("data", result.data);
 
             result.data.forEach(event => {
+             
                 const row = `
                         <tr>
-                            <td data-label="TASKED TO">${event.UserID || 'N/A'}</td>
-                            <td data-label="DETAILS">${event.Task || 'N/A'}</td>
-                            <td data-label="TARGET DATE">${event.TargetCompletionDate || 'N/A'}</td>
+                            <td data-label="TASKED TO">${event.userId || 'N/A'}</td>
+                            <td data-label="DETAILS">${event.task || 'N/A'}</td>
+                            <td data-label="TARGET DATE">${event.targetCompletionDate || 'N/A'}</td>
                             <td data-label="ACTION" class="actions">
                                 <i class='bx bxs-check-circle' title="Mark as complete"></i>
                                 <i class='bx bxs-x-circle' title="Pin task"></i>
