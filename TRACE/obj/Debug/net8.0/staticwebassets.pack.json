@@ -17,8 +17,16 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\BYE-logo.webp",
+      "PackagePath": "staticwebassets\\images\\BYE-logo.webp"
+    },
+    {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\ERC-LOGO.png",
       "PackagePath": "staticwebassets\\images\\ERC-LOGO.png"
+    },
+    {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\evoss.ico",
+      "PackagePath": "staticwebassets\\images\\evoss.ico"
     },
     {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\images\\icons\\case-white.png",

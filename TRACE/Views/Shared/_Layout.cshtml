@@ -39,17 +39,19 @@
             <i class='bx bxs-grid' onclick="toggleWaffleMenu()"></i>
             <div class="waffle-dropdown" id="waffleDropdown">
                 <div class="waffle-sites grid grid-three-fr gap-20">
-                    <span><img class="waffle-img" src="/images/ERC-LOGO.png"> ERC Website</span>
-                    <span><img class="waffle-img" src="/images/BYE-logo.webp"> BYE Website</span>
-                    <span><i class='bx bx-mail-send'></i> ERC Mail</span>
-                    <span><i class='bx bxs-user-circle'></i> E-Share</span>
-                    <span><i class='bx bxs-user-circle'></i> BRSCS</span>
-                    <span><i class='bx bxs-user-circle'></i> CCTS</span>
-                    <span><i class='bx bxs-user-circle'></i> ERCify/OFAS</span>
-                    <span><i class='bx bxs-user-circle'></i> OURRS</span>
-                    <span><i class='bx bxs-user-circle'></i> Online Prefiling</span>
-                    <span><i class='bx bxs-user-circle'></i> EVOSS Dashboard</span>
-                    <span><i class='bx bxs-user-circle'></i> CREM-MRS</span>
+                    <a href="https://www.erc.gov.ph" target="_blank"><span><img class="waffle-img" src="/images/ERC-LOGO.png"> ERC Website</span></a>
+                    <a href="https://buyyourelectricity.erc.ph" target="_blank"><span><img class="waffle-img" src="/images/BYE-logo.webp"> BYE Website</span></a>
+                    <a href="https://outlook.office.com/mail/erc.ph" target="_blank"><span><i class='bx bx-mail-send'></i> ERC Mail</span></a>
+                    <a href="https://energyregcomm.sharepoint.com/sites/Compendium/" target="_blank"><span><i class='bx bxs-file-export'></i> E-Share</span></a>
+                    <a href="https://brscs.erc.gov.ph" target="_blank"><span><i class='bx bxs-credit-card-alt'></i> BRSCS</span></a>
+                    <a href="https://ccts.erc.ph" target="_blank"><span><i class='bx bxs-message-square-detail'></i> CCTS</span></a>
+                    <a href="https://ofas.erc.ph" target="_blank"><span><i class='bx bxs-user-plus'></i> ERCify/OFAS</span></a>
+                    <a href="https://urr.erc.ph" target="_blank"><span><i class='bx bxs-folder-open'></i> OURRS</span></a>
+                    <a href="https://prefiling.erc.ph" target="_blank"><span><i class='bx bxs-map'></i> Online Prefiling</span></a>
+                    <a href="https://evoss-dashboard.erc.local" target="_blank"><span><i class='bx bxs-dashboard'></i> EVOSS Dashboard</span></a>
+                    <a href="https://crem.erc.ph" target="_blank"><span><i class='bx bxs-store'></i> CREM-MRS</span></a>
+
+
                 </div>
             </div>
         </div>
@@ -201,29 +203,53 @@
                 type: "GET",
                 data: { query: query },
                 success: function (data) {
-                    if (data.length === 0) {
+
+                    if (!data || data.length === 0) {
                         $("#searchResults").html("<p>No results found</p>").show();
                         return;
                     }
 
-                    var resultsHtml = "<h3 class='goto'>Are you looking for?</h3><ul>";
-                    data.forEach(function (module) {
-                        resultsHtml += "<li><a href='" + module.link + "'>" + module.name + "</a></li>";
+                    var moduleResults = "";
+                    var caseResults = "";
+
+                    data.forEach(function (item) {
+
+                        if (item.type === "Case") {
+                            let caseNumber = item.name.replace(/<b>Case:<\/b>\s*/, '');
+                            caseResults += `<li><a href="${item.link}">${caseNumber}</a></li>`;
+                        } else if (item.type === "Module") {
+                            moduleResults += `<li><a href="${item.link}">${item.name}</a></li>`;
+                        }
                     });
-                    resultsHtml += "</ul>";
+
+                    var resultsHtml = "<div class='search-dropdown'>";
+                    if (caseResults !== "") {
+                        resultsHtml += "<h3 class='result-header'>Case Numbers:</h3><ul class='case-results'>" + caseResults + "</ul>";
+                    }
+                    if (moduleResults !== "") {
+                        resultsHtml += "<h3 class='result-header'>Are you looking for:</h3><ul class='module-results'>" + moduleResults + "</ul>";
+                    }
+                    resultsHtml += "</div>";
 
                     $("#searchResults").html(resultsHtml).show();
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error:", status, error);
+                    console.error("Response Text:", xhr.responseText);
+                    $("#searchResults").html("<p>There was an error fetching search results.</p>").show();
                 }
             });
+
         });
 
-        // Hide results when clicking outside the search bar
         $(document).on("click", function (e) {
             if (!$(e.target).closest(".search-bar-div").length) {
                 $("#searchResults").hide();
             }
         });
     });
+
+
 
     document.addEventListener("DOMContentLoaded", function () {
         createUser();

@@ -1984,6 +1984,13 @@ canvas {
     background: var(--theme);
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    max-height:500px;
+    overflow-y:auto;
+}
+
+.result-header{
+    margin-left:10px;
+    margin-top:20px;
 }
 
 .search-results ul {
