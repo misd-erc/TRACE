@@ -3,6 +3,7 @@ using Microsoft.Identity.Web;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Helpers;
 using TRACE.Context;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,13 +30,15 @@ builder.Services.AddSession(options =>
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<GenerateOTPHelper>();
 
-builder.Services.AddScoped<CurrentUserHelper>(provider =>
+builder.Services.AddScoped<CurrentUserHelper>(serviceProvider =>
 {
-    var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
-    var tokenAcquisition = provider.GetRequiredService<ITokenAcquisition>();
-    var configuration = provider.GetRequiredService<IConfiguration>();
+    var httpContextAccessor = serviceProvider.GetRequiredService<IHttpContextAccessor>();
+    var user = httpContextAccessor.HttpContext?.User ?? new ClaimsPrincipal();
+    var tokenAcquisition = serviceProvider.GetRequiredService<ITokenAcquisition>();
+    var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+    var dbContext = serviceProvider.GetRequiredService<ErcdbContext>();
 
-    return new CurrentUserHelper(httpContextAccessor.HttpContext?.User!, tokenAcquisition, configuration);
+    return new CurrentUserHelper(user, tokenAcquisition, configuration, dbContext, httpContextAccessor);
 });
 
 var app = builder.Build();
