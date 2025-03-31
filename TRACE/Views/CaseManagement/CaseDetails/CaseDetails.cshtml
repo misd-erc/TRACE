@@ -173,7 +173,7 @@
         <div id="tasks" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Tasks</h3>
-                <button>+ Assign New Task</button>
+                <button onclick="CreateTask()">+ Assign New Task</button>
             </div>
             <div class="nopaginationdiv">
                 <h4>Pending Tasks</h4>
@@ -242,12 +242,17 @@
 <script>
     function CreateHearing() {
         const urlParams = new URLSearchParams(window.location.search);
-        const erccaseId = urlParams.get('id') || 13588;
+        const erccaseId = urlParams.get('id');
         window.location.href = `/Hearing/create?id=${erccaseId}`;
     } 
     function CreateAssignment() {
         const urlParams = new URLSearchParams(window.location.search);
-        const erccaseId = urlParams.get('id') || 13588;
+        const erccaseId = urlParams.get('id');
         window.location.href = `/CaseAssignment/create?id=${erccaseId}`;
+    }
+    function CreateTask() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const erccaseId = urlParams.get('id');
+        window.location.href = `/CaseTask/create?id=${erccaseId}`;
     }
 </script>

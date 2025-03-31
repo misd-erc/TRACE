@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -13,10 +14,11 @@ namespace TRACE.Controllers
     public class CaseTaskController : Controller
     {
         private readonly ErcdbContext _context;
-
-        public CaseTaskController(ErcdbContext context)
+        private readonly CurrentUserHelper _currentUserHelper;
+        public CaseTaskController(ErcdbContext context, CurrentUserHelper currentUserHelper )
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: CaseTask
@@ -60,7 +62,8 @@ namespace TRACE.Controllers
         // GET: CaseTask/Create
         public IActionResult Create()
         {
-            ViewData["DocumentId"] = new SelectList(_context.Documents, "DocumentId", "DocumentId");
+            ViewData["DocumentId"] = new SelectList(_context.Documents, "DocumentId", "Subject");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Username");
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
             return View();
         }
@@ -72,15 +75,19 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CaseTaskId,ErccaseId,UserId,Task,TaskedBy,DatetimeCreated,TargetCompletionDate,ActualCompletionDate,DocumentId")] CaseTask caseTask)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+                caseTask.DatetimeCreated = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                caseTask.TaskedBy = user.Username;
                 _context.Add(caseTask);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
             ViewData["DocumentId"] = new SelectList(_context.Documents, "DocumentId", "DocumentId", caseTask.DocumentId);
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseTask.ErccaseId);
-            return View(caseTask);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseTask/Edit/5
