@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -23,10 +24,23 @@ namespace TRACE.Controllers
 
         // GET: Users
         [Route("usermanagement")]
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> Index([FromServices] CurrentUserHelper currentUserHelper)
         {
-            return View(await _context.Users.ToListAsync());
+            if (HttpContext.Session.GetString("IsVerified") != "true")
+            {
+                return RedirectToAction("Logout", "External");
+            }
+
+            string userDepartment = await currentUserHelper.GetDepartmentAsync();
+
+            var users = await _context.Users
+                .Where(u => u.Department == userDepartment)
+                .ToListAsync();
+
+            return View(users);
         }
+
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -91,6 +105,10 @@ namespace TRACE.Controllers
         [Route("users/edit/{id:int}")]
         public async Task<IActionResult> Edit(int id)
         {
+            if (HttpContext.Session.GetString("IsVerified") != "true")
+            {
+                return RedirectToAction("Logout", "External");
+            }
             var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
