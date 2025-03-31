@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TRACE.Models;
 
@@ -15,6 +16,7 @@ public partial class CaseAssignment
 
     public string? AssignedBy { get; set; }
 
+    [Display(Name = "Select Handling Officer Type")]
     public long HandlingOfficerTypeId { get; set; }
 
     public virtual Erccase Erccase { get; set; } = null!;
