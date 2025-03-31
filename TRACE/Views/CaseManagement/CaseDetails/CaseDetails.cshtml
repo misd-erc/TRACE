@@ -211,7 +211,7 @@
         <div id="notes" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Notes</h3>
-                <button>+ New Note</button>
+                <button onclick="CreateNote()">+ New Note</button>
             </div>
             <table class="my-cases-table">
                 <thead>
@@ -254,5 +254,10 @@
         const urlParams = new URLSearchParams(window.location.search);
         const erccaseId = urlParams.get('id');
         window.location.href = `/CaseTask/create?id=${erccaseId}`;
+    }
+    function CreateNote() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const erccaseId = urlParams.get('id');
+        window.location.href = `/CaseNote/create?id=${erccaseId}`;
     }
 </script>

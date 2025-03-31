@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -13,10 +14,12 @@ namespace TRACE.Controllers
     public class CaseNoteController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseNoteController(ErcdbContext context)
+        public CaseNoteController(ErcdbContext context, CurrentUserHelper currentUserHelper )
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: CaseNote
@@ -70,14 +73,19 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CaseNoteId,Notes,ErccaseId,DatetimeCreated,NotedBy")] CaseNote caseNote)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+
             {
+                caseNote.DatetimeCreated = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                caseNote.NotedBy = user.Username;
                 _context.Add(caseNote);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseNote.ErccaseId);
-            return View(caseNote);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseNote/Edit/5
@@ -104,15 +112,14 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("CaseNoteId,Notes,ErccaseId,DatetimeCreated,NotedBy")] CaseNote caseNote)
         {
-            if (id != caseNote.CaseNoteId)
-            {
-                return NotFound();
-            }
+          
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
+                    
+                    
                     _context.Update(caseNote);
                     await _context.SaveChangesAsync();
                 }
@@ -127,10 +134,10 @@ namespace TRACE.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseNote.ErccaseId);
-            return View(caseNote);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseNote/Delete/5

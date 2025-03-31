@@ -110,22 +110,34 @@ function fetchCaseTaskWithErcId(caseId) {
 
             result.data.forEach(event => {
              
-                const row = `
+               
+
+                // Check if TargetCompletionDate exists
+                if (event.actualCompletionDate) {
+                    const row = `
+                        <tr>
+                            <td data-label="TASKED TO">${event.userId || 'N/A'}</td>
+                            <td data-label="DETAILS">${event.task || 'N/A'}</td>
+                            <td data-label="TARGET DATE">${event.targetCompletionDate || 'N/A'}</td>
+                            <td data-label="ACTION" class="actions">
+                              
+                                <i class='bx bxs-x-circle' title="Pin task"></i>
+                            </td>
+                        </tr>
+                    `;
+                    caseassignment1.innerHTML += row; // Completed Task
+                } else {
+                    const row = `
                         <tr>
                             <td data-label="TASKED TO">${event.userId || 'N/A'}</td>
                             <td data-label="DETAILS">${event.task || 'N/A'}</td>
                             <td data-label="TARGET DATE">${event.targetCompletionDate || 'N/A'}</td>
                             <td data-label="ACTION" class="actions">
                                 <i class='bx bxs-check-circle' title="Mark as complete"></i>
-                                <i class='bx bxs-x-circle' title="Pin task"></i>
+                             
                             </td>
                         </tr>
                     `;
-
-                // Check if TargetCompletionDate exists
-                if (event.ActualCompletionDate) {
-                    caseassignment1.innerHTML += row; // Completed Task
-                } else {
                     caseassignment.innerHTML += row; // Pending Task
                 }
             });
@@ -234,20 +246,20 @@ function fetchCaseNoteWithErcId(caseId) {
             }
             return response.json();
         })
-        .then(data => {
+        .then(event => {
             const casehearing = document.getElementById('casenote');
             casehearing.innerHTML = '';
-            if (data.length > 0) {
-                data.forEach(event => {
+            if (event.data.length > 0) {
+                event.data.forEach(event => {
                     const caseData = event; 
                
                     casehearing.innerHTML += `
                                        <tr >
-                                            <td data-label="NotedBy">${caseData.NotedBy}</td>
-                                            <td data-label="DESCRIPTION">${caseData.Notes}</td>
-                                            <td data-label="DATE">${caseData.DatetimeCreated}</td>
+                                            <td data-label="NotedBy">${caseData.notedBy}</td>
+                                            <td data-label="DESCRIPTION">${caseData.notes}</td>
+                                            <td data-label="DATE">${caseData.datetimeCreated}</td>
                                             <td data-label="ACTION" class="actions">
-                                                <i class='bx bxs-edit' title="Edit"></i>
+                                                <i class='bx bxs-edit' title="Edit" onclick="CasenoteEdit(${caseData.caseNoteId})"></i>
                                                 <i class='bx bxs-x-circle' title="Archive"></i>
                                             </td>
                                         </tr>
@@ -269,6 +281,9 @@ function fetchCaseNoteWithErcId(caseId) {
         .catch(error => {
             console.error('Error fetching case details:', error);
         });
+}
+function CasenoteEdit(caseNoteID) {
+    window.location.href = `/casenote/edit?id=${caseNoteID}`;
 }
 
 function fetchCaseDetails(caseId) {
