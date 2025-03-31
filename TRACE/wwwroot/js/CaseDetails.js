@@ -69,14 +69,17 @@ function fetchCaseEvent(caseId) {
             caseeventbody.innerHTML = '';
 
             data.forEach(event => {
+                const formattedDate = event.eventDatetime
+                    ? new Date(event.eventDatetime).toLocaleDateString('en-GB')
+                    : 'N/A';
 
                 const row = `
-                        <tr>
-                            <td data-label="BY">${event.userID || 'N/A'}</td>
-                            <td data-label="DESCRIPTION">${event.eventDescription || 'N/A'}</td>
-                            <td data-label="DATE">${event.eventDatetime || 'N/A'}</td>
-                        </tr>
-                    `;
+                    <tr>
+                        <td data-label="BY">${event.userID || 'N/A'}</td>
+                        <td data-label="DESCRIPTION">${event.eventDescription || 'N/A'}</td>
+                        <td data-label="DATE">${formattedDate}</td>
+                    </tr>
+    `;
                 caseeventbody.innerHTML += row;
             });
         })
@@ -110,16 +113,16 @@ function fetchCaseTaskWithErcId(caseId) {
             console.log("data", result.data);
 
             result.data.forEach(event => {
-             
-               
-
                 // Check if TargetCompletionDate exists
                 if (event.actualCompletionDate) {
+                    const formattedDate = event.actualCompletionDate
+                        ? new Date(event.actualCompletionDate).toLocaleDateString('en-GB')
+                        : 'N/A';
                     const row = `
                         <tr>
                             <td data-label="TASKED TO">${event.userId || 'N/A'}</td>
                             <td data-label="DETAILS">${event.task || 'N/A'}</td>
-                            <td data-label="TARGET DATE">${event.targetCompletionDate || 'N/A'}</td>
+                            <td data-label="TARGET DATE">${formattedDate}</td>
                             <td data-label="ACTION" class="actions">
                               
                                 <i class='bx bxs-x-circle' title="Pin task"></i>
@@ -128,11 +131,14 @@ function fetchCaseTaskWithErcId(caseId) {
                     `;
                     caseassignment1.innerHTML += row; // Completed Task
                 } else {
+                    const formattedDate = event.targetCompletionDate
+                        ? new Date(event.targetCompletionDate).toLocaleDateString('en-GB')
+                        : 'N/A';
                     const row = `
                         <tr>
                             <td data-label="TASKED TO">${event.userId || 'N/A'}</td>
                             <td data-label="DETAILS">${event.task || 'N/A'}</td>
-                            <td data-label="TARGET DATE">${event.targetCompletionDate || 'N/A'}</td>
+                            <td data-label="TARGET DATE">${formattedDate}</td>
                             <td data-label="ACTION" class="actions">
                                 <i class='bx bxs-check-circle' title="Mark as complete"></i>
                              
@@ -164,11 +170,14 @@ function fetchCaseAssignmentWithErcId(caseId) {
             if (data.length > 0) {
                 const caseData = data[0];
                 data.forEach(event => {
+                    const formattedDate = event.DateAssigned
+                        ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
+                        : 'N/A';
                     caseassignment.innerHTML += `
                                <tr>
                                 <td data-label="OFFICER TYPE">${caseData.OfficerType}</td>
                                 <td data-label="ASSIGNED PERSONEL">${caseData.UserID}</td>
-                                <td data-label="DATE ASSIGNED">${caseData.DateAssigned}</td>
+                                <td data-label="DATE ASSIGNED">${formattedDate}</td>
                                 <td data-label="ASSIGNED BY">${caseData.AssignedBy}</td>
                                 <td data-label="ACTION" class="actions">
                                 <i class='bx bxs-x-circle' title="Archive"></i>
@@ -207,18 +216,21 @@ function fetchCaseHearingWithErcId(caseId) {
             if (data.length > 0) {
                 data.forEach(event => {
                     const caseData = event;
+                    const formattedDate = caseData.HearingDate
+                        ? new Date(caseData.HearingDate).toLocaleDateString('en-GB')
+                        : 'N/A';
                     casehearing.innerHTML += `
-                                        <tr>
-                                            <td data-label="HEARING CATEGORY">${caseData.HearingCategory}</td>
-                                            <td data-label="DATE AND TIME">${caseData.HearingDate} ${caseData.Time}</td>
-                                            <td data-label="VENUE">${caseData.HearingVenue}</td>
-                                            <td data-label="TYPE">${caseData.HearingTypeDescription} (${caseData.HearingType})</td>
-                                            <td data-label="REMARKS">${caseData.Remarks}</td>
-                                            <td data-label="ACTION" class="actions">
-                                                <i class='bx bxs-edit' title="Edit"></i>
-                                                <i class='bx bxs-x-circle' title="Archive"></i>
-                                            </td>
-                                        </tr>
+                    <tr>
+                        <td data-label="HEARING CATEGORY">${caseData.HearingCategory}</td>
+                        <td data-label="DATE AND TIME">${formattedDate} ${caseData.Time}</td>
+                        <td data-label="VENUE">${caseData.HearingVenue}</td>
+                        <td data-label="TYPE">${caseData.HearingTypeDescription} (${caseData.HearingType})</td>
+                        <td data-label="REMARKS">${caseData.Remarks}</td>
+                        <td data-label="ACTION" class="actions">
+                            <i class='bx bxs-edit' title="Edit"></i>
+                            <i class='bx bxs-x-circle' title="Archive"></i>
+                        </td>
+                    </tr>
                             `;
                 })
              
@@ -253,12 +265,14 @@ function fetchCaseNoteWithErcId(caseId) {
             if (event.data.length > 0) {
                 event.data.forEach(event => {
                     const caseData = event; 
-               
+                    const formattedDate = caseData.datetimeCreated
+                        ? new Date(caseData.datetimeCreated).toLocaleDateString('en-GB')
+                        : 'N/A';
                     casehearing.innerHTML += `
                                        <tr >
                                             <td data-label="NotedBy">${caseData.notedBy}</td>
                                             <td data-label="DESCRIPTION">${caseData.notes}</td>
-                                            <td data-label="DATE">${caseData.datetimeCreated}</td>
+                                            <td data-label="DATE">${formattedDate}</td>
                                             <td data-label="ACTION" class="actions">
                                                 <i class='bx bxs-edit' title="Edit" onclick="CasenoteEdit(${caseData.caseNoteId})"></i>
                                                 <i class='bx bxs-x-circle' title="Archive"></i>
@@ -347,6 +361,15 @@ function fetchCaseDetails(caseId) {
                 const caseDetailsDiv = document.getElementById('caseDetails');
                 const caseage = document.getElementById('caseage');
                 caseage.innerHTML = calculateDays(caseData.DateFiled) + "Days";
+                const formattedDatedocketed = caseData.DateDocketed
+                    ? new Date(caseData.DateDocketed).toLocaleDateString('en-GB')
+                    : 'N/A';
+                const formattedDatefiled = caseData.DateFiled
+                    ? new Date(caseData.DateFiled).toLocaleDateString('en-GB')
+                    : 'N/A';
+                const formattedDateapproved = caseData.DatetimeApproved
+                    ? new Date(caseData.DatetimeApproved).toLocaleDateString('en-GB')
+                    : 'N/A';
                 caseDetailsDiv.innerHTML = `
                       <div>
                           <span><strong>ERC Case No.: </strong> <i>${caseData.CaseNo}</i></span>
@@ -355,8 +378,8 @@ function fetchCaseDetails(caseId) {
                       </div>
                       <div>
                           <span><strong>Case Nature: </strong> <i>${caseData.CaseNature}</i></span>
-                          <span><strong>Date Filed: </strong> <i>${caseData.DateFiled}</i></span>
-                          <span><strong>Date Docketed: </strong> <i>${caseData.DateDocketed}</i></span>
+                          <span><strong>Date Filed: </strong> <i>${formattedDatefiled}</i></span>
+                          <span><strong>Date Docketed: </strong> <i>${formattedDatedocketed}</i></span>
                       </div>
                       <div>
                               <span><strong>Docketed By: </strong> <i>${caseData.DocketedBy ?? 'N/A'}</i></span>
@@ -365,7 +388,7 @@ function fetchCaseDetails(caseId) {
                       </div>
                       <div>
                           <span><strong>No. of Folders: </strong> <i>${caseData.NoOfFolders ?? 'N/A'}</i></span>
-                          <span><strong>Date Approved: </strong> <i>${caseData.DatetimeApproved ?? 'N/A'}</i></span>
+                          <span><strong>Date Approved: </strong> <i>${formattedDateapproved}</i></span>
                           <span><strong class="green-txt">${caseData.CaseStatus}</strong></span>
                       </div>
                     `;
