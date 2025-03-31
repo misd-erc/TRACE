@@ -151,9 +151,9 @@ function fetchCaseAssignmentWithErcId(caseId) {
                     caseassignment.innerHTML += `
                                <tr>
                                 <td data-label="OFFICER TYPE">${caseData.OfficerType}</td>
-                                <td data-label="ASSIGNED PERSONEL">amqcadiente</td>
-                                <td data-label="DATE ASSIGNED">03/09/2016</td>
-                                <td data-label="ASSIGNED BY">agacosta</td>
+                                <td data-label="ASSIGNED PERSONEL">${caseData.UserID}</td>
+                                <td data-label="DATE ASSIGNED">${caseData.DateAssigned}</td>
+                                <td data-label="ASSIGNED BY">${caseData.AssignedBy}</td>
                                 <td data-label="ACTION" class="actions">
                                 <i class='bx bxs-x-circle' title="Archive"></i>
                             </td>
