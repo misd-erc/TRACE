@@ -17,6 +17,10 @@ namespace TRACE.Components
             {
                 activeTab = "_dc";
             }
+            else if (currentPath.Contains("cocres"))
+            {
+                activeTab = "_cocres";
+            }
 
             ViewData["ActiveTab"] = activeTab;
             return View();

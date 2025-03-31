@@ -60,5 +60,16 @@ namespace TRACE.Controllers
             }
             return View("MyCases/DocketedCases/DocketedCases");
         }
+
+        [Route("cocres")]
+        public IActionResult CocRes()
+        {
+            if (HttpContext.Session.GetString("IsVerified") != "true")
+            {
+                return RedirectToAction("Logout", "External");
+
+            }
+            return View("MyCases/COCRES/cocres");
+        }
     }
 }

@@ -1,0 +1,166 @@
+﻿@{
+    ViewData["Title"] = "My Cases - COC RES";
+}
+
+
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > Case Management > COC/RES
+</div>
+
+@await Component.InvokeAsync("MyCasesMenu")
+
+
+<div class="main-head-div flex h-center space-between">
+    <div class="title-div">
+        <h3>COC/RES CASES</h3>
+        <p>Manage your coc/res cases</p>
+    </div>
+    <div class="filter-design border-radius-5 flex h-center">
+        <i class='bx bx-search'></i>
+        <input type="text" placeholder="Enter Case No. or Case Title here.." />
+    </div>
+    <div class="btn-div">
+        <a href="/erccase/create"><button>+ CREATE CASE</button></a>
+    </div>
+</div>
+
+<div class="case-card shadow border-radius-5 flex space-between">
+    <div class="case-table-div">
+        <table id="casesTable" class="my-cases-table">
+            <thead>
+                <tr>
+                    <th>CASE NO.</th>
+                    <th>CASE TITLE</th>
+                    <th>DATE FILED</th>
+                    <th>DATE DOCKETED</th>
+                    <th>CASE STATUS</th>
+                    <th>APPLICANT/PETITIONER</th>
+                    <th>RESPONDENT</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination flex h-center gap-10">
+        <span>Current Page: </span>
+        <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
+        <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
+    </div>
+    @* @await Html.PartialAsync("Components/Loader/Mini-Loader") *@
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        $(document).ready(function () {
+        let currentPage = 1;
+        const rowsPerPage = 9;
+        let caseData = [];
+        let filteredCaseData = [];
+
+        function displayTablePage(page) {
+            const tableBody = $("#casesTable tbody");
+            tableBody.empty();
+
+            let start = (page - 1) * rowsPerPage;
+            let end = start + rowsPerPage;
+            let paginatedItems = filteredCaseData.slice(start, end);
+
+            $.each(paginatedItems, function (index, item) {
+                let row = `
+                    <tr>
+                        <td data-label="Case No.">${item.CaseNo}</td>
+                        <td data-label="Case Title" class="case-title" onclick="location.href='@Url.Action("CaseDetails", "CaseManagement")'">${item.Title}</td>
+                        <td data-label="Date Filed">${formatDate(item.DateFiled)}</td>
+                        <td data-label="Date Docketed">${formatDate(item.DateDocketed)}</td>
+                        <td data-label="Status">${item.CaseStatus}</td>
+                        <td data-label="Applicant/Petitioner">${item.CorrespondentLastName ?? 'N/A'}</td>
+                        <td data-label="Respondent">${item.CompanyName ?? 'N/A'}</td>
+                        <td class="actions" data-label="ACTIONS">
+                            <a href="@Url.Action("Edit", "ERCCase")/${item.ERCCaseID}"><i class='bx bxs-edit' title="Edit"></i></a>
+                            <i class='bx bxs-x-circle' title="Archive"></i>
+                        </td>
+                    </tr>`;
+                tableBody.append(row);
+            });
+        }
+
+        function updatePaginationControls() {
+            let totalPages = Math.ceil(filteredCaseData.length / rowsPerPage);
+            $(".prev").toggle(currentPage > 1);
+            $(".next").toggle(currentPage < totalPages);
+
+            let paginationSelect = $(".pagination select");
+            paginationSelect.empty();
+            for (let i = 1; i <= totalPages; i++) {
+                paginationSelect.append(`<option value='${i}' ${i === currentPage ? 'selected' : ''}>${i}</option>`);
+            }
+        }
+
+        $.ajax({
+            url: "/Erccase/GetAllDocketedCases",
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                caseData = data;
+                filteredCaseData = [...caseData];
+                displayTablePage(currentPage);
+                updatePaginationControls();
+            },
+            error: function () {
+                alert("Failed to fetch data.");
+            }
+        });
+
+        $(".next").click(function () {
+            let totalPages = Math.ceil(filteredCaseData.length / rowsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayTablePage(currentPage);
+                updatePaginationControls();
+            }
+        });
+
+        $(".prev").click(function () {
+            if (currentPage > 1) {
+                currentPage--;
+                displayTablePage(currentPage);
+                updatePaginationControls();
+            }
+        });
+
+        $(".pagination select").change(function () {
+            currentPage = parseInt($(this).val());
+            displayTablePage(currentPage);
+            updatePaginationControls();
+        });
+
+        function formatDate(dateString) {
+            if (!dateString) return "N/A";
+            var date = new Date(dateString);
+            return date.toLocaleDateString();
+        }
+
+
+        $(".filter-design input").on("input", function () {
+            let searchTerm = $(this).val().toLowerCase();
+            filteredCaseData = caseData.filter(item =>
+                item.CaseNo.toLowerCase().includes(searchTerm) ||
+                item.Title.toLowerCase().includes(searchTerm)
+            );
+
+            currentPage = 1;
+            displayTablePage(currentPage);
+            updatePaginationControls();
+        });
+    });
+
+
+</script>
