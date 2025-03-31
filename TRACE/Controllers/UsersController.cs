@@ -23,6 +23,7 @@ namespace TRACE.Controllers
         }
 
         // GET: Users
+        [Authorize(Roles = "System Admin")]
         [Route("usermanagement")]
         [HttpGet]
         public async Task<IActionResult> Index([FromServices] CurrentUserHelper currentUserHelper)

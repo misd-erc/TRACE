@@ -145,10 +145,13 @@
                         <i class='bx bxs-book-content'></i>
                         <span>Content Management</span>
                     </li>
-                    <li onclick="location.href='@Url.Action("Index", "Users")'">
-                        <i class='bx bxs-user-detail'></i>
-                        <span>User Management</span>
-                    </li>
+                    @if (User.IsInRole("System Admin"))
+                    {
+                        <li onclick="location.href='@Url.Action("Index", "Users")'">
+                            <i class='bx bxs-user-detail'></i>
+                            <span>User Management</span>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
