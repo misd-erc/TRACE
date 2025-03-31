@@ -83,5 +83,6 @@ namespace TRACE.Controllers
         public string DisplayName { get; set; }
         public string Email { get; set; }
         public string Department { get; set; }
+        public bool IsArchive { get; set; }
     }
 }

@@ -25,8 +25,7 @@
         <div id="users" class="cms-content active">
             <h3><i class='bx bxs-user-account'></i> Manage Users From Azure AD</h3>
 
-            @if (Model != null && Model.Any())
-            {
+         
                 <div class="filter-design border-radius-5 flex h-center" style="margin-bottom:20px;">
                     <i class='bx bx-search'></i>
                     <input type="text" id="userSearch" placeholder="Name, Email or Department.." style="width:100% !important;" />
@@ -41,16 +40,8 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td data-label="Full Name"> @Html.DisplayFor(modelItem => item.Fullname)</td>
-                                <td data-label="Email Address">@Html.DisplayFor(modelItem => item.Email)</td>
-                                <td data-label="Department">@Html.DisplayFor(modelItem => item.Department)</td>
-                                <td data-label="Action"><a asp-action="Edit" asp-route-id="@item.Id"><button title="Manage role for this user">Manage</button></a></td>
-                            </tr>
-                        }
+                    <tbody id="userdata">
+                     
                         
                     </tbody>
                 </table>
@@ -61,11 +52,7 @@
                     <span id="prevPage" class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
                     <span id="nextPage" class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
                 </div>
-            }
-            else
-            {
-                <p>No users found in this group.</p>
-            }
+          
         </div>
 
         <div id="userroles" class="cms-content">
@@ -79,16 +66,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const table = document.querySelector("#ADuserTable");
-        if (!table) {
-            console.error("Table with ID 'ADuserTable' not found.");
-            return;
-        }
-
-        const tableBody = table.querySelector("tbody");
-        if (!tableBody) {
-            console.error("Tbody inside '#ADuserTable' not found.");
-            return;
-        }
+        
 
         const rowsPerPage = 5;
         let currentPage = 1;
