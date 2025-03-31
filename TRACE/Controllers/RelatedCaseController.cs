@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
 using TRACE.Models;
@@ -13,10 +15,11 @@ namespace TRACE.Controllers
     public class RelatedCaseController : Controller
     {
         private readonly ErcdbContext _context;
-
-        public RelatedCaseController(ErcdbContext context)
+        private readonly string _connectionString;
+        public RelatedCaseController(ErcdbContext context, IConfiguration configuration)
         {
             _context = context;
+            _connectionString = configuration.GetConnectionString("ErcDatabase");
         }
 
         // GET: RelatedCase
@@ -28,14 +31,37 @@ namespace TRACE.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCaseRelatedByErcID(int id)
         {
-            var categories = await _context.RelatedCases.Where(x => x.ErccaseId == id).ToListAsync();
-
-            if (categories == null || !categories.Any())
+            try
             {
-                return Json(new { success = false, message = "No categories found." });
-            }
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync(); // Ensure connection opens
 
-            return Json(new { success = true, data = categories });
+                var sql = @"SELECT 
+                                rc.RelatedCaseID,
+                                rc.ERCCaseID,
+                                e1.CaseNo AS ERCCaseNo,
+                                e1.Title AS ERCCaseTitle,
+                                rc.ERCCaseRelatedID,
+                                e2.CaseNo AS RelatedCaseNo,
+                                e2.Title AS RelatedCaseTitle,
+                                rc.RelatedBy,
+                                rc.DatetimeRelated
+                            FROM 
+                                [ercdb].[cases].[RelatedCases] rc
+                            LEFT JOIN 
+                                [ercdb].[cases].[ERCCases] e1 ON rc.ERCCaseID = e1.ERCCaseID
+                            LEFT JOIN 
+                                [ercdb].[cases].[ERCCases] e2 ON rc.ERCCaseRelatedID = e2.ERCCaseID
+                            WHERE 
+                                rc.ERCCaseID = @id";
+
+                var result = await connection.QueryAsync<dynamic>(sql, new { id });
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
         }
 
         // GET: RelatedCase/Details/5

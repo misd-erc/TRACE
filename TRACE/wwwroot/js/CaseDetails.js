@@ -15,6 +15,7 @@ const itemsPerPage = 5;
         fetchCaseHearingWithErcId(caseId);
         fetchCaseTaskWithErcId(caseId);
         fetchCaseNoteWithErcId(caseId);
+        GetCaseRelatedByErcID(caseId);
 
     } else {
         console.error('No case ID found in URL.');
@@ -263,6 +264,49 @@ function fetchCaseNoteWithErcId(caseId) {
                                                 <i class='bx bxs-x-circle' title="Archive"></i>
                                             </td>
                                         </tr>
+                            `;
+                })
+               
+
+                // Update values dynamically
+              
+            } else {
+                casehearing.innerHTML = `
+                                <tr>
+                                    <td colspan="6">No Data Found</td>
+                                </tr>
+                            `;
+            }
+
+        })
+        .catch(error => {
+            console.error('Error fetching case details:', error);
+        });
+}
+function GetCaseRelatedByErcID(caseId) {
+    fetch(`/RelatedCase/GetCaseRelatedByErcID?id=${caseId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(event => {
+            const casehearing = document.getElementById('caserelated');
+            casehearing.innerHTML = '';
+            console.log("asd",event)
+            if (event.length > 0) {
+                event.forEach(event => {
+                    const caseData = event; 
+               
+                    casehearing.innerHTML += `
+                                <tr>
+                                    <td data-label="CASE NO.">${caseData.ERCCaseNo}</td>
+                                    <td data-label="CASE TITLE">${caseData.ERCCaseTitle}</td>
+                                    <td data-label="ACTION" class="actions">
+                                        <i class='bx bxs-x-circle' title="Archive"></i>
+                                    </td>
+                                </tr>
                             `;
                 })
                
