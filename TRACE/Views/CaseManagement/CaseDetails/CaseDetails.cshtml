@@ -76,7 +76,7 @@
         <div id="assignpersonnel" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Current Assigned Personnel</h3>
-                <button>+ Assign Personnel</button>
+                <button onclick="CreateAssignment()">+ Assign Personnel</button>
             </div>
             <div class="nopaginationdiv">
                 <table class="my-cases-table">
@@ -152,7 +152,7 @@
         <div id="hearings" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Hearings</h3>
-                <button>+ New Hearing</button>
+                <button id="createhearing" onclick="CreateHearing()">+ New Hearing</button>
             </div>
             <table class="my-cases-table">
                 <thead>
@@ -239,3 +239,15 @@
     </div>
 </div>
 <script src="~/js/CaseDetails.js"></script>
+<script>
+    function CreateHearing() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const erccaseId = urlParams.get('id') || 13588;
+        window.location.href = `/Hearing/create?id=${erccaseId}`;
+    } 
+    function CreateAssignment() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const erccaseId = urlParams.get('id') || 13588;
+        window.location.href = `/CaseAssignment/create?id=${erccaseId}`;
+    }
+</script>
