@@ -19,7 +19,7 @@ namespace TRACE.Controllers
             //DOCUMENT RELATED
             new ModuleModel { Name = "<b>Document:</b> Document Management", Link = "/documents" },
 
-            //DOCUMENT RELATED
+            //HEARING RELATED
             new ModuleModel { Name = "<b>Hearing:</b> Hearings", Link = "/hearings" },
 
             //CONTENT RELATED

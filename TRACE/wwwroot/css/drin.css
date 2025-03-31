@@ -326,15 +326,19 @@ button .bx-plus{
     padding:10px 15px;
 }
 
-.grid-menu-div i{   
-    cursor:pointer;
-    color: #fff;
-    font-size:25px;
-    padding:5px;
-    border-radius:50px;
+.grid-menu-div{
+    position:relative;
 }
 
-.grid-menu-div i:hover {
+.grid-menu-div .bxs-grid {
+    cursor: pointer;
+    color: #fff;
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 50px;
+}
+
+.grid-menu-div .bxs-grid:hover {
     background: var(--active-color);
 }
 
@@ -433,6 +437,22 @@ button .bx-plus{
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
+.waffle-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--theme);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 0px;
+    z-index: 999;
+    min-width: 450px;
+    overflow: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
 .notif-dropdown.show {
     opacity: 1;
     visibility: visible;
@@ -440,6 +460,12 @@ button .bx-plus{
 }
 
 .profile-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.waffle-dropdown.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -468,6 +494,36 @@ button .bx-plus{
 
 .user-info{
     padding:10px;
+}
+
+.waffle-sites {
+    padding: 20px;
+    max-height:400px;
+    overflow-y:auto;
+}
+
+.waffle-sites i {
+    color: var(--primary-color);
+    font-size:34px;
+}
+
+.waffle-img{
+    width:34px;
+    height:34px;
+}
+
+.waffle-sites span {
+    display: flex;
+    align-items: center;
+    gap:10px;
+    font-size:10px;
+    padding:10px 10px;
+    cursor:pointer;
+    background: var(--body-color);
+}
+
+.waffle-sites span:hover {
+    background: var(--active-color);
 }
 
 .profile-dropdown{

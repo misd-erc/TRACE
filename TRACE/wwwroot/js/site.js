@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const _notifmenu = document.getElementById('notifDropdown');
 const _profilemenu = document.getElementById('profileDropdown');
+const _wafflemenu = document.getElementById('waffleDropdown');
 function toggleProfileMenu() {
     _notifmenu.classList.remove('show');
     _profilemenu.classList.toggle('show');
@@ -24,6 +25,10 @@ function toggleProfileMenu() {
 function toggleNotifMenu() {
     _profilemenu.classList.remove('show')
     _notifmenu.classList.toggle('show');
+}
+
+function toggleWaffleMenu() {
+    _wafflemenu.classList.toggle('show');
 }
 
 function toggleDropdown(event) {
