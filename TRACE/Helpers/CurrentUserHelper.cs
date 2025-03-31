@@ -29,6 +29,7 @@ namespace TRACE.Helpers
             _httpContextAccessor = httpContextAccessor;
         }
 
+
         public string Name => _user.FindFirst("name")?.Value ?? "Unknown";
         public string Email => _user.FindFirst("preferred_username")?.Value ?? "Unknown";
         public string Role => _user.FindFirst(ClaimTypes.Role)?.Value ?? "Unknown";

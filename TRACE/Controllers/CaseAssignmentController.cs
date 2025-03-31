@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -16,11 +17,13 @@ namespace TRACE.Controllers
     {
         private readonly ErcdbContext _context;
         private readonly string _connectionString;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseAssignmentController(ErcdbContext context, IConfiguration configuration)
+        public CaseAssignmentController(ErcdbContext context, IConfiguration configuration, CurrentUserHelper currentUserHelper )
         {
             _context = context;
             _connectionString = configuration.GetConnectionString("ErcDatabase");
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: CaseAssignment
@@ -38,7 +41,7 @@ namespace TRACE.Controllers
                 using var connection = new SqlConnection(_connectionString);
                 await connection.OpenAsync(); // Ensure connection opens
 
-                var sql = @"SELECT TOP (1000) 
+                var sql = @"SELECT 
                                 ca.CaseAssignmentID,
                                 ca.UserID,
                                 ca.ERCCaseID,
@@ -85,8 +88,10 @@ namespace TRACE.Controllers
         // GET: CaseAssignment/Create
         public IActionResult Create()
         {
+            
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
-            ViewData["HandlingOfficerTypeId"] = new SelectList(_context.HandlingOfficerTypes, "HandlingOfficerTypeId", "HandlingOfficerTypeId");
+            ViewData["Users"] = new SelectList(_context.Users, "Username", "Username");
+            ViewData["HandlingOfficerTypeId"] = new SelectList(_context.HandlingOfficerTypes, "HandlingOfficerTypeId", "OfficerType");
             return View();
         }
 
@@ -97,15 +102,21 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CaseAssignmentId,UserId,ErccaseId,DateAssigned,AssignedBy,HandlingOfficerTypeId")] CaseAssignment caseAssignment)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(caseAssignment);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseAssignment.ErccaseId);
             ViewData["HandlingOfficerTypeId"] = new SelectList(_context.HandlingOfficerTypes, "HandlingOfficerTypeId", "HandlingOfficerTypeId", caseAssignment.HandlingOfficerTypeId);
-            return View(caseAssignment);
+            if (!ModelState.IsValid)
+            {
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                caseAssignment.AssignedBy = user.Username;
+
+                caseAssignment.DateAssigned = DateOnly.FromDateTime(DateTime.Now);
+                _context.Add(caseAssignment);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, message = "Success! Data has been saved." });
+            }
+
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseAssignment/Edit/5
@@ -121,7 +132,6 @@ namespace TRACE.Controllers
             {
                 return NotFound();
             }
-            ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseAssignment.ErccaseId);
             ViewData["HandlingOfficerTypeId"] = new SelectList(_context.HandlingOfficerTypes, "HandlingOfficerTypeId", "HandlingOfficerTypeId", caseAssignment.HandlingOfficerTypeId);
             return View(caseAssignment);
         }

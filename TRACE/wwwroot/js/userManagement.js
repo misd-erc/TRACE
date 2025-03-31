@@ -25,10 +25,11 @@ function fetchUsers() {
         })
         .then(result => {
             const casehearing = document.getElementById('userdata');
-            casehearing.innerHTML = '';
+           
 
             // Check for success and data availability
             if (result.success && Array.isArray(result.data) && result.data.length > 0) {
+                casehearing.innerHTML = '';
                 result.data.forEach(user => {
                     casehearing.innerHTML += `
                     <tr>

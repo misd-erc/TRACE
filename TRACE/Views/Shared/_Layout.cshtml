@@ -106,7 +106,7 @@
                 </span>
                 <div class="profile-dropdown" id="profileDropdown">
                     <div class="user-info">
-                        <span class="user-name">@CurrentUser.Name</span>
+                        <span class="user-name" id="currentusername">@CurrentUser.Name</span>
                         <span class="user-email">@CurrentUser.Email</span>
                         <span class="user-department">@await CurrentUser.GetDepartmentAsync()</span>
                     </div>
@@ -188,6 +188,7 @@
 }
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/userManagement.js"></script>
 <script>
     $(document).ready(function () {
         $("#searchInput").on("input", function () {
