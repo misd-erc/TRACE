@@ -13,7 +13,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CaseEventId" />
-            <div class="form-group">
+            <div class="form-group" style="display:none"
                 <label asp-for="ErccaseId" class="control-label"></label>
                 <select asp-for="ErccaseId" class="form-control" asp-items="ViewBag.ErccaseId"></select>
                 <span asp-validation-for="ErccaseId" class="text-danger"></span>

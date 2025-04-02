@@ -112,16 +112,9 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("CaseNoteId,Notes,ErccaseId,DatetimeCreated,NotedBy")] CaseNote caseNote)
         {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors)
-                                              .Select(e => e.ErrorMessage)
-                                              .ToList();
+           
 
-                return Json(new { success = false, message = "Error! Invalid input.", errors });
-            }
-
-            var existingCaseNote = await _context.CaseNotes.FindAsync(id);
+            var existingCaseNote = await _context.CaseNotes.FindAsync(caseNote.CaseNoteId);
             if (existingCaseNote == null)
             {
                 return Json(new { success = false, message = "Error! Case note not found." });

@@ -28,15 +28,15 @@
                     <input asp-for="Notes" class="form-control" />
                     <span asp-validation-for="Notes" class="text-danger"></span>
                 </div>
-                <div class="form-input-div">
+                <div class="form-input-div" style="display:none">
                     <label asp-for="ErccaseId" class="control-label"> </label>
                     <input asp-for="ErccaseId" type="text" class="form-control" id="ErccaseId" />
                 </div>
-                <div class="form-input-div" >
+                <div class="form-input-div" style="display:none">
                     <label asp-for="DatetimeCreated" class="control-label"></label>
                     <input asp-for="DatetimeCreated" class="form-control" />
                 </div>
-                <div class="form-input-div">
+                <div class="form-input-div" style="display:none">
                     <label asp-for="NotedBy" class="control-label"></label>
                     <input asp-for="NotedBy" class="form-control" />
                 </div>
@@ -97,21 +97,4 @@
         });
     </script>
 }
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Get the URL parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const erccaseId = urlParams.get('id');
 
-        // Set the hidden input field value if erccaseId exists
-        if (erccaseId) {
-            const inputElement = document.getElementById('ErccaseId');
-
-            if (inputElement) {
-                inputElement.value = erccaseId;
-            } else {
-                console.error('ErccaseId input not found');
-            }
-        }
-    });
-</script>
