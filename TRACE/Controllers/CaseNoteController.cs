@@ -112,33 +112,39 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("CaseNoteId,Notes,ErccaseId,DatetimeCreated,NotedBy")] CaseNote caseNote)
         {
-          
-
             if (!ModelState.IsValid)
             {
-                try
-                {
-                    
-                    
-                    _context.Update(caseNote);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CaseNoteExists(caseNote.CaseNoteId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                var errors = ModelState.Values.SelectMany(v => v.Errors)
+                                              .Select(e => e.ErrorMessage)
+                                              .ToList();
+
+                return Json(new { success = false, message = "Error! Invalid input.", errors });
+            }
+
+            var existingCaseNote = await _context.CaseNotes.FindAsync(id);
+            if (existingCaseNote == null)
+            {
+                return Json(new { success = false, message = "Error! Case note not found." });
+            }
+
+            try
+            {
+                // Update only the necessary fields
+                existingCaseNote.Notes = caseNote.Notes;
+                existingCaseNote.ErccaseId = caseNote.ErccaseId;
+                existingCaseNote.DatetimeCreated = caseNote.DatetimeCreated;
+                existingCaseNote.NotedBy = caseNote.NotedBy;
+
+                await _context.SaveChangesAsync();
+
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
-            ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseNote.ErccaseId);
-            return Json(new { success = false, message = "Error! Please check your input." });
+            catch (DbUpdateConcurrencyException)
+            {
+                return Json(new { success = false, message = "Error! Failed to save changes." });
+            }
         }
+
 
         // GET: CaseNote/Delete/5
         public async Task<IActionResult> Delete(long? id)

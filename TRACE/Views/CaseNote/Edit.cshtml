@@ -1,49 +1,117 @@
 @model TRACE.Models.CaseNote
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Case Note";
 }
 
-<h1>Edit</h1>
+<div class="crumbs">
+    <a href="javascript:history.back();">Go Back</a> > Edit Case Note
+</div>
+<form id="editForm" asp-action="Edit" method="post">
+    <div class="main-head-div flex h-center space-between">
+        <div class="title-div">
+            <h3>EDIT CASE NOTE</h3>
+            <p>This page is for editing notes to the selected erc case</p>
+        </div>
 
-<h4>CaseNote</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CaseNoteId" />
-            <div class="form-group">
-                <label asp-for="Notes" class="control-label"></label>
-                <input asp-for="Notes" class="form-control" />
-                <span asp-validation-for="Notes" class="text-danger"></span>
-            </div>
-            <div class="form-group" style="display:none">
-                <label asp-for="ErccaseId" class="control-label"></label>
-                <select asp-for="ErccaseId" class="form-control" asp-items="ViewBag.ErccaseId"></select>
-                <span asp-validation-for="ErccaseId" class="text-danger"></span>
-            </div>
-            <div class="form-group" style="display:none">
-                <label asp-for="DatetimeCreated" class="control-label"></label>
-                <input asp-for="DatetimeCreated" class="form-control" />
-                <span asp-validation-for="DatetimeCreated" class="text-danger"></span>
-            </div>
-            <div class="form-group" style="display:none">
-                <label asp-for="NotedBy" class="control-label"></label>
-                <input asp-for="NotedBy" class="form-control" />
-                <span asp-validation-for="NotedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        <div class="btn-div">
+            <input type="submit" value="SAVE CHANGES" class="btn btn-primary" />
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="case-card shadow border-radius-5">
+        <div class="form-div  create-lc">
+            <div class="grid grid-three-fr gap-10">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CaseNoteId" />
+                <div class="form-input-div">
+                    <label asp-for="Notes" class="control-label"></label>
+                    <input asp-for="Notes" class="form-control" />
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="ErccaseId" class="control-label"> </label>
+                    <input asp-for="ErccaseId" type="text" class="form-control" id="ErccaseId" />
+                </div>
+                <div class="form-input-div" >
+                    <label asp-for="DatetimeCreated" class="control-label"></label>
+                    <input asp-for="DatetimeCreated" class="form-control" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="NotedBy" class="control-label"></label>
+                    <input asp-for="NotedBy" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+            $("#editForm").submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Success!",
+                                text: response.message,
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                customClass: {
+                                    popup: "swal2-popup",
+                                    confirmButton: "swal2-confirm"
+                                }
+                            }).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Error!",
+                                text: response.message,
+                                icon: "error",
+                                confirmButtonText: "Try Again"
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Oops!",
+                            text: "Something went wrong. Please try again.",
+                            icon: "error",
+                            confirmButtonText: "OK",
+                            customClass: {
+                                popup: "swal2-popup",
+                                confirmButton: "swal2-confirm"
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 }
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const erccaseId = urlParams.get('id');
+
+        // Set the hidden input field value if erccaseId exists
+        if (erccaseId) {
+            const inputElement = document.getElementById('ErccaseId');
+
+            if (inputElement) {
+                inputElement.value = erccaseId;
+            } else {
+                console.error('ErccaseId input not found');
+            }
+        }
+    });
+</script>
