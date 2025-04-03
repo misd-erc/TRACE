@@ -445,27 +445,30 @@ async function displayCaseMilestone(caseId) {
             const isAchieved = await milestoneIsAchieved(item.CaseMilestoneID);
             console.log(isAchieved);
 
+            const isFirst = index === 0;
             const isLast = index === data.length - 1;
 
             const row = isAchieved
                 ? `
             <div class="step completed">
+                ${!isFirst ? '<div class="progress-line active"></div>' : ''} 
                 <div class="circle">✔</div>
                 <div class="label">${item.Milestone.replace("/", "<wbr>/")}</div>
                 ${!isLast ? '<div class="progress-line active"></div>' : ''}
             </div>
         `
-                : `
+                        : `
             <div class="step">
-                <div class="progress-line"></div>
+                ${!isFirst ? '<div class="progress-line"></div>' : ''}
                 <div class="circle"></div>
                 <div class="label">${item.Milestone.replace("/", "<wbr>/")}</div>
                 ${!isLast ? '<div class="progress-line"></div>' : ''}
             </div>
-        `;
+`;
 
             tableBody.innerHTML += row;
         }
+
     } catch (error) {
         console.error('Error fetching case details:', error);
     }
