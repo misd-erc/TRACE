@@ -15,7 +15,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetchUsers();
 });
-let allUsers = []; // Store all user data
+
+let allUsers = [];
 
 function fetchUsers() {
     fetch(`/Users/GetAllUsers`)
@@ -50,7 +51,7 @@ function initializeTableFunctions() {
 
     const rowsPerPage = 5;
     let currentPage = 1;
-    let filteredUsers = [...allUsers]; // Copy all users for filtering
+    let filteredUsers = [...allUsers];
 
     function renderTable(data) {
         tableBody.innerHTML = data.map(user => `
