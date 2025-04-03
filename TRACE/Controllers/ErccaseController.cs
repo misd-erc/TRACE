@@ -83,31 +83,35 @@ namespace TRACE.Controllers
                 using var connection = new SqlConnection(_connectionString);
                 await connection.OpenAsync(); // Ensure connection opens
 
-                var sql = @"
-                    SELECT 
-	                cr.ERCCaseID,
-                     cr.CaseRespondentID,
-                     cr.ERCCaseID,
-                     cr.Remarks AS RespondentRemarks,
-                     cr.CorrespondentID AS RespondentCorrespondentID,
-                     cr.CompanyID AS RespondentCompanyID,
-                
-                     c.CaseNo,
-                     c.Title,
-                     (SELECT Category FROM cases.CaseCategories WHERE CaseCategoryID = c.CaseCategoryID) AS Category,
-                     ISNULL((SELECT Nature FROM cases.CaseNatures WHERE CaseNatureID = c.CaseNatureID), 'NOT SET') AS Nature,
-                     c.DateFiled,
-                     c.DateDocketed,
-                     c.DocketedBy,
-                     (SELECT [Status] FROM cases.CaseStatuses WHERE CaseStatusID = c.CaseStatusID) AS CaseStatus,
-                     comp.CompanyName,  
-                     cor.LastName + ' ' + cor.FirstName AS CorrespondentLastName  
-                    FROM ercdb.cases.CaseRespondents cr
-                    JOIN cases.ERCCases c ON cr.ERCCaseID = c.ERCCaseID
-                    LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
-                    LEFT JOIN ercdb.cases.CaseApplicants ca ON cr.ERCCaseID = ca.ERCCaseID  
-                    LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
-                    WHERE c.CaseNo LIKE '%-LC%'"
+                var sql = @"SELECT 
+                                c.ERCCaseID,
+                                ISNULL(cr.CaseRespondentID, NULL) AS CaseRespondentID,
+                                ISNULL(cr.Remarks, 'N/A') AS RespondentRemarks,
+                                ISNULL(cr.CorrespondentID, NULL) AS RespondentCorrespondentID,
+                                ISNULL(cr.CompanyID, NULL) AS RespondentCompanyID,
+
+                                c.CaseNo,
+                                c.Title,
+                                ISNULL(cc.Category, 'N/A') AS Category,
+                                ISNULL(cn.Nature, 'NOT SET') AS Nature,
+                                c.DateFiled,
+                                c.DateDocketed,
+                                c.DocketedBy,
+                                ISNULL(cs.[Status], 'N/A') AS CaseStatus,
+
+                                ISNULL(comp.CompanyName, 'N/A') AS CompanyName,  
+                                ISNULL(cor.LastName + ' ' + cor.FirstName, 'N/A') AS CorrespondentLastName  
+
+                            FROM cases.ERCCases c
+                            LEFT JOIN ercdb.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
+                            LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
+                            LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
+                            LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
+                            LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
+                            LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+
+                            WHERE c.CaseNo LIKE '%-RC%' OR c.CaseNo LIKE '%-RC%'
+                            "
                     ;
 
                 var result = await connection.QueryAsync<dynamic>(sql);

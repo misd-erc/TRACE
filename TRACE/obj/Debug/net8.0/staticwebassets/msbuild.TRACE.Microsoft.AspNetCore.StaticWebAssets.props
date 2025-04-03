@@ -268,11 +268,6 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-<<<<<<< HEAD
-      <Fingerprint>xojburlvnm</Fingerprint>
-      <Integrity>cXK9OmMhH+wSlf1b4berrsU3w0uaKnUsMM7eDfZyYfY=</Integrity>
-=======
->>>>>>> 1e8a57ec5a2e9a8750ee81a61c0294400bddc121
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\js\CaseDetails.js))</OriginalItemSpec>
@@ -337,11 +332,6 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-<<<<<<< HEAD
-      <Fingerprint>wkrd7xm61z</Fingerprint>
-      <Integrity>IMg142JosxzvS17BlRM14Wih0JMVc3kElrXrcOq8JK0=</Integrity>
-=======
->>>>>>> 1e8a57ec5a2e9a8750ee81a61c0294400bddc121
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\js\drin-theme.js))</OriginalItemSpec>
@@ -406,11 +396,6 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-<<<<<<< HEAD
-      <Fingerprint>8a96lqkpdp</Fingerprint>
-      <Integrity>gC46KIgzVvz2V3NuOXf/ShguSHpepuVet6bGPlgmlSg=</Integrity>
-=======
->>>>>>> 1e8a57ec5a2e9a8750ee81a61c0294400bddc121
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\js\userManagement.js))</OriginalItemSpec>

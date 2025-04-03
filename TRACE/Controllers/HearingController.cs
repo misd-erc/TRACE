@@ -124,6 +124,7 @@ namespace TRACE.Controllers
                     hearing.ApprovedBy = user.Username;
                
                 }
+
                 _context.Add(hearing);
                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Success! Data has been saved." });
