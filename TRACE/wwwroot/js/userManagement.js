@@ -11,9 +11,11 @@
 
     event.target.classList.add('active');
 }
+
 document.addEventListener("DOMContentLoaded", function () {
-    fetchUsers(); // Fetch users when the page loads
+    fetchUsers();
 });
+let allUsers = []; // Store all user data
 
 function fetchUsers() {
     fetch(`/Users/GetAllUsers`)
@@ -27,24 +29,8 @@ function fetchUsers() {
             const tableBody = document.getElementById("userdata");
 
             if (result.success && Array.isArray(result.data) && result.data.length > 0) {
-                tableBody.innerHTML = '';
-
-                result.data.forEach(user => {
-                    tableBody.innerHTML += `
-                        <tr>
-                            <td>${user.fullname || 'N/A'}</td>
-                            <td>${user.email || 'N/A'}</td>
-                            <td>${user.department || 'N/A'}</td>
-                            <td>
-                                <a href="/Users/Edit/${user.id}">
-                                    <button title="Manage role for this user">Manage</button>
-                                </a>
-                            </td>
-                        </tr>
-                    `;
-                });
-
-                initializeTableFunctions(); // 🔥 Initialize search & pagination AFTER data is loaded
+                allUsers = result.data; // Store the entire dataset
+                initializeTableFunctions(); // Initialize pagination & search
             } else {
                 tableBody.innerHTML = `<tr><td colspan="4">No Data Found</td></tr>`;
             }
@@ -64,28 +50,35 @@ function initializeTableFunctions() {
 
     const rowsPerPage = 5;
     let currentPage = 1;
+    let filteredUsers = [...allUsers]; // Copy all users for filtering
 
-    function getAllRows() {
-        return Array.from(tableBody.getElementsByTagName("tr"));
+    function renderTable(data) {
+        tableBody.innerHTML = data.map(user => `
+            <tr>
+                <td>${user.fullname || 'N/A'}</td>
+                <td>${user.email || 'N/A'}</td>
+                <td>${user.department || 'N/A'}</td>
+                <td>
+                    <a href="/Users/Edit/${user.id}">
+                        <button title="Manage role for this user">Manage</button>
+                    </a>
+                </td>
+            </tr>
+        `).join('');
     }
 
-    function totalPages(rows) {
-        return Math.ceil(rows.length / rowsPerPage);
-    }
-
-    function displayRows(rows) {
+    function displayRows() {
         const start = (currentPage - 1) * rowsPerPage;
         const end = start + rowsPerPage;
-
-        tableBody.innerHTML = "";
-        rows.slice(start, end).forEach(row => tableBody.appendChild(row));
-
-        updatePaginationControls(rows);
+        renderTable(filteredUsers.slice(start, end));
+        updatePaginationControls();
     }
 
-    function updatePaginationControls(rows) {
+    function updatePaginationControls() {
         paginationDropdown.innerHTML = "";
-        for (let i = 1; i <= totalPages(rows); i++) {
+        const total = Math.ceil(filteredUsers.length / rowsPerPage);
+
+        for (let i = 1; i <= total; i++) {
             const option = document.createElement("option");
             option.value = i;
             option.textContent = i;
@@ -93,43 +86,41 @@ function initializeTableFunctions() {
             paginationDropdown.appendChild(option);
         }
 
-        prevButton.style.opacity = currentPage === 1 ? "0.5" : "1";
-        nextButton.style.opacity = currentPage === totalPages(rows) ? "0.5" : "1";
+        prevButton.disabled = currentPage === 1;
+        nextButton.disabled = currentPage === total;
     }
 
     paginationDropdown.addEventListener("change", function () {
         currentPage = parseInt(this.value);
-        displayRows(getAllRows());
+        displayRows();
     });
 
     prevButton.addEventListener("click", function () {
         if (currentPage > 1) {
             currentPage--;
-            displayRows(getAllRows());
+            displayRows();
             paginationDropdown.value = currentPage;
         }
     });
 
     nextButton.addEventListener("click", function () {
-        if (currentPage < totalPages(getAllRows())) {
+        if (currentPage < Math.ceil(filteredUsers.length / rowsPerPage)) {
             currentPage++;
-            displayRows(getAllRows());
+            displayRows();
             paginationDropdown.value = currentPage;
         }
     });
 
     searchInput.addEventListener("input", function () {
         const query = this.value.toLowerCase();
-        const allRows = getAllRows();
-        const filteredRows = allRows.filter(row =>
-            Array.from(row.getElementsByTagName("td")).some(td =>
-                td.textContent.toLowerCase().includes(query)
+        filteredUsers = allUsers.filter(user =>
+            Object.values(user).some(val =>
+                val && val.toString().toLowerCase().includes(query)
             )
         );
-
         currentPage = 1;
-        displayRows(filteredRows);
+        displayRows();
     });
 
-    displayRows(getAllRows());
+    displayRows();
 }
