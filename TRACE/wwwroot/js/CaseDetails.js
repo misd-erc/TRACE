@@ -262,8 +262,8 @@ function fetchCaseNoteWithErcId(caseId) {
         .then(event => {
             const casehearing = document.getElementById('casenote');
             casehearing.innerHTML = '';
-            if (event.data.length > 0) {
-                event.data.forEach(event => {
+            if (event.length > 0) {
+                event.forEach(event => {
                     const caseData = event; 
                     const formattedDate = caseData.datetimeCreated
                         ? new Date(caseData.datetimeCreated).toLocaleDateString('en-GB')
