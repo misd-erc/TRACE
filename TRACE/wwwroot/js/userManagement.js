@@ -30,8 +30,8 @@ function fetchUsers() {
             const tableBody = document.getElementById("userdata");
 
             if (result.success && Array.isArray(result.data) && result.data.length > 0) {
-                allUsers = result.data; // Store the entire dataset
-                initializeTableFunctions(); // Initialize pagination & search
+                allUsers = result.data; 
+                initializeTableFunctions();
             } else {
                 tableBody.innerHTML = `<tr><td colspan="4">No Data Found</td></tr>`;
             }

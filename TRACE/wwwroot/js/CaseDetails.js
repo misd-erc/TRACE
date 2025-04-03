@@ -110,7 +110,7 @@ function fetchCaseTaskWithErcId(caseId) {
                 caseassignment1.innerHTML = `<tr><td colspan="4">No Completed Tasks Found</td></tr>`;
                 return;
             }
-            console.log("data", result.data);
+            //console.log("data", result.data);
 
             result.data.forEach(event => {
                 // Check if TargetCompletionDate exists
@@ -269,15 +269,15 @@ function fetchCaseNoteWithErcId(caseId) {
                         ? new Date(caseData.datetimeCreated).toLocaleDateString('en-GB')
                         : 'N/A';
                     casehearing.innerHTML += `
-                                       <tr >
-                                            <td data-label="NotedBy">${caseData.notedBy}</td>
-                                            <td data-label="DESCRIPTION">${caseData.notes}</td>
-                                            <td data-label="DATE">${formattedDate}</td>
-                                            <td data-label="ACTION" class="actions">
-                                                <i class='bx bxs-edit' title="Edit" onclick="CasenoteEdit(${caseData.caseNoteId})"></i>
-                                                <i class='bx bxs-x-circle' title="Archive"></i>
-                                            </td>
-                                        </tr>
+                            <tr >
+                                <td data-label="NotedBy">${caseData.notedBy}</td>
+                                <td data-label="DESCRIPTION">${caseData.notes}</td>
+                                <td data-label="DATE">${formattedDate}</td>
+                                <td data-label="ACTION" class="actions">
+                                    <i class='bx bxs-edit' title="Edit" onclick="CasenoteEdit(${caseData.caseNoteId})"></i>
+                                    <i class='bx bxs-x-circle' title="Archive"></i>
+                                </td>
+                            </tr>
                             `;
                 })
                
@@ -308,7 +308,7 @@ function GetCaseRelatedByErcID(caseId) {
         .then(event => {
             const casehearing = document.getElementById('caserelated');
             casehearing.innerHTML = '';
-            console.log("asd",event)
+            //console.log("asd",event)
             if (event.length > 0) {
                 event.forEach(event => {
                     const caseData = event; 
@@ -443,7 +443,7 @@ async function displayCaseMilestone(caseId) {
 
         for (const [index, item] of data.entries()) {
             const isAchieved = await milestoneIsAchieved(item.CaseMilestoneID);
-            console.log(isAchieved);
+            //console.log(isAchieved);
 
             const isFirst = index === 0;
             const isLast = index === data.length - 1;
@@ -488,7 +488,7 @@ function calculateDays(dateFiled) {
 }
 
 function calculateDays1(dateFiled) {
-    console.log(dateFiled)
+    //console.log(dateFiled)
     const filedDate = new Date(dateFiled);
 
     if (isNaN(filedDate.getTime())) {
@@ -504,6 +504,6 @@ function calculateDays1(dateFiled) {
     // Convert milliseconds to days
     const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
-    console.log(`Days since filed: ${daysDifference} days`);
+    //console.log(`Days since filed: ${daysDifference} days`);
     return daysDifference;
 }
