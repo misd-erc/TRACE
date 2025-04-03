@@ -110,7 +110,7 @@ namespace TRACE.Controllers
                             LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
                             LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
 
-                            WHERE c.CaseNo LIKE '%-RC%' OR c.CaseNo LIKE '%-RC%' order by c.ERCCaseID desc
+                            WHERE c.CaseNo LIKE '%-LC%' OR c.CaseNo LIKE '%-RC%' order by c.ERCCaseID desc
                             "
                     ;
 
