@@ -110,7 +110,7 @@ namespace TRACE.Controllers
                             LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
                             LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
 
-                            WHERE c.CaseNo LIKE '%-RC%' OR c.CaseNo LIKE '%-RC%'
+                            WHERE c.CaseNo LIKE '%-RC%' OR c.CaseNo LIKE '%-RC%' order by c.ERCCaseID desc
                             "
                     ;
 
@@ -156,7 +156,7 @@ namespace TRACE.Controllers
                             LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
                             LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
                             LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
-                            LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+                            LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID order by c.ERCCaseID desc
 
                             
                             "
@@ -206,7 +206,7 @@ namespace TRACE.Controllers
                             LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
                             LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
 
-                            WHERE c.DateDocketed IS NOT NULL"
+                            WHERE c.DateDocketed IS NOT NULL order by c.ERCCaseID desc"
 
                     ;
 
