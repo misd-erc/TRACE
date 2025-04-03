@@ -195,6 +195,23 @@ namespace TRACE.Controllers
             return View();
         }
 
+        static string GetInitials(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
+            string[] words = input.Split(' ');
+            string initials = "";
+
+            foreach (var word in words)
+            {
+                if (!string.IsNullOrWhiteSpace(word))
+                    initials += char.ToUpper(word[0]);
+            }
+
+            return initials;
+        }
+
         // POST: Erccase/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -204,11 +221,13 @@ namespace TRACE.Controllers
         {
             
             var year = DateTime.Now.ToString("yyyy-MM");
+            var casecategory = _context.CaseCategories.Find(erccase.CaseCategoryId);
 
-            var designatedCaseNo = _context.Erccases.Where(c => c.CaseNo.Contains("-LC") && c.CaseNo.Contains(year)).OrderByDescending(c => c.ErccaseId).FirstOrDefault(); 
+            var initalcategory = "-"+GetInitials(casecategory.Description);
+            var designatedCaseNo = _context.Erccases.Where(c => c.CaseNo.Contains(initalcategory) && c.CaseNo.Contains(year)).OrderByDescending(c => c.ErccaseId).FirstOrDefault(); 
             if(designatedCaseNo == null)
             {
-                erccase.CaseNo = year +"-0001-LC";
+                erccase.CaseNo = year +"-0001"+initalcategory;
             }
             else
             {

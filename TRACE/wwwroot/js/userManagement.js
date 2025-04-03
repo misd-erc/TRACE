@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchUsers();
 });
 
-let allUsers = [];
+// Prevent redeclaration of allUsers
+window.allUsers = window.allUsers || [];
 
 function fetchUsers() {
     fetch(`/Users/GetAllUsers`)
@@ -29,8 +30,14 @@ function fetchUsers() {
         .then(result => {
             const tableBody = document.getElementById("userdata");
 
-            if (result.success && Array.isArray(result.data) && result.data.length > 0) {
-                allUsers = result.data; 
+            // Check if the table exists before modifying it
+            if (!tableBody) {
+                //console.warn("Skipping fetchUsers: userdata table not found.");
+                return;
+            }
+
+            if (result && Array.isArray(result.data) && result.data.length > 0) {
+                window.allUsers = result.data; // Store data globally
                 initializeTableFunctions();
             } else {
                 tableBody.innerHTML = `<tr><td colspan="4">No Data Found</td></tr>`;
@@ -38,9 +45,13 @@ function fetchUsers() {
         })
         .catch(error => {
             console.error('Error fetching user data:', error);
-            document.getElementById("userdata").innerHTML = `<tr><td colspan="4">Failed to fetch data. Please try again later.</td></tr>`;
+            const tableBody = document.getElementById("userdata");
+            if (tableBody) {
+                tableBody.innerHTML = `<tr><td colspan="4">Failed to fetch data. Please try again later.</td></tr>`;
+            }
         });
 }
+
 
 function initializeTableFunctions() {
     const tableBody = document.querySelector("#userdata");
@@ -49,9 +60,15 @@ function initializeTableFunctions() {
     const prevButton = document.querySelector("#prevPage");
     const nextButton = document.querySelector("#nextPage");
 
+    // Stop execution if table elements do not exist
+    if (!tableBody || !searchInput || !paginationDropdown || !prevButton || !nextButton) {
+        console.warn("Skipping initializeTableFunctions: Some elements are missing.");
+        return;
+    }
+
     const rowsPerPage = 5;
     let currentPage = 1;
-    let filteredUsers = [...allUsers];
+    let filteredUsers = [...window.allUsers];
 
     function renderTable(data) {
         tableBody.innerHTML = data.map(user => `
@@ -114,7 +131,7 @@ function initializeTableFunctions() {
 
     searchInput.addEventListener("input", function () {
         const query = this.value.toLowerCase();
-        filteredUsers = allUsers.filter(user =>
+        filteredUsers = window.allUsers.filter(user =>
             Object.values(user).some(val =>
                 val && val.toString().toLowerCase().includes(query)
             )
