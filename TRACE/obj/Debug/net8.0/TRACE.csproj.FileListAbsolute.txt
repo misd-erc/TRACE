@@ -1523,3 +1523,17 @@ C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.K
 C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Multipart.dll
 C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Text.dll
 C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Std.UriTemplate.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Azure.Storage.Blobs.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Azure.Storage.Common.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Dapper.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Graph.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Graph.Core.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Abstractions.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Authentication.Azure.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Http.HttpClientLibrary.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Form.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Json.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Multipart.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Microsoft.Kiota.Serialization.Text.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Std.UriTemplate.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\System.IO.Hashing.dll

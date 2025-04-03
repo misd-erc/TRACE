@@ -96,6 +96,7 @@ namespace TRACE.Controllers
             new ModuleModel { Name = "<b>Case:</b> All Cases", Link = "/allcases" },
             new ModuleModel { Name = "<b>Case:</b> Letter Complaints", Link = "/lettercomplaints" },
             new ModuleModel { Name = "<b>Case:</b> Docketed Cases", Link = "/docketedcases" },
+            new ModuleModel { Name = "<b>Case:</b> COC/RES", Link = "/cocres" },
             new ModuleModel { Name = "<b>Document:</b> Document Management", Link = "/documents" },
             new ModuleModel { Name = "<b>Hearing:</b> Hearings", Link = "/hearings" },
             new ModuleModel { Name = "<b>Content:</b> Content Management", Link = "/contentmanagement" },

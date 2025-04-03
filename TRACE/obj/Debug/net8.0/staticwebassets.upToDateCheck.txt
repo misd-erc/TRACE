@@ -1,7 +1,9 @@
 wwwroot\css\drin.css
 wwwroot\css\external-css.css
 wwwroot\favicon.ico
+wwwroot\images\BYE-logo.webp
 wwwroot\images\ERC-LOGO.png
+wwwroot\images\evoss.ico
 wwwroot\images\icons\case.png
 wwwroot\images\icons\case-white.png
 wwwroot\images\icons\dashboard.png
@@ -17,8 +19,10 @@ wwwroot\js\CM-AllCases.js
 wwwroot\js\contentManagement.js
 wwwroot\js\dbchart.js
 wwwroot\js\drin-theme.js
+wwwroot\js\Notifications.js
 wwwroot\js\settingsTab.js
 wwwroot\js\site.js
+wwwroot\js\userManagement.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap.min.css

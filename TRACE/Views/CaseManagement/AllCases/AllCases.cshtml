@@ -102,7 +102,7 @@
 
         $.each(paginatedItems, function (index, item) {
             let row = `
-                <tr>
+                    <tr onclick="location.href='/CaseDetails?id=${item.ERCCaseID}'", "CaseManagement")'">
                     <td>${item.CaseNo}</td>
                     <td>${item.Title}</td>
                     <td>${formatDate(item.DateFiled)}</td>

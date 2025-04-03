@@ -63,7 +63,7 @@
             }
         });
     } else {
-        console.warn("Theme toggle element not found.");
+        /*console.warn("Theme toggle element not found.");*/
     }
 
     colorOptions.forEach(option => {
