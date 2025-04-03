@@ -124,7 +124,7 @@
         <div id="relatedcases" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Related Cases</h3>
-                <button>+ Related Case</button>
+                <button onclick="CreateRelatedCase()">+ Related Case</button>
             </div>
             
             <table class="my-cases-table">
@@ -243,6 +243,11 @@
         const urlParams = new URLSearchParams(window.location.search);
         const erccaseId = urlParams.get('id');
         window.location.href = `/Hearing/create?id=${erccaseId}`;
+    }
+    function CreateRelatedCase() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const erccaseId = urlParams.get('id');
+        window.location.href = `/Relatedcase/create?id=${erccaseId}`;
     } 
     function CreateAssignment() {
         const urlParams = new URLSearchParams(window.location.search);

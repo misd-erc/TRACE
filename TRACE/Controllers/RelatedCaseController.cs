@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -16,10 +17,12 @@ namespace TRACE.Controllers
     {
         private readonly ErcdbContext _context;
         private readonly string _connectionString;
-        public RelatedCaseController(ErcdbContext context, IConfiguration configuration)
+        private readonly CurrentUserHelper _currentUserHelper;
+        public RelatedCaseController(ErcdbContext context, IConfiguration configuration, CurrentUserHelper currentUserHelper )
         {
             _context = context;
             _connectionString = configuration.GetConnectionString("ErcDatabase");
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: RelatedCase
@@ -88,7 +91,7 @@ namespace TRACE.Controllers
         public IActionResult Create()
         {
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
-            ViewData["ErccaseRelatedId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
+            ViewData["ErccaseRelatedId"] = new SelectList(_context.Erccases, "ErccaseId", "CaseNo");
             return View();
         }
 
@@ -99,15 +102,19 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RelatedCaseId,ErccaseId,ErccaseRelatedId,RelatedBy,DatetimeRelated")] RelatedCase relatedCase)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+                relatedCase.DatetimeRelated = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                relatedCase.RelatedBy = user.Username;
                 _context.Add(relatedCase);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", relatedCase.ErccaseId);
             ViewData["ErccaseRelatedId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", relatedCase.ErccaseRelatedId);
-            return View(relatedCase);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: RelatedCase/Edit/5
