@@ -205,7 +205,7 @@ namespace TRACE.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Json(new { success = true, message = "Success! Data has been deleted." });
         }
 
         private bool CaseAssignmentExists(long id)

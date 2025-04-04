@@ -179,6 +179,21 @@ namespace TRACE.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost, ActionName("CompleteTask")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CompleteTask(long id)
+        {
+            var caseTask = await _context.CaseTasks.FindAsync(id);
+            if (caseTask != null)
+            {
+                caseTask.ActualCompletionDate = DateOnly.FromDateTime(DateTime.Now);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, message = "Success! Data has been updated." });
+            }
+
+            return Json(new { success = false, message = "Task not found." });
+        }
+
 
         private bool CaseTaskExists(long id)
         {

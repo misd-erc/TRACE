@@ -87,6 +87,53 @@ function fetchCaseEvent(caseId) {
             console.error('Error fetching case details:', error);
         });
 }
+function completeTask(id) {
+    console.log("asdsad")
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to mark this task as completed?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, complete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`/CaseTask/CompleteTask/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire(
+                            'Completed!',
+                            data.message,
+                            'success'
+                        );
+                        // Optionally refresh or update UI here
+                    } else {
+                        Swal.fire(
+                            'Error!',
+                            'Task not found or cannot be completed.',
+                            'error'
+                        );
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    Swal.fire(
+                        'Error!',
+                        'Something went wrong while updating the task.',
+                        'error'
+                    );
+                });
+        }
+    });
+}
 
 function fetchCaseTaskWithErcId(caseId) {
     const caseassignment = document.getElementById('pendingtask');
@@ -125,7 +172,7 @@ function fetchCaseTaskWithErcId(caseId) {
                             <td data-label="TARGET DATE">${formattedDate}</td>
                             <td data-label="ACTION" class="actions">
                               
-                                <i class='bx bxs-x-circle' title="Pin task"></i>
+                                <i class='bx bxs-x-circle' title="Pin task" ></i>
                             </td>
                         </tr>
                     `;
@@ -140,7 +187,7 @@ function fetchCaseTaskWithErcId(caseId) {
                             <td data-label="DETAILS">${event.task || 'N/A'}</td>
                             <td data-label="TARGET DATE">${formattedDate}</td>
                             <td data-label="ACTION" class="actions">
-                                <i class='bx bxs-check-circle' title="Mark as complete"></i>
+                                <i class='bx bxs-check-circle' title="Mark as complete" onclick="completeTask(${event.caseTaskId})"></i>
                              
                             </td>
                         </tr>
@@ -297,6 +344,54 @@ function fetchCaseNoteWithErcId(caseId) {
             console.error('Error fetching case details:', error);
         });
 }
+function deleteCaseAssignment(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`/CaseAssignment/Delete/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire(
+                            'Deleted!',
+                            data.message,
+                            'success'
+                        );
+                        // Optionally remove the row or refresh
+                    } else {
+                        Swal.fire(
+                            'Error!',
+                            'Something went wrong.',
+                            'error'
+                        );
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    Swal.fire(
+                        'Error!',
+                        'Something went wrong while deleting.',
+                        'error'
+                    );
+                });
+        }
+    });
+}
+
+
 function GetCaseRelatedByErcID(caseId) {
     fetch(`/RelatedCase/GetCaseRelatedByErcID?id=${caseId}`)
         .then(response => {
