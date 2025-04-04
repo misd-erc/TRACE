@@ -8,6 +8,7 @@ public partial class CaseAssignment
 {
     public long CaseAssignmentId { get; set; }
 
+    [Display(Name = "Choose User")]
     public string UserId { get; set; } = null!;
 
     public long ErccaseId { get; set; }

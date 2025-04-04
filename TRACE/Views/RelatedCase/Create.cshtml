@@ -4,43 +4,50 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="crumbs">
+    <a href="javascript:history.back();">Go Back</a> > Add Related Case
+</div>
+<form id="createForm" asp-action="Create" method="post">
+    <div class="main-head-div flex h-center space-between">
+        <div class="title-div">
+            <h3>ADD Related Case</h3>
+            <p>This page is for adding related cases for the selected erc case</p>
+        </div>
 
-<h4>RelatedCase</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form id="createForm" asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" style="display:none">
-                <label asp-for="ErccaseId" class="control-label"></label>
-                <input asp-for="ErccaseId" type="hidden" class="form-control" id="ErccaseId" />
-            </div>
-            <div class="form-group">
-                <label asp-for="ErccaseRelatedId" class="control-label"></label>
-                <select asp-for="ErccaseRelatedId" class ="form-control" asp-items="ViewBag.ErccaseRelatedId"></select>
-            </div>
-            <div class="form-group" style="display:none">
-                
-                <label asp-for="RelatedBy" class="control-label"></label>
-                <input asp-for="RelatedBy" class="form-control" />
-                <span asp-validation-for="RelatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group" style="display:none">
-                <label asp-for="DatetimeRelated" class="control-label"></label>
-                <input asp-for="DatetimeRelated" class="form-control" />
-                <span asp-validation-for="DatetimeRelated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        <div class="btn-div">
+            <input type="submit" value="ADD RELATED CASE" class="btn btn-primary" />
+        </div>
     </div>
-</div>
+    <div class="case-card shadow border-radius-5">
+        <div class="form-div  create-lc">
+            <div class="grid grid-three-fr gap-10">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-input-div" style="display:none">
+                    <label asp-for="ErccaseId" class="control-label"></label>
+                    <input asp-for="ErccaseId" type="hidden" class="form-control" id="ErccaseId" />
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="ErccaseRelatedId" class="control-label"></label>
+                    <select asp-for="ErccaseRelatedId" class="form-control" asp-items="ViewBag.ErccaseRelatedId" id="ErccaseRelatedIdDropdown">
+                        <option selected disabled>Select Case Number</option>
+                    </select>
+                </div>
+                <div class="form-input-div" style="display:none">
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+                    <label asp-for="RelatedBy" class="control-label"></label>
+                    <input asp-for="RelatedBy" class="form-control" />
+                    <span asp-validation-for="RelatedBy" class="text-danger"></span>
+                </div>
+                <div class="form-input-div" style="display:none">
+                    <label asp-for="DatetimeRelated" class="control-label"></label>
+                    <input asp-for="DatetimeRelated" class="form-control" />
+                    <span asp-validation-for="DatetimeRelated" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 
 @section Scripts {
     @{
@@ -49,6 +56,18 @@
 
     <script>
         $(document).ready(function () {
+            const element = document.getElementById('ErccaseRelatedIdDropdown');
+            const choices = new Choices(element, {
+                searchEnabled: true,
+                searchFuzzy: true,
+                removeItemButton: true,
+                placeholder: true,
+                placeholderValue: 'Search Case Number',
+                searchChoices: true,
+                searchResultLimit: 9,
+                position: 'bottom',
+            });
+
             $("#createForm").submit(function (event) {
                 event.preventDefault();
 

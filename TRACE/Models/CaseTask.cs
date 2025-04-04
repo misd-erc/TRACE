@@ -10,6 +10,7 @@ public partial class CaseTask
 
     public long ErccaseId { get; set; }
 
+    [Display(Name = "Choose User")]
     public string UserId { get; set; } = null!;
 
     public string Task { get; set; } = null!;

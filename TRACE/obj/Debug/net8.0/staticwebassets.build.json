@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0+urmBfmczA6kq7p1bFOrtKcUiQ3xlQqIuqwGs9Ax08=",
+  "Hash": "kjZqNfca5WS6pcYMd3TGgJp0sKSiQ1clTzTRpbJDVoQ=",
   "Source": "TRACE",
   "BasePath": "_content/TRACE",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "u2pjk7t7pw",
-      "Integrity": "SlrVLCicZR+VesplUCrebmZOyKnm52iJ+nfd6QqEXBU=",
+      "Fingerprint": "aa7v4ae0va",
+      "Integrity": "ogIxdOiM3p0uNYJ4Z3F3H4eaIAQbG/Pch4nUlOXHP2U=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\drin.css"
@@ -1783,6 +1783,51 @@
   ],
   "Endpoints": [
     {
+      "Route": "css/drin.aa7v4ae0va.css",
+      "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\css\\drin.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "35477"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ogIxdOiM3p0uNYJ4Z3F3H4eaIAQbG/Pch4nUlOXHP2U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 04 Apr 2025 05:41:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "aa7v4ae0va"
+        },
+        {
+          "Name": "label",
+          "Value": "css/drin.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ogIxdOiM3p0uNYJ4Z3F3H4eaIAQbG/Pch4nUlOXHP2U="
+        }
+      ]
+    },
+    {
       "Route": "css/drin.css",
       "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\css\\drin.css",
       "Selectors": [],
@@ -1793,7 +1838,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "35437"
+          "Value": "35477"
         },
         {
           "Name": "Content-Type",
@@ -1801,11 +1846,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"SlrVLCicZR+VesplUCrebmZOyKnm52iJ+nfd6QqEXBU=\""
+          "Value": "\"ogIxdOiM3p0uNYJ4Z3F3H4eaIAQbG/Pch4nUlOXHP2U=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 02:34:32 GMT"
+          "Value": "Fri, 04 Apr 2025 05:41:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1815,52 +1860,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-SlrVLCicZR+VesplUCrebmZOyKnm52iJ+nfd6QqEXBU="
-        }
-      ]
-    },
-    {
-      "Route": "css/drin.u2pjk7t7pw.css",
-      "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\css\\drin.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "35437"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"SlrVLCicZR+VesplUCrebmZOyKnm52iJ+nfd6QqEXBU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 02:34:32 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "u2pjk7t7pw"
-        },
-        {
-          "Name": "label",
-          "Value": "css/drin.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-SlrVLCicZR+VesplUCrebmZOyKnm52iJ+nfd6QqEXBU="
+          "Value": "sha256-ogIxdOiM3p0uNYJ4Z3F3H4eaIAQbG/Pch4nUlOXHP2U="
         }
       ]
     },

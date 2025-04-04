@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-input-div">
                     <label asp-for="DocumentId" class="control-label"></label>
-                    <select asp-for="DocumentId" class="form-control" asp-items="ViewBag.DocumentId"></select>
+                    <select asp-for="DocumentId" class="form-control" asp-items="ViewBag.DocumentId" id="DocumentID"></select>
                 </div>
                 <div class="form-input-div">
                     <label asp-for="ErccaseId" class="control-label" style="display:none"> </label>
@@ -56,6 +56,17 @@
 
     <script>
         $(document).ready(function () {
+            const element = document.getElementById('DocumentID');
+            const choices = new Choices(element, {
+                searchEnabled: true,
+                searchFuzzy: true,
+                removeItemButton: true,
+                placeholder: true,
+                placeholderValue: 'Search Document',
+                searchChoices: true,
+                searchResultLimit: 9,
+                position: 'bottom',
+            });
             $("#createForm").submit(function (event) {
                 event.preventDefault();
 
