@@ -15,16 +15,22 @@ namespace TRACE.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly CurrentUserHelper _currentUser;
         private readonly GenerateOTPHelper _generateOtp;
+        private readonly GetGroupMemberHelper _getGroupMemberHelper;
 
-        public HomeController(ILogger<HomeController> logger, CurrentUserHelper currentUser, GenerateOTPHelper generateOtp)
+        public HomeController(
+            ILogger<HomeController> logger,
+            CurrentUserHelper currentUser,
+            GenerateOTPHelper generateOtp,
+            GetGroupMemberHelper getGroupMemberHelper) // <-- Give it a name
         {
             _logger = logger;
             _currentUser = currentUser;
             _generateOtp = generateOtp;
+            _getGroupMemberHelper = getGroupMemberHelper; // <-- Assign it properly
         }
 
         [Route("auth")]
-        public IActionResult authentication()
+        public async Task<IActionResult> Authentication()
         {
             var email = User.Claims.FirstOrDefault(c => c.Type == "preferred_username")?.Value;
 
@@ -33,6 +39,16 @@ namespace TRACE.Controllers
                 return RedirectToAction("Logout", "External");
             }
 
+            // Check if user belongs to Azure AD group
+            var groupEmails = await _getGroupMemberHelper.GetGroupMemberEmailsAsync(); // Inject this helper via DI
+            bool isAuthorized = groupEmails.Any(e => string.Equals(e, email, StringComparison.OrdinalIgnoreCase));
+
+            if (!isAuthorized)
+            {
+                return RedirectToAction("AccessDenied", "External"); // You can create this view/controller if not existing
+            }
+
+            // Proceed with OTP generation
             var otp = _generateOtp.GenerateOtp();
             HttpContext.Session.SetString("UserOTP", otp);
             HttpContext.Session.SetString("UserEmail", email);
@@ -45,6 +61,7 @@ namespace TRACE.Controllers
             ViewBag.Email = email;
             return View();
         }
+
 
         [HttpPost]
         [Route("verify-otp")]
