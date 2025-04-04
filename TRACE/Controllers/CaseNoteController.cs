@@ -81,6 +81,18 @@ namespace TRACE.Controllers
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
                 caseNote.NotedBy = user.Username;
                 _context.Add(caseNote);
+
+
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+              
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "CASE NOTE";
+                eventLog.Category = "Create Case Note";
+                _context.EventLogs.Add(eventLog);
+
+
                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
@@ -127,6 +139,18 @@ namespace TRACE.Controllers
                 existingCaseNote.ErccaseId = caseNote.ErccaseId;
                 existingCaseNote.DatetimeCreated = caseNote.DatetimeCreated;
                 existingCaseNote.NotedBy = caseNote.NotedBy;
+
+
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "EDIT";
+                eventLog.Source = "CASE NOTE";
+                eventLog.Category = "Edit Case Note";
+                _context.EventLogs.Add(eventLog);
+
 
                 await _context.SaveChangesAsync();
 

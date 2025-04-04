@@ -10,6 +10,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.BlobStorage;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -18,11 +19,13 @@ namespace TRACE.Controllers
     {
         private readonly ErcdbContext _context;
         private readonly string _connectionString;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public ErccaseController(ErcdbContext context, IConfiguration configuration)
+        public ErccaseController(ErcdbContext context, IConfiguration configuration, CurrentUserHelper currentUserHelper)
         {
             _context = context;
             _connectionString = configuration.GetConnectionString("ErcDatabase");
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: Erccase
@@ -319,6 +322,18 @@ namespace TRACE.Controllers
                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
+
+            EventLog eventLog = new EventLog();
+            eventLog.EventDatetime = DateTime.Now;
+            var currentUserName = _currentUserHelper.Email;
+            var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+            eventLog.UserId = user.Username;
+            eventLog.Event = "CREATE";
+            eventLog.Source = "ERC CASE";
+            eventLog.Category = "Create Case";
+            _context.EventLogs.Add(eventLog);
+            await _context.SaveChangesAsync();
+
             ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "Description");
             ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNature");
 
@@ -365,6 +380,16 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(erccase);
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "ERC CASE";
+                    eventLog.Category = "Edit Case";
+                    _context.EventLogs.Add(eventLog);
+
                     await _context.SaveChangesAsync();
                     return Json(new { success = true, message = "Case updated successfully!" });
                 }
