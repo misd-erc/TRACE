@@ -21,12 +21,12 @@ namespace TRACE.Controllers
             ILogger<HomeController> logger,
             CurrentUserHelper currentUser,
             GenerateOTPHelper generateOtp,
-            GetGroupMemberHelper getGroupMemberHelper) // <-- Give it a name
+            GetGroupMemberHelper getGroupMemberHelper)
         {
             _logger = logger;
             _currentUser = currentUser;
             _generateOtp = generateOtp;
-            _getGroupMemberHelper = getGroupMemberHelper; // <-- Assign it properly
+            _getGroupMemberHelper = getGroupMemberHelper;
         }
 
         [Route("auth")]
@@ -39,16 +39,16 @@ namespace TRACE.Controllers
                 return RedirectToAction("Logout", "External");
             }
 
-            // Check if user belongs to Azure AD group
-            var groupEmails = await _getGroupMemberHelper.GetGroupMemberEmailsAsync(); // Inject this helper via DI
+
+            var groupEmails = await _getGroupMemberHelper.GetGroupMemberEmailsAsync();
             bool isAuthorized = groupEmails.Any(e => string.Equals(e, email, StringComparison.OrdinalIgnoreCase));
 
             if (!isAuthorized)
             {
-                return RedirectToAction("AccessDenied", "External"); // You can create this view/controller if not existing
+                return RedirectToAction("ForbiddenAccess", "External");
             }
 
-            // Proceed with OTP generation
+
             var otp = _generateOtp.GenerateOtp();
             HttpContext.Session.SetString("UserOTP", otp);
             HttpContext.Session.SetString("UserEmail", email);
