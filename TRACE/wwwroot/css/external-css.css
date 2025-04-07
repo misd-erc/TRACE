@@ -154,3 +154,18 @@ button:hover{
     cursor: not-allowed;
     border: 1px solid #ccc;
 }
+
+
+/*FORBIDDEN*/
+.fa-heading{
+    color:#4695dd;
+    text-transform:uppercase;
+    font-weight:900;
+    font-size:40px;
+}
+
+.bx-error-alt{
+    color: red;
+    font-size:70px;
+}
+/*FORBIDDEN*/

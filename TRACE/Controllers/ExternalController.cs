@@ -34,5 +34,11 @@ namespace TRACE.Controllers
             return Challenge(properties, OpenIdConnectDefaults.AuthenticationScheme);
         }
 
+        [Route("accessdenied")]
+        public IActionResult ForbiddenAccess()
+        {
+            return View();
+        }
+
     }
 }
