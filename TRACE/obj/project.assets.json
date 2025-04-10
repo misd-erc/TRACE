@@ -8977,19 +8977,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\aldri\\.nuget\\packages\\": {}
+    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Work Related\\Github\\TRACE\\TRACE\\TRACE.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\trace\\TRACE.csproj",
       "projectName": "TRACE",
-      "projectPath": "E:\\Work Related\\Github\\TRACE\\TRACE\\TRACE.csproj",
-      "packagesPath": "C:\\Users\\aldri\\.nuget\\packages\\",
-      "outputPath": "E:\\Work Related\\Github\\TRACE\\TRACE\\obj\\",
+      "projectPath": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\trace\\TRACE.csproj",
+      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\trace\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\aldri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9085,8 +9085,20 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Identity.Web' 3.7.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-rpq8-q44m-2rpg",
+      "libraryId": "Microsoft.Identity.Web",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

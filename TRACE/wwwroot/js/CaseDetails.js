@@ -299,8 +299,10 @@ function fetchCaseHearingWithErcId(caseId) {
         });
 }
 function fetchCaseNoteWithErcId(caseId) {
+
     fetch(`/CaseNote/GetCaseNoteByErcID?id=${caseId}`)
         .then(response => {
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -310,6 +312,7 @@ function fetchCaseNoteWithErcId(caseId) {
             const casehearing = document.getElementById('casenote');
             casehearing.innerHTML = '';
             if (event.length > 0) {
+              
                 event.forEach(event => {
                     const caseData = event; 
                     const formattedDate = caseData.datetimeCreated
