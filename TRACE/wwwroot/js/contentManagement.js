@@ -76,6 +76,37 @@ function loadCaseCategories() {
         }
     });
 }
+function loadCaseCompanies() {
+    $(".cms-modal .modal-content .modal-btn")
+        .html("<i class='bx bx-plus'></i> Add New Company")
+        .attr("onclick", "window.location.href='/Companies/Create'");
+    $.ajax({
+        url: "/Companies/GetCompanies",
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            /*console.log(response);*/
+            if (response && response.data && response.data.length > 0) {
+                let rows = "";
+                response.data.forEach(item => {
+                    rows += `
+            <tr>
+                <td>${item.companyName}</td>
+                <td>${item.shortName}</td>
+                <td><a href="/CaseCategories/Edit/${item.CompanyId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+            </tr>`;
+                });
+                $("#DynamicTable tbody").html(rows);
+            } else {
+                $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+            }
+        },
+
+        error: function () {
+            alert("Error loading case categories.");
+        }
+    });
+}
 function loadCaseEventTypes() {
     $(".cms-modal .modal-content .modal-btn")
         .html("<i class='bx bx-plus'></i> Add New Case Event Type")

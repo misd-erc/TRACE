@@ -29,6 +29,7 @@
                 <li><i class='bx bxs-edit-alt'></i> Hearing Venues</li>
                 <li><i class='bx bxs-edit-alt'></i> Milestone Templates</li>
                 <li><i class='bx bxs-edit-alt'></i> City</li>
+                <li><i class='bx bxs-edit-alt'></i> Company</li>
             </ul>
         </div>
 
@@ -114,6 +115,10 @@
                 loadCities();
          
              }
+            else if (($("#modalTitle").text().trim() === "Customize Company")) {
+                loadCaseCompanies();
+
+            }
             else{ 
                  $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
             }

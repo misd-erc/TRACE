@@ -18,6 +18,18 @@ namespace TRACE.Controllers
         {
             _context = context;
         }
+        [HttpGet]
+        public async Task<IActionResult> GetCompanies()
+        {
+            var categories = await _context.Companies.ToListAsync();
+
+            if (categories == null || !categories.Any())
+            {
+                return Json(new { success = false, message = "No categories found." });
+            }
+
+            return Json(new { success = true, data = categories });
+        }
 
         // GET: Companies
         public async Task<IActionResult> Index()
@@ -49,8 +61,8 @@ namespace TRACE.Controllers
         // GET: Companies/Create
         public IActionResult Create()
         {
-            ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityId");
-            ViewData["EntityCategoryId"] = new SelectList(_context.EntityCategories, "EntityCategoryId", "EntityCategoryId");
+            ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityName");
+            ViewData["EntityCategoryId"] = new SelectList(_context.EntityCategories, "EntityCategoryId", "Ecategory");
             return View();
         }
 
