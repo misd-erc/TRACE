@@ -472,7 +472,7 @@ function fetchCaseDetails(caseId) {
                       <div>
                           <span><strong>ERC Case No.: </strong> <i>${caseData.CaseNo}</i></span>
                           <span><strong>Case Title: </strong> <i>${caseData.Title}</i></span>
-                          <span><strong>Case Category: </strong> <i>${caseData.Category}</i></span>
+                          <span><strong>Case Category: </strong> <i>${caseData.CaseCategory}</i></span>
                       </div>
                       <div>
                           <span><strong>Case Nature: </strong> <i>${caseData.CaseNature}</i></span>
@@ -481,7 +481,7 @@ function fetchCaseDetails(caseId) {
                       </div>
                       <div>
                               <span><strong>Docketed By: </strong> <i>${caseData.DocketedBy ?? 'N/A'}</i></span>
-                                  <span><strong>Applicant: </strong> <i>${caseData.CompanyName ?? 'N/A'}</i></span>
+                                <span><strong>Applicant: </strong> <i>${caseData.CompanyName ?? 'N/A'}</i></span>
                               <span><strong>Respondent: </strong> <i>${caseData.CorrespondentName ?? 'No Data Yet'}</i></span>
                       </div>
                       <div>
