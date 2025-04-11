@@ -24,6 +24,11 @@
         <div class="form-div  create-lc">
                 <div class="grid grid-three-fr gap-10">
 
+                
+                <div class="form-input-div">
+                    <label  class="control-label">Case Number</label>
+                    <input class="form-control" id="caseNoInput" disabled/>
+                </div>
                     <div class="form-input-div">
                         <label asp-for="CaseCategoryId" class="control-label"></label><span style="color:red">*</span>
                         <select asp-for="CaseCategoryId" class="form-control" asp-items="ViewBag.CaseCategoryId" id="CaseCategoryIdDropdown">
@@ -190,6 +195,26 @@
                 });
             });
         });
+
+        $(document).ready(function () {
+            $('#CaseCategoryIdDropdown').on('change', function () {
+                var selectedId = $(this).val();
+                if (selectedId) {
+                    fetchLastCase(selectedId);
+                }
+            });
+        });
+
+        function fetchLastCase(casecategoryId) {
+            fetch(`/Erccase/GetLastCases?casecategoryId=${casecategoryId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('caseNoInput').value = data;
+                })
+                .catch(error => {
+                    console.error('Error fetching case:', error);
+                });
+        }
 
     </script>
 }

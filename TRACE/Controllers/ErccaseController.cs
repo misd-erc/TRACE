@@ -225,6 +225,45 @@ namespace TRACE.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> GetLastCases(long casecategoryId)
+        {
+            var result = "";
+            var year = DateTime.Now.ToString("yyyy-MM");
+            var casecategory = _context.CaseCategories.Find(casecategoryId);
+            if (casecategory == null)
+            {
+                return BadRequest("Invalid case category ID.");
+            }
+
+            var initalcategory = "-" + GetInitials(casecategory.Description);
+            var designatedCaseNo = _context.Erccases.Where(c => c.CaseNo.Contains(initalcategory) && c.CaseNo.Contains(year)).OrderByDescending(c => c.ErccaseId).FirstOrDefault();
+            if (designatedCaseNo == null)
+            {
+                result = year + "-0001" + initalcategory;
+            }
+            else
+            {
+                string newCaseNumber;
+                if (designatedCaseNo != null)
+                {
+                    // Extract the numeric part and increment
+                    var parts = designatedCaseNo.CaseNo.Split('-');
+                    int numericPart = int.Parse(parts[2]) + 1;
+
+                    // Format with leading zeros (e.g., 0001, 0002, etc.)
+                    result = $"{year}-{numericPart:D4}-" + initalcategory;
+                }
+                else
+                {
+                    // If no previous case exists, start from 0001
+                    result = $"{year}-0001-" + initalcategory;
+                }
+            }
+
+            return Json(result);
+        }
+
         // GET: Erccase/Details/5
         public async Task<IActionResult> Details(long? id)
         {
@@ -299,12 +338,12 @@ namespace TRACE.Controllers
                     int numericPart = int.Parse(parts[2]) + 1;
 
                     // Format with leading zeros (e.g., 0001, 0002, etc.)
-                    erccase.CaseNo = $"{year}-{numericPart:D4}-LC";
+                    erccase.CaseNo = $"{year}-{numericPart:D4}-"+ initalcategory;
                 }
                 else
                 {
                     // If no previous case exists, start from 0001
-                    erccase.CaseNo = $"{year}-0001-LC";
+                    erccase.CaseNo = $"{year}-0001-" + initalcategory;
                 }
             }
 
