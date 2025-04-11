@@ -7,11 +7,12 @@
 </div>
 
 <div class="case-card-details shadow border-radius-5">
-    <div class="case-details grid grid-casedeets-fr gap-20" id="caseDetails">
+    <div class="case-details grid grid-casedeets-fr gap-20" id="caseDetails"></div>
+    <hr />
+    <div class="case-details grid grid-four-fr gap-20" id="othercaseDetails" style="display:none;"></div>
 
-    </div>
-    <div class="case-arrow-div">
-        <i class='bx bxs-down-arrow'></i>
+    <div class="case-arrow-div" onclick="toggleCaseDetails()" id="arrowToggle">
+        <i class='bx bxs-down-arrow' id="arrowIcon"></i>
     </div>
     @await Html.PartialAsync("Components/Loader/Mini-Loader")
 </div>

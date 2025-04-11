@@ -24,7 +24,7 @@ const itemsPerPage = 5;
 
 function updateBreadcrumb() {
     const breadcrumb = document.querySelector(".crumbs");
-    breadcrumb.innerHTML = `<a href="/dashboard">Dashboard</a> > <a href='javascript:history.back();'>Case Management</a> > ${caseTitle}`;
+    breadcrumb.innerHTML = `<a href="/dashboard">Dashboard</a> > <a href='javascript:history.back();'>Case Management</a> > ${caseTitle} > Milestones`;
 }
 
 function showTabcase(tabName, event) {
@@ -450,6 +450,9 @@ function CasenoteEdit(caseNoteID) {
     window.location.href = `/casenote/edit?id=${caseNoteID}`;
 }
 
+function formatDate(dateStr) {
+    return dateStr ? new Date(dateStr).toLocaleDateString('en-GB') : 'N/A';
+}
 function fetchCaseDetails(caseId) {
     fetch(`/CaseDetails/GetCaseDetails?id=${caseId}`)
         .then(response => {
@@ -464,40 +467,70 @@ function fetchCaseDetails(caseId) {
                 caseTitle = caseData.Title;
                 updateBreadcrumb();
                 displayCaseMilestone(caseData.CaseCategoryID);
+
                 const caseDetailsDiv = document.getElementById('caseDetails');
+                const othercaseDetailsDiv = document.getElementById('othercaseDetails');
                 const caseage = document.getElementById('caseage');
-                caseage.innerHTML = calculateDays(caseData.DateFiled) + "Days";
-                const formattedDatedocketed = caseData.DateDocketed
-                    ? new Date(caseData.DateDocketed).toLocaleDateString('en-GB')
-                    : 'N/A';
-                const formattedDatefiled = caseData.DateFiled
-                    ? new Date(caseData.DateFiled).toLocaleDateString('en-GB')
-                    : 'N/A';
-                const formattedDateapproved = caseData.DatetimeApproved
-                    ? new Date(caseData.DatetimeApproved).toLocaleDateString('en-GB')
-                    : 'N/A';
+                caseage.innerHTML = calculateDays(caseData.DateFiled) + " Days";
+
+                // Format all date fields
+                const formattedDateFiled = formatDate(caseData.DateFiled);
+                const formattedDateDocketed = formatDate(caseData.DateDocketed);
+                const formattedDateApproved = formatDate(caseData.DatetimeApproved);
+                const formattedPADeliberation = formatDate(caseData.PADeliberationDate);
+                const formattedFADeliberation = formatDate(caseData.FADeliberationDate);
+                const formattedPATargetOrder = formatDate(caseData.PATargetOrder);
+                const formattedFATargetOrder = formatDate(caseData.FATargetOrder);
+                const formattedSubmittedResolution = formatDate(caseData.SubmittedForResolution);
+                const formattedMeterSIN = formatDate(caseData.MeterSIN);
+                const formattedTargetFAIssuance = formatDate(caseData.TargetFAIssuance);
+                const formattedTargetPAIssuance = formatDate(caseData.TargetPAIssuance);
+
                 caseDetailsDiv.innerHTML = `
-                      <div>
-                          <span><strong>ERC Case No.: </strong> <i>${caseData.CaseNo}</i></span>
-                          <span><strong>Case Title: </strong> <i>${caseData.Title}</i></span>
-                          <span><strong>Case Category: </strong> <i>${caseData.CaseCategory}</i></span>
-                      </div>
-                      <div>
-                          <span><strong>Case Nature: </strong> <i>${caseData.CaseNature}</i></span>
-                          <span><strong>Date Filed: </strong> <i>${formattedDatefiled}</i></span>
-                          <span><strong>Date Docketed: </strong> <i>${formattedDatedocketed}</i></span>
-                      </div>
-                      <div>
-                        <span><strong>Docketed By: </strong> <i>${caseData.DocketedBy ?? 'N/A'}</i></span>
-                        <span><strong>Applicant: </strong> <i>${caseData.CompanyName ?? 'N/A'}</i></span>
-                        <span><strong>Respondent: </strong> <i>${caseData.CorrespondentName ?? 'No Data Yet'}</i></span>
-                      </div>
-                      <div>
-                          <span><strong>No. of Folders: </strong> <i>${caseData.NoOfFolders ?? 'N/A'}</i></span>
-                          <span><strong>Date Approved: </strong> <i>${formattedDateapproved}</i></span>
-                          <span><strong class="green-txt">${caseData.CaseStatus}</strong></span>
-                      </div>
-                    `;
+            <div>
+                <span><strong>ERC Case No.: </strong> <i>${caseData.CaseNo}</i></span>
+                <span><strong>Case Title: </strong> <i>${caseData.Title}</i></span>
+                <span><strong>Case Category: </strong> <i>${caseData.CaseCategory}</i></span>
+            </div>
+            <div>
+                <span><strong>Case Nature: </strong> <i>${caseData.CaseNature}</i></span>
+                <span><strong>Date Filed: </strong> <i>${formattedDateFiled}</i></span>
+                <span><strong>Date Docketed: </strong> <i>${formattedDateDocketed}</i></span>
+            </div>
+            <div>
+                <span><strong>Docketed By: </strong> <i>${caseData.DocketedBy ?? 'N/A'}</i></span>
+                <span><strong>Applicant: </strong> <i>${caseData.CompanyName ?? 'N/A'}</i></span>
+                <span><strong>Respondent: </strong> <i>${caseData.CorrespondentName ?? 'No Data Yet'}</i></span>
+            </div>
+            <div>
+                <span><strong>No. of Folders: </strong> <i>${caseData.NoOfFolders ?? 'N/A'}</i></span>
+                <span><strong>Date Approved: </strong> <i>${formattedDateApproved}</i></span>
+                <span><strong class="green-txt">${caseData.CaseStatus}</strong></span>
+            </div>
+        `;
+
+                othercaseDetailsDiv.innerHTML = `
+            <div>
+                <span><strong>Amount Claimed: </strong> <i>${caseData.AmountClaimed ?? 'N/A'}</i></span>
+                <span><strong>Amount Settled: </strong> <i>${caseData.AmountSettled ?? 'N/A'}</i></span>
+                <span><strong>Target PA Issuance: </strong> <i>${formattedTargetPAIssuance ?? 'N/A'}</i></span>
+            </div>
+            <div>
+                <span><strong>Target FA Issuance: </strong> <i>${formattedTargetFAIssuance ?? 'N/A'}</i></span>
+                <span><strong>PA Deliberation Date: </strong> <i>${formattedPADeliberation}</i></span>
+                <span><strong>FA Deliberation Date: </strong> <i>${formattedFADeliberation}</i></span>
+            </div>
+            <div>
+                <span><strong>PA Target Order: </strong> <i>${formattedPATargetOrder}</i></span>
+                <span><strong>FA Target Order: </strong> <i>${formattedFATargetOrder}</i></span>
+                <span><strong>Synopsis: </strong> <i>${caseData.Synopsis ?? 'No Synopsis Yet'}</i></span>
+            </div>
+            <div>
+                <span><strong>Submitted for Resolution: </strong> <i>${formattedSubmittedResolution}</i></span>
+                <span><strong>Meter SIN: </strong> <i>${caseData.MeterSIN ?? 'N/A'}</i></span>
+                <span><strong>Remarks: </strong> <i>${caseData.Remarks ?? 'None'}</i></span>
+            </div>
+        `;
             } else {
                 alert('Case not found!');
             }
@@ -612,4 +645,17 @@ function calculateDays1(dateFiled) {
 
     //console.log(`Days since filed: ${daysDifference} days`);
     return daysDifference;
+}
+
+function toggleCaseDetails() {
+    const detailsDiv = document.getElementById("othercaseDetails");
+    const arrowIcon = document.getElementById("arrowIcon");
+
+    if (detailsDiv.style.display === "none" || detailsDiv.style.display === "") {
+        detailsDiv.style.display = "grid";
+        arrowIcon.style.transform = "rotate(180deg)";
+    } else {
+        detailsDiv.style.display = "none";
+        arrowIcon.style.transform = "rotate(0deg)";
+    }
 }

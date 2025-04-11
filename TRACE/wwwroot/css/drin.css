@@ -1537,6 +1537,22 @@ canvas {
     white-space:normal;
 }
 
+.all-cases-table th {
+    padding: 10px 10px;
+    font-size: 14px;
+    text-align: left;
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.all-cases-table thead th:first-child {
+    border-top-left-radius: 5px;
+}
+
+.all-cases-table thead th:last-child {
+    border-top-right-radius: 5px;
+}
+
 .all-cases-table tbody tr:nth-of-type(2n+2){
     background: var(--body-color);
 }
@@ -1816,6 +1832,16 @@ canvas {
     cursor: pointer;
     
 }
+
+#arrowIcon {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.case-card-details hr{
+    margin:10px 0px !important;
+}
+
 /*MILESTONE*/
 .progress-container {
     display: flex;
