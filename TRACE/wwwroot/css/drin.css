@@ -1495,6 +1495,12 @@ canvas {
 }
 
 /*ALL CASES*/
+.filter-create-div{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
 .all-case-count {
     color: var(--primary-color);
 }
@@ -1748,7 +1754,7 @@ canvas {
 }
 
 .form-input-div label {
-    display: block;
+    display: inline-block;
 }
 
 .create-lc{

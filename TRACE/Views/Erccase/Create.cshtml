@@ -25,14 +25,14 @@
                 <div class="grid grid-three-fr gap-10">
 
                     <div class="form-input-div">
-                        <label asp-for="CaseCategoryId" class="control-label"></label>
-                        <select asp-for="CaseCategoryId" class="form-control" asp-items="ViewBag.CaseCategoryId">
+                        <label asp-for="CaseCategoryId" class="control-label"></label><span style="color:red">*</span>
+                        <select asp-for="CaseCategoryId" class="form-control" asp-items="ViewBag.CaseCategoryId" id="CaseCategoryIdDropdown">
                             <option selected disabled>Select Case Category</option>
                         </select>
                     </div>
                     <div class="form-input-div">
-                        <label asp-for="CaseNature" class="control-label"></label>
-                        <select asp-for="CaseNatureId" class="form-control" asp-items="ViewBag.CaseNatureId">
+                    <label asp-for="CaseNature" class="control-label"></label><span style="color:red">*</span>
+                        <select asp-for="CaseNatureId" class="form-control" asp-items="ViewBag.CaseNatureId" id="CasenatureIdDropdown">
                             <option selected disabled>Select Case Nature</option>
                         </select>
                     </div>
@@ -45,14 +45,14 @@
                         <textarea></textarea>
                     </div>
                     <div class="form-input-div">
-                        <label asp-for="Title" class="control-label"></label>
+                        <label asp-for="Title" class="control-label"></label><span style="color:red">*</span>
                         <textarea asp-for="Title" class="form-control"></textarea>
                     </div>
                 </div>
 
                 <div class="grid grid-five-fr gap-10">
                     <div class="form-input-div">
-                        <label asp-for="DateFiled" class="control-label">Date Filed</label>
+                    <label asp-for="DateFiled" class="control-label">Date Filed</label><span style="color:red">*</span>
                         <input asp-for="DateFiled" class="form-control" type="date" />
                     </div>
                     <div class="form-input-div">
@@ -61,7 +61,7 @@
                    
                     </div>
                     <div class="form-input-div">
-                    <label asp-for="NoOfFolders" class="control-label">No. of Folders</label>
+                    <label asp-for="NoOfFolders" class="control-label">No. of Folders</label><span style="color:red">*</span>
                     <input asp-for="NoOfFolders" class="form-control" type="number" />
                  
                     </div>
@@ -122,6 +122,30 @@
 
     <script>
         $(document).ready(function () {
+            const element = document.getElementById('CaseCategoryIdDropdown');
+            const choices = new Choices(element, {
+                searchEnabled: true,
+                searchFuzzy: true,
+                removeItemButton: true,
+                placeholder: true,
+                placeholderValue: 'Search Case Category',
+                searchChoices: true,
+                searchResultLimit: 9,
+                position: 'bottom',
+            });
+
+            const element2 = document.getElementById('CasenatureIdDropdown');
+            const choices2 = new Choices(element2, {
+                searchEnabled: true,
+                searchFuzzy: true,
+                removeItemButton: true,
+                placeholder: true,
+                placeholderValue: 'Search Case Nature',
+                searchChoices: true,
+                searchResultLimit: 9,
+                position: 'bottom',
+            });
+
             $("#createForm").submit(function (event) {
                 event.preventDefault();
 
