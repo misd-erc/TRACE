@@ -27,7 +27,14 @@ function updateBreadcrumb() {
     breadcrumb.innerHTML = `<a href="/dashboard">Dashboard</a> > <a href='javascript:history.back();'>Case Management</a> > ${caseTitle}`;
 }
 
-function showTab(tabName) {
+function showTabcase(tabName, event) {
+    /*console.log("showTab triggered:", tabName, event);*/
+
+    if (!event || !event.target) {
+        /*console.warn("Missing event or event.target!");*/
+        return;
+    }
+
     document.querySelectorAll('.cms-content').forEach(function (content) {
         content.classList.remove('active');
     });
@@ -39,9 +46,10 @@ function showTab(tabName) {
     document.getElementById(tabName).classList.add('active');
     event.target.classList.add('active');
 
-
     const breadcrumb = document.querySelector(".crumbs");
     const tabText = event.target.innerText.trim();
+    /*console.log("Active Tab Text:", tabText);*/
+
     breadcrumb.innerHTML = `<a href="/dashboard">Dashboard</a> > <a href='javascript:history.back();'>Case Management</a> > ${caseTitle} > ${tabText}`;
 }
 
@@ -480,9 +488,9 @@ function fetchCaseDetails(caseId) {
                           <span><strong>Date Docketed: </strong> <i>${formattedDatedocketed}</i></span>
                       </div>
                       <div>
-                              <span><strong>Docketed By: </strong> <i>${caseData.DocketedBy ?? 'N/A'}</i></span>
-                                <span><strong>Applicant: </strong> <i>${caseData.CompanyName ?? 'N/A'}</i></span>
-                              <span><strong>Respondent: </strong> <i>${caseData.CorrespondentName ?? 'No Data Yet'}</i></span>
+                        <span><strong>Docketed By: </strong> <i>${caseData.DocketedBy ?? 'N/A'}</i></span>
+                        <span><strong>Applicant: </strong> <i>${caseData.CompanyName ?? 'N/A'}</i></span>
+                        <span><strong>Respondent: </strong> <i>${caseData.CorrespondentName ?? 'No Data Yet'}</i></span>
                       </div>
                       <div>
                           <span><strong>No. of Folders: </strong> <i>${caseData.NoOfFolders ?? 'N/A'}</i></span>
