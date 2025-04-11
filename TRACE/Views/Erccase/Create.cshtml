@@ -23,11 +23,10 @@
     <div class="case-card shadow border-radius-5">
         <div class="form-div  create-lc">
                 <div class="grid grid-three-fr gap-10">
-
-                
                 <div class="form-input-div">
-                    <label  class="control-label">Case Number</label>
-                    <input class="form-control" id="caseNoInput" disabled/>
+                    <label  class="control-label">Case Number</label><br />
+                    <i style="font-size:11px;">(This will be generated once case category is selected)</i>
+                    <input class="form-control" id="caseNoInput" disabled placeholder="This will be generated"/>
                 </div>
                     <div class="form-input-div">
                         <label asp-for="CaseCategoryId" class="control-label"></label><span style="color:red">*</span>
@@ -36,22 +35,22 @@
                         </select>
                     </div>
                     <div class="form-input-div">
-                    <label asp-for="CaseNature" class="control-label"></label><span style="color:red">*</span>
+                        <label asp-for="CaseNature" class="control-label"></label><span style="color:red">*</span>
                         <select asp-for="CaseNatureId" class="form-control" asp-items="ViewBag.CaseNatureId" id="CasenatureIdDropdown">
                             <option selected disabled>Select Case Nature</option>
                         </select>
                     </div>
                     <div class="form-input-div">
-                        <label asp-for="MeterSin" class="control-label">Meter Sin</label>
-                        <input asp-for="MeterSin" class="form-control" />
+                        <label asp-for="Title" class="control-label"></label><span style="color:red">*</span>
+                        <textarea asp-for="Title" class="form-control"></textarea>
                     </div>
                     <div class="form-input-div">
                         <label>Remarks</label>
                         <textarea></textarea>
                     </div>
                     <div class="form-input-div">
-                        <label asp-for="Title" class="control-label"></label><span style="color:red">*</span>
-                        <textarea asp-for="Title" class="form-control"></textarea>
+                        <label asp-for="MeterSin" class="control-label">Meter Sin</label>
+                        <input asp-for="MeterSin" class="form-control" />
                     </div>
                 </div>
 

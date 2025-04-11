@@ -1730,8 +1730,19 @@ canvas {
 }
 
 /*CREATE CASE*/
-.form-div{
-    padding:20px;
+#caseNoInput{
+    background:#b4b4b4b7;
+    border:none;
+    color: var(--font-color);
+}
+
+#caseNoInput::placeholder {
+    color: var(--font-color);
+}
+
+
+.form-div {
+    padding: 20px;
 }
 
 .form-input-div {
@@ -2061,3 +2072,33 @@ canvas {
 /*RELATED CASES*/
 
 /*RELATED CASES*/
+
+
+/*FILTER DROPDOWN*/
+.choices {
+    background-color: var(--theme);
+    color: var(--font-color);
+}
+
+.choices__inner {
+    background-color: var(--theme);
+    color: var(--font-color);
+}
+
+.choices__list--dropdown,
+.choices__list[role="listbox"] {
+    background-color: var(--body-color);
+    color: var(--font-color);
+}
+
+.choices__item--selectable.is-highlighted {
+    background-color: var(--active-color) !important;
+    color: var(--font-color)
+}
+
+.choices__input {
+    background-color: var(--theme) !important;
+    color: var(--font-color) !important;
+    border: none;
+}
+/*FILTER DROPDOWN*/
