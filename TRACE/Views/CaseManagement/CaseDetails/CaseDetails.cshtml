@@ -267,6 +267,8 @@
         window.location.href = `/CaseNote/create?id=${erccaseId}`;
     }
     function AttachDocument() {
-        
+        const urlParams = new URLSearchParams(window.location.search);
+        const erccaseId = urlParams.get('id');
+        window.location.href = `/caseattachments/upload?id=${erccaseId}`;
     }
 </script>

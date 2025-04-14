@@ -24,6 +24,11 @@ body{
     font-size:13px;
 }
 
+.helper{
+    font-size:11px;
+    color:#898989;
+}
+
 .green-txt{
     color: #01e841;
 }
@@ -2128,3 +2133,40 @@ canvas {
     border: none;
 }
 /*FILTER DROPDOWN*/
+
+
+/*CASE ATTACHMENT DOCS*/
+.uploadfileclass {
+    min-height:150px;
+    border: 2px dashed var(--primary-color);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:10px;
+    padding:20px;
+}
+
+.uploadfileclass input[type="file"] {
+    display: none;
+}
+
+.uploadfileclass label {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    user-select: none;
+}
+
+.uploadfileclass label:hover {
+    background-color: var(--secondary-color);
+}
+
+#fileNames{
+    text-align:center;
+}
+
+/*CASE ATTACHMENT DOCS*/

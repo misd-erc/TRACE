@@ -53,12 +53,14 @@ function showTabcase(tabName, event) {
     breadcrumb.innerHTML = `<a href="/dashboard">Dashboard</a> > <a href='javascript:history.back();'>Case Management</a> > ${caseTitle} > ${tabText}`;
 }
 
+let allCaseEvents = [];
+let currentPage = 1;
+const rowsPerPage = 10;
+
 function fetchCaseEvent(caseId) {
     fetch(`/CaseEvent/GetCaseEventByErcID?id=${caseId}`)
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+            if (!response.ok) throw new Error('Network response was not ok');
             return response.json();
         })
         .then(result => {
@@ -67,33 +69,75 @@ function fetchCaseEvent(caseId) {
                 return;
             }
 
-            const data = result.data;
-            const caseeventbody = document.getElementById('caseeventbody');
-            if (!caseeventbody) {
-                console.error('Table body not found');
-                return;
-            }
-
-            caseeventbody.innerHTML = '';
-
-            data.forEach(event => {
-                const formattedDate = event.eventDatetime
-                    ? new Date(event.eventDatetime).toLocaleDateString('en-GB')
-                    : 'N/A';
-
-                const row = `
-                    <tr>
-                        <td data-label="BY">${event.userID || 'N/A'}</td>
-                        <td data-label="DESCRIPTION">${event.eventDescription || 'N/A'}</td>
-                        <td data-label="DATE">${formattedDate}</td>
-                    </tr>
-    `;
-                caseeventbody.innerHTML += row;
-            });
+            allCaseEvents = result.data || [];
+            currentPage = 1;
+            renderCaseEventTable();
+            renderPagination();
         })
         .catch(error => {
             console.error('Error fetching case details:', error);
         });
+}
+
+function renderCaseEventTable() {
+    const caseeventbody = document.getElementById('caseeventbody');
+    caseeventbody.innerHTML = '';
+
+    const start = (currentPage - 1) * rowsPerPage;
+    const paginatedData = allCaseEvents.slice(start, start + rowsPerPage);
+
+    paginatedData.forEach(event => {
+        const formattedDate = event.eventDatetime
+            ? new Date(event.eventDatetime).toLocaleDateString('en-GB')
+            : 'N/A';
+
+        const row = `
+            <tr>
+                <td data-label="BY">${event.userID || 'N/A'}</td>
+                <td data-label="DESCRIPTION">${event.eventDescription || 'N/A'}</td>
+                <td data-label="DATE">${formattedDate}</td>
+            </tr>
+        `;
+        caseeventbody.innerHTML += row;
+    });
+}
+
+function renderPagination() {
+    const totalPages = Math.ceil(allCaseEvents.length / rowsPerPage);
+    const paginationSelect = document.querySelector('#caseEventpagination select');
+    const prev = document.querySelector('#caseEventpagination .prev');
+    const next = document.querySelector('#caseEventpagination .next');
+
+    paginationSelect.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        if (i === currentPage) option.selected = true;
+        paginationSelect.appendChild(option);
+    }
+
+    paginationSelect.onchange = (e) => {
+        currentPage = parseInt(e.target.value);
+        renderCaseEventTable();
+    };
+
+    prev.onclick = () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderCaseEventTable();
+            renderPagination();
+        }
+    };
+
+    next.onclick = () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderCaseEventTable();
+            renderPagination();
+        }
+    };
 }
 function completeTask(id) {
     console.log("asdsad")
