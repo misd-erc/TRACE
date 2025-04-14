@@ -22,7 +22,7 @@
         <ul>
             <li onclick="showTabcase('milestones', event)" class="active"><i class='bx bx-check-circle'></i> Milestones</li>
             <li onclick="showTabcase('activities', event)"><i class='bx bxs-calendar'></i> Activities/Events</li>
-            <li onclick="showTabcase('documents', event)"><i class='bx bxs-file'></i> Documents</li>
+            <li onclick="showTabcase('documents', event)"><i class='bx bxs-file'></i>Attached Documents</li>
             <li onclick="showTabcase('assignpersonnel', event)"><i class='bx bxs-user-check'></i> Assigned Personnel</li>
             <li onclick="showTabcase('relatedcases', event)"><i class='bx bxs-folder-open'></i> Related Cases</li>
             <li onclick="showTabcase('hearings', event)"><i class='bx bxs-briefcase'></i> Hearings</li>
@@ -73,7 +73,23 @@
         </div>
 
         <div id="documents" class="cms-content">
-            <h3>Documents</h3>
+            <div class="cdeets flex h-center space-between">
+                <h3>Attached Documents</h3>
+                <button onclick="AttachDocument()">+ Attach Document</button>
+            </div>
+            <div class="nopaginationdiv">
+                <table class="my-cases-table">
+                    <thead>
+                        <tr>
+                            <th>FILE NAME</th>
+                            <th>UPLOADED BY</th>
+                            <th>DATE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attacheddocs">
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div id="assignpersonnel" class="cms-content">
@@ -109,16 +125,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td data-label="PERSONNEL">sampleguy</td>
-                            <td data-label="DATE ASSIGNED">03/09/2016</td>
-                            <td data-label="DATE REMOVED">03/09/2016</td>
-                        </tr>
-                        <tr>
-                            <td data-label="PERSONNEL">sampleguy</td>
-                            <td data-label="DATE ASSIGNED">03/09/2016</td>
-                            <td data-label="DATE REMOVED">03/09/2016</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -140,14 +146,6 @@
                     </tr>
                 </thead>
                 <tbody id="caserelated">
-                    <!--ALDRIN: Please allow only 5 rows per page and use pagination-->
-                    <tr>
-                        <td data-label="CASE NO.">2016-0080-CC</td>
-                        <td data-label="CASE TITLE">SAMPLE Altered Connection</td>
-                        <td data-label="ACTION" class="actions">
-                            <i class='bx bxs-x-circle' title="Archive"></i>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -267,5 +265,8 @@
         const urlParams = new URLSearchParams(window.location.search);
         const erccaseId = urlParams.get('id');
         window.location.href = `/CaseNote/create?id=${erccaseId}`;
+    }
+    function AttachDocument() {
+        
     }
 </script>
