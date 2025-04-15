@@ -1,4 +1,48 @@
 ﻿@{
     ViewData["Title"] = "Hearings";
 }
-<h1>@ViewData["Title"]</h1>
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > Hearings
+</div>
+
+<div class="main-head-div flex h-center space-between">
+    <div class="title-div">
+        <h3>HEARINGS</h3>
+        <p>View available cases.</p>
+    </div>
+    <div class="filter-design border-radius-5 flex h-center">
+        <i class='bx bx-search'></i>
+        <input type="text" placeholder="Hearing Category, Venue or Type.." />
+    </div>
+</div>
+
+<div class="case-card shadow border-radius-5 flex space-between">
+    <div class="case-table-div">
+        <table id="caseRespondentsTable" class="all-cases-table">
+            <thead>
+                <tr>
+                    <th>HEARING CATEGORY</th>
+                    <th>DATE AND TIME</th>
+                    <th>VENUE</th>
+                    <th>TYPE</th>
+                    <th>REMARKS</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination flex h-center gap-10">
+        <span>Current Page: </span>
+        <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+        </select>
+        <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
+        <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
+    </div>
+    @await Html.PartialAsync("Components/Loader/Mini-Loader")
+</div>
+
