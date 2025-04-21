@@ -85,6 +85,9 @@ namespace TRACE.Controllers
         {
             try
             {
+                var email = _currentUserHelper.Email;
+                var currentUser = email.Split('@')[0];
+
                 using var connection = new SqlConnection(_connectionString);
                 await connection.OpenAsync(); // Ensure connection opens
 
@@ -114,12 +117,14 @@ namespace TRACE.Controllers
                             LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
                             LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
                             LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+                            LEFT JOIN cases.CaseAssignments ca ON c.ERCCaseID = ca.ERCCaseID
 
+                            WHERE ca.UserID = @AssignedTo
                             order by c.ERCCaseID desc
                             "
                     ;
 
-                var result = await connection.QueryAsync<dynamic>(sql);
+                var result = await connection.QueryAsync<dynamic>(sql, new { AssignedTo = currentUser });
                 return Json(result);
             }
             catch (Exception ex)
@@ -181,41 +186,48 @@ namespace TRACE.Controllers
         {
             try
             {
+                var email = _currentUserHelper.Email;
+                var currentUser = email.Split('@')[0];
+
                 using var connection = new SqlConnection(_connectionString);
                 await connection.OpenAsync(); // Ensure connection opens
 
                 var sql = @"SELECT 
-                                c.ERCCaseID,
-                                ISNULL(cr.CaseRespondentID, NULL) AS CaseRespondentID,
-                                ISNULL(cr.Remarks, 'N/A') AS RespondentRemarks,
-                                ISNULL(cr.CorrespondentID, NULL) AS RespondentCorrespondentID,
-                                ISNULL(cr.CompanyID, NULL) AS RespondentCompanyID,
+                            c.ERCCaseID,
+                            ISNULL(cr.CaseRespondentID, NULL) AS CaseRespondentID,
+                            ISNULL(cr.Remarks, 'N/A') AS RespondentRemarks,
+                            ISNULL(cr.CorrespondentID, NULL) AS RespondentCorrespondentID,
+                            ISNULL(cr.CompanyID, NULL) AS RespondentCompanyID,
 
-                                c.CaseNo,
-                                c.Title,
-                                ISNULL(cc.Category, 'N/A') AS Category,
-                                ISNULL(cn.Nature, 'NOT SET') AS Nature,
-                                c.DateFiled,
-                                c.DateDocketed,
-                                c.DocketedBy,
-                                ISNULL(cs.[Status], 'N/A') AS CaseStatus,
+                            c.CaseNo,
+                            c.Title,
+                            ISNULL(cc.Category, 'N/A') AS Category,
+                            ISNULL(cn.Nature, 'NOT SET') AS Nature,
+                            c.DateFiled,
+                            c.DateDocketed,
+                            c.DocketedBy,
+                            ISNULL(cs.[Status], 'N/A') AS CaseStatus,
 
-                                ISNULL(comp.CompanyName, 'N/A') AS CompanyName,  
-                                ISNULL(cor.LastName + ' ' + cor.FirstName, 'N/A') AS CorrespondentLastName  
+                            ISNULL(comp.CompanyName, 'N/A') AS CompanyName,  
+                            ISNULL(cor.LastName + ' ' + cor.FirstName, 'N/A') AS CorrespondentLastName,
+	                        ISNULL (ca.UserID, 'N/A') AS AssignedTo
 
-                            FROM cases.ERCCases c
-                            LEFT JOIN ercdb.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
-                            LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
-                            LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
-                            LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
-                            LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
-                            LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+                        FROM cases.ERCCases c
+                        LEFT JOIN ercdb.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
+                        LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
+                        LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
+                        LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
+                        LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
+                        LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+                        LEFT JOIN cases.CaseAssignments ca ON c.ERCCaseID = ca.ERCCaseID
 
-                            WHERE c.DateDocketed IS NOT NULL order by c.ERCCaseID desc"
+                        WHERE c.DateDocketed IS NOT NULL 
+                        AND ca.UserID = @AssignedTo
+                        ORDER BY c.ERCCaseID DESC"
 
                     ;
 
-                var result = await connection.QueryAsync<dynamic>(sql);
+                var result = await connection.QueryAsync<dynamic>(sql, new { AssignedTo = currentUser });
                 return Json(result);
             }
             catch (Exception ex)

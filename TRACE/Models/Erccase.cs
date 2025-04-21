@@ -66,6 +66,8 @@ public partial class Erccase
 
     public DateOnly? FatargetOrder { get; set; }
 
+    public string? AssignedTo { get; set; }
+
     public virtual ICollection<CaseApplicant> CaseApplicants { get; set; } = new List<CaseApplicant>();
 
     public virtual ICollection<CaseAssignment> CaseAssignments { get; set; } = new List<CaseAssignment>();
