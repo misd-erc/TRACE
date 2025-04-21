@@ -86,6 +86,18 @@ function renderCaseEventTable() {
     const start = (currentPage - 1) * rowsPerPage;
     const paginatedData = allCaseEvents.slice(start, start + rowsPerPage);
 
+    if (paginatedData.length === 0) {
+        const row = `
+            <tr>
+                <td colspan="3" style="text-align:center; font-style:italic; color:#888;">
+                    No Events Available for this case yet
+                </td>
+            </tr>
+        `;
+        caseeventbody.innerHTML = row;
+        return;
+    }
+
     paginatedData.forEach(event => {
         const formattedDate = event.eventDatetime
             ? new Date(event.eventDatetime).toLocaleDateString('en-GB')
@@ -101,6 +113,7 @@ function renderCaseEventTable() {
         caseeventbody.innerHTML += row;
     });
 }
+
 
 function renderPagination() {
     const totalPages = Math.ceil(allCaseEvents.length / rowsPerPage);

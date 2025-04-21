@@ -22,6 +22,8 @@
         <ul>
             <li onclick="showTabcase('milestones', event)" class="active"><i class='bx bx-check-circle'></i> Milestones</li>
             <li onclick="showTabcase('activities', event)"><i class='bx bxs-calendar'></i> Activities/Events</li>
+            <li onclick="showTabcase('respondents', event)"><i class='bx bxs-user-pin'></i> Respondents</li>
+            <li onclick="showTabcase('applicants', event)"><i class='bx bx-user-pin'></i> Applicants</li>
             <li onclick="showTabcase('documents', event)"><i class='bx bxs-file'></i>Attached Documents</li>
             <li onclick="showTabcase('assignpersonnel', event)"><i class='bx bxs-user-check'></i> Assigned Personnel</li>
             <li onclick="showTabcase('relatedcases', event)"><i class='bx bxs-folder-open'></i> Related Cases</li>
@@ -70,6 +72,42 @@
                 <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
                 <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
             </div>
+        </div>
+
+        <div id="respondents" class="cms-content">
+            <div class="cdeets flex h-center space-between">
+                <h3>Respondents</h3>
+                <button onclick="">+ Add Respondents</button>
+            </div>
+
+            <table class="my-cases-table">
+                <thead>
+                    <tr>
+                        <th>NAME</th>
+                        <th>DATE ADDED</th>
+                    </tr>
+                </thead>
+                <tbody id="respondentstbody">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="applicants" class="cms-content">
+            <div class="cdeets flex h-center space-between">
+                <h3>Applicants</h3>
+                <button onclick="">+ Add Applicants</button>
+            </div>
+            
+            <table class="my-cases-table">
+                <thead>
+                    <tr>
+                        <th>APPLICANT</th>
+                        <th>DATE ADDED</th>
+                    </tr>
+                </thead>
+                <tbody id="applicantstbody">
+                </tbody>
+            </table>
         </div>
 
         <div id="documents" class="cms-content">
