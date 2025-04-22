@@ -50,8 +50,16 @@ namespace TRACE.Controllers
         // GET: CaseRespondents/Create
         public IActionResult Create()
         {
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "CompanyId", "CompanyId");
-            ViewData["CorrespondentId"] = new SelectList(_context.Correspondents, "CorrespondentId", "CorrespondentId");
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "CompanyId", "CompanyName");
+            ViewData["CorrespondentId"] = new SelectList(
+                _context.Correspondents
+                    .Select(c => new {
+                        c.CorrespondentId,
+                        FullName = c.Salutation + " " + c.FirstName + " " + c.LastName
+                    }),
+                "CorrespondentId",
+                "FullName"
+            );
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
             return View();
         }

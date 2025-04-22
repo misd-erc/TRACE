@@ -31,6 +31,7 @@ namespace TRACE.Controllers
             var ercdbContext = _context.RelatedCases.Include(r => r.Erccase).Include(r => r.ErccaseRelated);
             return View(await ercdbContext.ToListAsync());
         }
+
         [HttpGet]
         public async Task<IActionResult> GetCaseRelatedByErcID(int id)
         {
