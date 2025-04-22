@@ -1779,6 +1779,10 @@ public partial class ErcdbContext : DbContext
                 .HasMaxLength(150)
                 .IsUnicode(false);
 
+            entity.Property(e => e.HearingLinks)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+
             entity.HasOne(d => d.Erccase).WithMany(p => p.Hearings)
                 .HasForeignKey(d => d.ErccaseId)
                 .HasConstraintName("FK_Hearings_Cases");

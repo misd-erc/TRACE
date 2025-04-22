@@ -57,6 +57,7 @@ namespace TRACE.Controllers
                         h.ApprovedBy,
                         h.DatetimeApproved,
                         h.OtherVenue,
+                        h.HearingLinks,
                         -- Concatenate HearingType with a comma separator, handling null values
                         STUFF((SELECT ', ' + ISNULL(ht.TypeOfHearing, '')
                                FROM [ercdb].[cases].[HearingsInHearingType] htm
@@ -124,7 +125,6 @@ namespace TRACE.Controllers
                 })
                 .ToList();
 
-            // Assign to ViewBag.HearingTypes for use in the view
             ViewBag.HearingTypes = hearingTypes; ;
             return View();
         }
@@ -135,8 +135,8 @@ namespace TRACE.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-    [Bind("HearingId,ErccaseId,HearingDate,Time,HearingVenueId,Remarks,HearingCategoryId,IsApproved,ApprovedBy,DatetimeApproved,OtherVenue")] Hearing hearing,
-    List<long> HearingTypes)
+        [Bind("HearingId,ErccaseId,HearingDate,Time,HearingVenueId,Remarks,HearingCategoryId,IsApproved,ApprovedBy,DatetimeApproved,OtherVenue, HearingLinks")] Hearing hearing,
+        List<long> HearingTypes)
         {
             if (!ModelState.IsValid)
             {

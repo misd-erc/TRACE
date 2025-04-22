@@ -390,11 +390,23 @@ function fetchCaseHearingWithErcId(caseId) {
                         <td data-label="HEARING CATEGORY">${caseData.HearingCategory}</td>
                         <td data-label="DATE AND TIME">${formattedDate} ${caseData.Time}</td>
                         <td data-label="VENUE">${caseData.HearingVenue}</td>
+                        <td data-label="LINK">
+                              ${
+                                caseData.HearingLinks
+                                    ? (() => {
+                                        const link = caseData.HearingLinks.startsWith('http://') || caseData.HearingLinks.startsWith('https://')
+                                            ? caseData.HearingLinks
+                                            : 'https://' + caseData.HearingLinks;
+                                        return `<a href="${link}" target="_blank" rel="noopener noreferrer"><button>Watch</button></a>`;
+                                    })()
+                                    : 'N/A'
+                              }
+                            </td>
+
                         <td data-label="TYPE">${hearingTypeDescriptions} (${hearingTypes})</td>
                         <td data-label="REMARKS">${caseData.Remarks}</td>
                         <td data-label="ACTION" class="actions">
                             <i class='bx bxs-edit' title="Edit"></i>
-                            <i class='bx bxs-x-circle' title="Archive"></i>
                         </td>
                     </tr>
                     `;

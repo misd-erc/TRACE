@@ -1685,7 +1685,7 @@ canvas {
 }
 
 .my-cases-table tbody tr td.actions i {
-    font-size:25px;
+    font-size:20px;
     color: var(--primary-color);
     margin-right:5px;
     cursor:pointer;
