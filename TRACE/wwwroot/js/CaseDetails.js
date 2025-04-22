@@ -16,6 +16,9 @@ const itemsPerPage = 5;
         fetchCaseTaskWithErcId(caseId);
         fetchCaseNoteWithErcId(caseId);
         GetCaseRelatedByErcID(caseId);
+        fetchCaseRespondentWithErcId(caseId);
+     
+        
 
     } else {
         console.error('No case ID found in URL.');
@@ -268,6 +271,52 @@ function fetchCaseTaskWithErcId(caseId) {
         });
 }
 
+function fetchCaseRespondentWithErcId(caseId) {
+    console.log("asdfasdf");
+    fetch(`/CaseRespondents/GetCaseRespondentByErcID?id=${caseId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            const caseassignment = document.getElementById('respondentstbody');
+            caseassignment.innerHTML = '';
+            if (data.length > 0) {
+                const caseData = data[0];
+                data.forEach(event => {
+                    const formattedDate = event.DateAssigned
+                        ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
+                        : 'N/A';
+                    caseassignment.innerHTML += `
+                               <tr>
+                                <td data-label="COMPANY NAME">${event.companyName}</td>
+                                <td data-label="RESPONDENT NAME">${event.correspondentName}</td>
+                             
+                                <td data-label="ACTION" class="actions">
+                                <i class='bx bxs-x-circle' title="Archive"></i>
+                            </td>
+                        </tr>
+                        `;
+                })
+                // Update values dynamically
+
+
+            } else {
+                caseassignment.innerHTML = `
+                            <tr>
+                                  <td colspan="5">No Case Respondents</td>
+                            </tr>
+                        `;
+            }
+
+        })
+        .catch(error => {
+            console.error('Error fetching case details:', error);
+        });
+}
 function fetchCaseAssignmentWithErcId(caseId) {
     fetch(`/CaseAssignment/GetCaseAssignmentByErcID?id=${caseId}`)
         .then(response => {
