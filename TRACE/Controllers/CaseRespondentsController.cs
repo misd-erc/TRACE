@@ -18,7 +18,23 @@ namespace TRACE.Controllers
         {
             _context = context;
         }
+        public async Task<IActionResult> GetCaseRespondentByErcID(int id)
+        {
+            var caseRespondents = await _context.CaseRespondents
+                .Where(x => x.ErccaseId == id)
+                .Select(cr => new {
+                    cr.CaseRespondentId,
+                    cr.ErccaseId,
+                    cr.CompanyId,
+                    CompanyName = cr.Company != null ? cr.Company.CompanyName : null,
+                    cr.CorrespondentId,
+                    CorrespondentName = cr.Correspondent != null ? cr.Correspondent.FirstName + " " + cr.Correspondent.LastName : null
+                    // Add only what you need here
+                })
+                .ToListAsync();
 
+            return Json(caseRespondents);
+        }
         // GET: CaseRespondents
         public async Task<IActionResult> Index()
         {

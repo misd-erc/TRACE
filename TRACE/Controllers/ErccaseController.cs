@@ -92,35 +92,34 @@ namespace TRACE.Controllers
                 await connection.OpenAsync(); // Ensure connection opens
 
                 var sql = @"SELECT 
-                                c.ERCCaseID,
-                                ISNULL(cr.CaseRespondentID, NULL) AS CaseRespondentID,
-                                ISNULL(cr.Remarks, 'N/A') AS RespondentRemarks,
-                                ISNULL(cr.CorrespondentID, NULL) AS RespondentCorrespondentID,
-                                ISNULL(cr.CompanyID, NULL) AS RespondentCompanyID,
+                                    c.ERCCaseID,
+                                    c.CaseNo,
+                                    c.Title,
+                                    ISNULL(cc.Category, 'N/A') AS Category,
+                                    ISNULL(cn.Nature, 'NOT SET') AS Nature,
+                                    c.DateFiled,
+                                    c.DateDocketed,
+                                    c.DocketedBy,
+                                    ISNULL(cs.[Status], 'N/A') AS CaseStatus,
 
-                                c.CaseNo,
-                                c.Title,
-                                ISNULL(cc.Category, 'N/A') AS Category,
-                                ISNULL(cn.Nature, 'NOT SET') AS Nature,
-                                c.DateFiled,
-                                c.DateDocketed,
-                                c.DocketedBy,
-                                ISNULL(cs.[Status], 'N/A') AS CaseStatus,
+                                    -- CONCATENATE ALL COMPANIES per case
+                                    ISNULL(STRING_AGG(comp.CompanyName, ', '), 'N/A') AS CompanyName
 
-                                ISNULL(comp.CompanyName, 'N/A') AS CompanyName,  
-                                ISNULL(cor.LastName + ' ' + cor.FirstName, 'N/A') AS CorrespondentLastName  
+                                FROM cases.ERCCases c
+                                LEFT JOIN ercdb.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
+                                LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
+                                LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
+                                LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
+                                LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
+                                LEFT JOIN cases.CaseAssignments ca ON c.ERCCaseID = ca.ERCCaseID
 
-                            FROM cases.ERCCases c
-                            LEFT JOIN ercdb.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
-                            LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
-                            LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
-                            LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
-                            LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
-                            LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
-                            LEFT JOIN cases.CaseAssignments ca ON c.ERCCaseID = ca.ERCCaseID
+                                WHERE ca.UserID = @AssignedTo
 
-                            WHERE ca.UserID = @AssignedTo
-                            order by c.ERCCaseID desc
+                                GROUP BY 
+                                    c.ERCCaseID, c.CaseNo, c.Title, cc.Category, cn.Nature, 
+                                    c.DateFiled, c.DateDocketed, c.DocketedBy, cs.Status
+
+                                ORDER BY c.ERCCaseID DESC;
                             "
                     ;
 
