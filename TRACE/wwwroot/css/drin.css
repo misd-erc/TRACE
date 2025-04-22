@@ -2114,6 +2114,7 @@ canvas {
 .choices__inner {
     background-color: var(--theme);
     color: var(--font-color);
+    border: 2px solid var(--font-color);
 }
 
 .choices__list--dropdown,

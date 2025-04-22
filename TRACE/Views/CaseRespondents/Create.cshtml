@@ -30,12 +30,12 @@
 
                 <div class="form-input-div">
                     <label asp-for="CorrespondentId" class="control-label">Correspondent Name</label>
-                    <select asp-for="CorrespondentId" class="form-control" asp-items="ViewBag.CorrespondentId"></select>
+                    <select asp-for="CorrespondentId" class="form-control" asp-items="ViewBag.CorrespondentId" id="_correspondent"></select>
                 </div>
 
                 <div class="form-input-div">
                     <label asp-for="CompanyId" class="control-label">Company Name</label>
-                    <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
+                    <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId" id="_company"></select>
                 </div>
                 
                 <div class="form-input-div">
@@ -55,6 +55,29 @@
 
     <script>
         $(document).ready(function () {
+            const element = document.getElementById('_correspondent');
+            const choices = new Choices(element, {
+                searchEnabled: true,
+                searchFuzzy: true,
+                removeItemButton: true,
+                placeholder: true,
+                placeholderValue: 'Search Correspondents',
+                searchChoices: true,
+                searchResultLimit: 9,
+                position: 'bottom',
+            });
+
+            const element2 = document.getElementById('_company');
+            const choices2 = new Choices(element2, {
+                searchEnabled: true,
+                searchFuzzy: true,
+                removeItemButton: true,
+                placeholder: true,
+                placeholderValue: 'Search Company',
+                searchChoices: true,
+                searchResultLimit: 9,
+                position: 'bottom',
+            });
             $("#createForm").submit(function (event) {
                 event.preventDefault();
 

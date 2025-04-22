@@ -272,7 +272,6 @@ function fetchCaseTaskWithErcId(caseId) {
 }
 
 function fetchCaseRespondentWithErcId(caseId) {
-    console.log("asdfasdf");
     fetch(`/CaseRespondents/GetCaseRespondentByErcID?id=${caseId}`)
         .then(response => {
             if (!response.ok) {
@@ -282,15 +281,15 @@ function fetchCaseRespondentWithErcId(caseId) {
         })
         .then(data => {
             console.log(data);
-            const caseassignment = document.getElementById('respondentstbody');
-            caseassignment.innerHTML = '';
+            const caserespondent = document.getElementById('respondentstbody');
+            caserespondent.innerHTML = '';
             if (data.length > 0) {
                 const caseData = data[0];
                 data.forEach(event => {
                     const formattedDate = event.DateAssigned
                         ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
                         : 'N/A';
-                    caseassignment.innerHTML += `
+                    caserespondent.innerHTML += `
                                <tr>
                                 <td data-label="COMPANY NAME">${event.companyName}</td>
                                 <td data-label="RESPONDENT NAME">${event.correspondentName}</td>
@@ -301,13 +300,11 @@ function fetchCaseRespondentWithErcId(caseId) {
                         </tr>
                         `;
                 })
-                // Update values dynamically
-
 
             } else {
-                caseassignment.innerHTML = `
+                caserespondent.innerHTML = `
                             <tr>
-                                  <td colspan="5">No Case Respondents</td>
+                                  <td colspan="3">No Case Respondents</td>
                             </tr>
                         `;
             }
