@@ -35,5 +35,7 @@ public partial class Hearing
 
     public virtual HearingVenue HearingVenue { get; set; } = null!;
 
+    public long HearingTypeID { get; set; }
+
     public virtual ICollection<HearingType> HearingTypes { get; set; } = new List<HearingType>();
 }

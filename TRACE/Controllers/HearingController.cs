@@ -43,33 +43,35 @@ namespace TRACE.Controllers
                 await connection.OpenAsync(); // Ensure connection opens
 
                 var sql = @"
-                   SELECT  
-                        h.HearingID,
-                        h.ERCCaseID,
-                        h.HearingDate,
-                        h.[Time],
-                        h.HearingVenueID,
-                        hv.VenueName AS HearingVenue,
-                        h.Remarks,
-                        h.HearingCategoryID,
-                        hc.Category AS HearingCategory,
-                        h.IsApproved,
-                        h.ApprovedBy,
-                        h.DatetimeApproved,
-                        h.OtherVenue,
-                        ht.TypeOfHearing AS HearingType,
-                        ht.Description AS HearingTypeDescription
-                    FROM 
-                        [ercdb].[cases].[Hearings] h
-                    LEFT JOIN 
-                        [ercdb].[cases].[HearingVenues] hv ON h.HearingVenueID = hv.HearingVenueID
-                    LEFT JOIN 
-                        [ercdb].[cases].[HearingCategories] hc ON h.HearingCategoryID = hc.HearingCategoryID
-                    LEFT JOIN 
-                        [ercdb].[cases].[HearingsInHearingType] htm ON h.HearingID = htm.HearingID
-                    LEFT JOIN
-                        [ercdb].[cases].[HearingTypes] ht ON htm.HearingTypeID = ht.HearingTypeID
-	                    where h.ERCCaseID = @id";
+            SELECT  
+                h.HearingID,
+                h.ERCCaseID,
+                h.HearingDate,
+                h.[Time],
+                h.HearingVenueID,
+                hv.VenueName AS HearingVenue,
+                h.Remarks,
+                h.HearingCategoryID,
+                hc.Category AS HearingCategory,
+                h.IsApproved,
+                h.ApprovedBy,
+                h.DatetimeApproved,
+                h.OtherVenue,
+                ht.HearingTypeID,
+                ht.TypeOfHearing AS HearingType,
+                ht.Description AS HearingTypeDescription
+            FROM 
+                [ercdb].[cases].[Hearings] h
+            LEFT JOIN 
+                [ercdb].[cases].[HearingVenues] hv ON h.HearingVenueID = hv.HearingVenueID
+            LEFT JOIN 
+                [ercdb].[cases].[HearingCategories] hc ON h.HearingCategoryID = hc.HearingCategoryID
+            LEFT JOIN 
+                [ercdb].[cases].[HearingsInHearingType] htm ON h.HearingID = htm.HearingID
+            LEFT JOIN
+                [ercdb].[cases].[HearingTypes] ht ON htm.HearingTypeID = ht.HearingTypeID
+            WHERE 
+                h.ERCCaseID = @id";
 
                 var result = await connection.QueryAsync<dynamic>(sql, new { id });
                 return Json(result);
@@ -79,6 +81,7 @@ namespace TRACE.Controllers
                 return BadRequest(new { message = "Error fetching data", error = ex.Message });
             }
         }
+
 
         // GET: Hearing/Details/5
         public async Task<IActionResult> Details(long? id)
@@ -107,6 +110,9 @@ namespace TRACE.Controllers
             
             ViewData["HearingCategoryId"] = new SelectList(_context.HearingCategories, "HearingCategoryId", "Category");
             ViewData["HearingVenueId"] = new SelectList(_context.HearingVenues, "HearingVenueId", "VenueName");
+            ViewData["HearingTypeId"] = new SelectList(_context.HearingTypes, "HearingTypeId", "TypeOfHearing");
+
+            ViewBag.HearingTypes = _context.HearingTypes.ToList();
             return View();
         }
 
@@ -115,27 +121,60 @@ namespace TRACE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HearingId,ErccaseId,HearingDate,Time,HearingVenueId,Remarks,HearingCategoryId,IsApproved,ApprovedBy,DatetimeApproved,OtherVenue")] Hearing hearing)
+        public async Task<IActionResult> Create(Hearing hearing, List<long> HearingTypeIDs)
         {
-            if (!ModelState.IsValid)
+            try
             {
-               if(hearing.IsApproved == true)
+                if (!ModelState.IsValid)
                 {
-                    var currentUserName = _currentUserHelper.Email;
-                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                    hearing.ApprovedBy = user.Username;
-               
+                    if (hearing.IsApproved == true)
+                    {
+                        var currentUserName = _currentUserHelper.Email;
+                        var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == currentUserName);
+                        hearing.ApprovedBy = user?.Username;
+                        hearing.DatetimeApproved = DateTime.Now;
+                    }
+
+                    _context.Hearings.Add(hearing);
+                    await _context.SaveChangesAsync();
+
+                    if (HearingTypeIDs != null && HearingTypeIDs.Any())
+                    {
+                        var hearingsInHearingType = HearingTypeIDs.Select(h => new HearingsInHearingType
+                        {
+                            HearingID = hearing.HearingId,
+                            HearingTypeID = h
+                        }).ToList();
+
+                        _context.HearingsInHearingType.AddRange(hearingsInHearingType);
+                        await _context.SaveChangesAsync();
+                    }
+
+                    return Json(new { success = true, message = "Success! Hearing has been saved." });
                 }
 
-                _context.Add(hearing);
-                await _context.SaveChangesAsync();
-                return Json(new { success = true, message = "Success! Data has been saved." });
+                // If model state is invalid, return validation error
+                ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", hearing.ErccaseId);
+                ViewData["HearingCategoryId"] = new SelectList(_context.HearingCategories, "HearingCategoryId", "HearingCategoryId", hearing.HearingCategoryId);
+                ViewData["HearingVenueId"] = new SelectList(_context.HearingVenues, "HearingVenueId", "HearingVenueId", hearing.HearingVenueId);
+                ViewData["HearingTypes"] = await _context.HearingTypes.ToListAsync();
+
+                return Json(new { success = false, message = "Validation error. Please check your input." });
             }
-            ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", hearing.ErccaseId);
-            ViewData["HearingCategoryId"] = new SelectList(_context.HearingCategories, "HearingCategoryId", "HearingCategoryId", hearing.HearingCategoryId);
-            ViewData["HearingVenueId"] = new SelectList(_context.HearingVenues, "HearingVenueId", "HearingVenueId", hearing.HearingVenueId);
-            return Json(new { success = false, message = "Error! Please check your input." });
+            catch (Exception ex)
+            {
+                var errorMessage = ex.InnerException?.Message ?? ex.Message;
+
+                // Log it for debugging
+                Console.WriteLine("CREATE ERROR: " + errorMessage);
+
+                return Json(new { success = false, message = $"Server error: {errorMessage}" });
+            }
         }
+
+
+
+
 
         // GET: Hearing/Edit/5
         public async Task<IActionResult> Edit(long? id)

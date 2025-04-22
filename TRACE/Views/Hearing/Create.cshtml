@@ -45,6 +45,20 @@
                     <label asp-for="HearingCategoryId" class="control-label">Hearing Category</label>
                     <select asp-for="HearingCategoryId" class="form-control" asp-items="ViewBag.HearingCategoryId"></select>
                 </div>
+                <div class="form-input-div checkbox">
+                    <label class="control-label">Hearing Types</label>
+                    <div>
+                        @foreach (var type in ViewBag.HearingTypes as List<HearingType>)
+                        {
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="HearingTypeID" value="@type.HearingTypeId" id="htype_@type.HearingTypeId" />
+                                <label class="form-check-label" for="htype_@type.HearingTypeId">
+                                    @type.TypeOfHearing
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
                 <div class="form-input-div">
                     <label asp-for="IsApproved" class="control-label">Approved</label>
                     <select asp-for="IsApproved" class="form-control">
@@ -76,6 +90,10 @@
         $(document).ready(function () {
             $("#createForm").submit(function (event) {
                 event.preventDefault();
+
+                // Log the serialized form data to the console before sending
+        var formData = $(this).serialize();
+        console.log('Sending data: ', formData);
 
                 $.ajax({
                     url: $(this).attr("action"),
@@ -119,6 +137,7 @@
                 });
             });
         });
+
     </script>
 }
 <script>

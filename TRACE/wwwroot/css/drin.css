@@ -2170,3 +2170,11 @@ canvas {
 }
 
 /*CASE ATTACHMENT DOCS*/
+
+/*CHECKBOX*/
+.checkbox input[type=checkbox]{
+    height:15px !important;
+    width:15px !important;
+    border:2px solid var(--font-color) !important;
+    cursor:pointer;
+}

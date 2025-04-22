@@ -152,6 +152,8 @@ public partial class ErcdbContext : DbContext
 
     public virtual DbSet<HearingVenue> HearingVenues { get; set; }
 
+    public virtual DbSet<HearingsInHearingType> HearingsInHearingType { get; set; }
+
     public virtual DbSet<InternalDocument> InternalDocuments { get; set; }
 
     public virtual DbSet<LogType> LogTypes { get; set; }
@@ -1760,19 +1762,27 @@ public partial class ErcdbContext : DbContext
             entity.HasIndex(e => new { e.HearingDate, e.Time, e.HearingVenueId, e.OtherVenue }, "IX_Hearings").IsUnique();
 
             entity.Property(e => e.HearingId).HasColumnName("HearingID");
+
             entity.Property(e => e.ApprovedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+
             entity.Property(e => e.DatetimeApproved).HasColumnType("datetime");
+
             entity.Property(e => e.ErccaseId).HasColumnName("ERCCaseID");
+
             entity.Property(e => e.HearingCategoryId).HasColumnName("HearingCategoryID");
+
             entity.Property(e => e.HearingVenueId).HasColumnName("HearingVenueID");
+
             entity.Property(e => e.OtherVenue)
                 .HasMaxLength(500)
                 .IsUnicode(false);
+
             entity.Property(e => e.Remarks)
                 .HasMaxLength(500)
                 .IsUnicode(false);
+
             entity.Property(e => e.Time)
                 .HasMaxLength(150)
                 .IsUnicode(false);
@@ -1790,23 +1800,31 @@ public partial class ErcdbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Hearings_HearingVenues");
 
-            entity.HasMany(d => d.HearingTypes).WithMany(p => p.Hearings)
+            // Many-to-many relationship for HearingTypes
+            entity.HasMany(d => d.HearingTypes)
+                .WithMany(p => p.Hearings)
                 .UsingEntity<Dictionary<string, object>>(
-                    "HearingsInHearingType",
+                    "HearingsInHearingType", // Name of the join table
                     r => r.HasOne<HearingType>().WithMany()
-                        .HasForeignKey("HearingTypeId")
+                        .HasForeignKey("HearingTypeID")
                         .HasConstraintName("FK_HearingsInHearingType_HearingTypes"),
                     l => l.HasOne<Hearing>().WithMany()
-                        .HasForeignKey("HearingId")
+                        .HasForeignKey("HearingID")
                         .HasConstraintName("FK_HearingsInHearingType_Hearings"),
                     j =>
                     {
-                        j.HasKey("HearingId", "HearingTypeId");
+                        // Remove the primary key definition and make it keyless
                         j.ToTable("HearingsInHearingType", "cases");
-                        j.IndexerProperty<long>("HearingId").HasColumnName("HearingID");
-                        j.IndexerProperty<long>("HearingTypeId").HasColumnName("HearingTypeID");
+                        j.IndexerProperty<long>("HearingID").HasColumnName("HearingID");
+                        j.IndexerProperty<long>("HearingTypeID").HasColumnName("HearingTypeID");
+
+                        // Mark this join table as keyless
+                        j.HasNoKey();
                     });
         });
+
+
+
 
         modelBuilder.Entity<HearingCategory>(entity =>
         {
