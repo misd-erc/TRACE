@@ -12,4 +12,7 @@ public partial class HearingType
     public string? Description { get; set; }
 
     public virtual ICollection<Hearing> Hearings { get; set; } = new List<Hearing>();
+
+    public virtual ICollection<HearingsInHearingType> HearingsInHearingTypes { get; set; } = new List<HearingsInHearingType>();
+
 }

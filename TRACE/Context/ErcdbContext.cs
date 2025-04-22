@@ -152,6 +152,8 @@ public partial class ErcdbContext : DbContext
 
     public virtual DbSet<HearingVenue> HearingVenues { get; set; }
 
+    public virtual DbSet<HearingsInHearingType> HearingsInHearingTypes { get; set; }
+
     public virtual DbSet<InternalDocument> InternalDocuments { get; set; }
 
     public virtual DbSet<LogType> LogTypes { get; set; }
@@ -1790,22 +1792,38 @@ public partial class ErcdbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Hearings_HearingVenues");
 
-            entity.HasMany(d => d.HearingTypes).WithMany(p => p.Hearings)
-                .UsingEntity<Dictionary<string, object>>(
-                    "HearingsInHearingType",
-                    r => r.HasOne<HearingType>().WithMany()
-                        .HasForeignKey("HearingTypeId")
-                        .HasConstraintName("FK_HearingsInHearingType_HearingTypes"),
-                    l => l.HasOne<Hearing>().WithMany()
-                        .HasForeignKey("HearingId")
-                        .HasConstraintName("FK_HearingsInHearingType_Hearings"),
-                    j =>
-                    {
-                        j.HasKey("HearingId", "HearingTypeId");
-                        j.ToTable("HearingsInHearingType", "cases");
-                        j.IndexerProperty<long>("HearingId").HasColumnName("HearingID");
-                        j.IndexerProperty<long>("HearingTypeId").HasColumnName("HearingTypeID");
-                    });
+            // ALDRIN: Gumawa ako bagong model builder dito (Line 1813)
+            //entity.HasMany(d => d.HearingTypes).WithMany(p => p.Hearings)
+            //    .UsingEntity<Dictionary<string, object>>(
+            //        "HearingsInHearingType",
+            //        r => r.HasOne<HearingType>().WithMany()
+            //            .HasForeignKey("HearingTypeId")
+            //            .HasConstraintName("FK_HearingsInHearingType_HearingTypes"),
+            //        l => l.HasOne<Hearing>().WithMany()
+            //            .HasForeignKey("HearingId")
+            //            .HasConstraintName("FK_HearingsInHearingType_Hearings"),
+            //        j =>
+            //        {
+            //            j.HasKey("HearingId", "HearingTypeId");
+            //            j.ToTable("HearingsInHearingType", "cases");
+            //            j.IndexerProperty<long>("HearingId").HasColumnName("HearingID");
+            //            j.IndexerProperty<long>("HearingTypeId").HasColumnName("HearingTypeID");
+            //        });
+        });
+
+        modelBuilder.Entity<HearingsInHearingType>(entity =>
+        {
+            entity.ToTable("HearingsInHearingType", "cases");
+
+            entity.HasKey(h => new { h.HearingId, h.HearingTypeId });
+
+            entity.HasOne(h => h.Hearing)
+                .WithMany(h => h.HearingsInHearingTypes)
+                .HasForeignKey(h => h.HearingId);
+
+            entity.HasOne(h => h.HearingType)
+                .WithMany(ht => ht.HearingsInHearingTypes)
+                .HasForeignKey(h => h.HearingTypeId);
         });
 
         modelBuilder.Entity<HearingCategory>(entity =>

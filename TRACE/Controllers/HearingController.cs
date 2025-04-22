@@ -57,19 +57,27 @@ namespace TRACE.Controllers
                         h.ApprovedBy,
                         h.DatetimeApproved,
                         h.OtherVenue,
-                        ht.TypeOfHearing AS HearingType,
-                        ht.Description AS HearingTypeDescription
+                        -- Concatenate HearingType with a comma separator, handling null values
+                        STUFF((SELECT ', ' + ISNULL(ht.TypeOfHearing, '')
+                               FROM [ercdb].[cases].[HearingsInHearingType] htm
+                               LEFT JOIN [ercdb].[cases].[HearingTypes] ht ON htm.HearingTypeID = ht.HearingTypeID
+                               WHERE htm.HearingID = h.HearingID
+                               FOR XML PATH('')), 1, 2, '') AS HearingTypes,
+                        -- Concatenate HearingTypeDescription with a comma separator, handling null values
+                        STUFF((SELECT ', ' + ISNULL(ht.Description, '')
+                               FROM [ercdb].[cases].[HearingsInHearingType] htm
+                               LEFT JOIN [ercdb].[cases].[HearingTypes] ht ON htm.HearingTypeID = ht.HearingTypeID
+                               WHERE htm.HearingID = h.HearingID
+                               FOR XML PATH('')), 1, 2, '') AS HearingTypeDescriptions
                     FROM 
                         [ercdb].[cases].[Hearings] h
                     LEFT JOIN 
                         [ercdb].[cases].[HearingVenues] hv ON h.HearingVenueID = hv.HearingVenueID
                     LEFT JOIN 
                         [ercdb].[cases].[HearingCategories] hc ON h.HearingCategoryID = hc.HearingCategoryID
-                    LEFT JOIN 
-                        [ercdb].[cases].[HearingsInHearingType] htm ON h.HearingID = htm.HearingID
-                    LEFT JOIN
-                        [ercdb].[cases].[HearingTypes] ht ON htm.HearingTypeID = ht.HearingTypeID
-	                    where h.ERCCaseID = @id";
+                    WHERE 
+                        h.ERCCaseID = @id
+                    ";
 
                 var result = await connection.QueryAsync<dynamic>(sql, new { id });
                 return Json(result);
@@ -107,6 +115,17 @@ namespace TRACE.Controllers
             
             ViewData["HearingCategoryId"] = new SelectList(_context.HearingCategories, "HearingCategoryId", "Category");
             ViewData["HearingVenueId"] = new SelectList(_context.HearingVenues, "HearingVenueId", "VenueName");
+
+            var hearingTypes = _context.HearingTypes
+                .Select(ht => new SelectListItem
+                {
+                    Value = ht.HearingTypeId.ToString(),
+                    Text = ht.TypeOfHearing
+                })
+                .ToList();
+
+            // Assign to ViewBag.HearingTypes for use in the view
+            ViewBag.HearingTypes = hearingTypes; ;
             return View();
         }
 
@@ -115,27 +134,49 @@ namespace TRACE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HearingId,ErccaseId,HearingDate,Time,HearingVenueId,Remarks,HearingCategoryId,IsApproved,ApprovedBy,DatetimeApproved,OtherVenue")] Hearing hearing)
+        public async Task<IActionResult> Create(
+    [Bind("HearingId,ErccaseId,HearingDate,Time,HearingVenueId,Remarks,HearingCategoryId,IsApproved,ApprovedBy,DatetimeApproved,OtherVenue")] Hearing hearing,
+    List<long> HearingTypes)
         {
             if (!ModelState.IsValid)
             {
-               if(hearing.IsApproved == true)
+                if (hearing.IsApproved == true)
                 {
                     var currentUserName = _currentUserHelper.Email;
                     var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                    hearing.ApprovedBy = user.Username;
-               
+                    hearing.ApprovedBy = user?.Username;
                 }
 
-                _context.Add(hearing);
+                _context.Hearings.Add(hearing);
                 await _context.SaveChangesAsync();
+
+                // Get the newly created HearingId
+                var hearingId = hearing.HearingId;
+
+                // Save each selected HearingType to the join table
+                foreach (var hearingTypeId in HearingTypes)
+                {
+                    var junction = new HearingsInHearingType
+                    {
+                        HearingId = hearingId,
+                        HearingTypeId = hearingTypeId
+                    };
+                    _context.HearingsInHearingTypes.Add(junction);
+                }
+
+                await _context.SaveChangesAsync();
+
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
+
+            // Repopulate dropdowns if model is invalid
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", hearing.ErccaseId);
             ViewData["HearingCategoryId"] = new SelectList(_context.HearingCategories, "HearingCategoryId", "HearingCategoryId", hearing.HearingCategoryId);
             ViewData["HearingVenueId"] = new SelectList(_context.HearingVenues, "HearingVenueId", "HearingVenueId", hearing.HearingVenueId);
+
             return Json(new { success = false, message = "Error! Please check your input." });
         }
+
 
         // GET: Hearing/Edit/5
         public async Task<IActionResult> Edit(long? id)

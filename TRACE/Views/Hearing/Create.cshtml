@@ -45,6 +45,30 @@
                     <label asp-for="HearingCategoryId" class="control-label">Hearing Category</label>
                     <select asp-for="HearingCategoryId" class="form-control" asp-items="ViewBag.HearingCategoryId"></select>
                 </div>
+
+                <div class="form-input-div checktype">
+                    <label class="control-label">Hearing Types</label>
+                    <div>
+                        @{
+                            var hearingTypes = ViewBag.HearingTypes as IEnumerable<SelectListItem>;
+                        }
+
+                        @if (hearingTypes != null)
+                        {
+                            foreach (var hearingType in hearingTypes)
+                            {
+                                <div>
+                                    <input type="checkbox" name="HearingTypes" value="@hearingType.Value" /> @hearingType.Text
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p>No hearing types available.</p>
+                        }
+                    </div>
+                </div>
+
                 <div class="form-input-div">
                     <label asp-for="IsApproved" class="control-label">Approved</label>
                     <select asp-for="IsApproved" class="form-control">
@@ -77,6 +101,20 @@
             $("#createForm").submit(function (event) {
                 event.preventDefault();
 
+                var formData = $(this).serializeArray();
+
+                console.log("Standard form data:");
+                formData.forEach(function (field) {
+                    console.log(`${field.name}: ${field.value}`);
+                });
+
+                var hearingTypes = [];
+                $("input[name='HearingTypes']:checked").each(function () {
+                    hearingTypes.push($(this).val());
+                });
+
+                console.log("Selected Hearing Types:", hearingTypes);
+
                 $.ajax({
                     url: $(this).attr("action"),
                     type: "POST",
@@ -93,7 +131,7 @@
                                     confirmButton: "swal2-confirm"
                                 }
                             }).then(() => {
-                                $("#createForm")[0].reset();
+                                $("#createForm")[0].reset(); 
                             });
                         } else {
                             Swal.fire({
@@ -117,6 +155,7 @@
                         });
                     }
                 });
+
             });
         });
     </script>

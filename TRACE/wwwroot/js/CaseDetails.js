@@ -380,38 +380,38 @@ function fetchCaseHearingWithErcId(caseId) {
                     const formattedDate = caseData.HearingDate
                         ? new Date(caseData.HearingDate).toLocaleDateString('en-GB')
                         : 'N/A';
+
+                    // Update Hearing Types and Descriptions based on the concatenated data
+                    const hearingTypes = caseData.HearingTypes || 'N/A';  // Default to 'N/A' if no HearingTypes are found
+                    const hearingTypeDescriptions = caseData.HearingTypeDescriptions || 'N/A';  // Default to 'N/A' if no Description
+
                     casehearing.innerHTML += `
                     <tr>
                         <td data-label="HEARING CATEGORY">${caseData.HearingCategory}</td>
                         <td data-label="DATE AND TIME">${formattedDate} ${caseData.Time}</td>
                         <td data-label="VENUE">${caseData.HearingVenue}</td>
-                        <td data-label="TYPE">${caseData.HearingTypeDescription} (${caseData.HearingType})</td>
+                        <td data-label="TYPE">${hearingTypeDescriptions} (${hearingTypes})</td>
                         <td data-label="REMARKS">${caseData.Remarks}</td>
                         <td data-label="ACTION" class="actions">
                             <i class='bx bxs-edit' title="Edit"></i>
                             <i class='bx bxs-x-circle' title="Archive"></i>
                         </td>
                     </tr>
-                            `;
-                })
-             
-
-                // Update values dynamically
-              
-            
+                    `;
+                });
             } else {
                 casehearing.innerHTML = `
-                                <tr>
-                                    <td colspan="6">No Hearings Found</td>
-                                </tr>
-                            `;
+                    <tr>
+                        <td colspan="6">No Hearings Found</td>
+                    </tr>
+                `;
             }
-
         })
         .catch(error => {
             console.error('Error fetching case details:', error);
         });
 }
+
 function fetchCaseNoteWithErcId(caseId) {
 
     fetch(`/CaseNote/GetCaseNoteByErcID?id=${caseId}`)

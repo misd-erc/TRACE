@@ -2170,3 +2170,11 @@ canvas {
 }
 
 /*CASE ATTACHMENT DOCS*/
+
+.checktype input[type=checkbox]{
+    width:15px !important;
+    height: 15px !important;
+    border: 1px solid var(--font-color);
+    cursor:pointer;
+
+}
