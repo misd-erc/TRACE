@@ -50,6 +50,7 @@ namespace TRACE.Controllers
                                 ca.DateAssigned,
                                 ca.AssignedBy,
                                 ca.HandlingOfficerTypeID,
+                                ca.IsActive,
                                 ho.OfficerType,
                                 ho.Description AS OfficerDescription
                             FROM 
@@ -57,7 +58,42 @@ namespace TRACE.Controllers
                             LEFT JOIN 
                                 [ercdb].[cases].[HandlingOfficerTypes] ho ON ca.HandlingOfficerTypeID = ho.HandlingOfficerTypeID
                             WHERE 
-                                ca.ERCCaseID = @id";
+                                ca.ERCCaseID = @id AND ca.IsActive=1";
+
+                var result = await connection.QueryAsync<dynamic>(sql, new { id });
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetCaseAssignmentHistoryByErcID(int id)
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync(); // Ensure connection opens
+
+                var sql = @"SELECT 
+                                ca.CaseAssignmentID,
+                                ca.UserID,
+                                ca.ERCCaseID,
+                                ca.DateAssigned,
+                                ca.AssignedBy,
+                                ca.HandlingOfficerTypeID,
+                                ca.IsActive,
+                                ca.DateRemoved,
+                                ho.OfficerType,
+                                ho.Description AS OfficerDescription
+                            FROM 
+                                [ercdb].[cases].[CaseAssignments] ca
+                            LEFT JOIN 
+                                [ercdb].[cases].[HandlingOfficerTypes] ho ON ca.HandlingOfficerTypeID = ho.HandlingOfficerTypeID
+                            WHERE 
+                                ca.ERCCaseID = @id AND ca.IsActive=0";
 
                 var result = await connection.QueryAsync<dynamic>(sql, new { id });
                 return Json(result);
@@ -120,6 +156,46 @@ namespace TRACE.Controllers
 
             return Json(new { success = false, message = "Error! Please check your input." });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ArchiveUserAssign(long id)
+        {
+            try
+            {
+                // Debug log to check the value of 'id'
+                Console.WriteLine($"Received ID: {id}");
+
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                var sql = @"
+                    UPDATE [ercdb].[cases].[CaseAssignments] 
+                    SET IsActive = 0, 
+                        DateRemoved = GETDATE() 
+                    WHERE CaseAssignmentID = @id";
+
+                // Debug log the SQL query with the ID
+                Console.WriteLine($"Executing SQL: {sql} with ID = {id}");
+
+                var rowsAffected = await connection.ExecuteAsync(sql, new { id });
+
+                if (rowsAffected > 0)
+                {
+                    return Json(new { success = true, message = "User has been removed from this case!" });
+                }
+                else
+                {
+                    return Json(new { success = false, message = $"No record updated. Check if the ID is correct. Attempted ID = {id}" });
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception details
+                Console.WriteLine($"Error: {ex.Message}");
+                return Json(new { success = false, message = "An error occurred while archiving the user assignment.", error = ex.Message });
+            }
+        }
+
 
         // GET: CaseAssignment/Edit/5
         public async Task<IActionResult> Edit(long? id)

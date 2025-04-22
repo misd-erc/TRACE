@@ -113,13 +113,14 @@ namespace TRACE.Controllers
                                 LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
                                 LEFT JOIN cases.CaseAssignments ca ON c.ERCCaseID = ca.ERCCaseID
 
-                                WHERE ca.UserID = @AssignedTo
+                                WHERE ca.UserID = @AssignedTo AND ca.IsActive = 1
 
                                 GROUP BY 
                                     c.ERCCaseID, c.CaseNo, c.Title, cc.Category, cn.Nature, 
                                     c.DateFiled, c.DateDocketed, c.DocketedBy, cs.Status
 
                                 ORDER BY c.ERCCaseID DESC;
+
                             "
                     ;
 
@@ -221,7 +222,7 @@ namespace TRACE.Controllers
                         LEFT JOIN cases.CaseAssignments ca ON c.ERCCaseID = ca.ERCCaseID
 
                         WHERE c.DateDocketed IS NOT NULL 
-                        AND ca.UserID = @AssignedTo
+                        AND ca.UserID = @AssignedTo AND ca.IsActive = 1
                         ORDER BY c.ERCCaseID DESC"
 
                     ;

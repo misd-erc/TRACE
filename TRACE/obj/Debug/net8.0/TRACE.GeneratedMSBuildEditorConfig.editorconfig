@@ -17,519 +17,519 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TRACE
 build_property.RootNamespace = TRACE
-build_property.ProjectDir = C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\
+build_property.ProjectDir = E:\Work Related\Github\TRACE\TRACE\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Administrator\Documents\GitHub\TRACE\TRACE
+build_property.MSBuildProjectDirectory = E:\Work Related\Github\TRACE\TRACE
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseAssignment/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseAssignment/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUFzc2lnbm1lbnRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseAssignment/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseAssignment/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUFzc2lnbm1lbnRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseAssignment/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseAssignment/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUFzc2lnbm1lbnRcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseAssignment/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseAssignment/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUFzc2lnbm1lbnRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseAssignment/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseAssignment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUFzc2lnbm1lbnRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseAttachments/CaseAttachments.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseAttachments/CaseAttachments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUF0dGFjaG1lbnRzXENhc2VBdHRhY2htZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseCategories/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseCategories/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUNhdGVnb3JpZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseCategories/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseCategories/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUNhdGVnb3JpZXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseCategories/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseCategories/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUNhdGVnb3JpZXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseCategories/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseCategories/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUNhdGVnb3JpZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseCategories/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseCategories/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUNhdGVnb3JpZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseDetails/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseDetails/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZURldGFpbHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseDetails/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseDetails/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZURldGFpbHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseDetails/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseDetails/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZURldGFpbHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseDetails/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseDetails/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZURldGFpbHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseDetails/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseDetails/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZURldGFpbHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseEventType/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseEventType/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUV2ZW50VHlwZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseEventType/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseEventType/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUV2ZW50VHlwZVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseEventType/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseEventType/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUV2ZW50VHlwZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseEventType/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseEventType/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUV2ZW50VHlwZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseEventType/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseEventType/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUV2ZW50VHlwZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseEvent/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseEvent/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUV2ZW50XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseEvent/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseEvent/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUV2ZW50XERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseEvent/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseEvent/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUV2ZW50XERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseEvent/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseEvent/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUV2ZW50XEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseEvent/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseEvent/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZUV2ZW50XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseManagement/AllCases/AllCases.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseManagement/AllCases/AllCases.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcQWxsQ2FzZXNcQWxsQ2FzZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseManagement/CaseDetails/CaseDetails.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseManagement/CaseDetails/CaseDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcQ2FzZURldGFpbHNcQ2FzZURldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseManagement/MyCases/COCRES/cocres.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseManagement/MyCases/COCRES/cocres.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcTXlDYXNlc1xDT0NSRVNcY29jcmVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseManagement/MyCases/DocketedCases/DocketedCases.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseManagement/MyCases/DocketedCases/DocketedCases.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcTXlDYXNlc1xEb2NrZXRlZENhc2VzXERvY2tldGVkQ2FzZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseManagement/MyCases/LetterComplaints/LetterComplaints.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseManagement/MyCases/LetterComplaints/LetterComplaints.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcTXlDYXNlc1xMZXR0ZXJDb21wbGFpbnRzXExldHRlckNvbXBsYWludHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseMilestone/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseMilestone/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1pbGVzdG9uZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseMilestone/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseMilestone/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1pbGVzdG9uZVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseMilestone/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseMilestone/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1pbGVzdG9uZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseMilestone/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseMilestone/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1pbGVzdG9uZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseMilestone/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseMilestone/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1pbGVzdG9uZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseNote/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseNote/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU5vdGVcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseNote/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseNote/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU5vdGVcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseNote/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseNote/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU5vdGVcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseNote/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseNote/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU5vdGVcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseNote/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseNote/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU5vdGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseRespondents/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseRespondents/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVJlc3BvbmRlbnRzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseRespondents/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseRespondents/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVJlc3BvbmRlbnRzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseRespondents/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseRespondents/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVJlc3BvbmRlbnRzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseRespondents/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseRespondents/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVJlc3BvbmRlbnRzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseRespondents/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseRespondents/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVJlc3BvbmRlbnRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseStatus/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseStatus/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVN0YXR1c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseStatus/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseStatus/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVN0YXR1c1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseStatus/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseStatus/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVN0YXR1c1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseStatus/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseStatus/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVN0YXR1c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseStatus/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseStatus/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVN0YXR1c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseTask/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseTask/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVRhc2tcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseTask/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseTask/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVRhc2tcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseTask/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseTask/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVRhc2tcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseTask/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseTask/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVRhc2tcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseTask/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/CaseTask/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZVRhc2tcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/City/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/City/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0eVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/City/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/City/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0eVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/City/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/City/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0eVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/City/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/City/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0eVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/City/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/City/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2l0eVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Companies/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Companies/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFuaWVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Companies/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Companies/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFuaWVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Companies/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Companies/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFuaWVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Companies/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Companies/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFuaWVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Companies/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Companies/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFuaWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/ContentManagement/ContentManagement.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/ContentManagement/ContentManagement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGVudE1hbmFnZW1lbnRcQ29udGVudE1hbmFnZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/DocumentManagement/DocumentManagement.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/DocumentManagement/DocumentManagement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdW1lbnRNYW5hZ2VtZW50XERvY3VtZW50TWFuYWdlbWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Erccase/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Erccase/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJjY2FzZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Erccase/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Erccase/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJjY2FzZVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Erccase/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Erccase/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJjY2FzZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Erccase/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Erccase/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJjY2FzZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Erccase/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Erccase/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJjY2FzZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/External/ForbiddenAccess.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/External/ForbiddenAccess.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXh0ZXJuYWxcRm9yYmlkZGVuQWNjZXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/External/Login.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/External/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXh0ZXJuYWxcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HandlingOfficerType/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HandlingOfficerType/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFuZGxpbmdPZmZpY2VyVHlwZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HandlingOfficerType/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HandlingOfficerType/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFuZGxpbmdPZmZpY2VyVHlwZVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HandlingOfficerType/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HandlingOfficerType/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFuZGxpbmdPZmZpY2VyVHlwZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HandlingOfficerType/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HandlingOfficerType/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFuZGxpbmdPZmZpY2VyVHlwZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HandlingOfficerType/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HandlingOfficerType/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGFuZGxpbmdPZmZpY2VyVHlwZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingCategory/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingCategory/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ0NhdGVnb3J5XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingCategory/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingCategory/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ0NhdGVnb3J5XERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingCategory/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingCategory/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ0NhdGVnb3J5XERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingCategory/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingCategory/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ0NhdGVnb3J5XEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingCategory/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingCategory/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ0NhdGVnb3J5XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Hearings/Hearings.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Hearings/Hearings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ3NcSGVhcmluZ3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingType/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingType/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1R5cGVcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingType/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingType/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1R5cGVcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingType/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingType/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1R5cGVcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingType/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingType/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1R5cGVcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingType/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingType/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1R5cGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingVenue/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingVenue/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1ZlbnVlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingVenue/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingVenue/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1ZlbnVlXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingVenue/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingVenue/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1ZlbnVlXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingVenue/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingVenue/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1ZlbnVlXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/HearingVenue/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/HearingVenue/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1ZlbnVlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Hearing/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Hearing/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Hearing/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Hearing/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Hearing/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Hearing/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Hearing/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Hearing/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Hearing/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Hearing/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVhcmluZ1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Home/authentication.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Home/authentication.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxhdXRoZW50aWNhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Home/Dashboard.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Home/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Home/Settings.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Home/Settings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZXR0aW5ncy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/NotificationManagement/Notifications.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/NotificationManagement/Notifications.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uTWFuYWdlbWVudFxOb3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/RelatedCase/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/RelatedCase/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVsYXRlZENhc2VcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/RelatedCase/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/RelatedCase/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVsYXRlZENhc2VcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/RelatedCase/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/RelatedCase/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVsYXRlZENhc2VcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/RelatedCase/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/RelatedCase/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVsYXRlZENhc2VcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/RelatedCase/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/RelatedCase/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVsYXRlZENhc2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Shared/Components/AppearanceSettings/Default.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Components/AppearanceSettings/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQXBwZWFyYW5jZVNldHRpbmdzXERlZmF1bHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Shared/Components/Loader/Mini-Loader-2.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Components/Loader/Mini-Loader-2.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTG9hZGVyXE1pbmktTG9hZGVyLTIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Shared/Components/Loader/Mini-Loader.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Components/Loader/Mini-Loader.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTG9hZGVyXE1pbmktTG9hZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Shared/Components/MyCasesMenu/Default.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Components/MyCasesMenu/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTXlDYXNlc01lbnVcRGVmYXVsdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Shared/Components/NotificationsSettings/Default.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Components/NotificationsSettings/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTm90aWZpY2F0aW9uc1NldHRpbmdzXERlZmF1bHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Shared/Components/SettingsTab/Default.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Components/SettingsTab/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcU2V0dGluZ3NUYWJcRGVmYXVsdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Shared/Error.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Shared/_ValidationScriptsPartial.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/UserManagement/UserManagement.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/UserManagement/UserManagement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcVXNlck1hbmFnZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Users/Create.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Users/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Users/Delete.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Users/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Users/Details.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Users/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Users/Edit.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Users/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Users/Index.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/_ViewImports.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/_ViewStart.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Shared/_Layout.cshtml]
+[E:/Work Related/Github/TRACE/TRACE/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-wqf21mkrxd

@@ -12,6 +12,7 @@ const itemsPerPage = 5;
         fetchCaseDetails(caseId);
         fetchCaseEvent(caseId);
         fetchCaseAssignmentWithErcId(caseId);
+        fetchCaseAssignmentHistoryWithErcId(caseId);
         fetchCaseHearingWithErcId(caseId);
         fetchCaseTaskWithErcId(caseId);
         fetchCaseNoteWithErcId(caseId);
@@ -331,25 +332,65 @@ function fetchCaseAssignmentWithErcId(caseId) {
                     const formattedDate = event.DateAssigned
                         ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
                         : 'N/A';
+
                     caseassignment.innerHTML += `
-                               <tr>
-                                <td data-label="OFFICER TYPE">${caseData.OfficerType}</td>
-                                <td data-label="ASSIGNED PERSONEL">${caseData.UserID}</td>
-                                <td data-label="DATE ASSIGNED">${formattedDate}</td>
-                                <td data-label="ASSIGNED BY">${caseData.AssignedBy}</td>
-                                <td data-label="ACTION" class="actions">
-                                <i class='bx bxs-x-circle' title="Archive"></i>
+                        <tr>
+                            <td data-label="OFFICER TYPE">${event.OfficerType}</td>
+                            <td data-label="ASSIGNED PERSONEL">${event.UserID}</td>
+                            <td data-label="DATE ASSIGNED">${formattedDate}</td>
+                            <td data-label="ASSIGNED BY">${event.AssignedBy}</td>
+                            <td data-label="ACTION" class="actions">
+                                <i class='bx bxs-x-circle' title="Archive" onclick="archiveUserAssign(${event.CaseAssignmentID})"></i>
                             </td>
                         </tr>
-                        `;
-                })
-                // Update values dynamically
-               
-               
+                    `;
+                });
+
             } else {
                 caseassignment.innerHTML = `
                             <tr>
-                                  <td colspan="5">No Case Assignment</td>
+                                <td colspan="5">No Case Assignment</td>
+                            </tr>
+                        `;
+            }
+
+        })
+        .catch(error => {
+            console.error('Error fetching case details:', error);
+        });
+}
+
+function fetchCaseAssignmentHistoryWithErcId(caseId) {
+    fetch(`/CaseAssignment/GetCaseAssignmentHistoryByErcID?id=${caseId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const caseassignmenthis = document.getElementById('caseassignmenthistory');
+            caseassignmenthis.innerHTML = '';
+            if (data.length > 0) {
+                const caseData = data[0];
+                data.forEach(event => {
+                    const formattedDate = event.DateRemoved
+                        ? new Date(event.DateRemoved).toLocaleDateString('en-GB')
+                        : 'N/A';
+
+                    caseassignmenthis.innerHTML += `
+                        <tr>
+                            <td data-label="OFFICER TYPE">${event.OfficerType}</td>
+                            <td data-label="PERSONEL">${event.UserID}</td>
+                            <td data-label="DATE REMOVED">${formattedDate}</td>
+                        </tr>
+                    `;
+                });
+
+            } else {
+                caseassignmenthis.innerHTML = `
+                            <tr>
+                                <td colspan="5">No History</td>
                             </tr>
                         `;
             }
@@ -773,4 +814,61 @@ function toggleCaseDetails() {
         detailsDiv.style.display = "none";
         arrowIcon.style.transform = "rotate(0deg)";
     }
+}
+
+function archiveUserAssign(id) {
+    console.log ("ARCHIVE FUNCTION: "+ id)
+    Swal.fire({
+        title: "Are you sure?",
+        text: "This will archive the user assignment.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, archive it!",
+        cancelButtonText: "Cancel",
+        customClass: {
+            popup: "swal2-popup",
+            confirmButton: "swal2-confirm",
+            cancelButton: "swal2-cancel"
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch('/CaseAssignment/ArchiveUserAssign/'+id, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: id })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    Swal.fire({
+                        title: data.success ? "Success!" : "Error!",
+                        text: data.message,
+                        icon: data.success ? "success" : "error",
+                        confirmButtonText: "OK",
+                        customClass: {
+                            popup: "swal2-popup",
+                            confirmButton: "swal2-confirm"
+                        }
+                    }).then(() => {
+                        if (data.success) {
+                            location.reload();
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        title: "Oops!",
+                        text: "Something went wrong. Please try again.",
+                        icon: "error",
+                        confirmButtonText: "OK",
+                        customClass: {
+                            popup: "swal2-popup",
+                            confirmButton: "swal2-confirm"
+                        }
+                    });
+                });
+        }
+    });
 }

@@ -17,6 +17,10 @@ public partial class CaseAssignment
 
     public string? AssignedBy { get; set; }
 
+    public bool IsActive { get; set; }
+
+    public DateOnly? DateRemoved { get; set; }
+
     [Display(Name = "Select Handling Officer Type")]
     public long HandlingOfficerTypeId { get; set; }
 
