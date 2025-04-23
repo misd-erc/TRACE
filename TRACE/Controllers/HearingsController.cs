@@ -81,7 +81,7 @@ namespace TRACE.Controllers
                      LEFT JOIN 
                          [ercdb].[cases].[HearingCategories] hc ON h.HearingCategoryID = hc.HearingCategoryID
                      WHERE 
-                         CAST(h.HearingDate AS DATE) = CAST(GETDATE() AS DATE)
+                         CAST(h.HearingDate AS DATE) >= CAST(GETDATE() AS DATE)
 
                     ";
 
