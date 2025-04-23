@@ -236,7 +236,7 @@ function fetchCaseTaskWithErcId(caseId) {
                         : 'N/A';
                     const row = `
                         <tr>
-                            <td data-label="TASKED TO">${event.userId || 'N/A'}</td>
+                            <td data-label="TASKED TO">${event.username || 'N/A'}</td>
                             <td data-label="DETAILS">${event.task || 'N/A'}</td>
                             <td data-label="TARGET DATE">${formattedDate}</td>
                             <td data-label="ACTION" class="actions">
@@ -252,7 +252,7 @@ function fetchCaseTaskWithErcId(caseId) {
                         : 'N/A';
                     const row = `
                         <tr>
-                            <td data-label="TASKED TO">${event.userId || 'N/A'}</td>
+                            <td data-label="TASKED TO">${event.username || 'N/A'}</td>
                             <td data-label="DETAILS">${event.task || 'N/A'}</td>
                             <td data-label="TARGET DATE">${formattedDate}</td>
                             <td data-label="ACTION" class="actions">
@@ -293,7 +293,7 @@ function fetchCaseRespondentWithErcId(caseId) {
                     caserespondent.innerHTML += `
                                <tr>
                                 <td data-label="COMPANY NAME">${event.companyName}</td>
-                                <td data-label="RESPONDENT NAME">${event.correspondentName}</td>
+                                <td data-label="RESPONDENT NAME">${event.correspondentName || 'No Input'}</td>
                              
                                 <td data-label="ACTION" class="actions">
                                 <i class='bx bxs-x-circle' title="Archive"></i>

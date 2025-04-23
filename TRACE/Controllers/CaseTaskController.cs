@@ -32,14 +32,28 @@ namespace TRACE.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCaseTaskByErcID(int id)
         {
-            var categories = await _context.CaseTasks.Where(x => x.ErccaseId == id).ToListAsync();
+            var tasks = await (from task in _context.CaseTasks
+                               join user in _context.Users
+                               on task.UserId equals user.Id.ToString() into userJoin
+                               from user in userJoin.DefaultIfEmpty()
+                               where task.ErccaseId == id
+                               select new
+                               {
+                                   task.CaseTaskId,
+                                   task.Task,
+                                   task.TaskedBy,
+                                   task.TargetCompletionDate,
+                                   task.ActualCompletionDate,
+                                   task.UserId,
+                                   Username = user != null ? user.Username : "N/A"
+                               }).ToListAsync();
 
-            if (categories == null || !categories.Any())
+            if (tasks == null || !tasks.Any())
             {
-                return Json(new { success = false, message = "No categories found." });
+                return Json(new { success = false, message = "No tasks found." });
             }
 
-            return Json(new { success = true, data = categories });
+            return Json(new { success = true, data = tasks });
         }
         // GET: CaseTask/Details/5
         public async Task<IActionResult> Details(long? id)

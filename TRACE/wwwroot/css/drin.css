@@ -1692,7 +1692,7 @@ canvas {
 }
 
 .my-cases-table td:first-of-type{
-    width:130px;
+    width:fit-content !important;
 }
 
 #ADuserTable td:first-of-type {

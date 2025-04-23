@@ -13,6 +13,8 @@ public partial class CaseTask
     [Display(Name = "Choose User")]
     public string UserId { get; set; } = null!;
 
+    public virtual User? User { get; set; }
+
     public string Task { get; set; } = null!;
 
     public string TaskedBy { get; set; } = null!;
