@@ -454,46 +454,39 @@ function fetchCaseNoteWithErcId(caseId) {
 
     fetch(`/CaseNote/GetCaseNoteByErcID?id=${caseId}`)
         .then(response => {
-
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             return response.json();
         })
-        .then(event => {
+        .then(responseData => {
             const casehearing = document.getElementById('casenote');
             casehearing.innerHTML = '';
-            if (event.length > 0) {
-              
-                event.forEach(event => {
-                    const caseData = event; 
+            if (responseData.success && responseData.data.length > 0) {
+                responseData.data.forEach(event => {
+                    const caseData = event;
                     const formattedDate = caseData.datetimeCreated
                         ? new Date(caseData.datetimeCreated).toLocaleDateString('en-GB')
                         : 'N/A';
                     casehearing.innerHTML += `
-                            <tr >
-                                <td data-label="NotedBy">${caseData.notedBy}</td>
-                                <td data-label="DESCRIPTION">${caseData.notes}</td>
-                                <td data-label="DATE">${formattedDate}</td>
-                                <td data-label="ACTION" class="actions">
-                                    <i class='bx bxs-edit' title="Edit" onclick="CasenoteEdit(${caseData.caseNoteId})"></i>
-                                    <i class='bx bxs-x-circle' title="Archive"></i>
-                                </td>
-                            </tr>
-                            `;
-                })
-               
-
-                // Update values dynamically
-              
+                    <tr>
+                        <td data-label="NotedBy">${caseData.notedBy}</td>
+                        <td data-label="DESCRIPTION">${caseData.notes}</td>
+                        <td data-label="DATE">${formattedDate}</td>
+                        <td data-label="ACTION" class="actions">
+                            <i class='bx bxs-edit' title="Edit" onclick="CasenoteEdit(${caseData.caseNoteId})"></i>
+                            <i class='bx bxs-x-circle' title="Archive"></i>
+                        </td>
+                    </tr>
+                `;
+                });
             } else {
                 casehearing.innerHTML = `
-                                <tr>
-                                    <td colspan="6">No Data Found</td>
-                                </tr>
-                            `;
+                <tr>
+                    <td colspan="6">No Data Found</td>
+                </tr>
+            `;
             }
-
         })
         .catch(error => {
             console.error('Error fetching case details:', error);

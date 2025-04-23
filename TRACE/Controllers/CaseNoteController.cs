@@ -42,6 +42,7 @@ namespace TRACE.Controllers
 
             return Json(new { success = true, data = categories });
         }
+
         // GET: CaseNote/Details/5
         public async Task<IActionResult> Details(long? id)
         {
