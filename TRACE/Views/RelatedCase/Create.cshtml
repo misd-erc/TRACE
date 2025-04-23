@@ -28,8 +28,7 @@
                 </div>
                 <div class="form-input-div">
                     <label asp-for="ErccaseRelatedId" class="control-label"></label>
-                    <select asp-for="ErccaseRelatedId" class="form-control" asp-items="ViewBag.ErccaseRelatedId" id="ErccaseRelatedIdDropdown">
-                        <option selected disabled>Select Case Number</option>
+                    <select asp-for="ErccaseRelatedId" class="form-control" id="ErccaseRelatedIdDropdown">
                     </select>
                 </div>
                 <div class="form-input-div" style="display:none">
@@ -59,13 +58,28 @@
             const element = document.getElementById('ErccaseRelatedIdDropdown');
             const choices = new Choices(element, {
                 searchEnabled: true,
-                searchFuzzy: true,
-                removeItemButton: true,
+                searchChoices: false,
                 placeholder: true,
                 placeholderValue: 'Search Case Number',
-                searchChoices: true,
-                searchResultLimit: 9,
-                position: 'bottom',
+                shouldSort: false
+            });
+
+            element.addEventListener('search', function (event) {
+                const searchTerm = event.detail.value;
+
+                if (searchTerm.length < 2) return; // optional: skip short terms
+
+                fetch(`/RelatedCase/SearchCases?term=${encodeURIComponent(searchTerm)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        choices.clearChoices();
+                        choices.setChoices(data.map(item => ({
+                            value: item.id,
+                            label: item.text,
+                            selected: false,
+                            disabled: false
+                        })), 'value', 'label', true);
+                    });
             });
 
             $("#createForm").submit(function (event) {

@@ -732,31 +732,43 @@ public partial class ErcdbContext : DbContext
         {
             entity.ToTable("CaseTasks", "cases");
 
-            entity.Property(e => e.CaseTaskId).HasColumnName("CaseTaskID");
+            entity.Property(e => e.CaseTaskId)
+                  .HasColumnName("CaseTaskID");
             entity.Property(e => e.DatetimeCreated)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.DocumentId).HasColumnName("DocumentID");
-            entity.Property(e => e.ErccaseId).HasColumnName("ERCCaseID");
+                  .HasDefaultValueSql("(getdate())")
+                  .HasColumnType("datetime");
+            entity.Property(e => e.DocumentId)
+                  .HasColumnName("DocumentID");
+            entity.Property(e => e.ErccaseId)
+                  .HasColumnName("ERCCaseID");
             entity.Property(e => e.Task)
-                .HasMaxLength(500)
-                .IsUnicode(false);
+                  .HasMaxLength(500)
+                  .IsUnicode(false);
             entity.Property(e => e.TaskedBy)
-                .HasMaxLength(50)
-                .IsUnicode(false);
+                  .HasMaxLength(50)
+                  .IsUnicode(false);
+
             entity.Property(e => e.UserId)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("UserID");
+                  .HasMaxLength(50)
+                  .IsUnicode(false)
+                  .HasColumnName("UserID");
 
-            entity.HasOne(d => d.Document).WithMany(p => p.CaseTasks)
-                .HasForeignKey(d => d.DocumentId)
-                .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("FK_CaseTasks_Documents");
+            entity.HasOne(d => d.Document)
+                  .WithMany(p => p.CaseTasks)
+                  .HasForeignKey(d => d.DocumentId)
+                  .OnDelete(DeleteBehavior.SetNull)
+                  .HasConstraintName("FK_CaseTasks_Documents");
 
-            entity.HasOne(d => d.Erccase).WithMany(p => p.CaseTasks)
-                .HasForeignKey(d => d.ErccaseId)
-                .HasConstraintName("FK_CaseTasks_ERCCases");
+            entity.HasOne(d => d.Erccase)
+                  .WithMany(p => p.CaseTasks)
+                  .HasForeignKey(d => d.ErccaseId)
+                  .HasConstraintName("FK_CaseTasks_ERCCases");
+            entity.HasOne(ct => ct.User)
+                  .WithMany()
+                  .HasForeignKey(ct => ct.UserId)
+                  .HasPrincipalKey(u => u.Username)
+                  .OnDelete(DeleteBehavior.Restrict)
+                  .HasConstraintName("FK_CaseTasks_Users_ByUsername");
         });
 
         modelBuilder.Entity<City>(entity =>
@@ -2366,6 +2378,9 @@ public partial class ErcdbContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07823061C7");
 
             entity.HasIndex(e => e.Username, "UQ__Users__536C85E4C72B1D4C").IsUnique();
+
+            entity.HasAlternateKey(e => e.Username)
+              .HasName("AK_Users_Username");
 
             entity.Property(e => e.Department).HasMaxLength(150);
             entity.Property(e => e.Designation).HasMaxLength(150);

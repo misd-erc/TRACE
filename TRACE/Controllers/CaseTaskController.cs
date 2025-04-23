@@ -29,6 +29,7 @@ namespace TRACE.Controllers
             var ercdbContext = _context.CaseTasks.Include(c => c.Document).Include(c => c.Erccase);
             return View(await ercdbContext.ToListAsync());
         }
+
         [HttpGet]
         public async Task<IActionResult> GetCaseTaskByErcID(int id)
         {
@@ -195,21 +196,44 @@ namespace TRACE.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        [HttpPost, ActionName("CompleteTask")]
-        [ValidateAntiForgeryToken]
+
+        [HttpPost]
         public async Task<IActionResult> CompleteTask(long id)
         {
-            var caseTask = await _context.CaseTasks.FindAsync(id);
-            if (caseTask != null)
+            var task = await _context.CaseTasks
+                .FirstOrDefaultAsync(t => t.CaseTaskId == id);
+
+            if (task == null)
             {
-                caseTask.ActualCompletionDate = DateOnly.FromDateTime(DateTime.Now);
-                await _context.SaveChangesAsync();
-                return Json(new { success = true, message = "Success! Data has been updated." });
+                return Json(new { success = false, message = "Task not found." });
             }
 
-            return Json(new { success = false, message = "Task not found." });
-        }
+            if (task.ActualCompletionDate.HasValue)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "Task is already completed on "
+                    + task.ActualCompletionDate.Value.ToString("yyyy-MM-dd") + "."
+                });
+            }
+            task.ActualCompletionDate = DateOnly.FromDateTime(DateTime.Now);
 
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error saving completion date." });
+            }
+
+            return Json(new
+            {
+                success = true,
+                message = $"Task marked completed on {task.ActualCompletionDate:yyyy-MM-dd}."
+            });
+        }
 
         private bool CaseTaskExists(long id)
         {

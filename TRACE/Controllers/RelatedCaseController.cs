@@ -92,7 +92,7 @@ namespace TRACE.Controllers
         public IActionResult Create()
         {
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
-            ViewData["ErccaseRelatedId"] = new SelectList(_context.Erccases, "ErccaseId", "CaseNo");
+            ViewData["ErccaseRelatedId"] = new SelectList(_context.Erccases.Take(20), "ErccaseId", "CaseNo");
             return View();
         }
 
@@ -211,6 +211,27 @@ namespace TRACE.Controllers
         private bool RelatedCaseExists(long id)
         {
             return _context.RelatedCases.Any(e => e.RelatedCaseId == id);
+        }
+
+
+        [HttpGet]
+        public IActionResult SearchCases(string term)
+        {
+            if (string.IsNullOrWhiteSpace(term))
+                return Json(new List<object>());
+
+            var results = _context.Erccases
+                .Where(e => e.CaseNo.Contains(term))
+                .OrderBy(e => e.CaseNo)
+                .Take(15)
+                .Select(e => new
+                {
+                    id = e.ErccaseId,
+                    text = e.CaseNo
+                })
+                .ToList();
+
+            return Json(results);
         }
     }
 }

@@ -157,7 +157,6 @@ function renderPagination() {
     };
 }
 function completeTask(id) {
-    console.log("asdsad")
     Swal.fire({
         title: 'Are you sure?',
         text: "Do you want to mark this task as completed?",
@@ -168,41 +167,34 @@ function completeTask(id) {
         confirmButtonText: 'Yes, complete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`/CaseTask/CompleteTask/${id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
-                }
+            fetch(`/CaseTask/CompleteTask?id=${id}`, {
+                method: 'POST'
             })
-                .then(response => response.json())
+                .then(async response => {
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`Server error: ${errorText}`);
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     if (data.success) {
-                        Swal.fire(
-                            'Completed!',
-                            data.message,
-                            'success'
-                        );
-                        // Optionally refresh or update UI here
+                        Swal.fire('Completed!', data.message, 'success')
+                            .then(() => {
+                                location.reload();
+                            });
                     } else {
-                        Swal.fire(
-                            'Error!',
-                            'Task not found or cannot be completed.',
-                            'error'
-                        );
+                        Swal.fire('Error!', data.message || 'Task not found or cannot be completed.', 'error');
                     }
                 })
                 .catch(error => {
                     console.error("Error:", error);
-                    Swal.fire(
-                        'Error!',
-                        'Something went wrong while updating the task.',
-                        'error'
-                    );
+                    Swal.fire('Error!', error.message || 'Something went wrong.', 'error');
                 });
         }
     });
 }
+
 
 function fetchCaseTaskWithErcId(caseId) {
     const caseassignment = document.getElementById('pendingtask');
@@ -226,26 +218,24 @@ function fetchCaseTaskWithErcId(caseId) {
                 caseassignment1.innerHTML = `<tr><td colspan="4">No Completed Tasks Found</td></tr>`;
                 return;
             }
-            //console.log("data", result.data);
 
             result.data.forEach(event => {
-                // Check if TargetCompletionDate exists
                 if (event.actualCompletionDate) {
                     const formattedDate = event.actualCompletionDate
                         ? new Date(event.actualCompletionDate).toLocaleDateString('en-GB')
+                        : 'N/A';
+                    const formattedDate1 = event.targetCompletionDate
+                        ? new Date(event.targetCompletionDate).toLocaleDateString('en-GB')
                         : 'N/A';
                     const row = `
                         <tr>
                             <td data-label="TASKED TO">${event.username || 'N/A'}</td>
                             <td data-label="DETAILS">${event.task || 'N/A'}</td>
-                            <td data-label="TARGET DATE">${formattedDate}</td>
-                            <td data-label="ACTION" class="actions">
-                              
-                                <i class='bx bxs-x-circle' title="Pin task" ></i>
-                            </td>
+                            <td data-label="TARGET DATE">${formattedDate1}</td>
+                            <td data-label="COMPLETED DATE">${formattedDate}</td>
                         </tr>
                     `;
-                    caseassignment1.innerHTML += row; // Completed Task
+                    caseassignment1.innerHTML += row;
                 } else {
                     const formattedDate = event.targetCompletionDate
                         ? new Date(event.targetCompletionDate).toLocaleDateString('en-GB')
@@ -257,7 +247,6 @@ function fetchCaseTaskWithErcId(caseId) {
                             <td data-label="TARGET DATE">${formattedDate}</td>
                             <td data-label="ACTION" class="actions">
                                 <i class='bx bxs-check-circle' title="Mark as complete" onclick="completeTask(${event.caseTaskId})"></i>
-                             
                             </td>
                         </tr>
                     `;
@@ -281,7 +270,6 @@ function fetchCaseRespondentWithErcId(caseId) {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             const caserespondent = document.getElementById('respondentstbody');
             caserespondent.innerHTML = '';
             if (data.length > 0) {
