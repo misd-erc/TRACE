@@ -10,6 +10,7 @@ public partial class User
 
     public string Email { get; set; } = null!;
 
+    [Display(Name = "User Category")]
     public string? UserCategory { get; set; }
 
     [Display(Name = "Allow Email Notifications?")]

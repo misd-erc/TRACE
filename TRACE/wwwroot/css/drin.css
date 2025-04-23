@@ -2092,11 +2092,64 @@ canvas {
 
 /*USER MANAGEMENT*/
 .form-control[readonly] {
-    background-color: #f0f0f0 !important;
+    background-color: var(--theme) !important;
     color: #6c757d !important;
-    border: 1px solid #ccc !important;
+    border: 1px solid #2e2e2ebc !important;
     cursor: not-allowed;
 }
+
+.drin-container {
+    width: 100%;
+    padding: 20px;
+}
+
+.drin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--body-color);
+    border: 1px solid var(--font-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.drin-header {
+    background-color: var(--primary-color);
+    text-align: left;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    border-bottom: 1px solid #2e2e2ebc;
+    color: #fff;
+}
+
+.drin-section-row td {
+    background-color: var(--theme);
+    font-weight: bold;
+    padding: 10px;
+    font-size: 15px !important;
+    border-top: 1px solid #2e2e2ebc;
+}
+
+.drin-table td:first-of-type {
+    width:60%;
+}
+
+.drin-table td {
+    padding: 10px;
+    font-size: 11px;
+    border-bottom: 1px solid #2e2e2ebc;
+}
+
+.drin-table tr:hover {
+    background: var(--active-color);
+}
+
+.drin-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--secondary-color);
+}
+
 /*USER MANAGEMENT*/
 
 

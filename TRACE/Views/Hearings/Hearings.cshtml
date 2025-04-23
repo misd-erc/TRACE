@@ -8,7 +8,7 @@
 <div class="main-head-div flex h-center space-between">
     <div class="title-div">
         <h3>HEARINGS</h3>
-        <p>View available cases.</p>
+        <p>List of all available and upcoming hearings.</p>
     </div>
     <div class="filter-design border-radius-5 flex h-center">
         <i class='bx bx-search'></i>
@@ -24,11 +24,12 @@
                     <th>HEARING CATEGORY</th>
                     <th>DATE AND TIME</th>
                     <th>VENUE</th>
+                    <th>LINKS</th>
                     <th>TYPE</th>
                     <th>REMARKS</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="casehearingbod">
             </tbody>
         </table>
     </div>
@@ -45,4 +46,6 @@
     </div>
     @await Html.PartialAsync("Components/Loader/Mini-Loader")
 </div>
+
+<script src="/js/HearingsModule.js"></script>
 

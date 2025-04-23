@@ -18,6 +18,9 @@
             <li onclick="showTab('users')" class="active">
                 <i class='bx bxs-user-account'></i> Manage Users From Azure AD
             </li>
+            <li onclick="showTab('permission')">
+                <i class='bx bx-lock'></i> Permission Management
+            </li>
         </ul>
     </div>
 
@@ -55,10 +58,106 @@
           
         </div>
 
-        <div id="userroles" class="cms-content">
-            <h3><i class='bx bxs-user-plus'></i> Manage User Role</h3>
+        <div id="permission" class="cms-content">
+            <h3><i class='bx bx-lock'></i> Permission Management</h3>
+            <i>Manage user access throughout the system.</i><i class='bx bx-help-circle' style="color:red;" title="This is only for Super Administrators"></i>
 
+            <div class="drin-container">
+                <table class="drin-table">
+                    <thead>
+                        <tr>
+                            <th class="drin-header">Actions</th>
+                            <th class="drin-header">Staff</th>
+                            <th class="drin-header">Service Administrator</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="drin-section-row">
+                            <td colspan="3" class="drin-section">Case Management</td>
+                        </tr>
+                        <tr>
+                            <td>Create Cases</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>View Cases</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Update Cases</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Archive Cases</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
 
+                        <tr class="drin-section-row">
+                            <td colspan="3" class="drin-section">Case Information</td>
+                        </tr>
+                        <tr>
+                            <td>Assign Personnel</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Remove Personnel</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Add Related Cases</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Remove Related Cases</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Add Hearings</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Update Hearings</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Remove Hearings</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Assign New Tasks</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Complete Tasks</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Add Notes</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Remove Notes</td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                            <td><input type="checkbox" class="drin-checkbox"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
         </div>
     </div>
 </div>
