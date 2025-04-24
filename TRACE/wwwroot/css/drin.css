@@ -1808,12 +1808,18 @@ canvas {
 .case-details div span {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin: 10px 0px;
+    gap:20px;
 }
 
 .case-details div span i {
-    text-align: right;
+    text-align: left;
+    font-size:10px;
+}
+
+.case-details div span strong {
+    width:fit-content !important;
+    white-space:nowrap;
 }
 
 .nopaginationdiv {

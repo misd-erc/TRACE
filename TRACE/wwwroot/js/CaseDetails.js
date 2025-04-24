@@ -195,7 +195,6 @@ function completeTask(id) {
     });
 }
 
-
 function fetchCaseTaskWithErcId(caseId) {
     const caseassignment = document.getElementById('pendingtask');
     const caseassignment1 = document.getElementById('completedTask');
@@ -213,46 +212,57 @@ function fetchCaseTaskWithErcId(caseId) {
             return response.json();
         })
         .then(result => {
-            if (!result.success || !result.data || result.data.length === 0) {
+            if (!result.success || !result.data) {
                 caseassignment.innerHTML = `<tr><td colspan="4">No Pending Tasks Found</td></tr>`;
                 caseassignment1.innerHTML = `<tr><td colspan="4">No Completed Tasks Found</td></tr>`;
                 return;
             }
 
+            let hasPending = false;
+            let hasCompleted = false;
+
             result.data.forEach(event => {
                 if (event.actualCompletionDate) {
-                    const formattedDate = event.actualCompletionDate
-                        ? new Date(event.actualCompletionDate).toLocaleDateString('en-GB')
-                        : 'N/A';
+                    hasCompleted = true;
+                    const formattedDate = new Date(event.actualCompletionDate).toLocaleDateString('en-GB');
                     const formattedDate1 = event.targetCompletionDate
                         ? new Date(event.targetCompletionDate).toLocaleDateString('en-GB')
                         : 'N/A';
                     const row = `
-                        <tr>
-                            <td data-label="TASKED TO">${event.username || 'N/A'}</td>
-                            <td data-label="DETAILS">${event.task || 'N/A'}</td>
-                            <td data-label="TARGET DATE">${formattedDate1}</td>
-                            <td data-label="COMPLETED DATE">${formattedDate}</td>
-                        </tr>
-                    `;
+                <tr>
+                    <td data-label="TASKED TO">${event.username || 'N/A'}</td>
+                    <td data-label="DETAILS">${event.task || 'N/A'}</td>
+                    <td data-label="TARGET DATE">${formattedDate1}</td>
+                    <td data-label="COMPLETED DATE">${formattedDate}</td>
+                </tr>
+            `;
                     caseassignment1.innerHTML += row;
                 } else {
+                    hasPending = true;
                     const formattedDate = event.targetCompletionDate
                         ? new Date(event.targetCompletionDate).toLocaleDateString('en-GB')
                         : 'N/A';
                     const row = `
-                        <tr>
-                            <td data-label="TASKED TO">${event.username || 'N/A'}</td>
-                            <td data-label="DETAILS">${event.task || 'N/A'}</td>
-                            <td data-label="TARGET DATE">${formattedDate}</td>
-                            <td data-label="ACTION" class="actions">
-                                <i class='bx bxs-check-circle' title="Mark as complete" onclick="completeTask(${event.caseTaskId})"></i>
-                            </td>
-                        </tr>
-                    `;
-                    caseassignment.innerHTML += row; // Pending Task
+                <tr>
+                    <td data-label="TASKED TO">${event.username || 'N/A'}</td>
+                    <td data-label="DETAILS">${event.task || 'N/A'}</td>
+                    <td data-label="TARGET DATE">${formattedDate}</td>
+                    <td data-label="ACTION" class="actions">
+                        <i class='bx bxs-check-circle' title="Mark as complete" onclick="completeTask(${event.caseTaskId})"></i>
+                    </td>
+                </tr>
+            `;
+                    caseassignment.innerHTML += row;
                 }
             });
+
+            if (!hasPending) {
+                caseassignment.innerHTML = `<tr><td colspan="4">No Pending Tasks Found</td></tr>`;
+            }
+
+            if (!hasCompleted) {
+                caseassignment1.innerHTML = `<tr><td colspan="4">No Completed Tasks Found</td></tr>`;
+            }
         })
         .catch(error => {
             console.error('Error fetching case details:', error);
@@ -626,8 +636,8 @@ function fetchCaseDetails(caseId) {
                 caseDetailsDiv.innerHTML = `
             <div>
                 <span><strong>ERC Case No.: </strong> <i>${caseData.CaseNo}</i></span>
-                <span><strong>Case Title: </strong> <i>${caseData.Title}</i></span>
                 <span><strong>Case Category: </strong> <i>${caseData.CaseCategory}</i></span>
+                <span><strong>Case Title: </strong> <i>${caseData.Title}</i></span>
             </div>
             <div>
                 <span><strong>Case Nature: </strong> <i>${caseData.CaseNature}</i></span>
