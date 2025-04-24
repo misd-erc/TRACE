@@ -33,6 +33,14 @@ body{
     color: #01e841;
 }
 
+.yellow-txt{
+    color:#2c74ea;
+}
+
+.red-txt {
+    color: red;
+}
+
 .swal2-popup {
     background-color: var(--theme) !important;
     color: var(--font-color) !important;
