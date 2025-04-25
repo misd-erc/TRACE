@@ -110,7 +110,7 @@ function renderCaseEventTable() {
 
         const row = `
             <tr>
-                <td data-label="BY">${event.userID || 'N/A'}</td>
+                <td data-label="BY">${event.userId || 'N/A'}</td>
                 <td data-label="DESCRIPTION">${event.eventDescription || 'N/A'}</td>
                 <td data-label="DATE">${formattedDate}</td>
             </tr>
