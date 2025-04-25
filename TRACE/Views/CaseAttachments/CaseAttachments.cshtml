@@ -1,4 +1,4 @@
-﻿@model TRACE.Models.CaseNote
+﻿@model TRACE.Models.MilestonesAchieved
 
 @{
     ViewData["Title"] = "Upload Attachment";
@@ -20,6 +20,10 @@
     <div class="case-card shadow border-radius-5">
         <div class="form-div  create-lc">
             <div class="">
+            <div class="form-input-div">
+                <label asp-for="CaseMilestoneId" class="control-label">Milestone</label>
+                <select asp-for="CaseMilestoneId" class="form-control" asp-items="@(ViewData["CaseMilestoneId"] as SelectList)"></select>
+            </div>
                 <div class="form-input-div uploadfileclass">
                     <input type="file" class="form-control" id="fileUpload" multiple/>
                     <label for="fileUpload">📁 Choose a file</label>

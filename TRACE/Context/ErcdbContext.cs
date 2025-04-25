@@ -291,7 +291,8 @@ public partial class ErcdbContext : DbContext
                         j.IndexerProperty<long>("AccountGroupId").HasColumnName("AccountGroupID");
                     });
         });
-
+        modelBuilder.Entity<CaseBlobDocument>()
+       .HasKey(c => c.DocumentID);  // Define the primary key
         modelBuilder.Entity<AccountCategory>(entity =>
         {
             entity.ToTable("AccountCategories", "DS");
