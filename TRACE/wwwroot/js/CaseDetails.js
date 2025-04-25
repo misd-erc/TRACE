@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchCaseNoteWithErcId(caseId);
         GetCaseRelatedByErcID(caseId);
         fetchCaseRespondentWithErcId(caseId);
+        fetchCaseApplicantWithErcId(caseId);
      
         
 
@@ -271,6 +272,47 @@ function fetchCaseTaskWithErcId(caseId) {
         });
 }
 
+function fetchCaseApplicantWithErcId(caseId) {
+    fetch(`/CaseApplicant/GetCaseApplicantByErcID?id=${caseId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const caserespondent = document.getElementById('applicantstbody');
+            caserespondent.innerHTML = '';
+            if (data.length > 0) {
+                const caseData = data[0];
+                data.forEach(event => {
+                    const formattedDate = event.DateAssigned
+                        ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
+                        : 'N/A';
+                    caserespondent.innerHTML += `
+                               <tr>
+                                <td data-label="FILE NAME">${event.FullName}</td>
+                                
+                             
+                                
+                            </td>
+                        </tr>
+                        `;
+                })
+
+            } else {
+                caserespondent.innerHTML = `
+                            <tr>
+                                  <td colspan="3">No Case Applicant</td>
+                            </tr>
+                        `;
+            }
+
+        })
+        .catch(error => {
+            console.error('Error fetching case details:', error);
+        });
+}
 function fetchCaseRespondentWithErcId(caseId) {
     fetch(`/CaseRespondents/GetCaseRespondentByErcID?id=${caseId}`)
         .then(response => {
@@ -569,7 +611,7 @@ function GetCaseRelatedByErcID(caseId) {
                     casehearing.innerHTML += `
                                 <tr>
                                     <td data-label="CASE NO.">${caseData.RelatedCaseNo}</td>
-                                    <td data-label="CASE TITLE"><a href='/CaseDetails?id=${caseData.ERCCaseRelatedID}'>${caseData.RelatedCaseTitle}</a></td>
+                                    <td data-label="CASE TITLE"><a href='/CaseDetails?id=${caseData.RelatedCaseID}'>${caseData.RelatedCaseTitle}</a></td>
                                     <td data-label="ACTION" class="actions">
                                         <i class='bx bxs-x-circle' title="Archive"></i>
                                     </td>

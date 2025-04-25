@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
 using TRACE.Models;
@@ -13,10 +15,12 @@ namespace TRACE.Controllers
     public class CaseApplicantController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly string _connectionString;
 
-        public CaseApplicantController(ErcdbContext context)
+        public CaseApplicantController(ErcdbContext context, IConfiguration configuration)
         {
             _context = context;
+            _connectionString = configuration.GetConnectionString("ErcDatabase");
         }
 
         // GET: CaseApplicant
@@ -24,6 +28,35 @@ namespace TRACE.Controllers
         {
             var ercdbContext = _context.CaseApplicants.Include(c => c.Company).Include(c => c.Correspondent).Include(c => c.Erccase);
             return View(await ercdbContext.ToListAsync());
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetCaseApplicantByErcID(int id)
+        { 
+          try
+            {
+                    using var connection = new SqlConnection(_connectionString);
+                    await connection.OpenAsync(); // Ensure connection opens
+
+                    var sql = @"SELECT 
+                                    ca.CaseApplicantID,
+                                    ca.ERCCaseID,
+                                    ca.Remarks,
+                                    ca.CorrespondentID,
+                                    ca.CompanyID,
+                                    co.Salutation + ' ' + co.FirstName + ' ' + co.LastName AS FullName
+                                FROM [ercdb].[cases].[CaseApplicants] ca
+                                INNER JOIN [ercdb].[contacts].Correspondents co
+                                    ON ca.CorrespondentID = co.CorrespondentID
+                                WHERE ca.ERCCaseID = @id";
+
+                                 var result = await connection.QueryAsync<dynamic>(sql, new { id });
+                            return Json(result);
+              }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message
+            });
+          }
         }
 
         // GET: CaseApplicant/Details/5
