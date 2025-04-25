@@ -1,40 +1,51 @@
 @model TRACE.Models.CaseApplicant
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add Applicants";
 }
 
-<h1>Create</h1>
-
-<h4>CaseApplicant</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form id="createForm" asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" style="display:none">
-                <label asp-for="ErccaseId" class="control-label"></label>
-                <select asp-for="ErccaseId" class ="form-control" asp-items="ViewBag.ErccaseId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Remarks" class="control-label"></label>
-                <input asp-for="Remarks" class="form-control" />
-                <span asp-validation-for="Remarks" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CorrespondentId" class="control-label"></label>
-                <select asp-for="CorrespondentId" class ="form-control" asp-items="ViewBag.CorrespondentId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="CompanyId" class="control-label"></label>
-                <select asp-for="CompanyId" class ="form-control" asp-items="ViewBag.CompanyId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="crumbs">
+    <a href="javascript:history.back();">Go Back</a> > Add Applicants
 </div>
+<form id="createForm" asp-action="Create" method="post">
+    <div class="main-head-div flex h-center space-between">
+        <div class="title-div">
+            <h3>ADD APPLICANTS</h3>
+            <p>This page is for adding applicants for the selected erc case</p>
+        </div>
+
+        <div class="btn-div">
+            <input type="submit" value="ADD APPLICANT" class="btn btn-primary" />
+        </div>
+    </div>
+    <div class="case-card shadow border-radius-5">
+        <div class="form-div  create-lc">
+            <div class="grid grid-three-fr gap-10">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-input-div">
+                    <label asp-for="Remarks" class="control-label"></label>
+                    <textarea asp-for="Remarks" class="form-control"></textarea>
+                    <span asp-validation-for="Remarks" class="text-danger"></span>
+                </div>
+
+                <div class="form-input-div">
+                    <label asp-for="CorrespondentId" class="control-label">Applicant Name</label>
+                    <select asp-for="CorrespondentId" class="form-control" asp-items="ViewBag.CorrespondentId" id="_correspondent"></select>
+                </div>
+
+                <div class="form-input-div">
+                    <label asp-for="CompanyId" class="control-label">Company Name</label>
+                    <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId" id="_company"></select>
+                </div>
+
+                <div class="form-input-div">
+                    <label asp-for="ErccaseId" class="control-label" style="display:none"> </label>
+                    <input asp-for="ErccaseId" type="hidden" class="form-control" id="ErccaseId" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 @section Scripts {
     @{
@@ -43,6 +54,68 @@
 
     <script>
         $(document).ready(function () {
+            const element = document.getElementById('_correspondent');
+            const choices = new Choices(element, {
+                searchEnabled: true,
+                searchChoices: false,
+                placeholder: true,
+                placeholderValue: 'Search Applicant',
+                shouldSort: false
+            });
+
+            const element2 = document.getElementById('_company');
+            const choices2 = new Choices(element2, {
+                searchEnabled: true,
+                searchChoices: false,
+                placeholder: true,
+                placeholderValue: 'Search Company',
+                shouldSort: false
+            });
+
+            element.addEventListener('search', function (event) {
+                const searchTerm = event.detail.value;
+
+                if (searchTerm.length < 2) return;
+
+                fetch(`/CaseApplicant/Search2?term=${encodeURIComponent(searchTerm)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        choices.clearChoices();
+
+                        choices.setChoices(data.map(item => ({
+                            value: item.id,
+                            label: item.text,
+                            selected: false,
+                            disabled: false
+                        })), 'value', 'label', true);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching search results:', error);
+                    });
+            });
+
+            element2.addEventListener('search', function (event) {
+                const searchTerm = event.detail.value;
+
+                if (searchTerm.length < 2) return;
+
+                fetch(`/CaseApplicant/Search1?term=${encodeURIComponent(searchTerm)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        choices2.clearChoices();
+
+                        choices2.setChoices(data.map(item => ({
+                            value: item.id,
+                            label: item.text,
+                            selected: false,
+                            disabled: false
+                        })), 'value', 'label', true);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching search results:', error);
+                    });
+            });
+
             $("#createForm").submit(function (event) {
                 event.preventDefault();
 

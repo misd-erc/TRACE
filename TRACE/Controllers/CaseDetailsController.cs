@@ -40,18 +40,28 @@ namespace TRACE.Controllers
 
                 var sql = @"
                     SELECT 
-                        a.*,
-                        (SELECT [Description] FROM cases.CaseCategories WHERE CaseCategoryID = a.CaseCategoryID) AS CaseCategory,
-                        (SELECT [Description] FROM cases.CaseNatures WHERE CaseNatureID = a.CaseNatureID) AS CaseNature,
-                        (SELECT [Status] FROM cases.CaseStatuses WHERE CaseStatusID = a.CaseStatusID) AS CaseStatus,
-                        (CASE WHEN a.PrayedForPA = 1 THEN 'Yes' ELSE 'No' END) AS hasPrayedForPA,
-                        comp.CompanyName,
-                        cor.LastName + ' ' + cor.FirstName AS CorrespondentLastName
-                    FROM cases.ERCCases a
-                    LEFT JOIN ercdb.cases.CaseRespondents cr ON cr.ERCCaseID = a.ERCCaseID
-                    LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID
-                    LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
-                    WHERE a.ERCCaseID = @id;";
+                            a.*,
+                            (SELECT [Description] FROM cases.CaseCategories WHERE CaseCategoryID = a.CaseCategoryID) AS CaseCategory,
+                            (SELECT [Description] FROM cases.CaseNatures WHERE CaseNatureID = a.CaseNatureID) AS CaseNature,
+                            (SELECT [Status] FROM cases.CaseStatuses WHERE CaseStatusID = a.CaseStatusID) AS CaseStatus,
+                            (CASE WHEN a.PrayedForPA = 1 THEN 'Yes' ELSE 'No' END) AS hasPrayedForPA,
+
+                            comp.CompanyName,
+
+                            cor.LastName + ' ' + cor.FirstName AS RespondentFullName,
+
+                            acor.FirstName + ' ' + acor.LastName AS ApplicantFullName
+
+                        FROM cases.ERCCases a
+
+                        LEFT JOIN ercdb.cases.CaseRespondents cr ON cr.ERCCaseID = a.ERCCaseID
+                        LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID
+                        LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+
+                        LEFT JOIN ercdb.cases.CaseApplicants ca ON ca.ERCCaseID = a.ERCCaseID
+                        LEFT JOIN contacts.Correspondents acor ON ca.CorrespondentID = acor.CorrespondentID
+
+                        WHERE a.ERCCaseID = @id;";
 
                 var result = await connection.QueryAsync<dynamic>(sql, new { id });
                 return Json(result);

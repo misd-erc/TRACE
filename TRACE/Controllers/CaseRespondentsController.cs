@@ -66,20 +66,23 @@ namespace TRACE.Controllers
         // GET: CaseRespondents/Create
         public IActionResult Create()
         {
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "CompanyId", "CompanyName");
+            ViewData["CompanyId"] = new SelectList(
+                _context.Companies.Take(20), "CompanyId", "CompanyName");
+
             ViewData["CorrespondentId"] = new SelectList(
                 _context.Correspondents
                     .Select(c => new {
                         c.CorrespondentId,
                         FullName = c.Salutation + " " + c.FirstName + " " + c.LastName
-                    }),
+                    })
+                    .Take(20),
                 "CorrespondentId",
                 "FullName"
             );
+
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
             return View();
         }
-
         // POST: CaseRespondents/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -195,6 +198,44 @@ namespace TRACE.Controllers
         private bool CaseRespondentExists(long id)
         {
             return _context.CaseRespondents.Any(e => e.CaseRespondentId == id);
+        }
+
+        public IActionResult Search1(string term)
+        {
+            if (string.IsNullOrWhiteSpace(term))
+                return Json(new List<object>());
+
+            var results = _context.Companies
+                .Where(e => e.CompanyName.ToString().Contains(term))
+                .OrderBy(e => e.CompanyId)
+                .Take(15)
+                .Select(e => new
+                {
+                    id = e.CompanyId,
+                    text = e.CompanyName
+                })
+                .ToList();
+
+            return Json(results);
+        }
+
+        public IActionResult Search2(string term)
+        {
+            if (string.IsNullOrWhiteSpace(term))
+                return Json(new List<object>());
+
+            var results = _context.Correspondents
+                .Where(e => (e.FirstName + " " + e.MiddleName + " " + e.LastName).Contains(term))
+                .OrderBy(e => e.CorrespondentId)
+                .Take(15)
+                .Select(e => new
+                {
+                    id = e.CorrespondentId,
+                    text = e.FirstName + " " + e.MiddleName + " " + e.LastName
+                })
+                .ToList();
+
+            return Json(results);
         }
     }
 }

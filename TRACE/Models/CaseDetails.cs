@@ -15,5 +15,6 @@ namespace TRACE.Models
         public DateTime DateFiled { get; set; }
         public string Complainant { get; set; }
         public string Respondent { get; set; }
+        public string Applicant { get; set; }
     }
 }

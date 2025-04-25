@@ -662,7 +662,6 @@ function fetchCaseDetails(caseId) {
                 const caseage = document.getElementById('caseage');
                 caseage.innerHTML = calculateDays(caseData.DateFiled) + " Days";
 
-                // Format all date fields
                 const formattedDateFiled = formatDate(caseData.DateFiled);
                 const formattedDateDocketed = formatDate(caseData.DateDocketed);
                 const formattedDateApproved = formatDate(caseData.DatetimeApproved);
@@ -675,7 +674,7 @@ function fetchCaseDetails(caseId) {
                 const formattedTargetFAIssuance = formatDate(caseData.TargetFAIssuance);
                 const formattedTargetPAIssuance = formatDate(caseData.TargetPAIssuance);
 
-                // Helper to get status class
+
                 function getStatusClass(status) {
                     if (!status) return "";
                     const s = status.toLowerCase();
@@ -691,51 +690,51 @@ function fetchCaseDetails(caseId) {
                 }
 
                 const statusClass = getStatusClass(caseData.CaseStatus);
-
+                console.log(Object.keys(caseData));
                 caseDetailsDiv.innerHTML = `
-    <div>
-        <span><strong>ERC Case No.: </strong> <i>${caseData.CaseNo}</i></span>
-        <span><strong>Case Category: </strong> <i>${caseData.CaseCategory}</i></span>
-        <span><strong>Case Title: </strong> <i>${caseData.Title}</i></span>
-    </div>
-    <div>
-        <span><strong>Case Nature: </strong> <i>${caseData.CaseNature}</i></span>
-        <span><strong>Date Filed: </strong> <i>${formattedDateFiled}</i></span>
-        <span><strong>Date Docketed: </strong> <i>${formattedDateDocketed}</i></span>
-    </div>
-    <div>
-        <span><strong>Docketed By: </strong> <i>${caseData.DocketedBy ?? 'N/A'}</i></span>
-        <span><strong>Applicant: </strong> <i>${caseData.CompanyName ?? 'N/A'}</i></span>
-        <span><strong>Respondent: </strong> <i>${caseData.CorrespondentName ?? 'No Data Yet'}</i></span>
-    </div>
-    <div>
-        <span><strong>No. of Folders: </strong> <i>${caseData.NoOfFolders ?? 'N/A'}</i></span>
-        <span><strong>Date Approved: </strong> <i>${formattedDateApproved}</i></span>
-        <span><strong class="${statusClass}">${caseData.CaseStatus}</strong></span>
-    </div>
-`;
+                    <div>
+                        <span><strong>ERC Case No.: </strong> <i>${caseData.CaseNo}</i></span>
+                        <span><strong>Case Category: </strong> <i>${caseData.CaseCategory}</i></span>
+                        <span><strong>Case Title: </strong> <i>${caseData.Title}</i></span>
+                    </div>
+                    <div>
+                        <span><strong>Case Nature: </strong> <i>${caseData.CaseNature}</i></span>
+                        <span><strong>Date Filed: </strong> <i>${formattedDateFiled}</i></span>
+                        <span><strong>Date Docketed: </strong> <i>${formattedDateDocketed}</i></span>
+                    </div>
+                    <div>
+                        <span><strong>Docketed By: </strong> <i>${caseData.DocketedBy ?? 'N/A'}</i></span>
+                        <span><strong>Applicant: </strong> <i>${caseData.ApplicantFullName ?? 'N/A'}</i></span>
+                        <span><strong>Respondent: </strong> <i>${caseData.CompanyName ?? 'No Data Yet'}</i></span>
+                    </div>
+                    <div>
+                        <span><strong>No. of Folders: </strong> <i>${caseData.NoOfFolders ?? 'N/A'}</i></span>
+                        <span><strong>Date Approved: </strong> <i>${formattedDateApproved}</i></span>
+                        <span><strong class="${statusClass}">${caseData.CaseStatus}</strong></span>
+                    </div>
+                `;
 
-                othercaseDetailsDiv.innerHTML = `
-    <div>
-        <span><strong>Amount Claimed: </strong> <i>${caseData.AmountClaimed ?? 'N/A'}</i></span>
-        <span><strong>Amount Settled: </strong> <i>${caseData.AmountSettled ?? 'N/A'}</i></span>
-        <span><strong>Target PA Issuance: </strong> <i>${formattedTargetPAIssuance ?? 'N/A'}</i></span>
-    </div>
-    <div>
-        <span><strong>Target FA Issuance: </strong> <i>${formattedTargetFAIssuance ?? 'N/A'}</i></span>
-        <span><strong>PA Deliberation Date: </strong> <i>${formattedPADeliberation}</i></span>
-        <span><strong>FA Deliberation Date: </strong> <i>${formattedFADeliberation}</i></span>
-    </div>
-    <div>
-        <span><strong>PA Target Order: </strong> <i>${formattedPATargetOrder}</i></span>
-        <span><strong>FA Target Order: </strong> <i>${formattedFATargetOrder}</i></span>
-        <span><strong>Synopsis: </strong> <i>${caseData.Synopsis ?? 'No Synopsis Yet'}</i></span>
-    </div>
-    <div>
-        <span><strong>Submitted for Resolution: </strong> <i>${formattedSubmittedResolution}</i></span>
-        <span><strong>Meter SIN: </strong> <i>${caseData.MeterSIN ?? 'N/A'}</i></span>
-        <span><strong>Remarks: </strong> <i>${caseData.Remarks ?? 'None'}</i></span>
-    </div>
+                                othercaseDetailsDiv.innerHTML = `
+                    <div>
+                        <span><strong>Amount Claimed: </strong> <i>${caseData.AmountClaimed ?? 'N/A'}</i></span>
+                        <span><strong>Amount Settled: </strong> <i>${caseData.AmountSettled ?? 'N/A'}</i></span>
+                        <span><strong>Target PA Issuance: </strong> <i>${formattedTargetPAIssuance ?? 'N/A'}</i></span>
+                    </div>
+                    <div>
+                        <span><strong>Target FA Issuance: </strong> <i>${formattedTargetFAIssuance ?? 'N/A'}</i></span>
+                        <span><strong>PA Deliberation Date: </strong> <i>${formattedPADeliberation}</i></span>
+                        <span><strong>FA Deliberation Date: </strong> <i>${formattedFADeliberation}</i></span>
+                    </div>
+                    <div>
+                        <span><strong>PA Target Order: </strong> <i>${formattedPATargetOrder}</i></span>
+                        <span><strong>FA Target Order: </strong> <i>${formattedFATargetOrder}</i></span>
+                        <span><strong>Synopsis: </strong> <i>${caseData.Synopsis ?? 'No Synopsis Yet'}</i></span>
+                    </div>
+                    <div>
+                        <span><strong>Submitted for Resolution: </strong> <i>${formattedSubmittedResolution}</i></span>
+                        <span><strong>Meter SIN: </strong> <i>${caseData.MeterSIN ?? 'N/A'}</i></span>
+                        <span><strong>Remarks: </strong> <i>${caseData.Remarks ?? 'None'}</i></span>
+                    </div>
 `;
             } else {
                 alert('Case not found!');
