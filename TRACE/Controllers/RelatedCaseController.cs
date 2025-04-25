@@ -105,16 +105,35 @@ namespace TRACE.Controllers
         {
             if (!ModelState.IsValid)
             {
-                relatedCase.DatetimeRelated = DateTime.Now;
                 var currentUserName = _currentUserHelper.Email;
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+
+                var now = DateTime.Now;
+
+                // Row 1: Original relation
+                relatedCase.DatetimeRelated = now;
                 relatedCase.RelatedBy = user.Username;
+
+                // Row 2: Reverse relation
+                var reverseRelation = new RelatedCase
+                {
+                    ErccaseId = relatedCase.ErccaseRelatedId,
+                    ErccaseRelatedId = relatedCase.ErccaseId,
+                    DatetimeRelated = now,
+                    RelatedBy = user.Username
+                };
+
                 _context.Add(relatedCase);
+                _context.Add(reverseRelation);
+
                 await _context.SaveChangesAsync();
-                return Json(new { success = true, message = "Success! Data has been saved." });
+
+                return Json(new { success = true, message = "Success! Data has been saved both ways." });
             }
+
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", relatedCase.ErccaseId);
             ViewData["ErccaseRelatedId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", relatedCase.ErccaseRelatedId);
+
             return Json(new { success = false, message = "Error! Please check your input." });
         }
 

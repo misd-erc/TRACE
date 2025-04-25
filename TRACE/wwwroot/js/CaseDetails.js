@@ -569,7 +569,7 @@ function GetCaseRelatedByErcID(caseId) {
                     casehearing.innerHTML += `
                                 <tr>
                                     <td data-label="CASE NO.">${caseData.RelatedCaseNo}</td>
-                                    <td data-label="CASE TITLE"><a href='/CaseDetails?id=${caseData.RelatedCaseID}'>${caseData.RelatedCaseTitle}</a></td>
+                                    <td data-label="CASE TITLE"><a href='/CaseDetails?id=${caseData.ERCCaseRelatedID}'>${caseData.RelatedCaseTitle}</a></td>
                                     <td data-label="ACTION" class="actions">
                                         <i class='bx bxs-x-circle' title="Archive"></i>
                                     </td>
