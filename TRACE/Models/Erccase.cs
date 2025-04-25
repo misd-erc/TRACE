@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace TRACE.Models;
 
@@ -10,12 +9,10 @@ public partial class Erccase
 
     public string CaseNo { get; set; } = null!;
 
-    [Display(Name = "Choose Case Category")]
     public long CaseCategoryId { get; set; }
 
     public string? Title { get; set; }
 
-    [Display(Name = "Choose Case Nature")]
     public long? CaseNatureId { get; set; }
 
     public DateOnly DateFiled { get; set; }

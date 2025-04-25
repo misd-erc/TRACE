@@ -27,8 +27,6 @@ public partial class Hearing
 
     public string? OtherVenue { get; set; }
 
-    public string? HearingLinks { get; set; }
-
     public virtual Erccase Erccase { get; set; } = null!;
 
     public virtual HearingCategory HearingCategory { get; set; } = null!;
@@ -38,7 +36,4 @@ public partial class Hearing
     public virtual HearingVenue HearingVenue { get; set; } = null!;
 
     public virtual ICollection<HearingType> HearingTypes { get; set; } = new List<HearingType>();
-
-    public virtual ICollection<HearingsInHearingType> HearingsInHearingTypes { get; set; } = new List<HearingsInHearingType>();
-
 }

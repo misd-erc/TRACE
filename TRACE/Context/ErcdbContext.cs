@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using TRACE.Models;
 
-namespace TRACE.Context;
+namespace TRACE.Models;
 
 public partial class ErcdbContext : DbContext
 {
@@ -41,6 +40,8 @@ public partial class ErcdbContext : DbContext
     public virtual DbSet<CaseApplicant> CaseApplicants { get; set; }
 
     public virtual DbSet<CaseAssignment> CaseAssignments { get; set; }
+
+    public virtual DbSet<CaseBlobDocument> CaseBlobDocuments { get; set; }
 
     public virtual DbSet<CaseCategory> CaseCategories { get; set; }
 
@@ -152,8 +153,6 @@ public partial class ErcdbContext : DbContext
 
     public virtual DbSet<HearingVenue> HearingVenues { get; set; }
 
-    public virtual DbSet<HearingsInHearingType> HearingsInHearingTypes { get; set; }
-
     public virtual DbSet<InternalDocument> InternalDocuments { get; set; }
 
     public virtual DbSet<LogType> LogTypes { get; set; }
@@ -163,6 +162,8 @@ public partial class ErcdbContext : DbContext
     public virtual DbSet<MilestonesAchieved> MilestonesAchieveds { get; set; }
 
     public virtual DbSet<NeededAction> NeededActions { get; set; }
+
+    public virtual DbSet<Notification> Notifications { get; set; }
 
     public virtual DbSet<OcNextBarcodeNo> OcNextBarcodeNos { get; set; }
 
@@ -198,6 +199,8 @@ public partial class ErcdbContext : DbContext
 
     public virtual DbSet<State> States { get; set; }
 
+    public virtual DbSet<SubCaseCategory> SubCaseCategories { get; set; }
+
     public virtual DbSet<Subscription> Subscriptions { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -208,11 +211,11 @@ public partial class ErcdbContext : DbContext
 
     public virtual DbSet<UserLog> UserLogs { get; set; }
 
+    public virtual DbSet<UserRolesPerModule> UserRolesPerModules { get; set; }
+
     public virtual DbSet<UserTokenCache> UserTokenCaches { get; set; }
 
     public virtual DbSet<VersionStatus> VersionStatuses { get; set; }
-    public virtual DbSet<CaseDetails> CaseDetails { get; set; }
-    public virtual DbSet<CaseLastMile> CaseLastMiles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=ErcDatabase");
@@ -510,6 +513,7 @@ public partial class ErcdbContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.ErccaseId).HasColumnName("ERCCaseID");
             entity.Property(e => e.HandlingOfficerTypeId).HasColumnName("HandlingOfficerTypeID");
+            entity.Property(e => e.IsActive).HasDefaultValue(1L);
             entity.Property(e => e.UserId)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -523,6 +527,20 @@ public partial class ErcdbContext : DbContext
                 .HasForeignKey(d => d.HandlingOfficerTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_CaseAssignments_HandlingOfficerTypes");
+        });
+
+        modelBuilder.Entity<CaseBlobDocument>(entity =>
+        {
+            entity.HasKey(e => e.DocumentId).HasName("PK__CaseBlob__1ABEEF6F67F88418");
+
+            entity.ToTable("CaseBlobDocuments", "cases");
+
+            entity.Property(e => e.DocumentId).HasColumnName("DocumentID");
+            entity.Property(e => e.AttachmentName).HasMaxLength(255);
+            entity.Property(e => e.Ercid).HasColumnName("ERCId");
+            entity.Property(e => e.UploadedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
         });
 
         modelBuilder.Entity<CaseCategory>(entity =>
@@ -732,43 +750,31 @@ public partial class ErcdbContext : DbContext
         {
             entity.ToTable("CaseTasks", "cases");
 
-            entity.Property(e => e.CaseTaskId)
-                  .HasColumnName("CaseTaskID");
+            entity.Property(e => e.CaseTaskId).HasColumnName("CaseTaskID");
             entity.Property(e => e.DatetimeCreated)
-                  .HasDefaultValueSql("(getdate())")
-                  .HasColumnType("datetime");
-            entity.Property(e => e.DocumentId)
-                  .HasColumnName("DocumentID");
-            entity.Property(e => e.ErccaseId)
-                  .HasColumnName("ERCCaseID");
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.DocumentId).HasColumnName("DocumentID");
+            entity.Property(e => e.ErccaseId).HasColumnName("ERCCaseID");
             entity.Property(e => e.Task)
-                  .HasMaxLength(500)
-                  .IsUnicode(false);
+                .HasMaxLength(500)
+                .IsUnicode(false);
             entity.Property(e => e.TaskedBy)
-                  .HasMaxLength(50)
-                  .IsUnicode(false);
-
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.UserId)
-                  .HasMaxLength(50)
-                  .IsUnicode(false)
-                  .HasColumnName("UserID");
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("UserID");
 
-            entity.HasOne(d => d.Document)
-                  .WithMany(p => p.CaseTasks)
-                  .HasForeignKey(d => d.DocumentId)
-                  .OnDelete(DeleteBehavior.SetNull)
-                  .HasConstraintName("FK_CaseTasks_Documents");
+            entity.HasOne(d => d.Document).WithMany(p => p.CaseTasks)
+                .HasForeignKey(d => d.DocumentId)
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasConstraintName("FK_CaseTasks_Documents");
 
-            entity.HasOne(d => d.Erccase)
-                  .WithMany(p => p.CaseTasks)
-                  .HasForeignKey(d => d.ErccaseId)
-                  .HasConstraintName("FK_CaseTasks_ERCCases");
-            entity.HasOne(ct => ct.User)
-                  .WithMany()
-                  .HasForeignKey(ct => ct.UserId)
-                  .HasPrincipalKey(u => u.Username)
-                  .OnDelete(DeleteBehavior.Restrict)
-                  .HasConstraintName("FK_CaseTasks_Users_ByUsername");
+            entity.HasOne(d => d.Erccase).WithMany(p => p.CaseTasks)
+                .HasForeignKey(d => d.ErccaseId)
+                .HasConstraintName("FK_CaseTasks_ERCCases");
         });
 
         modelBuilder.Entity<City>(entity =>
@@ -1541,6 +1547,9 @@ public partial class ErcdbContext : DbContext
             entity.Property(e => e.ApprovedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.AssignedTo)
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.CaseBoxLocation)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -1791,10 +1800,6 @@ public partial class ErcdbContext : DbContext
                 .HasMaxLength(150)
                 .IsUnicode(false);
 
-            entity.Property(e => e.HearingLinks)
-                .HasMaxLength(500)
-                .IsUnicode(false);
-
             entity.HasOne(d => d.Erccase).WithMany(p => p.Hearings)
                 .HasForeignKey(d => d.ErccaseId)
                 .HasConstraintName("FK_Hearings_Cases");
@@ -1808,38 +1813,22 @@ public partial class ErcdbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Hearings_HearingVenues");
 
-            // ALDRIN: Gumawa ako bagong model builder dito (Line 1813)
-            //entity.HasMany(d => d.HearingTypes).WithMany(p => p.Hearings)
-            //    .UsingEntity<Dictionary<string, object>>(
-            //        "HearingsInHearingType",
-            //        r => r.HasOne<HearingType>().WithMany()
-            //            .HasForeignKey("HearingTypeId")
-            //            .HasConstraintName("FK_HearingsInHearingType_HearingTypes"),
-            //        l => l.HasOne<Hearing>().WithMany()
-            //            .HasForeignKey("HearingId")
-            //            .HasConstraintName("FK_HearingsInHearingType_Hearings"),
-            //        j =>
-            //        {
-            //            j.HasKey("HearingId", "HearingTypeId");
-            //            j.ToTable("HearingsInHearingType", "cases");
-            //            j.IndexerProperty<long>("HearingId").HasColumnName("HearingID");
-            //            j.IndexerProperty<long>("HearingTypeId").HasColumnName("HearingTypeID");
-            //        });
-        });
-
-        modelBuilder.Entity<HearingsInHearingType>(entity =>
-        {
-            entity.ToTable("HearingsInHearingType", "cases");
-
-            entity.HasKey(h => new { h.HearingId, h.HearingTypeId });
-
-            entity.HasOne(h => h.Hearing)
-                .WithMany(h => h.HearingsInHearingTypes)
-                .HasForeignKey(h => h.HearingId);
-
-            entity.HasOne(h => h.HearingType)
-                .WithMany(ht => ht.HearingsInHearingTypes)
-                .HasForeignKey(h => h.HearingTypeId);
+            entity.HasMany(d => d.HearingTypes).WithMany(p => p.Hearings)
+                .UsingEntity<Dictionary<string, object>>(
+                    "HearingsInHearingType",
+                    r => r.HasOne<HearingType>().WithMany()
+                        .HasForeignKey("HearingTypeId")
+                        .HasConstraintName("FK_HearingsInHearingType_HearingTypes"),
+                    l => l.HasOne<Hearing>().WithMany()
+                        .HasForeignKey("HearingId")
+                        .HasConstraintName("FK_HearingsInHearingType_Hearings"),
+                    j =>
+                    {
+                        j.HasKey("HearingId", "HearingTypeId");
+                        j.ToTable("HearingsInHearingType", "cases");
+                        j.IndexerProperty<long>("HearingId").HasColumnName("HearingID");
+                        j.IndexerProperty<long>("HearingTypeId").HasColumnName("HearingTypeID");
+                    });
         });
 
         modelBuilder.Entity<HearingCategory>(entity =>
@@ -2041,6 +2030,25 @@ public partial class ErcdbContext : DbContext
                         j.IndexerProperty<long>("NeededActionId").HasColumnName("NeededActionID");
                         j.IndexerProperty<long>("DocumentAssignmentId").HasColumnName("DocumentAssignmentID");
                     });
+        });
+
+        modelBuilder.Entity<Notification>(entity =>
+        {
+            entity.HasKey(e => e.NotificationId).HasName("PK__Notifica__20CF2E32517AF364");
+
+            entity.ToTable("Notifications", "cases");
+
+            entity.Property(e => e.NotificationId).HasColumnName("NotificationID");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.IsRead).HasDefaultValue(false);
+            entity.Property(e => e.NotificationType)
+                .HasMaxLength(100)
+                .HasDefaultValue("General");
+            entity.Property(e => e.ReadAt).HasColumnType("datetime");
+            entity.Property(e => e.RecipientUserId).HasColumnName("RecipientUserID");
+            entity.Property(e => e.Title).HasMaxLength(255);
         });
 
         modelBuilder.Entity<OcNextBarcodeNo>(entity =>
@@ -2352,6 +2360,25 @@ public partial class ErcdbContext : DbContext
                 .HasConstraintName("FK_States_Countries");
         });
 
+        modelBuilder.Entity<SubCaseCategory>(entity =>
+        {
+            entity.HasKey(e => e.SubCategoryId).HasName("PK__SubCaseC__26BE5BF91ED805C1");
+
+            entity.ToTable("SubCaseCategories", "cases");
+
+            entity.Property(e => e.SubCategoryId).HasColumnName("SubCategoryID");
+            entity.Property(e => e.CaseCategoryId).HasColumnName("CaseCategoryID");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.IsInternal).HasDefaultValue(false);
+            entity.Property(e => e.SubCategoryName).HasMaxLength(255);
+
+            entity.HasOne(d => d.CaseCategory).WithMany(p => p.SubCaseCategories)
+                .HasForeignKey(d => d.CaseCategoryId)
+                .HasConstraintName("FK_SubCaseCategories_CaseCategories");
+        });
+
         modelBuilder.Entity<Subscription>(entity =>
         {
             entity.HasKey(e => e.SubscriptionId).HasName("PK_DocumentTypePerDivisions");
@@ -2378,9 +2405,6 @@ public partial class ErcdbContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07823061C7");
 
             entity.HasIndex(e => e.Username, "UQ__Users__536C85E4C72B1D4C").IsUnique();
-
-            entity.HasAlternateKey(e => e.Username)
-              .HasName("AK_Users_Username");
 
             entity.Property(e => e.Department).HasMaxLength(150);
             entity.Property(e => e.Designation).HasMaxLength(150);
@@ -2461,6 +2485,25 @@ public partial class ErcdbContext : DbContext
                 .HasForeignKey(d => d.LogTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_UserLogs_LogTypes");
+        });
+
+        modelBuilder.Entity<UserRolesPerModule>(entity =>
+        {
+            entity.HasKey(e => e.RoleId).HasName("PK__UserRole__8AFACE3A35205927");
+
+            entity.ToTable("UserRolesPerModule", "cases");
+
+            entity.Property(e => e.RoleId).HasColumnName("RoleID");
+            entity.Property(e => e.AssignedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CanCreate).HasDefaultValue(false);
+            entity.Property(e => e.CanEdit).HasDefaultValue(false);
+            entity.Property(e => e.CanView).HasDefaultValue(false);
+            entity.Property(e => e.ModuleName).HasMaxLength(100);
+            entity.Property(e => e.RoleName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<UserTokenCache>(entity =>
