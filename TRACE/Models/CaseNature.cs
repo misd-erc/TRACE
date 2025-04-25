@@ -18,6 +18,4 @@ public partial class CaseNature
     public virtual CaseCategory? CaseCategory { get; set; }
 
     public virtual ICollection<Erccase> Erccases { get; set; } = new List<Erccase>();
-
-    public virtual ICollection<SubCaseNature> SubCaseNatures { get; set; } = new List<SubCaseNature>();
 }
