@@ -38,16 +38,16 @@ namespace TRACE.Controllers
                     await connection.OpenAsync(); // Ensure connection opens
 
                     var sql = @"SELECT 
-                                    ca.CaseApplicantID,
-                                    ca.ERCCaseID,
-                                    ca.Remarks,
-                                    ca.CorrespondentID,
-                                    ca.CompanyID,
-                                    co.Salutation + ' ' + co.FirstName + ' ' + co.LastName AS FullName
-                                FROM [ercdb].[cases].[CaseApplicants] ca
-                                INNER JOIN [ercdb].[contacts].Correspondents co
-                                    ON ca.CorrespondentID = co.CorrespondentID
-                                WHERE ca.ERCCaseID = @id";
+                        ca.CaseApplicantID,
+                        ca.ERCCaseID,
+                        ca.Remarks,
+                        ca.CorrespondentID,
+                        ca.CompanyID,
+                        COALESCE(co.Salutation, '') + ' ' + COALESCE(co.FirstName, '') + ' ' + COALESCE(co.LastName, '') AS FullName
+                    FROM [ercdb].[cases].[CaseApplicants] ca
+                    INNER JOIN [ercdb].[contacts].Correspondents co
+                        ON ca.CorrespondentID = co.CorrespondentID
+                    WHERE ca.ERCCaseID = @id";
 
                                  var result = await connection.QueryAsync<dynamic>(sql, new { id });
                             return Json(result);

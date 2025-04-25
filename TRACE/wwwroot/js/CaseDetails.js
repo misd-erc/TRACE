@@ -273,6 +273,7 @@ function fetchCaseTaskWithErcId(caseId) {
 }
 
 function fetchCaseApplicantWithErcId(caseId) {
+    console.log("Calling API with caseId:", caseId);
     fetch(`/CaseApplicant/GetCaseApplicantByErcID?id=${caseId}`)
         .then(response => {
             if (!response.ok) {
