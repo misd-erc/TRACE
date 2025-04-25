@@ -213,6 +213,8 @@ public partial class ErcdbContext : DbContext
     public virtual DbSet<VersionStatus> VersionStatuses { get; set; }
     public virtual DbSet<CaseDetails> CaseDetails { get; set; }
     public virtual DbSet<CaseLastMile> CaseLastMiles { get; set; }
+    public virtual DbSet<CaseBlobDocument> CaseBlobDocument { get; set; }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=ErcDatabase");
