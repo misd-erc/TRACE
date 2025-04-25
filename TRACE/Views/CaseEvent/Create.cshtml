@@ -1,46 +1,54 @@
 @model TRACE.Models.CaseEvent
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add Case Event";
 }
-
-<h1>Create</h1>
-
-<h4>CaseEvent</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form id="createForm" asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" style="display:none">
-                <label asp-for="ErccaseId" class="control-label"></label>
-                <select asp-for="ErccaseId" class="form-control" asp-items="ViewBag.ErccaseId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="EventDatetime" class="control-label">Event DateTime</label>
-                <input asp-for="EventDatetime" class="form-control" />
-                <span asp-validation-for="EventDatetime" class="text-danger"></span>
-            </div>
-            <div class="form-group" style="display:none">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EventDescription" class="control-label">Description</label>
-                <input asp-for="EventDescription" class="form-control" />
-                <span asp-validation-for="EventDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CaseEventTypeId" class="control-label">Event Type</label>
-                <select asp-for="CaseEventTypeId" class="form-control" asp-items="ViewBag.CaseEventTypeId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<div class="crumbs">
+    <a href="javascript:history.back();">Go Back</a> > Add Case Event
 </div>
+<form id="createForm" asp-action="Create" method="post">
+    <div class="main-head-div flex h-center space-between">
+        <div class="title-div">
+            <h3>ADD HEARING</h3>
+            <p>This page is for creating hearings for the selected erc case</p>
+        </div>
+
+        <div class="btn-div">
+            <input type="submit" value="ADD EVENT" class="btn btn-primary" />
+        </div>
+    </div>
+    <div class="case-card shadow border-radius-5">
+        <div class="form-div  create-lc">
+            <div class="grid grid-three-fr gap-10">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-input-div">
+                    <label asp-for="EventDatetime" class="control-label">Event DateTime</label>
+                    <input asp-for="EventDatetime" class="form-control" />
+                    <span asp-validation-for="EventDatetime" class="text-danger"></span>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="CaseEventTypeId" class="control-label">Event Type</label>
+                    <select asp-for="CaseEventTypeId" class="form-control" asp-items="ViewBag.CaseEventTypeId"></select>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="EventDescription" class="control-label">Description</label>
+                    <textarea asp-for="EventDescription" class="form-control"></textarea>
+                    <span asp-validation-for="EventDescription" class="text-danger"></span>
+                </div>
+
+                <div class="form-input-div" style="display:none">
+                    <label asp-for="UserId" class="control-label"></label>
+                    <input asp-for="UserId" class="form-control" />
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>
+                <div class="form-input-div">
+                    <label asp-for="ErccaseId" class="control-label" style="display:none"> </label>
+                    <input asp-for="ErccaseId" type="hidden" class="form-control" id="ErccaseId" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 @section Scripts {
     @{

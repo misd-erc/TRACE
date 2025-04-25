@@ -33,7 +33,10 @@ namespace TRACE.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCaseEventByErcID(int id)
         {
-            var categories = await _context.CaseEvents.Where(x=>x.ErccaseId == id).ToListAsync();
+            var categories = await _context.CaseEvents
+                .Where(x => x.ErccaseId == id)
+                .OrderByDescending(x => x.CaseEventId)
+                .ToListAsync();
 
             if (categories == null || !categories.Any())
             {
