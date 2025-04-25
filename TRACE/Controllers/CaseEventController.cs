@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -15,10 +16,12 @@ namespace TRACE.Controllers
     public class CaseEventController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseEventController(ErcdbContext context)
+        public CaseEventController(ErcdbContext context, CurrentUserHelper currentUserHelper)
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: CaseEvent
@@ -62,7 +65,7 @@ namespace TRACE.Controllers
         // GET: CaseEvent/Create
         public IActionResult Create()
         {
-            ViewData["CaseEventTypeId"] = new SelectList(_context.CaseEventTypes, "CaseEventTypeId", "CaseEventTypeId");
+            ViewData["CaseEventTypeId"] = new SelectList(_context.CaseEventTypes, "CaseEventTypeId", "EventType");
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
             return View();
         }
@@ -74,15 +77,18 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CaseEventId,ErccaseId,EventDatetime,UserId,EventDescription,IsUserAction,CaseEventTypeId")] CaseEvent caseEvent)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                caseEvent.UserId = user.Username;
                 _context.Add(caseEvent);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
             ViewData["CaseEventTypeId"] = new SelectList(_context.CaseEventTypes, "CaseEventTypeId", "CaseEventTypeId", caseEvent.CaseEventTypeId);
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseEvent.ErccaseId);
-            return View(caseEvent);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseEvent/Edit/5

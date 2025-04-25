@@ -10,30 +10,30 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form id="createForm" asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label asp-for="ErccaseId" class="control-label"></label>
-                <select asp-for="ErccaseId" class ="form-control" asp-items="ViewBag.ErccaseId"></select>
+                <select asp-for="ErccaseId" class="form-control" asp-items="ViewBag.ErccaseId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="EventDatetime" class="control-label"></label>
+                <label asp-for="EventDatetime" class="control-label">Event DateTime</label>
                 <input asp-for="EventDatetime" class="form-control" />
                 <span asp-validation-for="EventDatetime" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label asp-for="UserId" class="control-label"></label>
                 <input asp-for="UserId" class="form-control" />
                 <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EventDescription" class="control-label"></label>
+                <label asp-for="EventDescription" class="control-label">Description</label>
                 <input asp-for="EventDescription" class="form-control" />
                 <span asp-validation-for="EventDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CaseEventTypeId" class="control-label"></label>
-                <select asp-for="CaseEventTypeId" class ="form-control" asp-items="ViewBag.CaseEventTypeId"></select>
+                <label asp-for="CaseEventTypeId" class="control-label">Event Type</label>
+                <select asp-for="CaseEventTypeId" class="form-control" asp-items="ViewBag.CaseEventTypeId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -42,10 +42,76 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            $("#createForm").submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Success!",
+                                text: response.message,
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                customClass: {
+                                    popup: "swal2-popup",
+                                    confirmButton: "swal2-confirm"
+                                }
+                            }).then(() => {
+                                $("#createForm")[0].reset();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Error!",
+                                text: response.message,
+                                icon: "error",
+                                confirmButtonText: "Try Again"
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Oops!",
+                            text: "Something went wrong. Please try again.",
+                            icon: "error",
+                            confirmButtonText: "OK",
+                            customClass: {
+                                popup: "swal2-popup",
+                                confirmButton: "swal2-confirm"
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 }
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const erccaseId = urlParams.get('id');
+
+        // Set the hidden input field value if erccaseId exists
+        if (erccaseId) {
+            const inputElement = document.getElementById('ErccaseId');
+
+            if (inputElement) {
+                inputElement.value = erccaseId;
+            } else {
+                console.error('ErccaseId input not found');
+            }
+        }
+    });
+
+</script>
