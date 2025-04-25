@@ -50,8 +50,8 @@ namespace TRACE.Controllers
         // GET: CaseApplicant/Create
         public IActionResult Create()
         {
-            ViewData["CompanyId"] = new SelectList(_context.Companies, "CompanyId", "CompanyId");
-            ViewData["CorrespondentId"] = new SelectList(_context.Correspondents, "CorrespondentId", "CorrespondentId");
+            ViewData["CompanyId"] = new SelectList(_context.Companies, "CompanyId", "CompanyName");
+            ViewData["CorrespondentId"] = new SelectList(_context.Correspondents, "CorrespondentId", "FirstName");
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
             return View();
         }
@@ -63,16 +63,16 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CaseApplicantId,ErccaseId,Remarks,CorrespondentId,CompanyId")] CaseApplicant caseApplicant)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(caseApplicant);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
             ViewData["CompanyId"] = new SelectList(_context.Companies, "CompanyId", "CompanyId", caseApplicant.CompanyId);
             ViewData["CorrespondentId"] = new SelectList(_context.Correspondents, "CorrespondentId", "CorrespondentId", caseApplicant.CorrespondentId);
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseApplicant.ErccaseId);
-            return View(caseApplicant);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseApplicant/Edit/5
