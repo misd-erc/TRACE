@@ -1716,6 +1716,10 @@ canvas {
     color: var(--secondary-color) !important;
 }
 
+.my-cases-table tbody tr td.actions {
+    max-width:fit-content!important;
+}
+
 
 @media screen and (max-width: 899px) {
     .my-cases-table {

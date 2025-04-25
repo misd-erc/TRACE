@@ -281,27 +281,26 @@ function fetchCaseApplicantWithErcId(caseId) {
             return response.json();
         })
         .then(data => {
-            const caserespondent = document.getElementById('applicantstbody');
-            caserespondent.innerHTML = '';
+            const applicantstbody = document.getElementById('applicantstbody');
+            applicantstbody.innerHTML = '';
             if (data.length > 0) {
                 const caseData = data[0];
                 data.forEach(event => {
                     const formattedDate = event.DateAssigned
                         ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
                         : 'N/A';
-                    caserespondent.innerHTML += `
-                               <tr>
-                                <td data-label="FILE NAME">${event.FullName}</td>
-                                
-                             
-                                
-                            </td>
-                        </tr>
+                    applicantstbody.innerHTML += `
+                            <tr>
+                                <td data-label="APPLICANT">${event.FullName}</td>
+                                <td data-label="ACTION" class="actions">
+                                    <i class='bx bxs-x-circle'></i>
+                                </td>
+                            </tr>
                         `;
                 })
 
             } else {
-                caserespondent.innerHTML = `
+                applicantstbody.innerHTML = `
                             <tr>
                                   <td colspan="3">No Case Applicant</td>
                             </tr>
