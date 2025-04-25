@@ -83,6 +83,8 @@ namespace TRACE.Controllers
                      WHERE 
                          CAST(h.HearingDate AS DATE) >= CAST(GETDATE() AS DATE)
 
+                     ORDER BY h.HearingID DESC
+
                     ";
 
                 var result = await connection.QueryAsync<dynamic>(sql);

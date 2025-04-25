@@ -78,6 +78,8 @@ namespace TRACE.Controllers
                         [ercdb].[cases].[HearingCategories] hc ON h.HearingCategoryID = hc.HearingCategoryID
                     WHERE 
                         h.ERCCaseID = @id
+
+                    ORDER BY h.HearingID DESC
                     ";
 
                 var result = await connection.QueryAsync<dynamic>(sql, new { id });
