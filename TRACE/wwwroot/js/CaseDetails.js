@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const caseId = urlParams.get('id');
     caseid1 = caseId;
     if (caseId) {
+        renderCaseDocumentTable(caseId);
         fetchCaseDetails(caseId);
         fetchCaseEvent(caseId);
         fetchCaseAssignmentWithErcId(caseId);
@@ -19,8 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
         GetCaseRelatedByErcID(caseId);
         fetchCaseRespondentWithErcId(caseId);
         fetchCaseApplicantWithErcId(caseId);
+      
      
-        
 
     } else {
         console.error('No case ID found in URL.');
@@ -119,6 +120,46 @@ function renderCaseEventTable() {
     });
 }
 
+
+function renderCaseDocumentTable(caseId) {
+    fetch(`/CaseBlobDocument/GetCaseBlobDocumentByErcId?id=${caseId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const applicantstbody = document.getElementById('attacheddocs');
+            applicantstbody.innerHTML = '';
+            if (data.length > 0) {
+                
+                const caseData = data[0];
+                data.forEach(event => {
+                    const formattedDate = event.DateAssigned
+                        ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
+                        : 'N/A';
+                    applicantstbody.innerHTML += `
+                            <tr>
+                                <td data-label="BY">${event.attachmentName || 'N/A'}</td>  
+                                <td data-label="DATE">${event.uploadedAt}</td>
+                            </tr>
+                        `;
+                })
+
+            } else {
+                applicantstbody.innerHTML = `
+                            <tr>
+                                  <td colspan="3">No Case Document</td>
+                            </tr>
+                        `;
+            }
+
+        })
+        .catch(error => {
+            console.error('Error fetching case details:', error);
+        });
+}
 
 function renderPagination() {
     const totalPages = Math.ceil(allCaseEvents.length / rowsPerPage);
