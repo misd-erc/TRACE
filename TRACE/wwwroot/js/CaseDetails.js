@@ -154,17 +154,20 @@ function renderCaseDocumentTable(caseId) {
         .then(data => {
             const applicantstbody = document.getElementById('attacheddocs');
             applicantstbody.innerHTML = '';
-           
+            console.log("Asdf",data)
             if (data.data.length > 0) {
                   
                 const caseData = data[0];
                 data.data.forEach(event => {
+                    const displayName = event.attachmentName
+                        ? event.attachmentName.replace('documents/', '')
+                        : 'N/A';
                     const formattedDate = event.DateAssigned
                         ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
                         : 'N/A';
                     applicantstbody.innerHTML += `
                             <tr>
-                                <td data-label="BY"onclick="downloadFile('${event.attachmentName}')">${event.attachmentName || 'N/A'}</td>
+                                <td data-label="BY"onclick="downloadFile('${event.attachmentName}')">${displayName || 'N/A'}</td>
                                 <td data-label="DATE">${event.uploadedAt}</td>
                             </tr>
                         `;

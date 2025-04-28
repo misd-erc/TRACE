@@ -55,3 +55,6 @@ TRACE/obj/Debug/net8.0/TRACE.sourcelink.json
 TRACE/obj/project.nuget.cache
 TRACE/obj/TRACE.csproj.nuget.dgspec.json
 TRACE/bin/Debug/net8.0/TRACE.staticwebassets.runtime.json
+/TRACE/BlobStorage/DownloadFiles.cs
+/TRACE/BlobStorage/InsertFiles.cs
+.vs/TRACE/v17/DocumentLayout.backup.json
