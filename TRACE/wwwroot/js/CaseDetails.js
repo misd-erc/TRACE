@@ -314,7 +314,7 @@ function fetchCaseTaskWithErcId(caseId) {
 }
 
 function fetchCaseApplicantWithErcId(caseId) {
-    console.log("Calling API with caseId:", caseId);
+    /*console.log("Calling API with caseId:", caseId);*/
     fetch(`/CaseApplicant/GetCaseApplicantByErcID?id=${caseId}`)
         .then(response => {
             if (!response.ok) {
@@ -731,7 +731,7 @@ function fetchCaseDetails(caseId) {
                 }
 
                 const statusClass = getStatusClass(caseData.CaseStatus);
-                console.log(Object.keys(caseData));
+                /*console.log(Object.keys(caseData));*/
                 caseDetailsDiv.innerHTML = `
                     <div>
                         <span><strong>ERC Case No.: </strong> <i>${caseData.CaseNo}</i></span>
@@ -907,7 +907,7 @@ function toggleCaseDetails() {
 }
 
 function archiveUserAssign(id) {
-    console.log ("ARCHIVE FUNCTION: "+ id)
+    /*console.log ("ARCHIVE FUNCTION: "+ id)*/
     Swal.fire({
         title: "Are you sure?",
         text: "This will archive the user assignment.",
