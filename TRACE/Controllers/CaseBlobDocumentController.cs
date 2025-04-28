@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TRACE.BlobStorage;
 using TRACE.Context;
 using TRACE.Models;
 
@@ -25,16 +26,33 @@ namespace TRACE.Controllers
             return View(await _context.CaseBlobDocument.ToListAsync());
         }
         [HttpGet]
-        public async Task<IActionResult> GetCaseBlobDocumentByErcId(int ercid)
+        public async Task<IActionResult> GetCaseBlobDocumentByErcId(int id)
         {
-            var categories = await _context.CaseBlobDocument.Where(x=>x.Ercid == ercid).ToListAsync();
+            var documents = await _context.CaseBlobDocument
+                .Where(x => x.Ercid == id)
+                .ToListAsync();
 
-            if (categories == null || !categories.Any())
+            if (documents == null || documents.Count == 0)
             {
-                return Json(new { success = false, message = "No categories found." });
+                return Json(new { success = false, message = "No documents found." });
             }
 
-            return Json(new { success = true, data = categories });
+            return Json(new { success = true, data = documents });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Download(string fileName)
+        {
+            DownloadFiles downloadFiles = new DownloadFiles();
+            var downloadInfo = await downloadFiles.DownloadBlobAsync(fileName);
+
+            if (downloadInfo == null)
+            {
+                return NotFound("File not found in Blob Storage.");
+            }
+
+            // Return file stream
+            return File(downloadInfo.Content, "application/octet-stream", Path.GetFileName(fileName));
         }
 
         // GET: CaseBlobDocument/Details/5

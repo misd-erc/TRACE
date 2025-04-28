@@ -119,29 +119,52 @@ function renderCaseEventTable() {
         caseeventbody.innerHTML += row;
     });
 }
+async function downloadFile(fileName) {
+   
 
+    const response = await fetch(`/CaseBlobDocument/Download?fileName=${encodeURIComponent(fileName)}`);
+    if (!response.ok) {
+        alert('Failed to download file');
+        return;
+    }
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName.split('/').pop(); // only "elden.bmp"
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    window.URL.revokeObjectURL(url);
+}
 
 function renderCaseDocumentTable(caseId) {
+   
     fetch(`/CaseBlobDocument/GetCaseBlobDocumentByErcId?id=${caseId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+         
             return response.json();
         })
         .then(data => {
             const applicantstbody = document.getElementById('attacheddocs');
             applicantstbody.innerHTML = '';
-            if (data.length > 0) {
-                
+           
+            if (data.data.length > 0) {
+                  
                 const caseData = data[0];
-                data.forEach(event => {
+                data.data.forEach(event => {
                     const formattedDate = event.DateAssigned
                         ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
                         : 'N/A';
                     applicantstbody.innerHTML += `
                             <tr>
-                                <td data-label="BY">${event.attachmentName || 'N/A'}</td>  
+                                <td data-label="BY"onclick="downloadFile('${event.attachmentName}')">${event.attachmentName || 'N/A'}</td>
                                 <td data-label="DATE">${event.uploadedAt}</td>
                             </tr>
                         `;

@@ -13,32 +13,24 @@ namespace TRACE.BlobStorage
     {
         
         private static readonly string connectionString = "";
-        private static readonly string containerName = "container-staging";
+        private static readonly string containerName = "tracecontainer";
 
-        public static async Task<Stream> DownloadFileFromBlobStorage(string blobUrl)
+        public async Task<BlobDownloadInfo> DownloadBlobAsync(string blobName)
         {
-            try
+            BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
+            BlobClient blobClient = containerClient.GetBlobClient(blobName);
+
+            if (await blobClient.ExistsAsync())
             {
-                Uri uri = new Uri(blobUrl);
-                string blobName = Path.GetFileName(uri.LocalPath); // Extract file name from URL
-
-                BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
-                BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
-                BlobClient blobClient = containerClient.GetBlobClient(blobName);
-
-                BlobDownloadInfo download = await blobClient.DownloadAsync();
-                MemoryStream memoryStream = new MemoryStream();
-                await download.Content.CopyToAsync(memoryStream);
-                memoryStream.Position = 0; // Reset stream position
-
-                return memoryStream;
+                return await blobClient.DownloadAsync();
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
                 return null;
             }
         }
+
 
     }
 }
