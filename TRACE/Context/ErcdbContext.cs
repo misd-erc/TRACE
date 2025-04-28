@@ -292,7 +292,19 @@ public partial class ErcdbContext : DbContext
                     });
         });
         modelBuilder.Entity<CaseBlobDocument>()
-       .HasKey(c => c.DocumentID);  // Define the primary key
+        .HasKey(c => c.DocumentID); // Define the primary key
+
+        modelBuilder.Entity<CaseBlobDocument>()
+            .Property(c => c.AttachmentName)
+            .IsRequired()
+            .HasMaxLength(255); // Example of a required property with max length
+
+        modelBuilder.Entity<CaseBlobDocument>()
+            .Property(c => c.UploadedAt)
+            .HasDefaultValueSql("GETUTCDATE()");
+
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<AccountCategory>(entity =>
         {
             entity.ToTable("AccountCategories", "DS");

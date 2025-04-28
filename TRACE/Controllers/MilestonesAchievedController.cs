@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TRACE.BlobStorage;
 using TRACE.Context;
 using TRACE.Models;
 
@@ -61,16 +63,87 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MilestoneAchievedId,ErccaseId,CaseMilestoneId,DatetimeAchieved,PercentAchieved")] MilestonesAchieved milestonesAchieved)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(milestonesAchieved);
+
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
             ViewData["CaseMilestoneId"] = new SelectList(_context.CaseMilestones, "CaseMilestoneId", "CaseMilestoneId", milestonesAchieved.CaseMilestoneId);
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", milestonesAchieved.ErccaseId);
-            return View(milestonesAchieved);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
+
+        [HttpPost]
+ 
+        public async Task<ActionResult<CaseBlobDocument>> PostCaseBlobDocument([FromForm] CaseBlobDocument caseBlobDocument, [FromForm] IFormFile[] files, [FromForm] string CaseNumber)
+        {
+            if (files == null || files.Length == 0)
+            {
+                return BadRequest("No files uploaded.");
+            }
+
+            if (!int.TryParse(CaseNumber, out int caseNumberParsed))
+            {
+                return BadRequest("Invalid CaseNumber format.");
+            }
+
+            var uploadedFiles = new List<CaseBlobDocument>();  // To store metadata for each uploaded file
+
+            foreach (var file in files)
+            {
+                if (file.Length == 0)
+                {
+                    continue; // Skip empty files
+                }
+
+                // Generate a unique file name (you can also use any other naming strategy)
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                FileUploadService fileUploadService = new FileUploadService();
+                // Get a reference to the blob
+                string attachmentLink = await fileUploadService.UploadFileAsync(file);
+
+                if (string.IsNullOrEmpty(attachmentLink))
+                {
+                    continue; // Skip if blob upload fails
+                }
+
+                // Save the file metadata to the database
+                var documentMetadata = new CaseBlobDocument
+                {
+                    AttachmentName = fileName,
+                    AttachmentLink = attachmentLink,
+                    ERCId = caseNumberParsed,
+                    UploadedAt = DateTime.UtcNow,
+                    // Other fields from caseBlobDocument can be set here
+                };
+
+                _context.CaseBlobDocument.Add(documentMetadata);
+                uploadedFiles.Add(documentMetadata);
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    Console.WriteLine($"Concurrency error: {ex.Message}");
+                    return Conflict("There was a concurrency error. Please try again.");
+                }
+            }
+
+            // Save all the uploaded file metadata to the database
+        
+
+            // Return the metadata of all uploaded files
+            return Ok(new { success = true, message = "Success! Data has been saved.", data = uploadedFiles });
+        }
+
+
+
+
 
         // GET: MilestonesAchieved/Edit/5
         public async Task<IActionResult> Edit(long? id)
