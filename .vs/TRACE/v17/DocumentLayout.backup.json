@@ -1,10 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Work Related\\Github\\TRACE\\",
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\views\\caseapplicant\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\caseapplicant\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\context\\ercdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\context\\ercdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\models\\caseblobdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\models\\caseblobdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\blobstorage\\insertfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\blobstorage\\insertfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +30,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1457,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 12,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -38,6 +58,10 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
@@ -46,27 +70,71 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Program.cs",
+              "RelativeDocumentMoniker": "TRACE\\Program.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Program.cs",
+              "RelativeToolTip": "TRACE\\Program.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T01:00:26.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "InsertFiles.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\BlobStorage\\InsertFiles.cs",
+              "RelativeDocumentMoniker": "TRACE\\BlobStorage\\InsertFiles.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\BlobStorage\\InsertFiles.cs",
+              "RelativeToolTip": "TRACE\\BlobStorage\\InsertFiles.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T00:58:42.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\CaseApplicant\\Create.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\CaseApplicant\\Create.cshtml",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\CaseApplicant\\Create.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\CaseApplicant\\Create.cshtml",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAACwAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-25T11:48:57.029Z",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\appsettings.json",
+              "RelativeDocumentMoniker": "TRACE\\appsettings.json",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\appsettings.json",
+              "RelativeToolTip": "TRACE\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-28T00:58:19.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CaseBlobDocument.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Models\\CaseBlobDocument.cs",
+              "RelativeDocumentMoniker": "TRACE\\Models\\CaseBlobDocument.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Models\\CaseBlobDocument.cs",
+              "RelativeToolTip": "TRACE\\Models\\CaseBlobDocument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T00:55:53.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ErcdbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Context\\ErcdbContext.cs",
+              "RelativeDocumentMoniker": "TRACE\\Context\\ErcdbContext.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Context\\ErcdbContext.cs",
+              "RelativeToolTip": "TRACE\\Context\\ErcdbContext.cs",
+              "ViewState": "AgIAABgBAAAAAAAAAIAwwCwBAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T00:55:09.571Z",
               "EditorCaption": ""
             }
           ]

@@ -127,42 +127,32 @@
 
         // Function to call the PostCaseBlobDocument API with the files array
         function callPostCaseBlobDocumentAPI(files) {
-
             const urlParams = new URLSearchParams(window.location.search);
             const erccaseId = urlParams.get('id');
             const formData = new FormData();
-          
+
             formData.append("CaseNumber", erccaseId);
-           
-            // Append each file in the files array to formData
+
             files.forEach(file => {
-                formData.append("files", file);
+                formData.append("Files", file);
             });
 
             $.ajax({
-                url: '/MilestonesAchieved/PostCaseBlobDocument', // Replace with your actual API URL
+                url: '/MilestonesAchieved/PostCaseBlobDocument',
                 type: "POST",
                 data: formData,
-                processData: false, // Prevent jQuery from processing the data
-                contentType: false, // Ensure the correct content type for file uploads
+                processData: false,
+                contentType: false,
                 success: function (response) {
-                    if (response.success) {
-                        Swal.fire({
-                            title: "File Uploaded!",
-                            text: "Files have been uploaded successfully.",
-                            icon: "success",
-                            confirmButtonText: "OK"
-                        });
-                    } else {
-                        Swal.fire({
-                            title: "Error!",
-                            text: response.message,
-                            icon: "error",
-                            confirmButtonText: "Try Again"
-                        });
-                    }
+                    Swal.fire({
+                        title: "File Uploaded!",
+                        text: "Files have been uploaded successfully.",
+                        icon: "success",
+                        confirmButtonText: "OK"
+                    });
                 },
-                error: function () {
+                error: function (xhr) {
+                    console.log(xhr.responseText); // <--- To see the real server error in console
                     Swal.fire({
                         title: "Oops!",
                         text: "Something went wrong while calling the PostCaseBlobDocument API.",

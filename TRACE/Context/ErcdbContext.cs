@@ -291,17 +291,19 @@ public partial class ErcdbContext : DbContext
                         j.IndexerProperty<long>("AccountGroupId").HasColumnName("AccountGroupID");
                     });
         });
-        modelBuilder.Entity<CaseBlobDocument>()
-        .HasKey(c => c.DocumentID); // Define the primary key
+        modelBuilder.Entity<CaseBlobDocument>(entity =>
+        {
+            entity.HasKey(e => e.DocumentId).HasName("PK__CaseBlob__1ABEEF6F67F88418");
 
-        modelBuilder.Entity<CaseBlobDocument>()
-            .Property(c => c.AttachmentName)
-            .IsRequired()
-            .HasMaxLength(255); // Example of a required property with max length
+            entity.ToTable("CaseBlobDocuments", "cases");
 
-        modelBuilder.Entity<CaseBlobDocument>()
-            .Property(c => c.UploadedAt)
-            .HasDefaultValueSql("GETUTCDATE()");
+            entity.Property(e => e.DocumentId).HasColumnName("DocumentID");
+            entity.Property(e => e.AttachmentName).HasMaxLength(255);
+            entity.Property(e => e.Ercid).HasColumnName("ERCId");
+            entity.Property(e => e.UploadedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+        });
 
         base.OnModelCreating(modelBuilder);
 

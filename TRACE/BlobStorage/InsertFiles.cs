@@ -42,6 +42,40 @@ namespace TRACE.BlobStorage
                 return null;
             }
         }
+        public async Task<string> UploadDocumentFileAsync(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return null;
+            }
+
+            try
+            {
+                BlobServiceClient blobServiceClient = new BlobServiceClient(_connectionString);
+                BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(_containerName);
+
+                // Define folder and file name
+                string folderName = "documents/"; // Folder name
+                string fileName = Path.GetFileName(file.FileName); // Extract the file name from the uploaded file
+                string fullPath = folderName + fileName; // Combine the folder and file name
+
+                // Get BlobClient for the "documents/filename"
+                BlobClient blobClient = containerClient.GetBlobClient(fullPath);
+
+                // Upload the file to the "documents/" folder
+                using (Stream fileStream = file.OpenReadStream())
+                {
+                    await blobClient.UploadAsync(fileStream, new BlobHttpHeaders { ContentType = file.ContentType });
+                }
+
+                return fullPath; // Return the full path of the uploaded file, simulating the folder structure
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error uploading file: {ex.Message}");
+                return null;
+            }
+        }
 
 
         public async Task CreateFolders(string folderName, int numberOfSubFolders)

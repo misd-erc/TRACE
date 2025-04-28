@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.BlobStorage;
 using TRACE.Context;
+using TRACE.DTO;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -78,22 +79,23 @@ namespace TRACE.Controllers
         }
 
         [HttpPost]
- 
-        public async Task<ActionResult<CaseBlobDocument>> PostCaseBlobDocument([FromForm] CaseBlobDocument caseBlobDocument, [FromForm] IFormFile[] files, [FromForm] string CaseNumber)
+
+
+        public async Task<ActionResult> PostCaseBlobDocument([FromForm] CaseBlobDocumentRequest request)
         {
-            if (files == null || files.Length == 0)
+            if (request.Files == null || request.Files.Length == 0)
             {
                 return BadRequest("No files uploaded.");
             }
 
-            if (!int.TryParse(CaseNumber, out int caseNumberParsed))
+            if (!int.TryParse(request.CaseNumber, out int caseNumberParsed))
             {
                 return BadRequest("Invalid CaseNumber format.");
             }
 
             var uploadedFiles = new List<CaseBlobDocument>();  // To store metadata for each uploaded file
 
-            foreach (var file in files)
+            foreach (var file in request.Files)
             {
                 if (file.Length == 0)
                 {
@@ -104,7 +106,7 @@ namespace TRACE.Controllers
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                 FileUploadService fileUploadService = new FileUploadService();
                 // Get a reference to the blob
-                string attachmentLink = await fileUploadService.UploadFileAsync(file);
+                string attachmentLink = await fileUploadService.UploadDocumentFileAsync(file);
 
                 if (string.IsNullOrEmpty(attachmentLink))
                 {
@@ -114,14 +116,15 @@ namespace TRACE.Controllers
                 // Save the file metadata to the database
                 var documentMetadata = new CaseBlobDocument
                 {
-                    AttachmentName = fileName,
+                    AttachmentName = attachmentLink,
                     AttachmentLink = attachmentLink,
-                    ERCId = caseNumberParsed,
+                    Ercid = caseNumberParsed,
                     UploadedAt = DateTime.UtcNow,
                     // Other fields from caseBlobDocument can be set here
                 };
 
                 _context.CaseBlobDocument.Add(documentMetadata);
+                int result = _context.SaveChanges();
                 uploadedFiles.Add(documentMetadata);
                 try
                 {
