@@ -637,7 +637,6 @@ function deleteCaseAssignment(id) {
                             data.message,
                             'success'
                         );
-                        // Optionally remove the row or refresh
                     } else {
                         Swal.fire(
                             'Error!',

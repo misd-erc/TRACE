@@ -142,8 +142,11 @@ namespace TRACE.Controllers
         {
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseAssignment.ErccaseId);
             ViewData["HandlingOfficerTypeId"] = new SelectList(_context.HandlingOfficerTypes, "HandlingOfficerTypeId", "HandlingOfficerTypeId", caseAssignment.HandlingOfficerTypeId);
+
             if (!ModelState.IsValid)
             {
+                caseAssignment.IsActive = true;
+
                 var currentUserName = _currentUserHelper.Email;
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
                 caseAssignment.AssignedBy = user.Username;
@@ -151,11 +154,34 @@ namespace TRACE.Controllers
                 caseAssignment.DateAssigned = DateOnly.FromDateTime(DateTime.Now);
                 _context.Add(caseAssignment);
                 await _context.SaveChangesAsync();
+
+                var assignedUsername = caseAssignment.UserId;
+                var assignedByUsername = caseAssignment.AssignedBy;
+                var erccaseId = caseAssignment.ErccaseId;
+
+                var ercCase = _context.Erccases.FirstOrDefault(c => c.ErccaseId == erccaseId);
+
+                if (!string.IsNullOrEmpty(assignedUsername) && ercCase != null)
+                {
+                    var assignedUser = _context.Users.FirstOrDefault(u => u.Username == assignedUsername);
+
+                    if (assignedUser != null && assignedUser.IsEmailNotif == true)
+                    {
+                        string assignedUserEmail = assignedUser.Email;
+
+                        var emailHelper = new EmailNotificationsHelper();
+                        emailHelper.SendCaseAssignmentEmail(assignedUserEmail, ercCase.CaseNo, assignedByUsername);
+                    }
+                }
+
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
 
             return Json(new { success = false, message = "Error! Please check your input." });
         }
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> ArchiveUserAssign(long id)
