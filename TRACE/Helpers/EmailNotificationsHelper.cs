@@ -38,7 +38,7 @@ namespace TRACE.Helpers
 
                 var mailMessage = new MailMessage
                 {
-                    From = new MailAddress(smtpEmail, "ERC Support"),
+                    From = new MailAddress(smtpEmail, "ERC ICDMS Notification"),
                     Subject = "Case Assignment Notification",
                     Body = emailBody,
                     IsBodyHtml = true
@@ -49,5 +49,49 @@ namespace TRACE.Helpers
                 smtpClient.Send(mailMessage);
             }
         }
+
+        public void SendCaseTaskEmail(string assignedUserEmail, string caseNo, string taskedByUsername, string taskDescription, DateTime targetCompletionDate)
+        {
+            string assignedTo = assignedUserEmail.Replace("@erc.ph", "");
+
+
+            string emailBody = $@"
+            <html>
+                <body style='font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;'>
+                    <div style='max-width: 600px; margin: 30px auto; background-color: #ffffff; padding: 20px; border: 1px solid #ddd; border-radius: 5px;'>
+                        <h2 style='color: #007bff; margin-bottom: 20px;'>New Case Task Assigned</h2>
+                        <p style='font-size: 16px; color: #333;'>Hello {assignedTo},</p>
+                        <p style='font-size: 16px; color: #333;'>You have been assigned a new task by <strong style='color: #007bff;'>{taskedByUsername}</strong>.</p>
+                        <p style='font-size: 16px; color: #333;'><strong>Case No:</strong> {caseNo}</p>
+                        <p style='font-size: 16px; color: #333;'><strong>Task:</strong> {taskDescription}</p>
+                        <p style='font-size: 16px; color: #333;'><strong>Target Completion Date:</strong> {targetCompletionDate:MMMM dd, yyyy}</p>
+                        <p style='font-size: 14px; color: #666;'>Please check the ICDMS system for more details.</p>
+                        <hr style='margin: 20px 0; border: none; border-top: 1px solid #ddd;' />
+                        <p style='font-size: 12px; color: #999; text-align: center;'>This is an automated message. Please do not reply.</p>
+                    </div>
+                </body>
+            </html>";
+
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress(smtpEmail, "ERC ICDMS Notification"),
+                Subject = "New Case Task Assigned",
+                Body = emailBody,
+                IsBodyHtml = true
+            };
+
+            mailMessage.To.Add(assignedUserEmail);
+
+            using (var smtpClient = new SmtpClient(smtpServer)
+            {
+                Port = smtpPort,
+                Credentials = new NetworkCredential(smtpEmail, smtpPassword),
+                EnableSsl = true
+            })
+            {
+                smtpClient.Send(mailMessage);
+            }
+        }
+
     }
 }

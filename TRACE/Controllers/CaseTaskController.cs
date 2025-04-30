@@ -88,6 +88,25 @@ namespace TRACE.Controllers
         // POST: CaseTask/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("CaseTaskId,ErccaseId,UserId,Task,TaskedBy,DatetimeCreated,TargetCompletionDate,ActualCompletionDate,DocumentId")] CaseTask caseTask)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        caseTask.DatetimeCreated = DateTime.Now;
+        //        var currentUserName = _currentUserHelper.Email;
+        //        var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+        //        caseTask.TaskedBy = user.Username;
+        //        _context.Add(caseTask);
+        //        await _context.SaveChangesAsync();
+        //        return Json(new { success = true, message = "Success! Data has been saved." });
+        //    }
+        //    ViewData["DocumentId"] = new SelectList(_context.Documents, "DocumentId", "DocumentId", caseTask.DocumentId);
+        //    ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseTask.ErccaseId);
+        //    return Json(new { success = false, message = "Error! Please check your input." });
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CaseTaskId,ErccaseId,UserId,Task,TaskedBy,DatetimeCreated,TargetCompletionDate,ActualCompletionDate,DocumentId")] CaseTask caseTask)
@@ -98,14 +117,45 @@ namespace TRACE.Controllers
                 var currentUserName = _currentUserHelper.Email;
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
                 caseTask.TaskedBy = user.Username;
+
                 _context.Add(caseTask);
                 await _context.SaveChangesAsync();
+
+                var assignedUser = _context.Users.FirstOrDefault(u => u.Id.ToString() == caseTask.UserId);
+                string assignedEmail = assignedUser != null ? $"{assignedUser.Username}@erc.ph" : null;
+
+                var ercCase = _context.Erccases.FirstOrDefault(e => e.ErccaseId == caseTask.ErccaseId);
+
+                try
+                {
+                    // Check if the assigned user has email notifications enabled (IsEmailNotif is true)
+                    if (assignedUser != null && assignedUser.IsEmailNotif == true && ercCase != null && caseTask.TargetCompletionDate.HasValue)
+                    {
+                        var emailHelper = new EmailNotificationsHelper();
+                        emailHelper.SendCaseTaskEmail(
+                            assignedUserEmail: assignedEmail,
+                            caseNo: ercCase.CaseNo,
+                            taskedByUsername: caseTask.TaskedBy,
+                            taskDescription: caseTask.Task,
+                            targetCompletionDate: caseTask.TargetCompletionDate.Value.ToDateTime(TimeOnly.MinValue)
+                        );
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Email sending failed: {ex.Message}");
+                }
+
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
+
             ViewData["DocumentId"] = new SelectList(_context.Documents, "DocumentId", "DocumentId", caseTask.DocumentId);
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseTask.ErccaseId);
             return Json(new { success = false, message = "Error! Please check your input." });
         }
+
+
+
 
         // GET: CaseTask/Edit/5
         public async Task<IActionResult> Edit(long? id)
