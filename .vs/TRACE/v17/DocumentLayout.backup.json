@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "E:\\Work Related\\Github\\TRACE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\controllers\\casetaskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\casetaskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\blobstorage\\insertfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\blobstorage\\insertfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\views\\casetask\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\casetask\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\blobstorage\\downloadfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\blobstorage\\downloadfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|e:\\work related\\github\\trace\\trace\\helpers\\emailnotificationshelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\helpers\\emailnotificationshelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,27 +71,54 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CaseTaskController.cs",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Controllers\\CaseTaskController.cs",
-              "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseTaskController.cs",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Controllers\\CaseTaskController.cs",
-              "RelativeToolTip": "TRACE\\Controllers\\CaseTaskController.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAqwHAAAAAJAAAAAAAAAA==",
+              "Title": "InsertFiles.cs",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\BlobStorage\\InsertFiles.cs",
+              "RelativeDocumentMoniker": "TRACE\\BlobStorage\\InsertFiles.cs",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\BlobStorage\\InsertFiles.cs",
+              "RelativeToolTip": "TRACE\\BlobStorage\\InsertFiles.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T01:48:08.228Z",
+              "WhenOpened": "2025-04-30T10:05:34.628Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\CaseTask\\Create.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\CaseTask\\Create.cshtml",
-              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Views\\CaseTask\\Create.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\CaseTask\\Create.cshtml",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAAAAkAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-30T01:47:53.084Z"
+              "Title": "DownloadFiles.cs",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\BlobStorage\\DownloadFiles.cs",
+              "RelativeDocumentMoniker": "TRACE\\BlobStorage\\DownloadFiles.cs",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\BlobStorage\\DownloadFiles.cs",
+              "RelativeToolTip": "TRACE\\BlobStorage\\DownloadFiles.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAD7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T10:04:47.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CaseDetails.js",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\CaseDetails.js",
+              "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\CaseDetails.js",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\CaseDetails.js",
+              "RelativeToolTip": "TRACE\\wwwroot\\js\\CaseDetails.js",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAnwLsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-30T09:59:50.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EmailNotificationsHelper.cs",
+              "DocumentMoniker": "E:\\Work Related\\Github\\TRACE\\TRACE\\Helpers\\EmailNotificationsHelper.cs",
+              "RelativeDocumentMoniker": "TRACE\\Helpers\\EmailNotificationsHelper.cs",
+              "ToolTip": "E:\\Work Related\\Github\\TRACE\\TRACE\\Helpers\\EmailNotificationsHelper.cs",
+              "RelativeToolTip": "TRACE\\Helpers\\EmailNotificationsHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T09:48:03.052Z",
+              "EditorCaption": ""
             }
           ]
         }
