@@ -85,6 +85,10 @@
       "PackagePath": "staticwebassets\\js\\Notifications.js"
     },
     {
+      "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\UserNotificationSettings.js",
+      "PackagePath": "staticwebassets\\js\\UserNotificationSettings.js"
+    },
+    {
       "Id": "E:\\Work Related\\Github\\TRACE\\TRACE\\wwwroot\\js\\contentManagement.js",
       "PackagePath": "staticwebassets\\js\\contentManagement.js"
     },

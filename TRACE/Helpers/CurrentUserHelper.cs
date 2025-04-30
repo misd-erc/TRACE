@@ -36,6 +36,12 @@ namespace TRACE.Helpers
 
         private string _department = "Unknown";
 
+        public string GetCurrentUsername()
+        {
+            var email = _user.FindFirst("preferred_username")?.Value ?? "Unknown";
+            return email.Split('@')[0];
+        }
+
         public async Task<string> GetDepartmentAsync()
         {
             if (_department != "Unknown") return _department;

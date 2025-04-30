@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
 using TRACE.Helpers;
 using TRACE.Models;
+using TRACE.DTO;
 
 namespace TRACE.Controllers
 {
@@ -16,10 +17,12 @@ namespace TRACE.Controllers
     public class UsersController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public UsersController(ErcdbContext context)
+        public UsersController(ErcdbContext context, CurrentUserHelper currentUserHelper)
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: Users
@@ -198,6 +201,84 @@ namespace TRACE.Controllers
         private bool UserExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
+        }
+
+        [HttpPost]
+        [Route("users/update-notification-preferences")]
+        public async Task<IActionResult> UpdateNotificationPreferences([FromBody] NotificationPreferencesDto model)
+        {
+            var currentUsername = _currentUserHelper.GetCurrentUsername();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == currentUsername);
+
+            if (user == null)
+            {
+                return Json(new { success = false, message = "User not found." });
+            }
+
+            user.IsEmailNotif = model.IsEmailNotif;
+            user.IsSystemNotif = model.IsSystemNotif;
+
+            try
+            {
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, message = "Notification settings updated successfully!" });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false, message = "An error occurred while updating settings." });
+            }
+        }
+
+        [HttpGet]
+        [Route("users/get-notification-preferences")]
+        public async Task<IActionResult> GetNotificationPreferences()
+        {
+            var currentUsername = _currentUserHelper.GetCurrentUsername();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == currentUsername);
+
+            if (user == null)
+            {
+                return Json(new { success = false, message = "User not found." });
+            }
+
+            return Json(new
+            {
+                success = true,
+                data = new
+                {
+                    isEmailNotif = user.IsEmailNotif,
+                    isSystemNotif = user.IsSystemNotif
+                }
+            });
+        }
+
+        [HttpPost]
+        [Route("users/revert-notification-preferences")]
+        public async Task<IActionResult> RevertNotificationPreferences()
+        {
+            var currentUsername = _currentUserHelper.GetCurrentUsername();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == currentUsername);
+
+            if (user == null)
+            {
+                return Json(new { success = false, message = "User not found." });
+            }
+
+            // Set default values to TRUE
+            user.IsEmailNotif = true;
+            user.IsSystemNotif = true;
+
+            try
+            {
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, message = "Notification preferences reverted to default." });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false, message = "An error occurred while reverting settings." });
+            }
         }
     }
 }
