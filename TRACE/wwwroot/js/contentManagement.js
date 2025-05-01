@@ -76,6 +76,7 @@ function loadCaseCategories() {
         }
     });
 }
+
 function loadCaseCompanies() {
     $(".cms-modal .modal-content .modal-btn")
         .html("<i class='bx bx-plus'></i> Add New Company")
