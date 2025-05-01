@@ -340,6 +340,7 @@ function loadHearingVenues() {
 
 
 
+
 /*SEARCH FILTER*/
 $(document).ready(function () {
     $("#searchFilter").on("input", function () {

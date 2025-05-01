@@ -1,0 +1,48 @@
+@model TRACE.Models.SubCaseNature
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>SubCaseNature</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SubNatureName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SubNatureName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsInternal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsInternal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseNature)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CaseNature.CaseNatureId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.SubNatureId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

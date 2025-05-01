@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Models;
@@ -290,6 +290,24 @@ public partial class ErcdbContext : DbContext
                         j.IndexerProperty<long>("AccountId").HasColumnName("AccountID");
                         j.IndexerProperty<long>("AccountGroupId").HasColumnName("AccountGroupID");
                     });
+        });
+        modelBuilder.Entity<SubCaseNature>(entity =>
+        {
+            entity.HasKey(e => e.SubNatureId).HasName("PK__SubCaseN__8F906AC2B3939BE6");
+
+            entity.ToTable("SubCaseNatures", "cases");
+
+            entity.Property(e => e.SubNatureId).HasColumnName("SubNatureID");
+            entity.Property(e => e.CaseNatureId).HasColumnName("CaseNatureID");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.IsInternal).HasDefaultValue(false);
+            entity.Property(e => e.SubNatureName).HasMaxLength(255);
+
+            entity.HasOne(d => d.CaseNature).WithMany(p => p.SubCaseNatures)
+                .HasForeignKey(d => d.CaseNatureId)
+                .HasConstraintName("FK_SubCaseNatures_Casenatures");
         });
         modelBuilder.Entity<CaseBlobDocument>(entity =>
         {
@@ -2506,4 +2524,6 @@ public partial class ErcdbContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+public DbSet<TRACE.Models.SubCaseNature> SubCaseNature { get; set; } = default!;
 }

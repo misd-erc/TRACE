@@ -11,16 +11,32 @@
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\js\\contentmanagement.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\views\\city\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\city\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\casemilestonetemplatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\casemilestonetemplatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\subcasenaturecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\subcasenaturecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\casecategoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\casecategoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\models\\casenature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\models\\casenature.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\context\\ercdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\context\\ercdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\blobstorage\\insertfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\blobstorage\\insertfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\blobstorage\\downloadfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\blobstorage\\downloadfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\casemilestonetemplatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\casemilestonetemplatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -29,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\blobstorage\\downloadfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\blobstorage\\downloadfiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\caseassignmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -55,10 +67,6 @@
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\casemilestone\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\context\\ercdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\context\\ercdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\models\\caseblobdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\models\\caseblobdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -74,7 +82,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1457,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -118,15 +126,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CaseMilestoneTemplateController.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseMilestoneTemplateController.cs",
-              "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseMilestoneTemplateController.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseMilestoneTemplateController.cs",
-              "RelativeToolTip": "TRACE\\Controllers\\CaseMilestoneTemplateController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwBwAAABBAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "SubCaseNatureController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\SubCaseNatureController.cs",
+              "RelativeDocumentMoniker": "TRACE\\Controllers\\SubCaseNatureController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\SubCaseNatureController.cs",
+              "RelativeToolTip": "TRACE\\Controllers\\SubCaseNatureController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBkAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-01T12:44:23.15Z",
+              "WhenOpened": "2025-05-01T13:08:02.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CaseNature.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Models\\CaseNature.cs",
+              "RelativeDocumentMoniker": "TRACE\\Models\\CaseNature.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Models\\CaseNature.cs",
+              "RelativeToolTip": "TRACE\\Models\\CaseNature.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAApwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T13:02:40.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "InsertFiles.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\BlobStorage\\InsertFiles.cs",
+              "RelativeDocumentMoniker": "TRACE\\BlobStorage\\InsertFiles.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\BlobStorage\\InsertFiles.cs",
+              "RelativeToolTip": "TRACE\\BlobStorage\\InsertFiles.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCcAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T12:59:37.847Z",
               "EditorCaption": ""
             },
             {
@@ -137,22 +171,9 @@
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\contentManagement.js",
               "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\contentManagement.js",
               "RelativeToolTip": "TRACE\\wwwroot\\js\\contentManagement.js",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAQwE4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGkBAAAAAAAAAAAAAHIBAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-05-01T12:42:22.939Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\City\\Create.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\City\\Create.cshtml",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\City\\Create.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\City\\Create.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-01T12:41:28.552Z",
               "EditorCaption": ""
             },
             {
@@ -163,7 +184,7 @@
               "RelativeDocumentMoniker": "TRACE\\Views\\ContentManagement\\ContentManagement.cshtml",
               "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\ContentManagement\\ContentManagement.cshtml",
               "RelativeToolTip": "TRACE\\Views\\ContentManagement\\ContentManagement.cshtml",
-              "ViewState": "AgIAAHwAAAAAAAAAAAAkwIYAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAH8AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-01T12:40:40.775Z",
               "EditorCaption": ""
@@ -171,18 +192,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseMilestone\\Create.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\CaseMilestone\\Create.cshtml",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseMilestone\\Create.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\CaseMilestone\\Create.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-28T01:10:38.928Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
               "Title": "MilestonesAchievedController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\MilestonesAchievedController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\MilestonesAchievedController.cs",
@@ -194,7 +203,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "CaseCategoriesController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseCategoriesController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseCategoriesController.cs",
@@ -207,7 +216,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 5,
+              "Title": "ErcdbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Context\\ErcdbContext.cs",
+              "RelativeDocumentMoniker": "TRACE\\Context\\ErcdbContext.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Context\\ErcdbContext.cs",
+              "RelativeToolTip": "TRACE\\Context\\ErcdbContext.cs",
+              "ViewState": "AgIAABcBAAAAAAAAAAAQwDMBAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T00:55:09.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CaseMilestoneTemplateController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseMilestoneTemplateController.cs",
+              "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseMilestoneTemplateController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseMilestoneTemplateController.cs",
+              "RelativeToolTip": "TRACE\\Controllers\\CaseMilestoneTemplateController.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAmwGAAAABvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-01T12:44:23.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\MilestonesAchieved\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\MilestonesAchieved\\Create.cshtml",
@@ -219,7 +254,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
+              "Title": "DownloadFiles.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\BlobStorage\\DownloadFiles.cs",
+              "RelativeDocumentMoniker": "TRACE\\BlobStorage\\DownloadFiles.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\BlobStorage\\DownloadFiles.cs",
+              "RelativeToolTip": "TRACE\\BlobStorage\\DownloadFiles.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-28T10:53:37.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseMilestone\\Create.cshtml",
+              "RelativeDocumentMoniker": "TRACE\\Views\\CaseMilestone\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseMilestone\\Create.cshtml",
+              "RelativeToolTip": "TRACE\\Views\\CaseMilestone\\Create.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABMAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-28T01:10:38.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "CaseAssignmentController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseAssignmentController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseAssignmentController.cs",
@@ -231,7 +291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "CaseDetails.js",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\CaseDetails.js",
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\CaseDetails.js",
@@ -243,7 +303,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "CaseDetails.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseManagement\\CaseDetails\\CaseDetails.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseManagement\\CaseDetails\\CaseDetails.cshtml",
@@ -255,7 +315,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\appsettings.json",
               "RelativeDocumentMoniker": "TRACE\\appsettings.json",
@@ -268,19 +328,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DownloadFiles.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\BlobStorage\\DownloadFiles.cs",
-              "RelativeDocumentMoniker": "TRACE\\BlobStorage\\DownloadFiles.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\BlobStorage\\DownloadFiles.cs",
-              "RelativeToolTip": "TRACE\\BlobStorage\\DownloadFiles.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T10:53:37.992Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Program.cs",
               "RelativeDocumentMoniker": "TRACE\\Program.cs",
@@ -292,7 +340,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "CaseBlobDocument.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Models\\CaseBlobDocument.cs",
               "RelativeDocumentMoniker": "TRACE\\Models\\CaseBlobDocument.cs",
@@ -301,18 +349,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-28T00:55:53.992Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ErcdbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Context\\ErcdbContext.cs",
-              "RelativeDocumentMoniker": "TRACE\\Context\\ErcdbContext.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Context\\ErcdbContext.cs",
-              "RelativeToolTip": "TRACE\\Context\\ErcdbContext.cs",
-              "ViewState": "AgIAABgBAAAAAAAAAIAwwCwBAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-28T00:55:09.571Z"
             }
           ]
         }
