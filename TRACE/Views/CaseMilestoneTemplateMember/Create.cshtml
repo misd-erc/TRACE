@@ -1,0 +1,86 @@
+@model TRACE.Models.CaseMilestoneTemplateMember
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CaseMilestoneTemplateMember</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="createForm" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CaseMilestoneTemplateId" class="control-label"></label>
+                <select asp-for="CaseMilestoneTemplateId" class ="form-control" asp-items="ViewBag.CaseMilestoneTemplateId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseMilestoneId" class="control-label"></label>
+                <select asp-for="CaseMilestoneId" class ="form-control" asp-items="ViewBag.CaseMilestoneId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            $("#createForm").submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Success!",
+                                text: response.message,
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                customClass: {
+                                    popup: "swal2-popup",
+                                    confirmButton: "swal2-confirm"
+                                }
+                            }).then(() => {
+                                $("#createForm")[0].reset();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Error!",
+                                text: response.message,
+                                icon: "error",
+                                confirmButtonText: "Try Again"
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Oops!",
+                            text: "Something went wrong. Please try again.",
+                            icon: "error",
+                            confirmButtonText: "OK",
+                            customClass: {
+                                popup: "swal2-popup",
+                                confirmButton: "swal2-confirm"
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

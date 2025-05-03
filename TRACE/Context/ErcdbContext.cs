@@ -214,6 +214,7 @@ public partial class ErcdbContext : DbContext
     public virtual DbSet<CaseDetails> CaseDetails { get; set; }
     public virtual DbSet<CaseLastMile> CaseLastMiles { get; set; }
     public virtual DbSet<CaseBlobDocument> CaseBlobDocument { get; set; }
+    public virtual DbSet<CaseMilestoneTemplateMember> CaseMilestoneTemplateMember { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -648,6 +649,24 @@ public partial class ErcdbContext : DbContext
                 .HasMaxLength(250)
                 .IsUnicode(false);
         });
+        modelBuilder.Entity<CaseMilestoneTemplateMember>(entity =>
+                {
+                    entity.ToTable("CaseMilestoneTemplateMembers", "cases");
+
+                    entity.HasKey(e => new { e.CaseMilestoneTemplateId, e.CaseMilestoneId });
+
+                    entity.Property(e => e.CaseMilestoneTemplateId).HasColumnName("CaseMilestoneTemplateID");
+                    entity.Property(e => e.CaseMilestoneId).HasColumnName("CaseMilestoneID");
+
+                    entity.HasOne(e => e.CaseMilestoneTemplate)
+                        .WithMany(t => t.CaseMilestoneTemplateMembers)
+                        .HasForeignKey(e => e.CaseMilestoneTemplateId);
+
+                    entity.HasOne(e => e.CaseMilestone)
+                        .WithMany(m => m.CaseMilestoneTemplateMembers)
+                        .HasForeignKey(e => e.CaseMilestoneId);
+
+                });
 
         modelBuilder.Entity<CaseMilestoneTemplate>(entity =>
         {
@@ -665,22 +684,7 @@ public partial class ErcdbContext : DbContext
                 .HasForeignKey(d => d.CaseCategoryId)
                 .HasConstraintName("FK_CaseMilestoneTemplates_CaseCategories");
 
-            entity.HasMany(d => d.CaseMilestones).WithMany(p => p.CaseMilestoneTemplates)
-                .UsingEntity<Dictionary<string, object>>(
-                    "CaseMilestoneTemplateMember",
-                    r => r.HasOne<CaseMilestone>().WithMany()
-                        .HasForeignKey("CaseMilestoneId")
-                        .HasConstraintName("FK_CaseMilestoneTemplateMembers_CaseMilestones"),
-                    l => l.HasOne<CaseMilestoneTemplate>().WithMany()
-                        .HasForeignKey("CaseMilestoneTemplateId")
-                        .HasConstraintName("FK_CaseMilestoneTemplateMembers_CaseMilestoneTemplates"),
-                    j =>
-                    {
-                        j.HasKey("CaseMilestoneTemplateId", "CaseMilestoneId");
-                        j.ToTable("CaseMilestoneTemplateMembers", "cases");
-                        j.IndexerProperty<long>("CaseMilestoneTemplateId").HasColumnName("CaseMilestoneTemplateID");
-                        j.IndexerProperty<long>("CaseMilestoneId").HasColumnName("CaseMilestoneID");
-                    });
+            
         });
 
         modelBuilder.Entity<CaseNature>(entity =>

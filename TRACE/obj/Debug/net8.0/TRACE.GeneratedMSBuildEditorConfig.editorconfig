@@ -190,6 +190,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1hbmFnZW1lbnRcTXlDYXNlc1xMZXR0ZXJDb21wbGFpbnRzXExldHRlckNvbXBsYWludHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseMilestoneTemplateMember/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1pbGVzdG9uZVRlbXBsYXRlTWVtYmVyXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseMilestoneTemplateMember/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1pbGVzdG9uZVRlbXBsYXRlTWVtYmVyXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseMilestoneTemplateMember/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1pbGVzdG9uZVRlbXBsYXRlTWVtYmVyXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseMilestoneTemplateMember/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1pbGVzdG9uZVRlbXBsYXRlTWVtYmVyXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseMilestoneTemplateMember/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1pbGVzdG9uZVRlbXBsYXRlTWVtYmVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/CaseMilestoneTemplate/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FzZU1pbGVzdG9uZVRlbXBsYXRlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

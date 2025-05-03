@@ -14,4 +14,6 @@ public partial class CaseMilestoneTemplate
     public virtual CaseCategory? CaseCategory { get; set; }
 
     public virtual ICollection<CaseMilestone> CaseMilestones { get; set; } = new List<CaseMilestone>();
+    public ICollection<CaseMilestoneTemplateMember> CaseMilestoneTemplateMembers { get; set; }
+
 }

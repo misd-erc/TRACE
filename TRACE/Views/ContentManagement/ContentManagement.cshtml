@@ -32,6 +32,7 @@
                 <li><i class='bx bxs-edit-alt'></i> Hearing Types</li>
                 <li><i class='bx bxs-edit-alt'></i> Hearing Venues</li>
                 <li><i class='bx bxs-edit-alt'></i> Milestone Templates</li>
+                <li><i class='bx bxs-edit-alt'></i> Milestone Template Members</li>
             </ul>
         </div>
 
@@ -124,10 +125,15 @@
                 loadCaseMilestoneTemplate();
 
             }
+            else if (($("#modalTitle").text().trim() === "Customize Milestone Template Members")) {
+                loadCaseMilestoneTemplateMembers();
+
+            }
             else if (($("#modalTitle").text().trim() === "Customize Sub Case Nature")) {
                 loadSubCaseNature();
 
             }
+
            
             else{ 
                  $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
@@ -176,6 +182,38 @@
             }
         });
     }
+    function deletemilestonemember(milestoneId, templateId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This will permanently delete the milestone template mapping.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const formData = new FormData();
+                formData.append("caseMilestoneId", milestoneId);
+                formData.append("caseMilestoneTemplateId", templateId);
+
+                fetch('/CaseMilestoneTemplateMember/DeleteMember', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            Swal.fire('Deleted!', 'The mapping has been removed.', 'success')
+                                .then(() => location.reload());
+                        } else {
+                            Swal.fire('Error!', 'Something went wrong.', 'error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                        Swal.fire('Error!', 'Could not connect to the server.', 'error');
+                    });
+            }
+        });
+    }
     function loadCaseMilestoneTemplate() {
         $(".cms-modal .modal-content .modal-btn")
             .html("<i class='bx bx-plus'></i> Add New Milestone Template")
@@ -195,6 +233,42 @@
                         <td>${item.templateName}</td>
                         <td><a href="/CaseMilestoneTemplate/Edit/${item.caseMilestoneTemplateId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                     </tr>`;
+                    });
+                    $("#DynamicTable tbody").html(rows);
+                } else {
+                    $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+                }
+            },
+
+            error: function () {
+                alert("Error loading case categories.");
+            }
+        });
+    }
+    function loadCaseMilestoneTemplateMembers() {
+        $(".cms-modal .modal-content .modal-btn")
+            .html("<i class='bx bx-plus'></i> Add New Milestone Template Members")
+            .attr("onclick", "window.location.href='/CaseMilestoneTemplate/Create'");
+        $.ajax({
+            url: "/CaseMilestoneTemplateMember/GetCaseMilestoneTemplateMember",
+            type: "GET",
+            dataType: "json",
+            success: function (response) {
+                /*console.log(response);*/
+                if (response && response.data && response.data.length > 0) {
+                    let rows = "";
+                    response.data.forEach(item => {
+                     
+                        rows += `
+                            <tr>
+                                <td>${item.milestone}</td>
+                                <td>${item.templateName}</td>
+                                <td>
+                                            <button onclick="deletemilestonemember(${item.milestoneId}, ${item.templateId})">
+                                        <i class='bx bxs-trash-alt'></i> Delete
+                                    </button>
+                                </td>
+                            </tr>`;
                     });
                     $("#DynamicTable tbody").html(rows);
                 } else {
