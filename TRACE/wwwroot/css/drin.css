@@ -2125,7 +2125,7 @@ canvas {
     width: 100%;
     border-collapse: collapse;
     background-color: var(--body-color);
-    border: 1px solid var(--font-color);
+    /*border: 1px solid var(--font-color);*/
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
@@ -2134,8 +2134,8 @@ canvas {
     text-align: left;
     padding: 12px;
     font-weight: 600;
-    font-size: 14px;
-    border-bottom: 1px solid #2e2e2ebc;
+    font-size: 11px;
+   /* border-bottom: 1px solid #2e2e2ebc;*/
     color: #fff;
 }
 
@@ -2144,7 +2144,7 @@ canvas {
     font-weight: bold;
     padding: 10px;
     font-size: 15px !important;
-    border-top: 1px solid #2e2e2ebc;
+    /*border-top: 1px solid #2e2e2ebc;*/
 }
 
 .drin-table td:first-of-type {
@@ -2154,7 +2154,7 @@ canvas {
 .drin-table td {
     padding: 10px;
     font-size: 11px;
-    border-bottom: 1px solid #2e2e2ebc;
+    /*border-bottom: 1px solid #2e2e2ebc;*/
 }
 
 .drin-table tr:hover {

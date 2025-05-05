@@ -19,10 +19,12 @@ wwwroot\js\CM-AllCases.js
 wwwroot\js\contentManagement.js
 wwwroot\js\dbchart.js
 wwwroot\js\drin-theme.js
+wwwroot\js\HearingsModule.js
 wwwroot\js\Notifications.js
 wwwroot\js\settingsTab.js
 wwwroot\js\site.js
 wwwroot\js\userManagement.js
+wwwroot\js\UserNotificationSettings.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap.min.css

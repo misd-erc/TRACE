@@ -12,7 +12,7 @@
     </div>
     <div class="filter-design border-radius-5 flex h-center">
         <i class='bx bx-search'></i>
-        <input type="text" placeholder="Hearing Category, Venue or Type.." />
+        <input type="text" id="searcherinoInput" placeholder="Hearing Category, Venue or Type.." />
     </div>
 </div>
 
@@ -36,13 +36,9 @@
 
     <div class="pagination flex h-center gap-10">
         <span>Current Page: </span>
-        <select>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-        </select>
-        <span class="prev flex h-center"><i class='bx bx-chevron-left'></i></span>
-        <span class="next flex h-center"><i class='bx bx-chevron-right'></i></span>
+        <select id="paginationSelect"></select>
+        <span class="prev flex h-center" id="prevPage"><i class='bx bx-chevron-left'></i></span>
+        <span class="next flex h-center" id="nextPage"><i class='bx bx-chevron-right'></i></span>
     </div>
     @await Html.PartialAsync("Components/Loader/Mini-Loader")
 </div>
