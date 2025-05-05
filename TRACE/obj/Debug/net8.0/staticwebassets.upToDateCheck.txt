@@ -17,6 +17,7 @@ wwwroot\images\whitetech.jpg
 wwwroot\js\CaseDetails.js
 wwwroot\js\CM-AllCases.js
 wwwroot\js\contentManagement.js
+wwwroot\js\DashboardModules.js
 wwwroot\js\dbchart.js
 wwwroot\js\drin-theme.js
 wwwroot\js\HearingsModule.js

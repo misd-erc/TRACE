@@ -182,6 +182,61 @@ namespace TRACE.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetAllMyCasesDashboard()
+        {
+            try
+            {
+                var email = _currentUserHelper.Email;
+                var currentUser = email.Split('@')[0];
+
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync(); // Ensure connection opens
+
+                var sql = @"SELECT 
+                        c.ERCCaseID,
+                        (
+                            SELECT TOP 1 cm.Milestone 
+                            FROM cases.CaseMilestones cm 
+                            WHERE cm.CaseMilestoneID = ma.CaseMilestoneID
+                        ) AS MilestoneDescription,
+                        ma.DatetimeAchieved,
+                        ma.CaseMilestoneID,
+                        c.CaseNo,
+                        c.Title,
+                        ISNULL(cc.Category, 'N/A') AS Category,
+                        ISNULL(cn.Nature, 'NOT SET') AS Nature,
+                        c.DateFiled,
+                        c.DateDocketed,
+                        c.DocketedBy,
+                        ISNULL(cs.[Status], 'N/A') AS CaseStatus
+
+                    FROM cases.ERCCases c
+                    LEFT JOIN cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
+                    LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
+                    LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
+                    LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
+                    LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID 
+                    LEFT JOIN cases.MilestonesAchieved ma ON c.ERCCaseID = ma.ERCCaseID
+                    LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+                    LEFT JOIN cases.CaseAssignments ca ON c.ERCCaseID = ca.ERCCaseID
+
+
+                    WHERE ca.UserID = @AssignedTo AND ca.IsActive = 1
+
+                    ORDER BY c.ERCCaseID DESC
+                    "
+                    ;
+
+                var result = await connection.QueryAsync<dynamic>(sql, new { AssignedTo = currentUser });
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetAllDocketedCases()
         {
             try

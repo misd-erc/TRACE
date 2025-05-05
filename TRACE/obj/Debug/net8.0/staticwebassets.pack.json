@@ -77,6 +77,10 @@
       "PackagePath": "staticwebassets\\js\\CaseDetails.js"
     },
     {
+      "Id": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\DashboardModules.js",
+      "PackagePath": "staticwebassets\\js\\DashboardModules.js"
+    },
+    {
       "Id": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\HearingsModule.js",
       "PackagePath": "staticwebassets\\js\\HearingsModule.js"
     },

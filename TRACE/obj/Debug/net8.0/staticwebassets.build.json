@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UkxXF4Pj1VYLR3YlcrksaTr5KCB5nOtbujo6ngoneAI=",
+  "Hash": "QMHmr0jTIvbxMp21PyUtNtbDVWslsA0ZLpioXGBFES8=",
   "Source": "TRACE",
   "BasePath": "_content/TRACE",
   "Mode": "Default",
@@ -458,6 +458,27 @@
       "OriginalItemSpec": "wwwroot\\js\\contentManagement.js"
     },
     {
+      "Identity": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\DashboardModules.js",
+      "SourceId": "TRACE",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\",
+      "BasePath": "_content/TRACE",
+      "RelativePath": "js/DashboardModules#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1ug6bu3hhr",
+      "Integrity": "uS1aW23SF+lKUUASj9ovbQ/QJQHj+KmIhR/0utpa4bY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\DashboardModules.js"
+    },
+    {
       "Identity": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\dbchart.js",
       "SourceId": "TRACE",
       "SourceType": "Discovered",
@@ -514,8 +535,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "irh4mqzeac",
-      "Integrity": "Ep+TEaG89/Tjd85T5+ez9ZhZgKGWhWvERjy+5tsm1xs=",
+      "Fingerprint": "8g5ikiw3ux",
+      "Integrity": "6DcU9MQs7vurErOiPO2TBTg0/Tbe1cZTHhNfRdzHlVY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\HearingsModule.js"
@@ -3383,6 +3404,88 @@
       ]
     },
     {
+      "Route": "js/DashboardModules.1ug6bu3hhr.js",
+      "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\DashboardModules.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1624"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uS1aW23SF+lKUUASj9ovbQ/QJQHj+KmIhR/0utpa4bY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 05 May 2025 05:32:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1ug6bu3hhr"
+        },
+        {
+          "Name": "label",
+          "Value": "js/DashboardModules.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uS1aW23SF+lKUUASj9ovbQ/QJQHj+KmIhR/0utpa4bY="
+        }
+      ]
+    },
+    {
+      "Route": "js/DashboardModules.js",
+      "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\DashboardModules.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1624"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uS1aW23SF+lKUUASj9ovbQ/QJQHj+KmIhR/0utpa4bY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 05 May 2025 05:32:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uS1aW23SF+lKUUASj9ovbQ/QJQHj+KmIhR/0utpa4bY="
+        }
+      ]
+    },
+    {
       "Route": "js/dbchart.amx0pgayw8.js",
       "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\dbchart.js",
       "Selectors": [],
@@ -3547,7 +3650,7 @@
       ]
     },
     {
-      "Route": "js/HearingsModule.irh4mqzeac.js",
+      "Route": "js/HearingsModule.8g5ikiw3ux.js",
       "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\HearingsModule.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3557,7 +3660,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3431"
+          "Value": "3525"
         },
         {
           "Name": "Content-Type",
@@ -3565,11 +3668,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Ep+TEaG89/Tjd85T5+ez9ZhZgKGWhWvERjy+5tsm1xs=\""
+          "Value": "\"6DcU9MQs7vurErOiPO2TBTg0/Tbe1cZTHhNfRdzHlVY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 03:35:02 GMT"
+          "Value": "Mon, 05 May 2025 05:14:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3579,7 +3682,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "irh4mqzeac"
+          "Value": "8g5ikiw3ux"
         },
         {
           "Name": "label",
@@ -3587,7 +3690,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Ep+TEaG89/Tjd85T5+ez9ZhZgKGWhWvERjy+5tsm1xs="
+          "Value": "sha256-6DcU9MQs7vurErOiPO2TBTg0/Tbe1cZTHhNfRdzHlVY="
         }
       ]
     },
@@ -3602,7 +3705,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3431"
+          "Value": "3525"
         },
         {
           "Name": "Content-Type",
@@ -3610,11 +3713,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Ep+TEaG89/Tjd85T5+ez9ZhZgKGWhWvERjy+5tsm1xs=\""
+          "Value": "\"6DcU9MQs7vurErOiPO2TBTg0/Tbe1cZTHhNfRdzHlVY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 03:35:02 GMT"
+          "Value": "Mon, 05 May 2025 05:14:08 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3624,7 +3727,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Ep+TEaG89/Tjd85T5+ez9ZhZgKGWhWvERjy+5tsm1xs="
+          "Value": "sha256-6DcU9MQs7vurErOiPO2TBTg0/Tbe1cZTHhNfRdzHlVY="
         }
       ]
     },
@@ -8735,7 +8838,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 03:23:47 GMT"
+          "Value": "Mon, 05 May 2025 05:32:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8772,7 +8875,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 03:23:47 GMT"
+          "Value": "Mon, 05 May 2025 05:32:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8817,7 +8920,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 03:23:47 GMT"
+          "Value": "Mon, 05 May 2025 05:32:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8862,7 +8965,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 05 May 2025 03:23:47 GMT"
+          "Value": "Mon, 05 May 2025 05:32:16 GMT"
         },
         {
           "Name": "Cache-Control",
