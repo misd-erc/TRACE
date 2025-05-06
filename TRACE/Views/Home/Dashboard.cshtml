@@ -68,44 +68,24 @@
             </div>
             <div class="hearing-content">
                 <ol class="hearing-list" id="dashboardhearings">
-                    <li class="flex h-center space-between">
-                        <div>
-                            <strong>2001-584 | JU</strong><br />
-                            <span class="venue">ERC Hearing Room (15th Floor)</span>
-                        </div>
-                        <div>
-                            <span class="date">2017-05-02</span><br />
-                            <span class="time">10:00 AM</span>
-                        </div>
-                    </li>
-
-                    <li class="flex h-center space-between">
-                        <div>
-                            <strong>2001-584 | EX</strong><br />
-                            <span class="venue">Board Room</span>
-                        </div>
-                        <div>
-                            <span class="date">2017-05-02</span><br />
-                            <span class="time">10:00 AM</span>
-                        </div>
-                    </li>
+                    <li>Failed to render data for hearings.</li>
                 </ol>
             </div>
         </div>
     </div>
 
     <div class="flex gap-10 flex-card">
-        <!--GRAPHS-->
         <div class="card-div mycase-holder panel border-radius-5 shadow">
             <div class="card-heading flex h-center space-between">
                 <h3>My Cases</h3>
                 <div class="filter-design border-radius-5 flex h-center">
                     <i class='bx bx-search'></i>
-                    <input type="text" placeholder="Enter Case No. or Case Title here.."/>
+                    <input type="text" id="dbmcSearchInput" placeholder="Enter Case No. or Case Title here.."/>
                 </div>
             </div>
             <div class="mycase-content">
                 <ol class="mycase-list" id="mydashbboardcases">
+                    <li>Failed to render data for cases.</li>
                 </ol>
                 <div class="pagination flex h-center gap-10">
                     <span>Current Page: </span>
@@ -115,7 +95,7 @@
                 </div>
             </div>
         </div>
-        <!--HEARING-->
+
         <div class="card-div casereminder-holder panel border-radius-5 shadow">
             <div class="card-heading flex h-center space-between">
                 <h3>Case Reminders (30 Days Alert)</h3>

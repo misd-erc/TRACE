@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
             render_dashboard_mycasesTable();
         }
     });
+
+    document.getElementById('dbmcSearchInput').addEventListener('input', function () {
+        currentPagedmc = 1;
+        render_dashboard_mycasesTable();
+    });
 });
 
 function dashboard_fetchAllCaseHearings() {
@@ -53,9 +58,8 @@ function dashboard_fetchAllMyCases() {
         })
         .catch(err => console.error('Error fetching my cases:', err));
 }
-
-function setupPagination() {
-    const totalPages = Math.ceil(_allmycases.length / casesPerPagedmc);
+function setupPagination(totalItems = _allmycases.length) {
+    const totalPages = Math.ceil(totalItems / casesPerPagedmc);
     const paginationSelect = document.getElementById('paginationSelectmyCases');
     paginationSelect.innerHTML = '';
 
@@ -109,16 +113,26 @@ function render_dashboard_mycasesTable() {
     const mycasebod = document.getElementById('mydashbboardcases');
     mycasebod.innerHTML = '';
 
-    if (_allmycases.length === 0) {
+    const start = (currentPagedmc - 1) * casesPerPagedmc;
+    const end = start + casesPerPagedmc;
+    const searchInput = document.getElementById('dbmcSearchInput').value.toLowerCase();
+
+    const filteredCases = _allmycases.filter(mycase => {
+        const caseNo = mycase.CaseNo?.toLowerCase() || '';
+        const title = mycase.Title?.toLowerCase() || '';
+        return caseNo.includes(searchInput) || title.includes(searchInput);
+    });
+
+    const totalPages = Math.ceil(filteredCases.length / casesPerPagedmc);
+    const paginatedCases = filteredCases.slice((currentPagedmc - 1) * casesPerPagedmc, currentPagedmc * casesPerPagedmc);
+    setupPagination(filteredCases.length);
+
+    if (filteredCases.length === 0) {
         mycasebod.innerHTML = `<i>No Cases assigned to you found.</i>`;
         return;
     }
 
-    const start = (currentPagedmc - 1) * casesPerPagedmc;
-    const end = start + casesPerPagedmc;
-    const casesToRender = _allmycases.slice(start, end);
-
-    casesToRender.forEach(mycaseData => {
+    paginatedCases.forEach(mycaseData => {
         const formattedDate = mycaseData.DatetimeAchieved
             ? new Date(mycaseData.DatetimeAchieved).toLocaleDateString('en-GB')
             : 'N/A';
@@ -142,6 +156,4 @@ function render_dashboard_mycasesTable() {
             </li>
         `;
     });
-
-    setupPagination(); // Update the dropdown in case of page change
 }
