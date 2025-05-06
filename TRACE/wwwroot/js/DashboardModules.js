@@ -5,6 +5,7 @@ const casesPerPagedmc = 4;
 
 document.addEventListener('DOMContentLoaded', function () {
     dashboard_fetchAllMyCases();
+    dashboard_fetchAllCaseHearings();
 
     document.getElementById('paginationSelectmyCases').addEventListener('change', function () {
         currentPagedmc = parseInt(this.value);
@@ -32,6 +33,7 @@ function dashboard_fetchAllCaseHearings() {
         .then(res => res.json())
         .then(data => {
             _hearingsData = data;
+            console.log("Hearing data:", data);
             render_dashboard_hearingTable();
         })
         .catch(err => console.error('Error:', err));
