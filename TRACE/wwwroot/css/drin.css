@@ -1348,6 +1348,10 @@ canvas {
     padding: 20px;
 }
 
+.mycase-content ol{
+    height:300px;
+}
+
 .mycase-list {
     list-style-type: decimal;
     padding: 0px;

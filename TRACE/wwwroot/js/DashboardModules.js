@@ -1,9 +1,30 @@
 ﻿let _hearingsData = [];
 let _allmycases = [];
+let currentPagedmc = 1;
+const casesPerPagedmc = 4;
 
 document.addEventListener('DOMContentLoaded', function () {
-    dashboard_fetchAllCaseHearings();
     dashboard_fetchAllMyCases();
+
+    document.getElementById('paginationSelectmyCases').addEventListener('change', function () {
+        currentPagedmc = parseInt(this.value);
+        render_dashboard_mycasesTable();
+    });
+
+    document.getElementById('mcprevPage').addEventListener('click', function () {
+        if (currentPagedmc > 1) {
+            currentPagedmc--;
+            render_dashboard_mycasesTable();
+        }
+    });
+
+    document.getElementById('mcnextPage').addEventListener('click', function () {
+        const totalPages = Math.ceil(_allmycases.length / casesPerPagedmc);
+        if (currentPagedmc < totalPages) {
+            currentPagedmc++;
+            render_dashboard_mycasesTable();
+        }
+    });
 });
 
 function dashboard_fetchAllCaseHearings() {
@@ -24,11 +45,26 @@ function dashboard_fetchAllMyCases() {
             return res.json();
         })
         .then(data => {
-            console.log("Received data for _allmycases:", data);
-            _allmycases = Array.isArray(data) ? data : [];  // Safe fallback
+            _allmycases = Array.isArray(data) ? data : [];
+            setupPagination();
             render_dashboard_mycasesTable();
         })
         .catch(err => console.error('Error fetching my cases:', err));
+}
+
+function setupPagination() {
+    const totalPages = Math.ceil(_allmycases.length / casesPerPagedmc);
+    const paginationSelect = document.getElementById('paginationSelectmyCases');
+    paginationSelect.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        paginationSelect.appendChild(option);
+    }
+
+    paginationSelect.value = currentPagedmc;
 }
 function render_dashboard_hearingTable() {
     const casehearingbod = document.getElementById('dashboardhearings');
@@ -76,7 +112,11 @@ function render_dashboard_mycasesTable() {
         return;
     }
 
-    _allmycases.forEach(mycaseData => {
+    const start = (currentPagedmc - 1) * casesPerPagedmc;
+    const end = start + casesPerPagedmc;
+    const casesToRender = _allmycases.slice(start, end);
+
+    casesToRender.forEach(mycaseData => {
         const formattedDate = mycaseData.DatetimeAchieved
             ? new Date(mycaseData.DatetimeAchieved).toLocaleDateString('en-GB')
             : 'N/A';
@@ -84,7 +124,7 @@ function render_dashboard_mycasesTable() {
         const truncatedTitle = fullTitle.length > 40 ? fullTitle.substring(0, 40) + '...' : fullTitle;
 
         mycasebod.innerHTML += `
-            <li class="flex h-center space-between mycase-clickable" onclick="location.href='/CaseDetails?id=${mycaseData.ERCCaseID}'", "CaseManagement")'">
+            <li class="flex h-center space-between mycase-clickable" onclick="location.href='/CaseDetails?id=${mycaseData.ERCCaseID}'">
                 <div>
                     <strong>${mycaseData.CaseNo}</strong><br />
                     <span class="type">${mycaseData.Nature}</span>
@@ -98,8 +138,8 @@ function render_dashboard_mycasesTable() {
                     <span class="milestonedate">${formattedDate}</span>
                 </div>
             </li>
-    `;
+        `;
     });
 
-
+    setupPagination(); // Update the dropdown in case of page change
 }
