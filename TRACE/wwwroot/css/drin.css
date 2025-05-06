@@ -1357,6 +1357,10 @@ canvas {
     margin-bottom: 20px;
 }
 
+.mycase-list li div{
+    width: 50%;
+}
+
 .mycase-list li div:first-of-type{
     width:20%;
 }
@@ -1366,8 +1370,9 @@ canvas {
 }
 
 .mycase-list .type, .mycase-list .status {
-    font-size: 12px;
+    font-size: 10px;
     color: var(--primary-color);
+    word-wrap:break-word;
 }
 
 .mycase-list .milestonedate {
