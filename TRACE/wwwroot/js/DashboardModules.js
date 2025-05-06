@@ -15,7 +15,6 @@ function dashboard_fetchAllCaseHearings() {
         })
         .catch(err => console.error('Error:', err));
 }
-
 function dashboard_fetchAllMyCases() {
     fetch(`/Erccase/GetAllMyCasesDashboard`)
         .then(res => {
@@ -31,8 +30,6 @@ function dashboard_fetchAllMyCases() {
         })
         .catch(err => console.error('Error fetching my cases:', err));
 }
-
-
 function render_dashboard_hearingTable() {
     const casehearingbod = document.getElementById('dashboardhearings');
     casehearingbod.innerHTML = '';
@@ -46,14 +43,20 @@ function render_dashboard_hearingTable() {
         const formattedDate = caseData.HearingDate
             ? new Date(caseData.HearingDate).toLocaleDateString('en-GB')
             : 'N/A';
+
         const link = caseData.HearingLinks
             ? (caseData.HearingLinks.startsWith('http') ? caseData.HearingLinks : 'https://' + caseData.HearingLinks)
             : null;
 
+        // Conditionally render the icon if a valid link exists
+        const streamIcon = link
+            ? `<a href="${link}"><i class='bx bx-show-alt' title='Watch virtual hearing'></i></a>`
+            : '';
+
         casehearingbod.innerHTML += `
             <li class="flex h-center space-between">
                 <div>
-                    <strong>${caseData.CaseNo} | ${caseData.HearingTypes}</strong><br />
+                    <strong>${caseData.CaseNo} | ${caseData.HearingTypes} ${streamIcon}</strong><br />
                     <span class="venue">${caseData.HearingVenue}</span>
                 </div>
                 <div>
@@ -64,7 +67,6 @@ function render_dashboard_hearingTable() {
         `;
     });
 }
-
 function render_dashboard_mycasesTable() {
     const mycasebod = document.getElementById('mydashbboardcases');
     mycasebod.innerHTML = '';
@@ -78,13 +80,11 @@ function render_dashboard_mycasesTable() {
         const formattedDate = mycaseData.DatetimeAchieved
             ? new Date(mycaseData.DatetimeAchieved).toLocaleDateString('en-GB')
             : 'N/A';
-
-        // Truncate title to 40 characters
         const fullTitle = mycaseData.Title || '';
         const truncatedTitle = fullTitle.length > 40 ? fullTitle.substring(0, 40) + '...' : fullTitle;
 
         mycasebod.innerHTML += `
-            <li class="flex h-center space-between">
+            <li class="flex h-center space-between mycase-clickable" onclick="location.href='/CaseDetails?id=${mycaseData.ERCCaseID}'", "CaseManagement")'">
                 <div>
                     <strong>${mycaseData.CaseNo}</strong><br />
                     <span class="type">${mycaseData.Nature}</span>

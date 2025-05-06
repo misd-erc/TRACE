@@ -1399,12 +1399,34 @@ canvas {
 .bx-help-circle{
     cursor:pointer;
 }
-/*DASHBOARD*/
 
+.mycase-clickable{
+    padding:5px;
+    box-sizing:border-box;
+}
+
+.mycase-clickable:hover {
+    background: var(--active-color);
+    cursor:pointer;
+}
+
+.bx-show-alt{
+    padding:2px;
+    background: red;
+    border-radius:50px;
+    color:#fff;
+}
+
+.bx-show-alt:hover {
+    background:var(--secondary-color);
+    color:var(--font-color);
+    cursor:pointer;
+}
+/*DASHBOARD*/
 /*PAGINATION*/
-.pagination{
-    padding:20px;
-    justify-content:flex-end;
+.pagination {
+    padding: 20px;
+    justify-content: flex-end;
 }
 
 .pagination select{

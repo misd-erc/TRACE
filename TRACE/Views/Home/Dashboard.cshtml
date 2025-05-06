@@ -106,36 +106,14 @@
             </div>
             <div class="mycase-content">
                 <ol class="mycase-list" id="mydashbboardcases">
-                    <li class="flex h-center space-between">
-                        <div>
-                            <strong>2001-584</strong><br />
-                            <span class="type">Violations</span>
-                        </div>
-                        <div>
-                            <span class="date">Regulatory Compliance Check</span><br />
-                            <span class="status">Ongoing</span>
-                        </div>
-                        <div>
-                            <span class="milestone">Filed</span><br />
-                            <span class="milestonedate">08/03/2025</span>
-                        </div>
-                    </li>
-
-                    <li class="flex h-center space-between">
-                        <div>
-                            <strong>2001-584</strong><br />
-                            <span class="type">Billing</span>
-                        </div>
-                        <div>
-                            <span class="date">Regulatory Compliance Check</span><br />
-                            <span class="status">Resolved</span>
-                        </div>
-                        <div>
-                            <span class="milestone">Docketed</span><br />
-                            <span class="milestonedate">08/03/2025</span>
-                        </div>
-                    </li>
                 </ol>
+
+                <div class="pagination flex h-center gap-10">
+                    <span>Current Page: </span>
+                    <select id="paginationSelectmyCases"></select>
+                    <span class="prev flex h-center" id="mcprevPage"><i class='bx bx-chevron-left'></i></span>
+                    <span class="next flex h-center" id="mcnextPage"><i class='bx bx-chevron-right'></i></span>
+                </div>
             </div>
         </div>
         <!--HEARING-->
