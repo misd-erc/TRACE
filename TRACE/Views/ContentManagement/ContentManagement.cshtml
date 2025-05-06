@@ -133,6 +133,10 @@
                 loadSubCaseNature();
 
             }
+            else if (($("#modalTitle").text().trim() === "Customize Case Nature")) {
+                loadCasenature();
+
+            }
 
            
             else{ 
@@ -169,6 +173,38 @@
                                     <td>${item.cityId}</td>
                                     <td>${item.cityName}</td>
                                     <td><a href="/City/Edit/${item.cityId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+
+                                </tr>`;
+                    });
+                    $("#DynamicTable tbody").html(rows);
+                } else {
+                    $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+                }
+            },
+            error: function () {
+                alert("Error loading case event types.");
+            }
+        });
+    }
+    function loadCasenature() {
+        $(".cms-modal .modal-content .modal-btn")
+            .html("<i class='bx bx-plus'></i> Add New Case Nature")
+            .attr("onclick", "window.location.href='/Casenature/Create'");
+        $.ajax({
+            url: "/Casenature/GetAllCaseNature",
+            type: "GET",
+            dataType: "json",
+            success: function (response) {
+                console.log(response); // Debugging
+
+                if (response && response.data && response.data.length > 0) {
+                    let rows = "";
+                    response.data.forEach(item => {
+                        rows += `
+                                <tr>
+                                    <td>${item.nature}</td>
+                                    <td>${item.description}</td>
+                                    <td><a href="/Casenature/Edit/${item.caseNatureId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
 
                                 </tr>`;
                     });
