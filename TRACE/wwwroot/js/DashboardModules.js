@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     dashboard_fetchAllMyCases();
     dashboard_fetchAllCaseHearings();
     dashboard_fetchTotalCountCases();
+    updateDateTime();
+    setInterval(updateDateTime, 60000);
 
     document.getElementById('paginationSelectmyCases').addEventListener('change', function () {
         currentPagedmc = parseInt(this.value);
@@ -225,4 +227,21 @@ function render_dashboard_totalcards(data) {
             });
         }
     });
+}
+
+function updateDateTime() {
+    const dateElement = document.querySelector('.date-today');
+    const now = new Date();
+
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const dayName = days[now.getDay()];
+
+    const options = { day: '2-digit', month: 'long', year: 'numeric' };
+    const formattedDate = now.toLocaleDateString('en-GB', options);
+
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const militaryTime = `${hours}:${minutes}`;
+
+    dateElement.textContent = `${dayName}, ${formattedDate} ${militaryTime}`;
 }
