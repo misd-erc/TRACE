@@ -134,6 +134,36 @@ namespace TRACE.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetCountForEachCategory()
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                var sql = @"SELECT 
+                            cc.Category,
+                            COUNT(ec.ERCCaseID) AS TotalCases
+                        FROM 
+                            [ercdb].[cases].[ERCCases] ec
+                        JOIN 
+                            [ercdb].[cases].[CaseCategories] cc
+                            ON ec.CaseCategoryID = cc.CaseCategoryID
+                        GROUP BY 
+                            cc.Category
+                        ORDER BY 
+                            TotalCases DESC;";
+
+                var result = await connection.QueryAsync<dynamic>(sql);
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetAllCases()
         {
             try

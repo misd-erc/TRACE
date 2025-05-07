@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\controllers\\erccasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\erccasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\wwwroot\\css\\drin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\css\\drin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\wwwroot\\js\\dashboardmodules.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -19,8 +19,8 @@
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\home\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\wwwroot\\css\\drin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\css\\drin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1457,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,7 +74,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\appsettings.json",
               "RelativeDocumentMoniker": "TRACE\\appsettings.json",
@@ -82,25 +82,24 @@
               "RelativeToolTip": "TRACE\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-06T08:03:37.677Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T08:03:37.677Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ErccaseController.cs",
               "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\ErccaseController.cs",
               "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
               "RelativeToolTip": "TRACE\\Controllers\\ErccaseController.cs",
-              "ViewState": "AgIAALsAAAAAAAAAAAAuwMoAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAPIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T05:44:08.587Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "drin.css",
               "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\css\\drin.css",
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\css\\drin.css",
@@ -108,8 +107,7 @@
               "RelativeToolTip": "TRACE\\wwwroot\\css\\drin.css",
               "ViewState": "AgIAADoFAAAAAAAAAAAtwEcFAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-05-06T06:56:00.267Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-06T06:56:00.267Z"
             },
             {
               "$type": "Document",
@@ -119,10 +117,9 @@
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\DashboardModules.js",
               "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\DashboardModules.js",
               "RelativeToolTip": "TRACE\\wwwroot\\js\\DashboardModules.js",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIUAAAAAAAAAAAAYwH4AAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-05-05T05:46:04.297Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T05:46:04.297Z"
             },
             {
               "$type": "Document",
@@ -132,10 +129,9 @@
               "RelativeDocumentMoniker": "TRACE\\Views\\Home\\Dashboard.cshtml",
               "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\Home\\Dashboard.cshtml",
               "RelativeToolTip": "TRACE\\Views\\Home\\Dashboard.cshtml",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAnwEYAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAYwFcAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-05T05:17:21.86Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-05T05:17:21.86Z"
             }
           ]
         }
