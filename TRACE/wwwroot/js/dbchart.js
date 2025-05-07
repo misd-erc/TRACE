@@ -16,18 +16,14 @@ fetch('/ERCCase/GetCountForEachCategory')
             datasets: [{
                 label: 'Cases Filed',
                 data: values,
+                backgroundColor: primaryColor,
                 borderColor: primaryColor,
-                backgroundColor: 'rgba(255, 51, 102, 0.2)',
-                pointBackgroundColor: '#ffffff',
-                pointBorderColor: primaryColor,
-                pointRadius: 5,
-                pointHoverRadius: 7,
-                tension: 0
+                borderWidth: 1
             }]
         };
 
         const config = {
-            type: 'line',
+            type: 'bar',
             data: chartData,
             options: {
                 responsive: true,
@@ -35,7 +31,7 @@ fetch('/ERCCase/GetCountForEachCategory')
                     legend: {
                         display: false,
                         labels: {
-                            color: '#fff'
+                            color: fontColor
                         }
                     },
                     tooltip: {
@@ -58,6 +54,7 @@ fetch('/ERCCase/GetCountForEachCategory')
                         }
                     },
                     y: {
+                        beginAtZero: true,
                         ticks: {
                             color: fontColor
                         },
