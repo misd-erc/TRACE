@@ -1217,6 +1217,10 @@ ul.content-list li:hover {
     background: linear-gradient(to bottom, #1A33B6, #0F227A);
 }
 
+.red-bg {
+    background: linear-gradient(to bottom, #D32F2F, #C2185B);
+}
+
 .orange-bg {
     background: linear-gradient(to bottom, #ff6a00, #b34700);
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5ullJXsSHvPAAhmW5WdFDnPh+m36ifdMYApGAwpyoOw=",
+  "Hash": "+DjuEdyi+8MWMQ6zdVkGOJHN7o5t8+f0NGy+j1BGrQA=",
   "Source": "TRACE",
   "BasePath": "_content/TRACE",
   "Mode": "Default",
@@ -493,8 +493,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "amx0pgayw8",
-      "Integrity": "MsMGpIpbZJB/WU4BYa11N/foDz3EgnlsQ51oZ7O1STc=",
+      "Fingerprint": "z8s9y3nyd6",
+      "Integrity": "QzWCrzJKZotzKy3FkdpXfUqFTIzlbnPmvw8wntPNoTY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\dbchart.js"
@@ -3486,51 +3486,6 @@
       ]
     },
     {
-      "Route": "js/dbchart.amx0pgayw8.js",
-      "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\dbchart.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1861"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"MsMGpIpbZJB/WU4BYa11N/foDz3EgnlsQ51oZ7O1STc=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 04:04:17 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "amx0pgayw8"
-        },
-        {
-          "Name": "label",
-          "Value": "js/dbchart.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-MsMGpIpbZJB/WU4BYa11N/foDz3EgnlsQ51oZ7O1STc="
-        }
-      ]
-    },
-    {
       "Route": "js/dbchart.js",
       "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\dbchart.js",
       "Selectors": [],
@@ -3541,7 +3496,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1861"
+          "Value": "2417"
         },
         {
           "Name": "Content-Type",
@@ -3549,11 +3504,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"MsMGpIpbZJB/WU4BYa11N/foDz3EgnlsQ51oZ7O1STc=\""
+          "Value": "\"QzWCrzJKZotzKy3FkdpXfUqFTIzlbnPmvw8wntPNoTY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 04:04:17 GMT"
+          "Value": "Wed, 07 May 2025 01:28:18 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3563,7 +3518,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-MsMGpIpbZJB/WU4BYa11N/foDz3EgnlsQ51oZ7O1STc="
+          "Value": "sha256-QzWCrzJKZotzKy3FkdpXfUqFTIzlbnPmvw8wntPNoTY="
+        }
+      ]
+    },
+    {
+      "Route": "js/dbchart.z8s9y3nyd6.js",
+      "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\dbchart.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2417"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QzWCrzJKZotzKy3FkdpXfUqFTIzlbnPmvw8wntPNoTY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 07 May 2025 01:28:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z8s9y3nyd6"
+        },
+        {
+          "Name": "label",
+          "Value": "js/dbchart.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-QzWCrzJKZotzKy3FkdpXfUqFTIzlbnPmvw8wntPNoTY="
         }
       ]
     },
@@ -8838,7 +8838,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 06 May 2025 08:04:10 GMT"
+          "Value": "Wed, 07 May 2025 04:58:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8875,7 +8875,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 06 May 2025 08:04:10 GMT"
+          "Value": "Wed, 07 May 2025 04:58:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8920,7 +8920,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 06 May 2025 08:04:10 GMT"
+          "Value": "Wed, 07 May 2025 04:58:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8965,7 +8965,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 06 May 2025 08:04:10 GMT"
+          "Value": "Wed, 07 May 2025 04:58:55 GMT"
         },
         {
           "Name": "Cache-Control",
