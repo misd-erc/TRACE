@@ -1259,6 +1259,20 @@ ul.content-list li:hover {
     margin:0px;
 }
 
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    display: none;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 9999;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
 .sub-desc{
     font-size:10px;
 }

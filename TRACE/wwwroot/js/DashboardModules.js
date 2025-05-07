@@ -1,11 +1,13 @@
 ﻿let _hearingsData = [];
 let _allmycases = [];
+let _totalcases = [];
 let currentPagedmc = 1;
 const casesPerPagedmc = 4;
 
 document.addEventListener('DOMContentLoaded', function () {
     dashboard_fetchAllMyCases();
     dashboard_fetchAllCaseHearings();
+    dashboard_fetchTotalCountCases();
 
     document.getElementById('paginationSelectmyCases').addEventListener('change', function () {
         currentPagedmc = parseInt(this.value);
@@ -38,7 +40,6 @@ function dashboard_fetchAllCaseHearings() {
         .then(res => res.json())
         .then(data => {
             _hearingsData = data;
-            console.log("Hearing data:", data);
             render_dashboard_hearingTable();
         })
         .catch(err => console.error('Error:', err));
@@ -55,6 +56,20 @@ function dashboard_fetchAllMyCases() {
             _allmycases = Array.isArray(data) ? data : [];
             setupPagination();
             render_dashboard_mycasesTable();
+        })
+        .catch(err => console.error('Error fetching my cases:', err));
+}
+function dashboard_fetchTotalCountCases() {
+    fetch(`/Erccase/GetTotalCasesForEachCard`)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => {
+            _totalcases = Array.isArray(data) ? data : [];
+            render_dashboard_totalcards(_totalcases);
         })
         .catch(err => console.error('Error fetching my cases:', err));
 }
@@ -155,5 +170,59 @@ function render_dashboard_mycasesTable() {
                 </div>
             </li>
         `;
+    });
+}
+function render_dashboard_totalcards(data) {
+    // Create tooltip element
+    let tooltip = document.querySelector('.tooltip');
+    if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.classList.add('tooltip');
+        document.body.appendChild(tooltip);
+    }
+
+    data.forEach(item => {
+        const formattedTotalCases = item.TotalCases;
+        let shortVersion = formattedTotalCases.toLocaleString();
+
+        // Format to short version
+        if (formattedTotalCases >= 1000 && formattedTotalCases < 1000000) {
+            shortVersion = (formattedTotalCases / 1000).toFixed(1) + 'K';
+        } else if (formattedTotalCases >= 1000000) {
+            shortVersion = (formattedTotalCases / 1000000).toFixed(1) + 'M';
+        }
+
+        let selector = '';
+
+        if (item.GroupedStatus === 'Decided / Promulgated') {
+            selector = '.blue-bg .count';
+        } else if (item.GroupedStatus === 'Pending / Ongoing') {
+            selector = '.purple-bg .count';
+        } else if (item.GroupedStatus === 'For FOE Submission') {
+            selector = '.green-bg .count';
+        } else if (item.GroupedStatus === 'Closed / Dismissed') {
+            selector = '.red-bg .count';
+        }
+
+        const cardElement = document.querySelector(selector);
+
+        if (cardElement) {
+            cardElement.textContent = shortVersion;
+
+
+            cardElement.addEventListener('mouseenter', function () {
+                tooltip.textContent = formattedTotalCases.toLocaleString();
+                tooltip.style.display = 'block';
+            });
+
+            cardElement.addEventListener('mousemove', function (e) {
+                tooltip.style.left = (e.pageX + 10) + 'px';
+                tooltip.style.top = (e.pageY + 10) + 'px';
+            });
+
+            cardElement.addEventListener('mouseleave', function () {
+                tooltip.style.display = 'none';
+            });
+        }
     });
 }

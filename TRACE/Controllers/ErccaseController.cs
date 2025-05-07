@@ -164,6 +164,74 @@ namespace TRACE.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetTotalCasesForEachCard()
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                var sql = @"
+                        WITH GroupDefinitions AS (
+                            SELECT 'Decided / Promulgated' AS GroupedStatus
+                            UNION ALL
+                            SELECT 'Pending / Ongoing'
+                            UNION ALL
+                            SELECT 'For FOE Submission'
+                            UNION ALL
+                            SELECT 'Closed / Dismissed'
+                        ),
+                        GroupedCounts AS (
+                            SELECT 
+                                CASE 
+                                    WHEN cs.Status LIKE '%Decided%' OR cs.Status LIKE '%Promulgated%' THEN 'Decided / Promulgated'
+                                    WHEN cs.Status LIKE '%Pending%' OR cs.Status LIKE '%Ongoing%' THEN 'Pending / Ongoing'
+                                    WHEN cs.Status LIKE '%For FOE Submission%' THEN 'For FOE Submission'
+                                    WHEN cs.Status LIKE '%Closed%' OR cs.Status LIKE '%Dismissed%' THEN 'Closed / Dismissed'
+                                END AS GroupedStatus,
+                                COUNT(ec.ERCCaseID) AS TotalCases
+                            FROM 
+                                [ercdb].[cases].[ERCCases] ec
+                            JOIN 
+                                [ercdb].[cases].[CaseStatuses] cs ON ec.CaseStatusID = cs.CaseStatusID
+                            WHERE
+                                cs.Status LIKE '%Decided%' OR
+                                cs.Status LIKE '%Promulgated%' OR
+                                cs.Status LIKE '%Pending%' OR
+                                cs.Status LIKE '%Ongoing%' OR
+                                cs.Status LIKE '%For FOE Submission%' OR
+                                cs.Status LIKE '%Closed%' OR
+                                cs.Status LIKE '%Dismissed%'
+                            GROUP BY 
+                                CASE 
+                                    WHEN cs.Status LIKE '%Decided%' OR cs.Status LIKE '%Promulgated%' THEN 'Decided / Promulgated'
+                                    WHEN cs.Status LIKE '%Pending%' OR cs.Status LIKE '%Ongoing%' THEN 'Pending / Ongoing'
+                                    WHEN cs.Status LIKE '%For FOE Submission%' THEN 'For FOE Submission'
+                                    WHEN cs.Status LIKE '%Closed%' OR cs.Status LIKE '%Dismissed%' THEN 'Closed / Dismissed'
+                                END
+                        )
+
+                        SELECT 
+                            gd.GroupedStatus,
+                            ISNULL(gc.TotalCases, 0) AS TotalCases
+                        FROM 
+                            GroupDefinitions gd
+                        LEFT JOIN 
+                            GroupedCounts gc ON gd.GroupedStatus = gc.GroupedStatus
+                        ORDER BY 
+                            gd.GroupedStatus;
+                        ";
+
+                var result = await connection.QueryAsync<dynamic>(sql);
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetAllCases()
         {
             try
