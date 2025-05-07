@@ -1367,7 +1367,7 @@ canvas {
 }
 
 .mycase-content ol{
-    height:300px;
+    min-height:300px;
 }
 
 .mycase-list {
