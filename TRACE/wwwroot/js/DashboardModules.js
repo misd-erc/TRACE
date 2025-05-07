@@ -228,7 +228,6 @@ function render_dashboard_totalcards(data) {
         }
     });
 }
-
 function updateDateTime() {
     const dateElement = document.querySelector('.date-today');
     const now = new Date();
