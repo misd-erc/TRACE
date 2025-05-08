@@ -124,6 +124,22 @@
     }
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dateFiledInput = document.querySelector('input[name="DateFiled"]');
+            const targetPaIssuanceInput = document.querySelector('input[name="TargetPaissuance"]');
+
+            dateFiledInput.addEventListener('change', function () {
+                const filedDate = new Date(this.value);
+                if (!isNaN(filedDate)) {
+                    filedDate.setDate(filedDate.getDate() + 75);
+                    const year = filedDate.getFullYear();
+                    const month = String(filedDate.getMonth() + 1).padStart(2, '0');
+                    const day = String(filedDate.getDate()).padStart(2, '0');
+                    targetPaIssuanceInput.value = `${year}-${month}-${day}`;
+                }
+            });
+        });
+
         $(document).ready(function () {
             const element = document.getElementById('CaseCategoryIdDropdown');
             const choices = new Choices(element, {
