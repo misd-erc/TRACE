@@ -77,7 +77,7 @@
             <div class="profile-menu-wrapper">
                 <i class='bx bxs-bell' onclick="toggleNotifMenu()"></i>
                 <div class="notif-dropdown" id="notifDropdown">
-                    <ul class="notif-list">
+                    <ul class="notif-list" id="notifList">
                         <li>
                             <span class="ndesc">A milestone has been achieved for case number: <strong>2025-0001-LC</strong></span>
                             <span class="ndate">5 mins ago</span>
@@ -173,6 +173,7 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
 
 @functions { 
     string GetInitials(string fullName)
@@ -300,5 +301,50 @@
         }
     }
 
+    async function fetchNotifications() {
+        try {
+            const response = await fetch('/Notification/getNotification');
+            const notifications = await response.json();
+
+            const notifList = document.getElementById('notifList');
+            notifList.innerHTML = ''; // Clear existing notifications
+
+            if (notifications.length === 0) {
+                notifList.innerHTML = `<li><span class="ndesc">No notifications available.</span></li>`;
+                return;
+            }
+
+            notifications.forEach(notif => {
+                const li = document.createElement('li');
+
+                li.innerHTML = `
+                            <span class="ndesc">${notif.message}</span>
+                            <span class="ndate">${formatDate(notif.createdAt)}</span>
+                    `;
+                li.addEventListener('click', () => {
+                    window.location.href = `/CaseDetails?id=${notif.caseID}`;
+                });
+                notifList.appendChild(li);
+            });
+        } catch (error) {
+            console.error('Error loading notifications:', error);
+        }
+    }
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        if (isNaN(date)) return dateString;
+        return date.toLocaleString('en-US', {
+            day: '2-digit', month: 'short', year: 'numeric',
+            hour: '2-digit', minute: '2-digit'
+        });
+    }
+
+    // Optional: Load on click
+    function toggleNotifMenu() {
+        const dropdown = document.getElementById('notifDropdown');
+        dropdown.classList.toggle('show');
+        fetchNotifications();
+    }
 
 </script>

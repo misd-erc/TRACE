@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -13,10 +14,12 @@ namespace TRACE.Controllers
     public class NotificationController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public NotificationController(ErcdbContext context)
+        public NotificationController(ErcdbContext context, CurrentUserHelper currentUserHelper )
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: Notification
@@ -24,7 +27,14 @@ namespace TRACE.Controllers
         {
             return View(await _context.Notifications.ToListAsync());
         }
+        public async Task<IActionResult> getNotification()
+        {
+            var currentUserName = _currentUserHelper.Email;
+            var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+            var username = user.Username;
 
+            return Json( await _context.Notifications.Where(x=>x.RecipientUserID == username).ToListAsync());
+        }
         // GET: Notification/Details/5
         public async Task<IActionResult> Details(int? id)
         {
