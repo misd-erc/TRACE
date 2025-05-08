@@ -140,6 +140,22 @@ namespace TRACE.Controllers
                             targetCompletionDate: caseTask.TargetCompletionDate.Value.ToDateTime(TimeOnly.MinValue)
                         );
                     }
+                    if (assignedUser != null && assignedUser.IsSystemNotif == true)
+                    {
+                        string assignedUserEmail = assignedUser.Email;
+
+                        Notification notif = new Notification();
+                        notif.Title = "Case Task Assignment Notification";
+                        notif.Message = "You have been assigned a task to CaseNo: '" + ercCase.CaseNo + "' by " + caseTask.TaskedBy;
+                        notif.RecipientUserID = assignedUser.Username;
+                        notif.CaseID = ercCase.ErccaseId;
+                        notif.CreatedAt = DateTime.Now;
+                        notif.NotificationType = "user";
+
+                        _context.Notifications.Add(notif);
+
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (Exception ex)
                 {

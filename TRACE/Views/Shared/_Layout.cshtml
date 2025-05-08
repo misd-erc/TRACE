@@ -78,22 +78,6 @@
                 <i class='bx bxs-bell' onclick="toggleNotifMenu()"></i>
                 <div class="notif-dropdown" id="notifDropdown">
                     <ul class="notif-list" id="notifList">
-                        <li>
-                            <span class="ndesc">A milestone has been achieved for case number: <strong>2025-0001-LC</strong></span>
-                            <span class="ndate">5 mins ago</span>
-                        </li>
-                        <li>
-                            <span class="ndesc"><b>Juan Dela Cruz</b> assigned you a new task for case number: <strong>2025-0001-LC</strong></span>
-                            <span class="ndate">7 mins ago</span>
-                        </li>
-                        <li>
-                            <span class="ndesc"><b>Juan Dela Cruz</b> has assigned you to a case: <strong>2025-0001-LC</strong></span>
-                            <span class="ndate">01 March 2025</span>
-                        </li>
-                        <li>
-                            <span class="ndesc"><b>Juan Dela Cruz</b> assigned you a new task for case number: <strong>2025-0000-LC</strong></span>
-                            <span class="ndate">01 March 2025</span>
-                        </li>
                     </ul>
                     <div class="see-more-notif border-radius-5" onclick="location.href='@Url.Action("Notifications", "NotificationManagement")'"><strong>See All Notifiations</strong></div>
                 </div>
@@ -271,7 +255,7 @@
         const user = {
             Id: 0,
             Email: email,
-            UserCategory: "System Admin",
+            UserCategory: "Staff",
             IsEmailNotif: true,
             Fullname: document.querySelector('.user-name')?.textContent.trim(),
             Designation: "TBD",
@@ -307,10 +291,10 @@
             const notifications = await response.json();
 
             const notifList = document.getElementById('notifList');
-            notifList.innerHTML = ''; // Clear existing notifications
+            notifList.innerHTML = '';
 
             if (notifications.length === 0) {
-                notifList.innerHTML = `<li><span class="ndesc">No notifications available.</span></li>`;
+                notifList.innerHTML = `<li class="no-notiflist"><span class="no-notif">No notifications available.</span></li>`;
                 return;
             }
 

@@ -586,6 +586,22 @@ button .bx-plus{
     display:block;
 }
 
+.no-notiflist {
+    padding: 15px 30px !important;
+    cursor: default !important;
+    min-height: unset !important;
+}
+
+.no-notiflist:hover {
+    background:var(--theme) !important;
+}
+
+
+.notif-list li .no-notif {
+    font-size: 10px;
+    font-style: italic;
+}
+
 .notif-list li .ndate {
     font-size:11px;
     color:#989898;

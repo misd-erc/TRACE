@@ -152,21 +152,16 @@
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        
-      
-          
-             fetchNotifications1(); // This should now call the function
-       
+             fetchNotifications1();
     });
 
     async function fetchNotifications1() {
-        console.log("asdf")
         try {
             const response = await fetch('/Notification/getNotification');
             const notifications = await response.json();
             
             const notifList = document.getElementById('notifList1');
-            notifList.innerHTML = ''; // Clear existing notifications
+            notifList.innerHTML = '';
 
             if (notifications.length === 0) {
                 notifList.innerHTML = `<li><span class="ndesc">No notifications available.</span></li>`;
