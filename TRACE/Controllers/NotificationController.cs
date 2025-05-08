@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using TRACE.Models;
 
 namespace TRACE.Controllers
 {
+    [Authorize]
     public class NotificationController : Controller
     {
         private readonly ErcdbContext _context;
@@ -27,13 +29,49 @@ namespace TRACE.Controllers
         {
             return View(await _context.Notifications.ToListAsync());
         }
+
         public async Task<IActionResult> getNotification()
         {
             var currentUserName = _currentUserHelper.Email;
             var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
             var username = user.Username;
 
-            return Json( await _context.Notifications.Where(x=>x.RecipientUserID == username).ToListAsync());
+            var notifications = await _context.Notifications
+                .Where(x => x.RecipientUserID == username)
+                .OrderByDescending(x => x.NotificationID)
+                .ToListAsync();
+
+            return Json(notifications);
+        }
+
+        public async Task<IActionResult> getHeaderNotification()
+        {
+            var currentUserName = _currentUserHelper.Email;
+            var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+            var username = user.Username;
+
+            var notifications = await _context.Notifications
+                .Where(x => x.RecipientUserID == username)
+                .OrderByDescending(x => x.NotificationID)
+                .Take(8)
+                .ToListAsync();
+
+            return Json(notifications);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MarkAsRead([FromBody] int notificationId)
+        {
+            var notification = await _context.Notifications.FindAsync(notificationId);
+            if (notification == null)
+                return NotFound();
+
+            notification.IsRead = true;
+            notification.ReadAt = DateTime.Now;
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
         // GET: Notification/Details/5
         public async Task<IActionResult> Details(int? id)

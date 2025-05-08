@@ -569,8 +569,12 @@ button .bx-plus{
     min-height:90px;
 }
 
+.notif-list li.unread {
+    background: #9f9f9f28;
+}
+
 .notif-list li:hover {
-    background: var(--active-color);
+    background: var(--active-color) !important;
 }
 
 .notif-list li:last-of-type{
@@ -2054,6 +2058,28 @@ canvas {
 /*CASE MANAGEMENT*/
 
 /*NOTIFICATIONS MANAGEMENT*/
+.bxs-bell.has-unread::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+    background: red;
+    border-radius: 50%;
+}
+
+.notif-icon {
+    font-size: 14px !important;
+    padding:0px !important;
+    color: var(--primary-color) !important;
+}
+
+.unread .notif-icon {
+    color: var(--primary-color);
+    
+}
+
 .counter{
     padding:5px 10px;;
     border-radius:5px;

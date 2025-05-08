@@ -146,7 +146,7 @@ namespace TRACE.Controllers
 
                         Notification notif = new Notification();
                         notif.Title = "Case Task Assignment Notification";
-                        notif.Message = "You have been assigned a task to CaseNo: '" + ercCase.CaseNo + "' by " + caseTask.TaskedBy;
+                        notif.Message = "You have been assigned a task for CaseNo: '" + ercCase.CaseNo + "' by " + caseTask.TaskedBy;
                         notif.RecipientUserID = assignedUser.Username;
                         notif.CaseID = ercCase.ErccaseId;
                         notif.CreatedAt = DateTime.Now;

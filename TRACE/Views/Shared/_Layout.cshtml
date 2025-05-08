@@ -245,6 +245,8 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         createUser();
+        fetchNotifications();
+        setInterval(fetchNotifications, 5000);
     });
 
     async function createUser() {
@@ -287,11 +289,20 @@
 
     async function fetchNotifications() {
         try {
-            const response = await fetch('/Notification/getNotification');
+            const response = await fetch('/Notification/getHeaderNotification');
             const notifications = await response.json();
 
             const notifList = document.getElementById('notifList');
+            const bellIcon = document.querySelector('.bxs-bell');
+
             notifList.innerHTML = '';
+
+            const hasUnread = notifications.some(notif => notif.isRead === false);
+            if (hasUnread) {
+                bellIcon.classList.add('has-unread');
+            } else {
+                bellIcon.classList.remove('has-unread');
+            }
 
             if (notifications.length === 0) {
                 notifList.innerHTML = `<li class="no-notiflist"><span class="no-notif">No notifications available.</span></li>`;
@@ -300,13 +311,27 @@
 
             notifications.forEach(notif => {
                 const li = document.createElement('li');
+                li.classList.toggle('unread', notif.isRead === false);
 
-                li.innerHTML = `
-                            <span class="ndesc">${notif.message}</span>
-                            <span class="ndate">${formatDate(notif.createdAt)}</span>
+                    li.innerHTML = `
+                        <span class="ndesc">${notif.message} <i class='bx ${notif.isRead ? 'bxs-envelope-open' : 'bxs-envelope'} notif-icon'></i></span>
+                        <span class="ndate">${formatDate(notif.createdAt)}</span>
                     `;
-                li.addEventListener('click', () => {
-                    window.location.href = `/CaseDetails?id=${notif.caseID}`;
+                    li.addEventListener('click', async () => {
+                    try {
+                        await fetch('/Notification/MarkAsRead', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(notif.notificationID)
+                        });
+
+                        window.location.href = `/CaseDetails?id=${notif.caseID}`;
+                    } catch (error) {
+                        console.error('Failed to mark notification as read:', error);
+                        window.location.href = `/CaseDetails?id=${notif.caseID}`;
+                    }
                 });
                 notifList.appendChild(li);
             });
@@ -324,7 +349,6 @@
         });
     }
 
-    // Optional: Load on click
     function toggleNotifMenu() {
         const dropdown = document.getElementById('notifDropdown');
         dropdown.classList.toggle('show');
