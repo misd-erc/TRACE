@@ -566,6 +566,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uTWFuYWdlbWVudFxOb3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Notification/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Notification/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Notification/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Notification/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/Notification/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Administrator/Documents/GitHub/TRACE/TRACE/Views/RelatedCase/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVsYXRlZENhc2VcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
