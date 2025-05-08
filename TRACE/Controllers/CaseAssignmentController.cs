@@ -172,6 +172,22 @@ namespace TRACE.Controllers
                         var emailHelper = new EmailNotificationsHelper();
                         emailHelper.SendCaseAssignmentEmail(assignedUserEmail, ercCase.CaseNo, assignedByUsername);
                     }
+                    if (assignedUser != null && assignedUser.IsSystemNotif == true)
+                    {
+                        string assignedUserEmail = assignedUser.Email;
+
+                        Notification notif = new Notification();
+                        notif.Title = "Case Assignment Notification";
+                        notif.Message = "You have been assigned to a new case CaseNo: '"+ ercCase.CaseNo + "' by "+ assignedByUsername;
+                        notif.RecipientUserID = assignedByUsername;
+                        notif.CaseID = ercCase.ErccaseId;
+                        notif.CreatedAt = DateTime.Now;
+                        notif.NotificationType = "user";
+
+                        _context.Notifications.Add(notif);
+                             
+                        await _context.SaveChangesAsync();
+                    }
                 }
 
                 return Json(new { success = true, message = "Success! Data has been saved." });

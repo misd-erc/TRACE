@@ -215,6 +215,7 @@ public partial class ErcdbContext : DbContext
     public virtual DbSet<CaseLastMile> CaseLastMiles { get; set; }
     public virtual DbSet<CaseBlobDocument> CaseBlobDocument { get; set; }
     public virtual DbSet<CaseMilestoneTemplateMember> CaseMilestoneTemplateMember { get; set; }
+    public virtual DbSet<Notification> Notifications { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -291,6 +292,38 @@ public partial class ErcdbContext : DbContext
                         j.IndexerProperty<long>("AccountId").HasColumnName("AccountID");
                         j.IndexerProperty<long>("AccountGroupId").HasColumnName("AccountGroupID");
                     });
+        });
+
+        modelBuilder.Entity<Notification>(entity =>
+        {
+            entity.ToTable("Notifications", "cases");
+
+            entity.HasKey(e => e.NotificationID);
+
+            entity.Property(e => e.Title)
+                  .IsRequired()
+                  .HasMaxLength(255);
+
+            entity.Property(e => e.Message)
+                  .IsRequired();
+
+            entity.Property(e => e.RecipientUserID)
+                  .IsRequired()
+                  .HasMaxLength(100);
+
+            entity.Property(e => e.NotificationType)
+                  .IsRequired()
+                  .HasMaxLength(50);
+
+            entity.Property(e => e.IsRead)
+                  .HasDefaultValue(false);
+
+            entity.Property(e => e.CreatedAt)
+                  .HasDefaultValueSql("GETDATE()");
+
+            // Optional FK if you have ERCCase entity
+            entity.Property(e => e.CaseID);
+
         });
         modelBuilder.Entity<SubCaseNature>(entity =>
         {
