@@ -11,5 +11,6 @@
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? ReadAt { get; set; }
         public string NotificationType { get; set; }
+        public bool isArchived { get; set; } = false;
     }
 }

@@ -197,6 +197,7 @@ namespace TRACE.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
         private bool NotificationExists(int id)
         {
             return _context.Notifications.Any(e => e.NotificationID == id);

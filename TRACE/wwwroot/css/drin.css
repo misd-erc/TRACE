@@ -590,6 +590,10 @@ button .bx-plus{
     display:block;
 }
 
+.nothing{
+    padding: 10px 20px !important;
+}
+
 .no-notiflist {
     padding: 15px 30px !important;
     cursor: default !important;
@@ -1769,7 +1773,7 @@ canvas {
 }
 
 .my-cases-table td:first-of-type{
-    width:fit-content !important;
+    width:130px !important;
 }
 
 #ADuserTable td:first-of-type {
@@ -2079,6 +2083,22 @@ canvas {
     color: var(--primary-color);
     
 }
+
+.notif-status {
+    font-weight: bold;
+    font-size:10px;
+    font-style: italic;
+    color: var(--active-color);
+}
+
+.notif-status.unread {
+    color: var(--active-color); 
+}
+
+.notif-status.read {
+    color: var(--active-color);
+}
+
 
 .counter{
     padding:5px 10px;;
