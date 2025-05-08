@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <ul class="notifications-list">
+            <ul class="notifications-list" id="notifList1">
                 <li>
                     <div class="action-div flex h-center gap-10">
                         <input type="checkbox" title="Select this notification." />
@@ -150,5 +150,63 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        
+      
+          
+             fetchNotifications1(); // This should now call the function
+       
+    });
 
-<script src="/js//Notifications.js"></script>
+    async function fetchNotifications1() {
+        console.log("asdf")
+        try {
+            const response = await fetch('/Notification/getNotification');
+            const notifications = await response.json();
+            
+            const notifList = document.getElementById('notifList1');
+            notifList.innerHTML = ''; // Clear existing notifications
+
+            if (notifications.length === 0) {
+                notifList.innerHTML = `<li><span class="ndesc">No notifications available.</span></li>`;
+                return;
+            }
+
+            notifications.forEach(notif => {
+                const li = document.createElement('li');
+
+                li.innerHTML = `
+                        <div class="action-div flex h-center gap-10">
+                            <input type="checkbox" title="Select this notification." />
+                            <i class="bx bxs-archive" title="Archive this notification."></i>
+                        </div>
+                        <div class="flex h-center space-between notif-item-wrap">
+                            <div class="notif-content-div">
+                                <span>${notif.message}</span>
+                            </div>
+                            <div class="notif-timestamp">
+                                <span>${formatDate(notif.createdAt)}</span>
+                            </div>
+                        </div>
+                    `;
+                li.addEventListener('click', () => {
+                    window.location.href = `/CaseDetails?id=${notif.caseID}`;
+                });
+                notifList.appendChild(li);
+            });
+        } catch (error) {
+            console.error('Error loading notifications:', error);
+        }
+    }
+
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        if (isNaN(date)) return dateString;
+        return date.toLocaleString('en-US', {
+            day: '2-digit', month: 'short', year: 'numeric',
+            hour: '2-digit', minute: '2-digit'
+        });
+    }
+</script>
+<script src="/js/Notifications.js"></script>
