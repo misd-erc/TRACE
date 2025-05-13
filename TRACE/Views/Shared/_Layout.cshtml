@@ -243,8 +243,9 @@
 
 
 
-    document.addEventListener("DOMContentLoaded", function () {
-        createUser();
+        document.addEventListener("DOMContentLoaded", async function () {
+        await createUser();
+        await delay(5000);
         fetchNotifications();
         setInterval(fetchNotifications, 5000);
     });

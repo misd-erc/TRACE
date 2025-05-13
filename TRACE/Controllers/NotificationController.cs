@@ -47,18 +47,27 @@ namespace TRACE.Controllers
         public async Task<IActionResult> getHeaderNotification()
         {
             var currentUserName = _currentUserHelper.Email;
+
             var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-            var username = user.Username;
+
+            if (user == null)
+            {
+                throw new NullReferenceException($"User with email '{currentUserName}' is not registered in the system.");
+            }
+
+            if (string.IsNullOrWhiteSpace(user.Username))
+            {
+                throw new NullReferenceException("User found but 'Username' is null or empty.");
+            }
 
             var notifications = await _context.Notifications
-                .Where(x => x.RecipientUserID == username)
+                .Where(x => x.RecipientUserID == user.Username)
                 .OrderByDescending(x => x.NotificationID)
                 .Take(8)
                 .ToListAsync();
 
             return Json(notifications);
         }
-
         [HttpPost]
         public async Task<IActionResult> MarkAsRead([FromBody] int notificationId)
         {
