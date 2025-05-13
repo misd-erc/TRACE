@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -16,11 +17,13 @@ namespace TRACE.Controllers
     {
         private readonly ErcdbContext _context;
         private readonly string _connectionString;
+        private readonly EventLogger _eventLogger;
 
-        public CaseApplicantController(ErcdbContext context, IConfiguration configuration)
+        public CaseApplicantController(ErcdbContext context, IConfiguration configuration, EventLogger eventLogger )
         {
             _context = context;
             _connectionString = configuration.GetConnectionString("ErcDatabase");
+            _eventLogger = eventLogger;
         }
 
         // GET: CaseApplicant
@@ -111,6 +114,7 @@ namespace TRACE.Controllers
             if (!ModelState.IsValid)
             {
                 _context.Add(caseApplicant);
+                await _eventLogger.LogEventAsync("CREATE", "CaseApplicant", "Create CaseApplicant");
                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
@@ -156,6 +160,8 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(caseApplicant);
+                    await _eventLogger.LogEventAsync("EDIT", "CaseApplicant", "Edit CaseApplicant");
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

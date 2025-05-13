@@ -22,12 +22,14 @@ namespace TRACE.Controllers
         private readonly ErcdbContext _context;
         private readonly string _connectionString;
         private readonly CurrentUserHelper _currentUserHelper;
+        private readonly EventLogger _eventLogger;
 
-        public ErccaseController(ErcdbContext context, IConfiguration configuration, CurrentUserHelper currentUserHelper)
+        public ErccaseController(ErcdbContext context, IConfiguration configuration, CurrentUserHelper currentUserHelper, EventLogger eventLogger)
         {
             _context = context;
             _connectionString = configuration.GetConnectionString("ErcDatabase");
             _currentUserHelper = currentUserHelper;
+            _eventLogger = eventLogger;
         }
 
         // GET: Erccase
@@ -529,16 +531,8 @@ namespace TRACE.Controllers
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
 
-            EventLog eventLog = new EventLog();
-            eventLog.EventDatetime = DateTime.Now;
-            var currentUserName = _currentUserHelper.Email;
-            var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-            eventLog.UserId = user.Username;
-            eventLog.Event = "CREATE";
-            eventLog.Source = "ERC CASE";
-            eventLog.Category = "Create Case";
-            _context.EventLogs.Add(eventLog);
-            await _context.SaveChangesAsync();
+            await _eventLogger.LogEventAsync("CREATE", "ERC CASE", "Create Case");
+
 
             ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "Description");
             ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNature");
