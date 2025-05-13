@@ -41,6 +41,7 @@ builder.Services.AddScoped<CurrentUserHelper>(serviceProvider =>
     return new CurrentUserHelper(user, tokenAcquisition, configuration, dbContext, httpContextAccessor);
 });
 
+builder.Services.AddScoped<EventLogger>();
 
 builder.Services.AddHttpClient<GetGroupMemberHelper>();
 
