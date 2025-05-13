@@ -35,7 +35,7 @@ namespace TRACE.Controllers
         {
             var tasks = await (from task in _context.CaseTasks
                                join user in _context.Users
-                               on task.UserId equals user.Id.ToString() into userJoin
+                               on task.UserId equals user.Username into userJoin
                                from user in userJoin.DefaultIfEmpty()
                                where task.ErccaseId == id
                                select new
@@ -79,24 +79,28 @@ namespace TRACE.Controllers
         // GET: CaseTask/Create
         public IActionResult Create(int id)
         {
-            // Load document list
             ViewData["DocumentId"] = new SelectList(_context.Documents, "DocumentId", "Subject");
 
-            // Get unique usernames assigned to the ERC case
-            var assignedUsernames = _context.CaseAssignments
-                .Where(ca => ca.ErccaseId == id && ca.IsActive)
-                .Select(ca => ca.UserId) // this is actually the Username
-                .Distinct()
-                .ToList();
+            //var assignedUsernames = _context.CaseAssignments
+            //    .Where(ca => ca.ErccaseId == id && ca.IsActive)
+            //    .Select(ca => ca.UserId)
+            //    .Distinct()
+            //    .ToList();
 
-            // Populate dropdown with usernames directly
-            ViewData["UserId"] = new SelectList(assignedUsernames); 
+            var assignedUsers = (from u in _context.Users
+                                 join ca in (from caSub in _context.CaseAssignments
+                                             where caSub.ErccaseId == id && caSub.IsActive
+                                             select caSub.UserId).Distinct()
+                                 on u.Username equals ca
+                                 select new { u.Username, u.Fullname }).ToList();
 
-            // Pass selected case ID to view
+            ViewData["UserId"] = new SelectList(assignedUsers, "Username", "Fullname");
+
             ViewData["ErccaseId"] = id;
 
             return View();
         }
+
 
         // POST: CaseTask/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
