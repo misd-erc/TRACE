@@ -134,20 +134,24 @@ namespace TRACE.Controllers
                 var currentUserName = _currentUserHelper.Email;
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
                 caseTask.TaskedBy = user.Username;
-
+                System.Diagnostics.Debug.WriteLine("TASK CREATED");
                 _context.Add(caseTask);
                 await _context.SaveChangesAsync();
 
-                var assignedUser = _context.Users.FirstOrDefault(u => u.Id.ToString() == caseTask.UserId);
+                var assignedUser = _context.Users.FirstOrDefault(u => u.Username == caseTask.UserId);
                 string assignedEmail = assignedUser != null ? $"{assignedUser.Username}@erc.ph" : null;
 
                 var ercCase = _context.Erccases.FirstOrDefault(e => e.ErccaseId == caseTask.ErccaseId);
-
+                System.Diagnostics.Debug.WriteLine("TASK CREATED2");
                 try
                 {
-                    // Check if the assigned user has email notifications enabled (IsEmailNotif is true)
+                    System.Diagnostics.Debug.WriteLine("DEBUG: assignedUser is " + (assignedUser != null ? "NOT null" : "null"));
+                    System.Diagnostics.Debug.WriteLine("DEBUG: assignedUser.IsEmailNotif = " + (assignedUser?.IsEmailNotif.ToString() ?? "null"));
+                    System.Diagnostics.Debug.WriteLine("DEBUG: ercCase is " + (ercCase != null ? "NOT null" : "null"));
+                    System.Diagnostics.Debug.WriteLine("DEBUG: caseTask.TargetCompletionDate.HasValue = " + caseTask.TargetCompletionDate.HasValue);
                     if (assignedUser != null && assignedUser.IsEmailNotif == true && ercCase != null && caseTask.TargetCompletionDate.HasValue)
                     {
+                        System.Diagnostics.Debug.WriteLine("TEST HERE: "+assignedEmail);
                         var emailHelper = new EmailNotificationsHelper();
                         emailHelper.SendCaseTaskEmail(
                             assignedUserEmail: assignedEmail,

@@ -243,11 +243,19 @@
 
 
 
-        document.addEventListener("DOMContentLoaded", async function () {
-        await createUser();
-        await delay(5000);
-        fetchNotifications();
-        setInterval(fetchNotifications, 5000);
+    document.addEventListener("DOMContentLoaded", async function () {
+        const userStatus = await createUser();
+
+        if (userStatus === "created") {
+            await delay(500); // wait if user was just created
+        }
+
+        if (userStatus !== "error") {
+            fetchNotifications();
+            setInterval(fetchNotifications, 5000);
+        } else {
+            console.warn("Notifications skipped due to user creation error.");
+        }
     });
 
     async function createUser() {
@@ -282,11 +290,22 @@
             });
 
             const result = await response.json();
-            // console.log(result);
+
+            // Handle different responses
+            if (response.ok) {
+                return result?.wasCreated === true ? "created" : "exists"; // adjust based on your backend
+            } else if (response.status === 409) {
+                return "exists"; // user already exists
+            } else {
+                console.error('Create user failed:', result);
+                return "error";
+            }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Create user error:', error);
+            return "error";
         }
     }
+
 
     async function fetchNotifications() {
         try {

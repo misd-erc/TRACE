@@ -52,7 +52,7 @@ namespace TRACE.Helpers
 
         public void SendCaseTaskEmail(string assignedUserEmail, string caseNo, string taskedByUsername, string taskDescription, DateTime targetCompletionDate)
         {
-            string assignedTo = assignedUserEmail.Replace("@erc.ph", "");
+            string assignedTo = assignedUserEmail.Split('@')[0];
 
 
             string emailBody = $@"
