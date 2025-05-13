@@ -77,11 +77,24 @@ namespace TRACE.Controllers
         }
 
         // GET: CaseTask/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
+            // Load document list
             ViewData["DocumentId"] = new SelectList(_context.Documents, "DocumentId", "Subject");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Username");
-            ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
+
+            // Get unique usernames assigned to the ERC case
+            var assignedUsernames = _context.CaseAssignments
+                .Where(ca => ca.ErccaseId == id && ca.IsActive)
+                .Select(ca => ca.UserId) // this is actually the Username
+                .Distinct()
+                .ToList();
+
+            // Populate dropdown with usernames directly
+            ViewData["UserId"] = new SelectList(assignedUsernames); 
+
+            // Pass selected case ID to view
+            ViewData["ErccaseId"] = id;
+
             return View();
         }
 
