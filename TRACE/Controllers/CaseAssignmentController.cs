@@ -20,12 +20,14 @@ namespace TRACE.Controllers
         private readonly ErcdbContext _context;
         private readonly string _connectionString;
         private readonly CurrentUserHelper _currentUserHelper;
+        private readonly EventLogger _eventLogger;
 
-        public CaseAssignmentController(ErcdbContext context, IConfiguration configuration, CurrentUserHelper currentUserHelper )
+        public CaseAssignmentController(ErcdbContext context, IConfiguration configuration, CurrentUserHelper currentUserHelper, EventLogger eventLogger = null)
         {
             _context = context;
             _connectionString = configuration.GetConnectionString("ErcDatabase");
             _currentUserHelper = currentUserHelper;
+            _eventLogger = eventLogger;
         }
 
         // GET: CaseAssignment
@@ -153,6 +155,7 @@ namespace TRACE.Controllers
 
                 caseAssignment.DateAssigned = DateOnly.FromDateTime(DateTime.Now);
                 _context.Add(caseAssignment);
+                await _eventLogger.LogEventAsync("CREATE", "CaseAssignment", "Create CaseAssignment");
                 await _context.SaveChangesAsync();
 
                 var assignedUsername = caseAssignment.UserId;
@@ -273,6 +276,7 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(caseAssignment);
+                    await _eventLogger.LogEventAsync("EDIT", "Case Assignment", "Edit CaseAssignment");
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -322,6 +326,7 @@ namespace TRACE.Controllers
             if (caseAssignment != null)
             {
                 _context.CaseAssignments.Remove(caseAssignment);
+                await _eventLogger.LogEventAsync("DELETE", "Case Assignment", "Delete CaseAssignment");
             }
 
             await _context.SaveChangesAsync();

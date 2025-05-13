@@ -213,6 +213,7 @@ namespace TRACE.Controllers
             if (caseApplicant != null)
             {
                 _context.CaseApplicants.Remove(caseApplicant);
+                await _eventLogger.LogEventAsync("DELETE", "CaseApplicant", "Delete CaseApplicant");
             }
 
             await _context.SaveChangesAsync();
