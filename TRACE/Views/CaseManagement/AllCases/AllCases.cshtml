@@ -100,7 +100,7 @@
 <script src="~/js/CM-AllCases.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function () {
+$(document).ready(function () {
     let currentPage = 1;
     const rowsPerPage = 9;
     let caseData = [];
@@ -185,12 +185,13 @@
     }
 
 
-    $(".filter-design input").on("input", function () {
-        let searchTerm = $(this).val().toLowerCase();
+        $(".filter-design input").on("input", function () {
+        let searchTerm = ($(this).val() ?? "").toLowerCase();
+
         filteredCaseData = caseData.filter(item =>
-            item.CaseNo.toLowerCase().includes(searchTerm) ||
-            item.Title.toLowerCase().includes(searchTerm) ||
-            item.CaseStatus.toLowerCase().includes(searchTerm)
+            (item.CaseNo ?? "").toLowerCase().includes(searchTerm) ||
+            (item.Title ?? "").toLowerCase().includes(searchTerm) ||
+            (item.CaseStatus ?? "").toLowerCase().includes(searchTerm)
         );
 
         currentPage = 1;
