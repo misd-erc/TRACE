@@ -10,6 +10,9 @@
     /***/
     --font-heading: Montserrat;
     --font-body: Poppins;
+
+    /**COLOR SCHEME HEHE**/
+    --color-scheme: light;
 }
 
 *{
@@ -1577,8 +1580,10 @@ canvas {
     background: var(--body-color);
     color: var(--font-color);
     border: none;
-    color-scheme: dark light;
+    color-scheme: var(--color-scheme);
 }
+
+
 
 .case-date-filter div label {
     font-weight:700;
@@ -1867,6 +1872,10 @@ canvas {
 .form-input-div select, .form-input-div input {
     height: 35px;
     padding: 5px 10px;
+}
+
+.form-input-div input[type=date]{
+    color-scheme: var(--color-scheme);
 }
 
 .form-input-div textarea{
@@ -2361,3 +2370,20 @@ canvas {
     cursor:pointer;
 
 }
+
+/*AUDIT LOGS*/
+.date-filterino{
+    background: var(--theme);
+    padding:15px 20px;
+    margin-bottom:20px;
+}
+
+.date-filterino input[type=date] {
+    font-family: var(--font-body);
+    padding: 5px 10px;
+    background: var(--body-color);
+    color: var(--font-color);
+    border: none;
+    color-scheme: var(--color-scheme);
+}
+/*AUDIT LOGS*/

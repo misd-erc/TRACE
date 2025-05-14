@@ -10,6 +10,8 @@
         "--active-color": "#aeaeae63",
         "--font-color": "#444",
         "--heading-color": "#5E60CE",
+        "--color-scheme": "light",
+        
     };
 
     const darkTheme = {
@@ -19,6 +21,7 @@
         "--active-color": "#aeaeae63",
         "--font-color": "#EAEAEA",
         "--heading-color": "#8D99FF",
+        "--color-scheme": "dark",
     };
 
     function applyTheme(theme, isDark) {

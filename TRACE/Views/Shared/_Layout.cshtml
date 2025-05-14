@@ -31,6 +31,7 @@
     <!--Main CSS-->
     <link rel="stylesheet" href="~/css/drin.css" asp-append-version="true" />
 
+    <!--WE DONT USE BOOTSTRAP I AM THE BOOTSTRAP-->
     @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
     @* <link rel="stylesheet" href="~/TRACE.styles.css" asp-append-version="true" /> *@
 </head>
@@ -138,6 +139,10 @@
                     <li onclick="location.href='@Url.Action("Index", "Users")'">
                         <i class='bx bxs-user-detail'></i>
                         <span>User Management</span>
+                    </li>
+                    <li onclick="location.href='@Url.Action("UserLogs", "UserLogs")'">
+                        <i class='bx bxs-user-circle'  ></i>
+                        <span>User Audit</span>
                     </li>
                 </ul>
             </div>

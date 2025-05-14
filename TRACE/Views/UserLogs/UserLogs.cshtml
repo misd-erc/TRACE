@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "User Audits";
+}
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > User Audit
+</div>
+
+<div class="main-head-div flex h-center space-between">
+    <div class="title-div">
+        <h3>User Audit</h3>
+        <p>Compiling the chronicles of user activity.</p>
+    </div>
+</div>
+
+<div class="date-filterino shadow border-radius-5">
+    <span>Start Date</span>
+    <input type="date" class="startodate"/>
+    <span>End Date</span>
+    <input type="date" class="endodate" />
+</div>
+
+<div class="case-card shadow border-radius-5 flex space-between">
+    <div class="case-table-div">
+        <table id="userauditTable" class="all-cases-table">
+            <thead>
+                <tr>
+                    <th>TIMESTAMP</th>
+                    <th>USER</th>
+                    <th>MODULE</th>
+                    <th>EVENT</th>
+                    <th>SOURCE</th>
+                </tr>
+            </thead>
+            <tbody id="userauditBody">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination flex h-center gap-10">
+        <span>Current Page: </span>
+        <select id="paginationSelect"></select>
+        <span class="prev flex h-center" id="prevPage"><i class='bx bx-chevron-left'></i></span>
+        <span class="next flex h-center" id="nextPage"><i class='bx bx-chevron-right'></i></span>
+    </div>
+</div>
