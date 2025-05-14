@@ -282,6 +282,26 @@ namespace TRACE.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetCaseCount()
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                var sql = "SELECT COUNT(*) FROM cases.ERCCases";
+
+                var count = await connection.ExecuteScalarAsync<int>(sql);
+
+                return Json(new { TotalCases = count });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching case count", error = ex.Message });
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> GetAllMyCasesDashboard()
         {
             try
