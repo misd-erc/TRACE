@@ -130,7 +130,7 @@ namespace TRACE.Controllers
         {
             
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
-            ViewData["Users"] = new SelectList(_context.Users, "Username", "Username");
+            ViewData["Users"] = new SelectList(_context.Users, "Username", "Fullname");
             ViewData["HandlingOfficerTypeId"] = new SelectList(_context.HandlingOfficerTypes, "HandlingOfficerTypeId", "OfficerType");
             return View();
         }

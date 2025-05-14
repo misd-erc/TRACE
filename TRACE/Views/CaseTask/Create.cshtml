@@ -24,7 +24,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-input-div">
                     <label asp-for="UserId" class="control-label"></label>
-                    <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                    <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId" id="userfilter"></select>
                 </div>
                 <div class="form-input-div">
                     <label asp-for="Task" class="control-label"></label>
@@ -65,6 +65,18 @@
                 placeholderValue: 'Search Document',
                 searchChoices: true,
                 searchResultLimit: 9,
+                position: 'bottom',
+            });
+
+            const element2 = document.getElementById('userfilter');
+            const choices2 = new Choices(element2, {
+                searchEnabled: true,
+                searchFuzzy: false,
+                removeItemButton: true,
+                placeholder: true,
+                placeholderValue: 'Search User',
+                searchChoices: true,
+                searchResultLimit: 5,
                 position: 'bottom',
             });
             $("#createForm").submit(function (event) {

@@ -24,7 +24,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-input-div">
                     <label asp-for="UserId" class="control-label">Select User to be assigned</label>
-                    <select asp-for="UserId" class="form-control" asp-items="ViewBag.Users"></select>
+                    <select asp-for="UserId" class="form-control" asp-items="ViewBag.Users" id="userfilterino"></select>
                 </div>
                 <div class="form-input-div">
                     <label asp-for="HandlingOfficerTypeId" class="control-label"></label>
@@ -46,6 +46,17 @@
 
     <script>
         $(document).ready(function () {
+            const element = document.getElementById('userfilterino');
+            const choices = new Choices(element, {
+                searchEnabled: true,
+                searchFuzzy: false,
+                placeholder: true,
+                placeholderValue: 'Search User',
+                searchResultLimit: 9,
+                position: 'bottom',
+            });
+
+
             $("#createForm").submit(function (event) {
                 event.preventDefault();
 
