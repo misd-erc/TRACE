@@ -225,6 +225,10 @@ button .bx-plus{
     align-items:center;
 }
 
+.h-down{
+    align-items: flex-end;
+}
+
 .gap-10{
     gap:10px;
 }
@@ -2385,5 +2389,16 @@ canvas {
     color: var(--font-color);
     border: none;
     color-scheme: var(--color-scheme);
+}
+
+.date-filterino select {
+    width: 100%;
+    padding: 6px 10px;
+    outline: none;
+    border: none;
+    font-family: var(--font-body);
+    background: var(--body-color);
+    color: var(--font-color);
+    border-radius:5px;
 }
 /*AUDIT LOGS*/

@@ -12,11 +12,32 @@
     </div>
 </div>
 
-<div class="date-filterino shadow border-radius-5">
-    <span>Start Date</span>
-    <input type="date" class="startodate"/>
-    <span>End Date</span>
-    <input type="date" class="endodate" />
+<div class="date-filterino shadow border-radius-5 flex h-down gap-10">
+    <div>
+        <i>Start Date</i><br />
+        <input type="date" class="startodate" />
+    </div>
+    <div>
+        <i>End Date</i><br />
+        <input type="date" class="endodate" />
+    </div>
+
+    <div class="filter-design border-radius-5 flex h-center">
+        <i class='bx bx-user'></i>
+        <input type="text" placeholder="Enter User" />
+    </div>
+
+    <div>
+        <select>
+            <option disabled selected>Select Module</option>
+            <option>Case Management</option>
+            <option>Document Management</option>
+            <option>Content Management</option>
+            <option>User Management</option>
+        </select>
+    </div>
+
+    <button><i class='bx bxs-filter-alt'></i> FILTER</button>
 </div>
 
 <div class="case-card shadow border-radius-5 flex space-between">
@@ -28,7 +49,6 @@
                     <th>USER</th>
                     <th>MODULE</th>
                     <th>EVENT</th>
-                    <th>SOURCE</th>
                 </tr>
             </thead>
             <tbody id="userauditBody">
