@@ -4,7 +4,11 @@
 <div class="dashboard">
     <div class="heading-div">
         <h1>Welcome Back @ViewBag.Name.Split(' ')[0]!</h1>
-        <p>You have <span class="clickable"><a href="/notifications">2 unread</a></span> notifications.</p>
+        <p>
+            You have <span class="clickable">
+                <a href="/notifications" id="unreadCountLink">N/A unread</a>
+            </span> notifications.
+        </p>
     </div>
     <strong class="date-today">Friday, 28 February 2025 14:00</strong>
 
@@ -14,28 +18,28 @@
             <span class="count">N/A</span>
             <div class="card-desc">
                 <p>Promulgated / Decided</p>
-                <span class="sub-desc up-value"><i class='bx bxs-up-arrow up-value'></i> 10% Compared to previous 30 days</span>
+                @* <span class="sub-desc up-value"><i class='bx bxs-up-arrow up-value'></i> 10% Compared to previous 30 days</span> *@
             </div>
         </div>
         <div class="db-card gap-10 purple-bg shadow">
             <span class="count">N/A</span>
             <div class="card-desc">
                 <p>Pending / Ongoing</p>
-                <span class="sub-desc stable-value"><i class='bx bxs-square stable-value'></i> Stable rate</span>
+                @* <span class="sub-desc stable-value"><i class='bx bxs-square stable-value'></i> Stable rate</span> *@
             </div>
         </div>
         <div class="db-card gap-10 green-bg shadow">
             <span class="count">N/A</span>
             <div class="card-desc">
                 <p>For FOE Submission</p>
-                <span class="sub-desc down-value"><i class='bx bxs-down-arrow down-value'></i> 10% compared to previous 30 days</span>
+                @* <span class="sub-desc down-value"><i class='bx bxs-down-arrow down-value'></i> 10% compared to previous 30 days</span> *@
             </div>
         </div>
         <div class="db-card gap-10 red-bg shadow">
             <span class="count">N/A</span>
             <div class="card-desc">
                 <p>Closed / Dismissed</p>
-                <span class="sub-desc stable-value"><i class='bx bxs-square stable-value'></i> Stable rate</span>
+                @* <span class="sub-desc stable-value"><i class='bx bxs-square stable-value'></i> Stable rate</span> *@
             </div>
         </div>
     </div>
@@ -47,13 +51,14 @@
                 <h3>Case Filing Trends</h3>
                 <div class="filter-design border-radius-5 flex h-center">
                     <i class='bx bxs-filter-alt'></i>
-                    <select>
-                        <option disabled selected>Today, Last 7 Days, Last 30 Days...</option>
-                        <option>Today</option>
-                        <option>Last 7 Days</option>
-                        <option>Last 30 Days</option>
-                        <option>Custom</option>
+                    <select id="dateFilter">
+                        <option disabled selected value="">Graph filter</option>
+                        <option value="Today">Today</option>
+                        <option value="Last 7 Days">Last 7 Days</option>
+                        <option value="Last 30 Days">Last 30 Days</option>
+                        <option value="Alltime">All time</option>
                     </select>
+                    <button id="resetFilter" style="margin-left: 8px;">Reset</button>
                 </div>
             </div>
             <div class="chart-content">

@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>3t04p8x0ja</Fingerprint>
-      <Integrity>6Tl7Nwqn7QKzKs7G4uYvAc0pxb+PNgPI8FlkU3+cN3E=</Integrity>
+      <Fingerprint>csvcok7eza</Fingerprint>
+      <Integrity>7AMx1sNO3YNJWI7EhpTIz8ND+sKdO43RxnztNp5nY+M=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\drin.css'))</OriginalItemSpec>
@@ -354,8 +354,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>4h48vgbg29</Fingerprint>
-      <Integrity>WMj15WtGQlLy+yWVrixk33nwjW1M6adH5Coq96Y/R74=</Integrity>
+      <Fingerprint>32vbwu6zry</Fingerprint>
+      <Integrity>++nb5NbzOo0bcL+lCYSjNAelyX9kNmyydOHbeX3arlA=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\DashboardModules.js'))</OriginalItemSpec>
@@ -372,8 +372,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>z8s9y3nyd6</Fingerprint>
-      <Integrity>QzWCrzJKZotzKy3FkdpXfUqFTIzlbnPmvw8wntPNoTY=</Integrity>
+      <Fingerprint>7l6ubmslnf</Fingerprint>
+      <Integrity>JYByKGQnZsaLI20HaDxma5VdtIi6Xep9hvQXkh44lnI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\dbchart.js'))</OriginalItemSpec>
@@ -390,8 +390,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>wkrd7xm61z</Fingerprint>
-      <Integrity>IMg142JosxzvS17BlRM14Wih0JMVc3kElrXrcOq8JK0=</Integrity>
+      <Fingerprint>skqity3zhq</Fingerprint>
+      <Integrity>9LOYL0VNZSTKkcK+fQTMCR4zYF4dNkTksnVMYGwdcGQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\drin-theme.js'))</OriginalItemSpec>

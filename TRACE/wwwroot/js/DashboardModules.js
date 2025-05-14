@@ -5,6 +5,7 @@ let currentPagedmc = 1;
 const casesPerPagedmc = 4;
 
 document.addEventListener('DOMContentLoaded', function () {
+    dashboard_fetchcountofunreadnotifhehe();
     dashboard_fetchAllMyCases();
     dashboard_fetchAllCaseHearings();
     dashboard_fetchTotalCountCases();
@@ -36,6 +37,24 @@ document.addEventListener('DOMContentLoaded', function () {
         render_dashboard_mycasesTable();
     });
 });
+
+
+function dashboard_fetchcountofunreadnotifhehe() {
+    fetch('/Notification/GetUnreadNotificationCount')
+        .then(response => response.json())
+        .then(data => {
+            const count = data.count;
+            const unreadLink = document.getElementById('unreadCountLink');
+            if (unreadLink) {
+                unreadLink.textContent = `${count} unread`;
+            } else {
+                console.error("Element with ID 'unreadCountLink' not found.");
+            }
+        })
+        .catch(error => {
+            console.error("Failed to load unread notifications count:", error);
+        });
+}
 
 function dashboard_fetchAllCaseHearings() {
     fetch(`/Hearings/GetHearing`)

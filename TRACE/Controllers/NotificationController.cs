@@ -68,6 +68,26 @@ namespace TRACE.Controllers
 
             return Json(notifications);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUnreadNotificationCount()
+        {
+            var currentUserName = _currentUserHelper.Email;
+            var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+            if (user == null)
+            {
+                return Json(new { count = 0 });
+            }
+
+            var username = user.Username;
+
+            var unreadCount = await _context.Notifications
+                .Where(x => x.RecipientUserID == username && x.IsRead == false)
+                .CountAsync();
+
+            return Json(new { count = unreadCount });
+        }
+
         [HttpPost]
         public async Task<IActionResult> MarkAsRead([FromBody] int notificationId)
         {
