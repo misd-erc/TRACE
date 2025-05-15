@@ -203,20 +203,23 @@ namespace TRACE.Controllers
 
                 var sql = @"
                         WITH GroupDefinitions AS (
-                            SELECT 'Decided / Promulgated' AS GroupedStatus
+                            SELECT 'Pending / Ongoing' AS GroupedStatus, 1 AS SortOrder
                             UNION ALL
-                            SELECT 'Pending / Ongoing'
+                            SELECT 'Submitted for Resolution', 2
                             UNION ALL
-                            SELECT 'For FOE Submission'
+                            SELECT 'Promulgated / Decided', 3
                             UNION ALL
-                            SELECT 'Closed / Dismissed'
+                            SELECT 'Decided with MR', 4
+                            UNION ALL
+                            SELECT 'Closed / Dismissed', 5
                         ),
                         GroupedCounts AS (
                             SELECT 
                                 CASE 
-                                    WHEN cs.Status LIKE '%Decided%' OR cs.Status LIKE '%Promulgated%' THEN 'Decided / Promulgated'
                                     WHEN cs.Status LIKE '%Pending%' OR cs.Status LIKE '%Ongoing%' THEN 'Pending / Ongoing'
-                                    WHEN cs.Status LIKE '%For FOE Submission%' THEN 'For FOE Submission'
+                                    WHEN cs.Status LIKE '%For Resolution%' THEN 'Submitted for Resolution'
+                                    WHEN cs.Status LIKE '%Promulgated%' OR cs.Status LIKE '%Decided%' THEN 'Promulgated / Decided'
+                                    WHEN cs.Status LIKE '%Decided with MR%' THEN 'Decided with MR'
                                     WHEN cs.Status LIKE '%Closed%' OR cs.Status LIKE '%Dismissed%' THEN 'Closed / Dismissed'
                                 END AS GroupedStatus,
                                 COUNT(ec.ERCCaseID) AS TotalCases
@@ -225,18 +228,20 @@ namespace TRACE.Controllers
                             JOIN 
                                 [ercdb].[cases].[CaseStatuses] cs ON ec.CaseStatusID = cs.CaseStatusID
                             WHERE
-                                cs.Status LIKE '%Decided%' OR
-                                cs.Status LIKE '%Promulgated%' OR
                                 cs.Status LIKE '%Pending%' OR
                                 cs.Status LIKE '%Ongoing%' OR
-                                cs.Status LIKE '%For FOE Submission%' OR
+                                cs.Status LIKE '%For Resolution%' OR
+                                cs.Status LIKE '%Promulgated%' OR
+                                cs.Status LIKE '%Decided%' OR
+                                cs.Status LIKE '%Decided with MR%' OR
                                 cs.Status LIKE '%Closed%' OR
                                 cs.Status LIKE '%Dismissed%'
                             GROUP BY 
                                 CASE 
-                                    WHEN cs.Status LIKE '%Decided%' OR cs.Status LIKE '%Promulgated%' THEN 'Decided / Promulgated'
                                     WHEN cs.Status LIKE '%Pending%' OR cs.Status LIKE '%Ongoing%' THEN 'Pending / Ongoing'
-                                    WHEN cs.Status LIKE '%For FOE Submission%' THEN 'For FOE Submission'
+                                    WHEN cs.Status LIKE '%For Resolution%' THEN 'Submitted for Resolution'
+                                    WHEN cs.Status LIKE '%Promulgated%' OR cs.Status LIKE '%Decided%' THEN 'Promulgated / Decided'
+                                    WHEN cs.Status LIKE '%Decided with MR%' THEN 'Decided with MR'
                                     WHEN cs.Status LIKE '%Closed%' OR cs.Status LIKE '%Dismissed%' THEN 'Closed / Dismissed'
                                 END
                         )
@@ -249,7 +254,9 @@ namespace TRACE.Controllers
                         LEFT JOIN 
                             GroupedCounts gc ON gd.GroupedStatus = gc.GroupedStatus
                         ORDER BY 
-                            gd.GroupedStatus;
+                            gd.SortOrder;
+
+
                         ";
 
                 var result = await connection.QueryAsync<dynamic>(sql);

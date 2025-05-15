@@ -194,7 +194,6 @@ function render_dashboard_mycasesTable() {
     });
 }
 function render_dashboard_totalcards(data) {
-    // Create tooltip element
     let tooltip = document.querySelector('.tooltip');
     if (!tooltip) {
         tooltip = document.createElement('div');
@@ -206,7 +205,6 @@ function render_dashboard_totalcards(data) {
         const formattedTotalCases = item.TotalCases;
         let shortVersion = formattedTotalCases.toLocaleString();
 
-        // Format to short version
         if (formattedTotalCases >= 1000 && formattedTotalCases < 1000000) {
             shortVersion = (formattedTotalCases / 1000).toFixed(1) + 'K';
         } else if (formattedTotalCases >= 1000000) {
@@ -215,21 +213,28 @@ function render_dashboard_totalcards(data) {
 
         let selector = '';
 
-        if (item.GroupedStatus === 'Decided / Promulgated') {
-            selector = '.blue-bg .count';
-        } else if (item.GroupedStatus === 'Pending / Ongoing') {
-            selector = '.purple-bg .count';
-        } else if (item.GroupedStatus === 'For FOE Submission') {
-            selector = '.green-bg .count';
-        } else if (item.GroupedStatus === 'Closed / Dismissed') {
-            selector = '.red-bg .count';
+        switch (item.GroupedStatus) {
+            case 'Pending / Ongoing':
+                selector = '.purple-bg .count';
+                break;
+            case 'Submitted for Resolution':
+                selector = '.orange-bg .count';
+                break;
+            case 'Promulgated / Decided':
+                selector = '.blue-bg .count';
+                break;
+            case 'Decided with MR':
+                selector = '.green-bg .count';
+                break;
+            case 'Closed / Dismissed':
+                selector = '.red-bg .count';
+                break;
         }
 
         const cardElement = document.querySelector(selector);
 
         if (cardElement) {
             cardElement.textContent = shortVersion;
-
 
             cardElement.addEventListener('mouseenter', function () {
                 tooltip.textContent = formattedTotalCases.toLocaleString();
@@ -247,6 +252,7 @@ function render_dashboard_totalcards(data) {
         }
     });
 }
+
 function updateDateTime() {
     const dateElement = document.querySelector('.date-today');
     const now = new Date();

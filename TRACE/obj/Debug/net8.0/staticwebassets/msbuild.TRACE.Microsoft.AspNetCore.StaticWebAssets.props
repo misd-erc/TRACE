@@ -354,8 +354,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>32vbwu6zry</Fingerprint>
-      <Integrity>++nb5NbzOo0bcL+lCYSjNAelyX9kNmyydOHbeX3arlA=</Integrity>
+      <Fingerprint>yr8y6jwype</Fingerprint>
+      <Integrity>Ei2c0ULz+ETVqVEbQ2w1Tad4UJjQLiDZzY4udqZpNhI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\DashboardModules.js'))</OriginalItemSpec>
@@ -426,8 +426,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>4xchtyjx49</Fingerprint>
-      <Integrity>qNCJArOGM8wZZyCk/xgOzG/3Jdv6XRF788vk93z2dPY=</Integrity>
+      <Fingerprint>e2md8czs61</Fingerprint>
+      <Integrity>CmexkEtihrmlekbJRfjUz39mH1md62PgECahp1RoilA=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\Notifications.js'))</OriginalItemSpec>
