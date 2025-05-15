@@ -372,8 +372,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>7l6ubmslnf</Fingerprint>
-      <Integrity>JYByKGQnZsaLI20HaDxma5VdtIi6Xep9hvQXkh44lnI=</Integrity>
+      <Fingerprint>94pqzxqz3g</Fingerprint>
+      <Integrity>qYhwdw6oomloGlrZkz8x8l5XBGG2GleiOPlet5EPBUY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\dbchart.js'))</OriginalItemSpec>

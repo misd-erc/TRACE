@@ -334,15 +334,17 @@
                 return;
             }
 
-            notifications.forEach(notif => {
+                notifications.forEach(notif => {
                 const li = document.createElement('li');
                 li.classList.toggle('unread', notif.isRead === false);
+                li.classList.toggle('bold', notif.isRead === false);
 
-                    li.innerHTML = `
-                        <span class="ndesc">${notif.message} <i class='bx ${notif.isRead ? 'bxs-envelope-open' : 'bxs-envelope'} notif-icon'></i></span>
-                        <span class="ndate">${formatDate(notif.createdAt)}</span>
-                    `;
-                    li.addEventListener('click', async () => {
+                li.innerHTML = `
+                    <span class="ndesc">${notif.message} <i class='bx ${notif.isRead ? 'bxs-envelope-open' : 'bxs-envelope'} notif-icon'></i></span>
+                    <span class="ndate">${formatDate(notif.createdAt)}</span>
+                `;
+
+                li.addEventListener('click', async () => {
                     try {
                         await fetch('/Notification/MarkAsRead', {
                             method: 'POST',
@@ -358,8 +360,10 @@
                         window.location.href = `/CaseDetails?id=${notif.caseID}`;
                     }
                 });
+
                 notifList.appendChild(li);
             });
+
         } catch (error) {
             console.error('Error loading notifications:', error);
         }
