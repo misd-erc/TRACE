@@ -15,6 +15,7 @@ async function fetchallNotificationsInModule() {
         const unreadCounter = document.getElementById('unreadnotifCounter');
         const archivedCounter = document.getElementById('archivednotifCounter');
 
+        // Clear existing content
         allnotifList.innerHTML = '';
         unreadnotifList.innerHTML = '';
         archivednotifList.innerHTML = '';
@@ -30,71 +31,91 @@ async function fetchallNotificationsInModule() {
         let archivedCount = 0;
 
         notifications.forEach(notif => {
-            const linotif = document.createElement('li');
-            linotif.innerHTML = `
-                    <div class="action-div flex h-center gap-10">
-                        <input type="checkbox" class="chekin" title="Select this notification." />
-                    </div>
-                    <div class="flex h-center space-between notif-item-wrap">
-                        <div class="notif-content-div">
-                            <span class='clickupdateread'>${notif.message}</span>
-                            <span class="notif-status ${notif.isRead ? 'read' : 'unread'}">[${notif.isRead ? 'Read' : 'Unread'}]</span>
-                        </div>
-                        <div class="notif-timestamp">
-                            <span>${formatDate(notif.createdAt)}</span>
-                        </div>
-                    </div>
-                `;
-            const updateReadEl = linotif.querySelector('.clickupdateread');
-            if (updateReadEl) {
-                updateReadEl.addEventListener('click', async (e) => {
-                    e.stopPropagation();
-                    try {
-                        await fetch('/Notification/MarkAsRead', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(notif.notificationID)
-                        });
-
-                        window.location.href = `/CaseDetails?id=${notif.caseID}`;
-                    } catch (error) {
-                        console.error('Failed to mark notification as read:', error);
-                        window.location.href = `/CaseDetails?id=${notif.caseID}`;
-                    }
-                });
+            if (!notif.isArchived) {
+                const allItem = createNotificationListItem(notif);
+                allnotifList.appendChild(allItem);
             }
 
-            allnotifList.appendChild(linotif.cloneNode(true));
-
             if (notif.isArchived) {
-                archivednotifList.appendChild(linotif.cloneNode(true));
+                const archivedItem = createNotificationListItem(notif);
+                archivednotifList.appendChild(archivedItem);
                 archivedCount++;
             } else if (!notif.isRead) {
-                unreadnotifList.appendChild(linotif.cloneNode(true));
+                const unreadItem = createNotificationListItem(notif);
+                unreadnotifList.appendChild(unreadItem);
                 unreadCount++;
             }
         });
 
-        allCounter.textContent = notifications.length;
+        // Update counters
+        allCounter.textContent = notifications.filter(n => !n.isArchived).length;
         unreadCounter.textContent = unreadCount;
         archivedCounter.textContent = archivedCount;
 
-        if (unreadCount === 0) unreadnotifList.innerHTML = `<li><span class="ndesc nothing">No unread notifications.</span></li>`;
-        if (archivedCount === 0) archivednotifList.innerHTML = `<li><span class="ndesc nothing">No archived notifications.</span></li>`;
+        // Fallback for empty lists
+        if (unreadCount === 0) {
+            unreadnotifList.innerHTML = `<li><span class="ndesc nothing">No unread notifications.</span></li>`;
+        }
+        if (archivedCount === 0) {
+            archivednotifList.innerHTML = `<li><span class="ndesc nothing">No archived notifications.</span></li>`;
+        }
 
     } catch (error) {
         console.error('Error loading notifications:', error);
     }
 }
 
+function createNotificationListItem(notif) {
+    const linotif = document.createElement('li');
+    linotif.dataset.notificationid = notif.notificationID;
+    linotif.innerHTML = `
+        <div class="action-div flex h-center gap-10">
+            <input type="checkbox" class="chekin" title="Select this notification." />
+        </div>
+        <div class="flex h-center space-between notif-item-wrap">
+            <div class="notif-content-div">
+                <span class='clickupdateread'>${notif.message}</span>
+                <span class="notif-status ${notif.isRead ? 'read' : 'unread'}">[${notif.isRead ? 'Read' : 'Unread'}]</span>
+            </div>
+            <div class="notif-timestamp">
+                <span>${formatDate(notif.createdAt)}</span>
+            </div>
+        </div>
+    `;
+
+    const updateReadEl = linotif.querySelector('.clickupdateread');
+    if (updateReadEl) {
+        updateReadEl.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            try {
+                await fetch('/Notification/MarkAsRead', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(notif.notificationID)
+                });
+
+                window.location.href = `/CaseDetails?id=${notif.caseID}`;
+            } catch (error) {
+                console.error('Failed to mark notification as read:', error);
+                window.location.href = `/CaseDetails?id=${notif.caseID}`;
+            }
+        });
+    }
+
+    return linotif;
+}
+
 function formatDate(dateString) {
     const date = new Date(dateString);
-    if (isNaN(date)) return dateString;
     return date.toLocaleString('en-US', {
-        day: '2-digit', month: 'short', year: 'numeric',
-        hour: '2-digit', minute: '2-digit'
+        month: 'short',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
     });
 }
 
@@ -235,5 +256,132 @@ document.getElementById("archive").addEventListener("change", function (e) {
             document.getElementById("deselectarchive").setAttribute("disabled", "true");
             document.getElementById("unarchiveselected").setAttribute("disabled", "true");
         }
+    }
+});
+
+
+async function archiveNotifications(ids) {
+    const response = await fetch('/Notification/ArchiveSelected', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(ids)
+    });
+
+    if (!response.ok) {
+        throw new Error('Server failed to archive notifications.');
+    }
+
+    const result = await response.json();
+
+    if (!result.success) {
+        throw new Error(result.message || 'Failed to archive notifications.');
+    }
+
+    return result;
+}
+
+async function unarchiveNotifications(ids) {
+    console.log("SELECTED IDs:" + ids);
+    console.log("Stringified JSON body:", JSON.stringify(ids));
+    const response = await fetch('/Notification/UnarchiveSelected', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(ids)
+    });
+
+    if (!response.ok) {
+        throw new Error('Server failed to unarchive notifications.');
+    }
+
+    const result = await response.json();
+
+    if (!result.success) {
+        throw new Error(result.message || 'Failed to unarchive notifications.');
+    }
+
+    return result;
+}
+
+document.getElementById("archiveselected").addEventListener("click", async function () {
+    const selectedIDs = Array.from(document.querySelectorAll("#all input[type='checkbox']:checked"))
+        .map(cb => cb.closest("li")?.dataset.notificationid)
+        .filter(id => id);
+
+    if (selectedIDs.length === 0) return;
+
+    try {
+        await archiveNotifications(selectedIDs);
+
+        Swal.fire({
+            title: "Success!",
+            text: "Selected notifications have been archived.",
+            icon: "success",
+            confirmButtonText: "OK",
+            customClass: {
+                popup: "swal2-popup",
+                confirmButton: "swal2-confirm"
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.reload();
+            }
+        });
+    } catch (error) {
+        console.error("Failed to archive notifications:", error);
+
+        Swal.fire({
+            title: "Oops!",
+            text: "Something went wrong. Please try again.",
+            icon: "error",
+            confirmButtonText: "OK",
+            customClass: {
+                popup: "swal2-popup",
+                confirmButton: "swal2-confirm"
+            }
+        });
+    }
+});
+
+document.getElementById("unarchiveselected").addEventListener("click", async function () {
+    const selectedIDs = Array.from(document.querySelectorAll("#archive input[type='checkbox']:checked"))
+        .map(cb => cb.closest("li")?.dataset.notificationid)
+        .filter(id => id);
+
+    if (selectedIDs.length === 0) return;
+
+    try {
+        await unarchiveNotifications(selectedIDs);
+
+        Swal.fire({
+            title: "Success!",
+            text: "Selected notifications have been unarchived.",
+            icon: "success",
+            confirmButtonText: "OK",
+            customClass: {
+                popup: "swal2-popup",
+                confirmButton: "swal2-confirm"
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.reload();
+            }
+        });
+    } catch (error) {
+        console.error("Failed to unarchive notifications:", error);
+
+        Swal.fire({
+            title: "Oops!",
+            text: "Something went wrong. Please try again.",
+            icon: "error",
+            confirmButtonText: "OK",
+            customClass: {
+                popup: "swal2-popup",
+                confirmButton: "swal2-confirm"
+            }
+        });
     }
 });

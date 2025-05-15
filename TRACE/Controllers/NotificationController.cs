@@ -102,6 +102,61 @@ namespace TRACE.Controllers
 
             return Ok();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ArchiveSelected([FromBody] List<int> notificationIDs)
+        {
+            if (notificationIDs == null || !notificationIDs.Any())
+                return BadRequest("No notification IDs provided.");
+
+            try
+            {
+                var idList = string.Join(",", notificationIDs);
+
+                var sql = $@"
+                        UPDATE [cases].[Notifications]
+                        SET isArchived = 1
+                        WHERE NotificationID IN ({idList})
+                    ";
+
+                await _context.Database.ExecuteSqlRawAsync(sql);
+
+                return Ok(new { success = true, message = "Notifications archived successfully." });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return StatusCode(500, "Server failed to archive notifications.");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UnarchiveSelected([FromBody] List<int> notificationIDs)
+        {
+            if (notificationIDs == null || !notificationIDs.Any())
+                return BadRequest("No notification IDs provided.");
+
+            try
+            {
+                var idList = string.Join(",", notificationIDs);
+
+                var sql = $@"
+                        UPDATE [cases].[Notifications]
+                        SET isArchived = 0
+                        WHERE NotificationID IN ({idList})
+                    ";
+
+                await _context.Database.ExecuteSqlRawAsync(sql);
+
+                return Ok(new { success = true, message = "Notifications removed from archive successfully." });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return StatusCode(500, "Server failed to remove notifications from archive.");
+            }
+        }
+
         // GET: Notification/Details/5
         public async Task<IActionResult> Details(int? id)
         {

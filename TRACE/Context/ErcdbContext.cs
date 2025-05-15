@@ -321,6 +321,10 @@ public partial class ErcdbContext : DbContext
             entity.Property(e => e.CreatedAt)
                   .HasDefaultValueSql("GETDATE()");
 
+            entity.Property(e => e.isArchived)
+                  .HasColumnName("isArchived")
+                  .HasDefaultValue(false);
+
             // Optional FK if you have ERCCase entity
             entity.Property(e => e.CaseID);
 

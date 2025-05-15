@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\views\\notificationmanagement\\notifications.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\notificationmanagement\\notifications.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\wwwroot\\js\\notifications.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\js\\notifications.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,7 +25,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 287,
+          "DockedHeight": 378,
           "SelectedChildIndex": 10,
           "Children": [
             {
@@ -63,27 +71,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "NotificationController.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\NotificationController.cs",
+              "RelativeDocumentMoniker": "TRACE\\Controllers\\NotificationController.cs",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\NotificationController.cs",
+              "RelativeToolTip": "TRACE\\Controllers\\NotificationController.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAQwJQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T04:41:26.003Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Notifications.js",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\Notifications.js",
+              "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\Notifications.js",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\Notifications.js",
+              "RelativeToolTip": "TRACE\\wwwroot\\js\\Notifications.js",
+              "ViewState": "AgIAAFMBAAAAAAAAAAAQwGoBAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-15T03:20:07.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Notifications.cshtml",
               "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\NotificationManagement\\Notifications.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\NotificationManagement\\Notifications.cshtml",
               "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\NotificationManagement\\Notifications.cshtml",
               "RelativeToolTip": "TRACE\\Views\\NotificationManagement\\Notifications.cshtml",
-              "ViewState": "AgIAADcAAAAAAAAAAAAtwEEAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAACIAAAAAAAAAAAAtwEAAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-15T03:22:26.088Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Notifications.js",
-              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\Notifications.js",
-              "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\Notifications.js",
-              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\Notifications.js",
-              "RelativeToolTip": "TRACE\\wwwroot\\js\\Notifications.js",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAwwEMAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-05-15T03:20:07.778Z",
+              "DocumentIndex": 3,
+              "Title": "Notification.cs",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Models\\Notification.cs",
+              "RelativeDocumentMoniker": "TRACE\\Models\\Notification.cs",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Models\\Notification.cs",
+              "RelativeToolTip": "TRACE\\Models\\Notification.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T04:40:29.791Z",
               "EditorCaption": ""
             }
           ]

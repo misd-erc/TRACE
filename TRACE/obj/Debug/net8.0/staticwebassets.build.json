@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OrNXfAXfLIboc13bcNoBLdpZK37Uy6TdS6kBRIMHU2E=",
+  "Hash": "HWXGfiv7yRBWdFKxT7c0JLGvvE66Nka1+9wZ06xYkBs=",
   "Source": "TRACE",
   "BasePath": "_content/TRACE",
   "Mode": "Default",
@@ -556,8 +556,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "trp5rz7oec",
-      "Integrity": "uejZufPvmTINR/LFNAdep+ZvuxZDwW1zr1XUG+QV4CA=",
+      "Fingerprint": "4xchtyjx49",
+      "Integrity": "qNCJArOGM8wZZyCk/xgOzG/3Jdv6XRF788vk93z2dPY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Notifications.js"
@@ -3732,6 +3732,51 @@
       ]
     },
     {
+      "Route": "js/Notifications.4xchtyjx49.js",
+      "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\Notifications.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13993"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qNCJArOGM8wZZyCk/xgOzG/3Jdv6XRF788vk93z2dPY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 06:25:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4xchtyjx49"
+        },
+        {
+          "Name": "label",
+          "Value": "js/Notifications.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-qNCJArOGM8wZZyCk/xgOzG/3Jdv6XRF788vk93z2dPY="
+        }
+      ]
+    },
+    {
       "Route": "js/Notifications.js",
       "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\Notifications.js",
       "Selectors": [],
@@ -3742,7 +3787,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9128"
+          "Value": "13993"
         },
         {
           "Name": "Content-Type",
@@ -3750,11 +3795,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"uejZufPvmTINR/LFNAdep+ZvuxZDwW1zr1XUG+QV4CA=\""
+          "Value": "\"qNCJArOGM8wZZyCk/xgOzG/3Jdv6XRF788vk93z2dPY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 03:24:05 GMT"
+          "Value": "Thu, 15 May 2025 06:25:54 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3764,52 +3809,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-uejZufPvmTINR/LFNAdep+ZvuxZDwW1zr1XUG+QV4CA="
-        }
-      ]
-    },
-    {
-      "Route": "js/Notifications.trp5rz7oec.js",
-      "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\Notifications.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "9128"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"uejZufPvmTINR/LFNAdep+ZvuxZDwW1zr1XUG+QV4CA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 03:24:05 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "trp5rz7oec"
-        },
-        {
-          "Name": "label",
-          "Value": "js/Notifications.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-uejZufPvmTINR/LFNAdep+ZvuxZDwW1zr1XUG+QV4CA="
+          "Value": "sha256-qNCJArOGM8wZZyCk/xgOzG/3Jdv6XRF788vk93z2dPY="
         }
       ]
     },
@@ -8838,7 +8838,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 04:47:58 GMT"
+          "Value": "Thu, 15 May 2025 06:26:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8875,7 +8875,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 04:47:58 GMT"
+          "Value": "Thu, 15 May 2025 06:26:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8920,7 +8920,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 04:47:58 GMT"
+          "Value": "Thu, 15 May 2025 06:26:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8965,7 +8965,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 04:47:58 GMT"
+          "Value": "Thu, 15 May 2025 06:26:11 GMT"
         },
         {
           "Name": "Cache-Control",
