@@ -863,7 +863,6 @@ header:hover .main-menu ul li span {
 
 .theme-toggle-container {
     display: flex;
-    align-items: center;
     gap: 10px;
     font-family: var(--font-heading);
     font-size: 14px;
@@ -920,15 +919,22 @@ input:checked + .drin-slider {
 input:checked + .drin-slider:before {
     transform: translateX(25px);
 }
-
 .color-options {
-    display: flex;
-    gap: 5px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 8px;
+    max-width: 300px;
+}
+
+@media screen and (max-width: 500px) {
+    .color-options {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
 
 .color-option {
-    width: 30px;
-    height: 30px;
+    aspect-ratio: 1 / 1;
+    width: 100%;
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid transparent;
@@ -943,6 +949,7 @@ input:checked + .drin-slider:before {
     border: 2px solid #fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+
 
 .setting-bg{
     padding:15px;
