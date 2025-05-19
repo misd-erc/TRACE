@@ -117,7 +117,7 @@ function render_dashboard_hearingTable(data = _hearingsData) {
         return;
     }
 
-    data.forEach(caseData => {
+    data.slice(0, 4).forEach(caseData => {
         const formattedDate = caseData.HearingDate
             ? new Date(caseData.HearingDate).toLocaleDateString('en-GB')
             : 'N/A';
