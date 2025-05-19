@@ -354,8 +354,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>yr8y6jwype</Fingerprint>
-      <Integrity>Ei2c0ULz+ETVqVEbQ2w1Tad4UJjQLiDZzY4udqZpNhI=</Integrity>
+      <Fingerprint>b2do6yj81j</Fingerprint>
+      <Integrity>IxZSLgs+A7FuAS5G5wynxDNj2rn8rOPnehRTR5xxCB4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\DashboardModules.js'))</OriginalItemSpec>

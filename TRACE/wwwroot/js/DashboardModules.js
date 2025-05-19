@@ -108,16 +108,16 @@ function setupPagination(totalItems = _allmycases.length) {
 
     paginationSelect.value = currentPagedmc;
 }
-function render_dashboard_hearingTable() {
+function render_dashboard_hearingTable(data = _hearingsData) {
     const casehearingbod = document.getElementById('dashboardhearings');
     casehearingbod.innerHTML = '';
 
-    if (_hearingsData.length === 0) {
-        casehearingbod.innerHTML = `<i>No Upcomming Hearings Found</i>`;
+    if (!data || data.length === 0) {
+        casehearingbod.innerHTML = `<i>No Hearings Found in Selected Date Range</i>`;
         return;
     }
 
-    _hearingsData.forEach(caseData => {
+    data.forEach(caseData => {
         const formattedDate = caseData.HearingDate
             ? new Date(caseData.HearingDate).toLocaleDateString('en-GB')
             : 'N/A';
@@ -126,23 +126,23 @@ function render_dashboard_hearingTable() {
             ? (caseData.HearingLinks.startsWith('http') ? caseData.HearingLinks : 'https://' + caseData.HearingLinks)
             : null;
 
-        // Conditionally render the icon if a valid link exists
         const streamIcon = link
             ? `<a href="${link}"><i class='bx bx-show-alt' title='Watch virtual hearing'></i></a>`
             : '';
 
         casehearingbod.innerHTML += `
-            <li class="flex h-center space-between">
-                <div>
-                    <strong>${caseData.CaseNo} | ${caseData.HearingTypes} ${streamIcon}</strong><br />
-                    <span class="venue">${caseData.HearingVenue}</span>
-                </div>
-                <div>
-                    <span class="date">${formattedDate}</span><br />
-                    <span class="time">${caseData.Time}</span>
-                </div>
-            </li>
-        `;
+                <li class="flex space-between">
+                    <div>
+                        <strong>${caseData.CaseNo} | ${caseData.HearingTypes} ${streamIcon}</strong><br />
+                        <span class="venue">${caseData.HearingVenue}</span><br />
+                        <i class="helper">${caseData.Remarks}</i>
+                    </div>
+                    <div>
+                        <span class="date">${formattedDate}</span><br />
+                        <span class="time">${caseData.Time}</span>
+                    </div>
+                </li>
+            `;
     });
 }
 function render_dashboard_mycasesTable() {
@@ -269,3 +269,24 @@ function updateDateTime() {
 
     dateElement.textContent = `${dayName}, ${formattedDate} ${militaryTime}`;
 }
+
+document.querySelector('[name="hearingfilterino"]').addEventListener('click', function () {
+    const startDate = document.querySelector('[name="db_hearingfrom"]').value;
+    const endDate = document.querySelector('[name="db_hearingto"]').value;
+
+    let filteredData = _hearingsData;
+
+    if (startDate && endDate) {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+
+        end.setHours(23, 59, 59, 999);
+
+        filteredData = _hearingsData.filter(item => {
+            const hearingDate = new Date(item.HearingDate);
+            return hearingDate >= start && hearingDate <= end;
+        });
+    }
+
+    render_dashboard_hearingTable(filteredData);
+});

@@ -28,7 +28,7 @@ body{
 }
 
 .helper{
-    font-size:11px;
+    font-size:10px;
     color:#898989;
 }
 
@@ -1225,7 +1225,35 @@ ul.content-list li:hover {
     margin:5px 0px;
 }
 
-@media screen and (max-width:599px){
+.db-hearingfilter{
+    display:flex;
+    gap:5px;
+    padding:10px 20px;
+}
+
+.db-hearingfilter input[type=date] {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: var(--font-body);
+    padding: 2px 4px;
+    background: var(--body-color);
+    color: var(--font-color);
+    border: none;
+    color-scheme: var(--color-scheme);
+    font-size:11px;
+}
+
+.small-btn{
+    padding:3px 5px;
+    font-size:9px;
+}
+
+.bxs-filter-alt{
+    color:#fff;
+}
+
+@media screen and (max-width:599px) {
     .dashboard .heading-div {
         margin-bottom:10px;
         text-align:left !important;

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+JX/e1sD6xlPfG3js70llKCr8L8ehwbD3vJUVaGhHj0=",
+  "Hash": "3zzyTHw7DtftHs592bjrInQlXIH098+pHxGQabXg4Fg=",
   "Source": "TRACE",
   "BasePath": "_content/TRACE",
   "Mode": "Default",
@@ -472,8 +472,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "yr8y6jwype",
-      "Integrity": "Ei2c0ULz+ETVqVEbQ2w1Tad4UJjQLiDZzY4udqZpNhI=",
+      "Fingerprint": "b2do6yj81j",
+      "Integrity": "IxZSLgs+A7FuAS5G5wynxDNj2rn8rOPnehRTR5xxCB4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\DashboardModules.js"
@@ -3404,6 +3404,51 @@
       ]
     },
     {
+      "Route": "js/DashboardModules.b2do6yj81j.js",
+      "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\DashboardModules.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10140"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IxZSLgs+A7FuAS5G5wynxDNj2rn8rOPnehRTR5xxCB4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 07:23:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "b2do6yj81j"
+        },
+        {
+          "Name": "label",
+          "Value": "js/DashboardModules.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IxZSLgs+A7FuAS5G5wynxDNj2rn8rOPnehRTR5xxCB4="
+        }
+      ]
+    },
+    {
       "Route": "js/DashboardModules.js",
       "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\DashboardModules.js",
       "Selectors": [],
@@ -3414,7 +3459,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "10371"
+          "Value": "10140"
         },
         {
           "Name": "Content-Type",
@@ -3422,11 +3467,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Ei2c0ULz+ETVqVEbQ2w1Tad4UJjQLiDZzY4udqZpNhI=\""
+          "Value": "\"IxZSLgs+A7FuAS5G5wynxDNj2rn8rOPnehRTR5xxCB4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 07:18:32 GMT"
+          "Value": "Thu, 15 May 2025 07:23:51 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3436,52 +3481,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Ei2c0ULz+ETVqVEbQ2w1Tad4UJjQLiDZzY4udqZpNhI="
-        }
-      ]
-    },
-    {
-      "Route": "js/DashboardModules.yr8y6jwype.js",
-      "AssetFile": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\DashboardModules.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "10371"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"Ei2c0ULz+ETVqVEbQ2w1Tad4UJjQLiDZzY4udqZpNhI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 07:18:32 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "yr8y6jwype"
-        },
-        {
-          "Name": "label",
-          "Value": "js/DashboardModules.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-Ei2c0ULz+ETVqVEbQ2w1Tad4UJjQLiDZzY4udqZpNhI="
+          "Value": "sha256-IxZSLgs+A7FuAS5G5wynxDNj2rn8rOPnehRTR5xxCB4="
         }
       ]
     },
@@ -8838,7 +8838,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 07:18:48 GMT"
+          "Value": "Mon, 19 May 2025 00:24:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8875,7 +8875,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 07:18:48 GMT"
+          "Value": "Mon, 19 May 2025 00:24:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8920,7 +8920,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 07:18:48 GMT"
+          "Value": "Mon, 19 May 2025 00:24:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8965,7 +8965,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 15 May 2025 07:18:48 GMT"
+          "Value": "Mon, 19 May 2025 00:24:31 GMT"
         },
         {
           "Name": "Cache-Control",
