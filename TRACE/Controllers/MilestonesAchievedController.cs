@@ -53,12 +53,51 @@ namespace TRACE.Controllers
         }
 
         // GET: MilestonesAchieved/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["CaseMilestoneId"] = new SelectList(_context.CaseMilestones, "CaseMilestoneId", "Milestone");
+            System.Diagnostics.Debug.WriteLine("POKEMON: " + id);
+            if (id.HasValue)
+            {
+                var milestones = GetCaseMilestonesByErccaseId(id.Value);
+
+                System.Diagnostics.Debug.WriteLine("CHECK HERE "+milestones);
+                ViewData["CaseMilestoneId"] = new SelectList(milestones, "CaseMilestoneID", "Milestone");
+            }
+            else
+            {
+                // fallback or empty select list
+                ViewData["CaseMilestoneId"] = new SelectList(Enumerable.Empty<CaseMilestone>(), "CaseMilestoneID", "Milestone");
+            }
+
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
             return View();
         }
+
+
+        private List<CaseMilestone> GetCaseMilestonesByErccaseId(int id)
+        {
+            var sql = @"
+        SELECT cm.CaseMilestoneID, cm.Milestone, cm.Description
+        FROM cases.CaseMilestones cm
+        WHERE cm.CaseMilestoneID IN (
+            SELECT DISTINCT cmtm.CaseMilestoneID
+            FROM cases.ERCCases ec
+            INNER JOIN cases.CaseMilestoneTemplates cmt
+                ON ec.CaseCategoryID = cmt.CaseCategoryID
+            INNER JOIN cases.CaseMilestoneTemplateMembers cmtm
+                ON cmt.CaseMilestoneTemplateID = cmtm.CaseMilestoneTemplateID
+            WHERE ec.ERCCaseID = @id
+        )";
+
+            var connection = _context.Database.GetDbConnection();
+            if (connection.State != System.Data.ConnectionState.Open)
+                connection.Open();
+
+            var caseMilestones = connection.Query<CaseMilestone>(sql, new { id }).ToList();
+            
+            return caseMilestones;
+        }
+
 
         // POST: MilestonesAchieved/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.

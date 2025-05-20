@@ -76,9 +76,13 @@ namespace TRACE.Controllers
                     FROM 
                         [ercdb].[cases].[CaseMilestoneTemplateMembers] cmtm
                     JOIN 
-                        [ercdb].[cases].[CaseMilestones] cm ON cmtm.CaseMilestoneID = cm.CaseMilestoneID
+                        [ercdb].[cases].[CaseMilestones] cm 
+                        ON cmtm.CaseMilestoneID = cm.CaseMilestoneID
+                    INNER JOIN 
+                        [ercdb].[cases].[CaseMilestoneTemplates] cmt 
+                        ON cmtm.CaseMilestoneTemplateID = cmt.CaseMilestoneTemplateID
                     WHERE 
-                        cmtm.CaseMilestoneTemplateID = @id";
+                        cmt.CaseCategoryID = @id";
 
                 var result = await connection.QueryAsync<dynamic>(sql, new { id });
                 return Json(result);

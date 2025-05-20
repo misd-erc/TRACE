@@ -24,11 +24,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" style="display:none">
                 <label asp-for="ErccaseId" class="control-label"></label>
-                <select asp-for="ErccaseId" class="form-control" asp-items="ViewBag.ErccaseId"></select>
+                <input asp-for="ErccaseId" type="hidden" class="form-control" id="ErccaseId" />
             </div>
             <div class="form-group">
                 <label asp-for="CaseMilestoneId" class="control-label"></label>
-                <select asp-for="CaseMilestoneId" class="form-control" asp-items="ViewBag.CaseMilestoneId" id="_milestone"></select>
+                @Html.DropDownListFor(model => model.CaseMilestoneId, (SelectList)ViewData["CaseMilestoneId"], "Select milestone", new { @class = "form-control", id = "_milestone" })
             </div>
             <div class="form-group" style="display:none">
                 <label asp-for="PercentAchieved" class="control-label"></label>
