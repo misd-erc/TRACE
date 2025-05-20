@@ -77,6 +77,16 @@ namespace TRACE.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(caseMilestoneTemplate);
+
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "CONTENT MANAGEMENT";
+                eventLog.Category = "Case Milestone Template";
+                _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -118,6 +128,15 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(caseMilestoneTemplate);
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "CONTENT MANAGEMENT";
+                    eventLog.Category = "Case Milestone Template";
+                    _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -165,6 +184,15 @@ namespace TRACE.Controllers
             if (caseMilestoneTemplate != null)
             {
                 _context.CaseMilestoneTemplates.Remove(caseMilestoneTemplate);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "DELETE";
+                eventLog.Source = "CONTENT MANAGEMENT";
+                eventLog.Category = "Case Milestone Template";
+                _context.EventLogs.Add(eventLog);
             }
 
             await _context.SaveChangesAsync();

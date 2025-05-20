@@ -83,7 +83,7 @@ namespace TRACE.Controllers
                 eventLog.UserId = user.Username;
                 eventLog.Event = "CREATE";
                 eventLog.Source = "ERC CASE EVENT ";
-                eventLog.Category = "Create Case Event Type";
+                eventLog.Category = "Case Event Type";
                 _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Success! Data has been saved." });
@@ -132,8 +132,8 @@ namespace TRACE.Controllers
                     var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
                     eventLog.UserId = user.Username;
                     eventLog.Event = "EDIT";
-                    eventLog.Source = "ERC CASE";
-                    eventLog.Category = "Create Case Event Type";
+                    eventLog.Source = "CONTENT MANAGEMENT";
+                    eventLog.Category = "Case Event Type";
                     _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                     return Json(new { success = true, message = "Success! Data has been updated." });
@@ -188,8 +188,8 @@ namespace TRACE.Controllers
             var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
             eventLog.UserId = user.Username;
             eventLog.Event = "DELETE";
-            eventLog.Source = "ERC CASE";
-            eventLog.Category = "Create Case Event Type";
+            eventLog.Source = "CONTENT MANAGEMENT";
+            eventLog.Category = "Case Event Type";
             _context.EventLogs.Add(eventLog);
             await _context.SaveChangesAsync();
            

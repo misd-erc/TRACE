@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -15,10 +16,12 @@ namespace TRACE.Controllers
     public class SubCaseNatureController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public SubCaseNatureController(ErcdbContext context)
+        public SubCaseNatureController(ErcdbContext context, CurrentUserHelper currentUserHelper)
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: SubCaseNature
@@ -77,6 +80,15 @@ namespace TRACE.Controllers
             {
                 _context.Add(subCaseNature);
                 await _context.SaveChangesAsync();
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "CONTENT MANAGEMENT";
+                eventLog.Category = "SubCase Nature";
+                _context.EventLogs.Add(eventLog);
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNatureId", subCaseNature.CaseNatureId);
@@ -117,6 +129,15 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(subCaseNature);
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "CONTENT MANAGEMENT";
+                    eventLog.Category = "SubCase Nature";
+                    _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -164,6 +185,15 @@ namespace TRACE.Controllers
             if (subCaseNature != null)
             {
                 _context.SubCaseNature.Remove(subCaseNature);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "DELETE";
+                eventLog.Source = "CONTENT MANAGEMENT";
+                eventLog.Category = "SubCase Nature";
+                _context.EventLogs.Add(eventLog);
             }
 
             await _context.SaveChangesAsync();

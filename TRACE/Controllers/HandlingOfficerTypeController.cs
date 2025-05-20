@@ -82,7 +82,7 @@ namespace TRACE.Controllers
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
                 eventLog.UserId = user.Username;
                 eventLog.Event = "CREATE";
-                eventLog.Source = "ERC CASE";
+                eventLog.Source = "CONTENT MANAGEMENT";
                 eventLog.Category = "Hearing Officer";
                 _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
@@ -131,7 +131,7 @@ namespace TRACE.Controllers
                     var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
                     eventLog.UserId = user.Username;
                     eventLog.Event = "EDIT";
-                    eventLog.Source = "ERC CASE";
+                    eventLog.Source = "CONTENT MANAGEMENT";
                     eventLog.Category = "Hearing Officer";
                     await _context.SaveChangesAsync();
                 }
@@ -184,7 +184,7 @@ namespace TRACE.Controllers
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
                 eventLog.UserId = user.Username;
                 eventLog.Event = "DELETE";
-                eventLog.Source = "ERC CASE";
+                eventLog.Source = "CONTENT MANAGEMENT";
                 eventLog.Category = "Hearing Officer";
             }
 
