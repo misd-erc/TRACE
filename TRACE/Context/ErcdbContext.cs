@@ -216,6 +216,7 @@ public partial class ErcdbContext : DbContext
     public virtual DbSet<CaseBlobDocument> CaseBlobDocument { get; set; }
     public virtual DbSet<CaseMilestoneTemplateMember> CaseMilestoneTemplateMember { get; set; }
     public virtual DbSet<Notification> Notifications { get; set; }
+    public DbSet<CaseMilestoneTemplateMember> CaseMilestoneTemplateMembers { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

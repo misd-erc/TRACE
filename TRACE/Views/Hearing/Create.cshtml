@@ -139,7 +139,8 @@
                                     confirmButton: "swal2-confirm"
                                 }
                             }).then(() => {
-                                $("#createForm")[0].reset(); 
+                                $("#createForm")[0].reset();
+                                location.reload();
                             });
                         } else {
                             Swal.fire({
