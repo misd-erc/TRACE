@@ -105,6 +105,15 @@ namespace TRACE.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(user);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var users = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = users.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "USER MANAGEMENT";
+                eventLog.Category = "USER";
+                _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "User created successfully!" });
             }
@@ -151,6 +160,15 @@ namespace TRACE.Controllers
             try
             {
                 _context.Update(user);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var users = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = users.Username;
+                eventLog.Event = "EDIT";
+                eventLog.Source = "USER MANAGEMENT";
+                eventLog.Category = "USER";
+                _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "User updated successfully!" });
             }
@@ -192,6 +210,15 @@ namespace TRACE.Controllers
             if (user != null)
             {
                 _context.Users.Remove(user);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var users = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = users.Username;
+                eventLog.Event = "DELETE";
+                eventLog.Source = "USER MANAGEMENT";
+                eventLog.Category = "USER";
+                _context.EventLogs.Add(eventLog);
             }
 
             await _context.SaveChangesAsync();

@@ -18,7 +18,7 @@ namespace TRACE.Controllers
         private readonly ErcdbContext _context;
         private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseEventController(ErcdbContext context, CurrentUserHelper currentUserHelper)
+        public CaseEventController(ErcdbContext context, CurrentUserHelper currentUserHelper )
         {
             _context = context;
             _currentUserHelper = currentUserHelper;
@@ -91,6 +91,16 @@ namespace TRACE.Controllers
                 caseEvent.UserId = user.Username;
                 _context.Add(caseEvent);
                 await _context.SaveChangesAsync();
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "CASE MANAGEMENT";
+                eventLog.Category = "Create Case Event";
+                _context.EventLogs.Add(eventLog);
+                await _context.SaveChangesAsync();
+
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
             ViewData["CaseEventTypeId"] = new SelectList(_context.CaseEventTypes, "CaseEventTypeId", "CaseEventTypeId", caseEvent.CaseEventTypeId);
@@ -133,6 +143,16 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(caseEvent);
+                    await _context.SaveChangesAsync();
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "CASE MANAGEMENT";
+                    eventLog.Category = "Create Case Event";
+                    _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -184,6 +204,16 @@ namespace TRACE.Controllers
                 _context.CaseEvents.Remove(caseEvent);
             }
 
+            await _context.SaveChangesAsync();
+            EventLog eventLog = new EventLog();
+            eventLog.EventDatetime = DateTime.Now;
+            var currentUserName = _currentUserHelper.Email;
+            var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+            eventLog.UserId = user.Username;
+            eventLog.Event = "DELETE";
+            eventLog.Source = "CASE MANAGEMENT";
+            eventLog.Category = "Case Event";
+            _context.EventLogs.Add(eventLog);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

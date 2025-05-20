@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Graph.Models;
 using TRACE.Context;
 using TRACE.Helpers;
 using TRACE.Models;
@@ -136,6 +137,14 @@ namespace TRACE.Controllers
                 caseTask.TaskedBy = user.Username;
                 System.Diagnostics.Debug.WriteLine("TASK CREATED");
                 _context.Add(caseTask);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+            
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "CASE MANAGEMENT";
+                eventLog.Category = "Case Task";
+                _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
 
                 var assignedUser = _context.Users.FirstOrDefault(u => u.Username == caseTask.UserId);
@@ -229,6 +238,15 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(caseTask);
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "CASE MANAGEMENT";
+                    eventLog.Category = "Case Task";
+                    _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -277,6 +295,15 @@ namespace TRACE.Controllers
             var caseTask = await _context.CaseTasks.FindAsync(id);
             if (caseTask != null)
             {
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "DELETE";
+                eventLog.Source = "CASE MANAGEMENT";
+                eventLog.Category = "Case Task";
+                _context.EventLogs.Add(eventLog);
                 _context.CaseTasks.Remove(caseTask);
             }
 

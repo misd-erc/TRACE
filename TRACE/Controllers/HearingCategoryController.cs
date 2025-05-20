@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -15,10 +16,12 @@ namespace TRACE.Controllers
     public class HearingCategoryController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public HearingCategoryController(ErcdbContext context)
+        public HearingCategoryController(ErcdbContext context, CurrentUserHelper currentUserHelper )
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: HearingCategory
@@ -73,6 +76,15 @@ namespace TRACE.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(hearingCategory);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "ERC CASE";
+                eventLog.Category = "Hearing Category";
+                _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
@@ -113,6 +125,15 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(hearingCategory);
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "ERC CASE";
+                    eventLog.Category = "Hearing Category";
+                    _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -158,6 +179,16 @@ namespace TRACE.Controllers
             if (hearingCategory != null)
             {
                 _context.HearingCategories.Remove(hearingCategory);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "DELETE";
+                eventLog.Source = "ERC CASE";
+                eventLog.Category = "Hearing Category";
+                _context.EventLogs.Add(eventLog);
+                await _context.SaveChangesAsync();
             }
 
             await _context.SaveChangesAsync();

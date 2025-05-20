@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -13,10 +14,12 @@ namespace TRACE.Controllers
     public class CaseMilestoneTemplateMemberController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseMilestoneTemplateMemberController(ErcdbContext context)
+        public CaseMilestoneTemplateMemberController(ErcdbContext context, CurrentUserHelper currentUserHelper )
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: CaseMilestoneTemplateMember
@@ -87,6 +90,16 @@ namespace TRACE.Controllers
             {
                 _context.Add(caseMilestoneTemplateMember);
                 await _context.SaveChangesAsync();
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "ERC CASE";
+                eventLog.Category = "Create Case Milestone Template Member";
+                _context.EventLogs.Add(eventLog);
+                await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
             ViewData["CaseMilestoneId"] = new SelectList(_context.CaseMilestones, "CaseMilestoneId", "CaseMilestoneId", caseMilestoneTemplateMember.CaseMilestoneId);
@@ -128,7 +141,17 @@ namespace TRACE.Controllers
             {
                 try
                 {
+
                     _context.Update(caseMilestoneTemplateMember);
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "ERC CASE";
+                    eventLog.Category = "Create Case Milestone Template Member";
+                    _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -182,6 +205,15 @@ namespace TRACE.Controllers
             {
                 return NotFound(); // If no matching record is found
             }
+            EventLog eventLog = new EventLog();
+            eventLog.EventDatetime = DateTime.Now;
+            var currentUserName = _currentUserHelper.Email;
+            var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+            eventLog.UserId = user.Username;
+            eventLog.Event = "DELETE";
+            eventLog.Source = "ERC CASE";
+            eventLog.Category = "Create Case Milestone Template Member";
+            _context.EventLogs.Add(eventLog);
 
             // Delete the found record
             _context.CaseMilestoneTemplateMember.Remove(caseMilestoneTemplateMember);

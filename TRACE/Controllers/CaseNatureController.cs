@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -15,10 +16,12 @@ namespace TRACE.Controllers
     public class CaseNatureController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseNatureController(ErcdbContext context)
+        public CaseNatureController(ErcdbContext context, CurrentUserHelper currentUserHelper)
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: CaseNature
@@ -76,6 +79,15 @@ namespace TRACE.Controllers
             if (!ModelState.IsValid)
             {
                 _context.Add(caseNature);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "ERC CASE";
+                eventLog.Category = "Create Case Nature";
+                _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -117,6 +129,15 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(caseNature);
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "ERC CASE";
+                    eventLog.Category = "Create Case Nature";
+                    _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -164,6 +185,16 @@ namespace TRACE.Controllers
             if (caseNature != null)
             {
                 _context.CaseNatures.Remove(caseNature);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "DELETE";
+                eventLog.Source = "ERC CASE";
+                eventLog.Category = "Create Case Nature";
+                _context.EventLogs.Add(eventLog);
+                await _context.SaveChangesAsync();
             }
 
             await _context.SaveChangesAsync();

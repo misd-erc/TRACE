@@ -18,12 +18,14 @@ namespace TRACE.Controllers
         private readonly ErcdbContext _context;
         private readonly string _connectionString;
         private readonly EventLogger _eventLogger;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseApplicantController(ErcdbContext context, IConfiguration configuration, EventLogger eventLogger )
+        public CaseApplicantController(ErcdbContext context, IConfiguration configuration, EventLogger eventLogger, CurrentUserHelper currentUserHelper )
         {
             _context = context;
             _connectionString = configuration.GetConnectionString("ErcDatabase");
             _eventLogger = eventLogger;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: CaseApplicant
@@ -114,7 +116,7 @@ namespace TRACE.Controllers
             if (!ModelState.IsValid)
             {
                 _context.Add(caseApplicant);
-                await _eventLogger.LogEventAsync("CREATE", "CaseApplicant", "Create CaseApplicant");
+                await _eventLogger.LogEventAsync("CREATE", "CASE MANAGEMENT", "Create CaseApplicant");
                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
@@ -160,7 +162,7 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(caseApplicant);
-                    await _eventLogger.LogEventAsync("EDIT", "CaseApplicant", "Edit CaseApplicant");
+                    await _eventLogger.LogEventAsync("EDIT", "CASE MANAGEMENT", "CaseApplicant");
 
                     await _context.SaveChangesAsync();
                 }
@@ -213,7 +215,7 @@ namespace TRACE.Controllers
             if (caseApplicant != null)
             {
                 _context.CaseApplicants.Remove(caseApplicant);
-                await _eventLogger.LogEventAsync("DELETE", "CaseApplicant", "Delete CaseApplicant");
+                await _eventLogger.LogEventAsync("DELETE", "CASE MANAGEMENT", "CaseApplicant");
             }
 
             await _context.SaveChangesAsync();

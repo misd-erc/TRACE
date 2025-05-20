@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -18,11 +19,13 @@ namespace TRACE.Controllers
     {
         private readonly ErcdbContext _context;
         private readonly string _connectionString;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseMilestoneController(ErcdbContext context, IConfiguration configuration)
+        public CaseMilestoneController(ErcdbContext context, IConfiguration configuration, CurrentUserHelper currentUserHelper )
         {
             _context = context;
             _connectionString = configuration.GetConnectionString("ErcDatabase");
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: CaseMilestone
@@ -140,6 +143,16 @@ namespace TRACE.Controllers
             {
                 _context.Add(caseMilestone);
                 await _context.SaveChangesAsync();
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "ERC CASE";
+                eventLog.Category = "Create Case Milestone";
+                _context.EventLogs.Add(eventLog);
+                await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
 
@@ -180,7 +193,16 @@ namespace TRACE.Controllers
                 {
                     _context.Update(caseMilestone);
                     await _context.SaveChangesAsync();
-                
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "ERC CASE";
+                    eventLog.Category = "Create Case Milestone";
+                    _context.EventLogs.Add(eventLog);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -226,8 +248,17 @@ namespace TRACE.Controllers
             {
                 _context.CaseMilestones.Remove(caseMilestone);
             }
-
+            EventLog eventLog = new EventLog();
+            eventLog.EventDatetime = DateTime.Now;
+            var currentUserName = _currentUserHelper.Email;
+            var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+            eventLog.UserId = user.Username;
+            eventLog.Event = "DELETE";
+            eventLog.Source = "ERC CASE";
+            eventLog.Category = "Create Case Milestone";
+            _context.EventLogs.Add(eventLog);
             await _context.SaveChangesAsync();
+           
             return RedirectToAction(nameof(Index));
         }
 

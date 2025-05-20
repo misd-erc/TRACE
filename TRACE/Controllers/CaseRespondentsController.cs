@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -13,10 +14,12 @@ namespace TRACE.Controllers
     public class CaseRespondentsController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseRespondentsController(ErcdbContext context)
+        public CaseRespondentsController(ErcdbContext context, CurrentUserHelper currentUserHelper )
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
         public async Task<IActionResult> GetCaseRespondentByErcID(int id)
         {
@@ -99,6 +102,15 @@ namespace TRACE.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(caseRespondent);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "ERC CASE";
+                eventLog.Category = "Create Case Respondents";
+                _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -143,6 +155,15 @@ namespace TRACE.Controllers
             {
                 try
                 {
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "ERC CASE";
+                    eventLog.Category = "Create Case Respondents";
+                    _context.EventLogs.Add(eventLog);
                     _context.Update(caseRespondent);
                     await _context.SaveChangesAsync();
                 }
@@ -194,6 +215,15 @@ namespace TRACE.Controllers
             var caseRespondent = await _context.CaseRespondents.FindAsync(id);
             if (caseRespondent != null)
             {
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "DELETE";
+                eventLog.Source = "ERC CASE";
+                eventLog.Category = "Create Case Respondents";
+                _context.EventLogs.Add(eventLog);
                 _context.CaseRespondents.Remove(caseRespondent);
             }
 

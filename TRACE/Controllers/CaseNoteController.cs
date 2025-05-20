@@ -91,8 +91,8 @@ namespace TRACE.Controllers
               
                 eventLog.UserId = user.Username;
                 eventLog.Event = "CREATE";
-                eventLog.Source = "CASE NOTE";
-                eventLog.Category = "Create Case Note";
+                eventLog.Source = "CASE MANAGEMENT";
+                eventLog.Category = "Case Note";
                 _context.EventLogs.Add(eventLog);
 
 
@@ -150,8 +150,8 @@ namespace TRACE.Controllers
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
                 eventLog.UserId = user.Username;
                 eventLog.Event = "EDIT";
-                eventLog.Source = "CASE NOTE";
-                eventLog.Category = "Edit Case Note";
+                eventLog.Source = "CASE MANAGEMENT";
+                eventLog.Category = "Case Note";
                 _context.EventLogs.Add(eventLog);
 
 
@@ -194,6 +194,15 @@ namespace TRACE.Controllers
             if (caseNote != null)
             {
                 _context.CaseNotes.Remove(caseNote);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "DELETE";
+                eventLog.Source = "CASE MANAGEMENT";
+                eventLog.Category = "Case Note";
+                _context.EventLogs.Add(eventLog);
             }
 
             await _context.SaveChangesAsync();

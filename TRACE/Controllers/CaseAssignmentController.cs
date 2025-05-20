@@ -155,7 +155,7 @@ namespace TRACE.Controllers
 
                 caseAssignment.DateAssigned = DateOnly.FromDateTime(DateTime.Now);
                 _context.Add(caseAssignment);
-                await _eventLogger.LogEventAsync("CREATE", "CaseAssignment", "Create CaseAssignment");
+                await _eventLogger.LogEventAsync("CREATE", "CASE MANAGEMENT", "CaseAssignment");
                 await _context.SaveChangesAsync();
 
                 var assignedUsername = caseAssignment.UserId;
@@ -276,7 +276,7 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(caseAssignment);
-                    await _eventLogger.LogEventAsync("EDIT", "Case Assignment", "Edit CaseAssignment");
+                    await _eventLogger.LogEventAsync("EDIT", "CASE MANAGEMENT", "CaseAssignment");
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -326,7 +326,7 @@ namespace TRACE.Controllers
             if (caseAssignment != null)
             {
                 _context.CaseAssignments.Remove(caseAssignment);
-                await _eventLogger.LogEventAsync("DELETE", "Case Assignment", "Delete CaseAssignment");
+                await _eventLogger.LogEventAsync("DELETE", "CASE MANAGEMENT", "CaseAssignment");
             }
 
             await _context.SaveChangesAsync();

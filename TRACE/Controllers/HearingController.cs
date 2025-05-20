@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Graph.Models;
 using TRACE.Context;
 using TRACE.Helpers;
 using TRACE.Models;
@@ -142,14 +143,24 @@ namespace TRACE.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
                 if (hearing.IsApproved == true)
                 {
-                    var currentUserName = _currentUserHelper.Email;
-                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                  
                     hearing.ApprovedBy = user?.Username;
                 }
 
                 _context.Hearings.Add(hearing);
+
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+              
+                eventLog.UserId = user.Username;
+                eventLog.Event = "EDIT";
+                eventLog.Source = "CASE MANAGEMENT";
+                eventLog.Category = "Hearing";
+                _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
 
                 // Get the newly created HearingId
@@ -216,6 +227,15 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(hearing);
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "CREATE";
+                    eventLog.Source = "CASE MANAGEMENT";
+                    eventLog.Category = "Hearing";
+                    _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -267,6 +287,15 @@ namespace TRACE.Controllers
             if (hearing != null)
             {
                 _context.Hearings.Remove(hearing);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "DELETE";
+                eventLog.Source = "CASE MANAGEMENT";
+                eventLog.Category = "Hearing";
+                _context.EventLogs.Add(eventLog);
             }
 
             await _context.SaveChangesAsync();

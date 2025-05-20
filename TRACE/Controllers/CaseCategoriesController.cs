@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -15,10 +16,12 @@ namespace TRACE.Controllers
     public class CaseCategoriesController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseCategoriesController(ErcdbContext context)
+        public CaseCategoriesController(ErcdbContext context, CurrentUserHelper currentUserHelper )
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: CaseCategories
@@ -77,6 +80,18 @@ namespace TRACE.Controllers
             {
                 _context.Add(caseCategory);
                 await _context.SaveChangesAsync();
+
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "CASE CATEGORY";
+                eventLog.Category = "Category";
+                _context.EventLogs.Add(eventLog);
+                await _context.SaveChangesAsync();
+
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
 
@@ -116,6 +131,17 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(caseCategory);
+                    await _context.SaveChangesAsync();
+
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "ERC CASE";
+                    eventLog.Category = "Case Category";
+                    _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                     return Json(new { success = true, message = "Success! Case category has been updated." });
                 }
@@ -160,6 +186,17 @@ namespace TRACE.Controllers
             var caseCategory = await _context.CaseCategories.FindAsync(id);
             if (caseCategory != null)
             {
+
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "DELETE";
+                eventLog.Source = "ERC CASE";
+                eventLog.Category = "CaseCategory";
+                _context.EventLogs.Add(eventLog);
+                await _context.SaveChangesAsync();
                 _context.CaseCategories.Remove(caseCategory);
             }
 

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Graph.Models;
 using TRACE.Context;
 using TRACE.Helpers;
 using TRACE.Models;
@@ -125,7 +126,14 @@ namespace TRACE.Controllers
 
                 _context.Add(relatedCase);
                 _context.Add(reverseRelation);
-
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "CASE MANAGEMENT";
+                eventLog.Category = "Related Case";
+                _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
 
                 return Json(new { success = true, message = "Success! Data has been saved both ways." });
@@ -172,6 +180,15 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(relatedCase);
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "CASE MANAGEMENT";
+                    eventLog.Category = "Related Case";
+                    _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -221,6 +238,15 @@ namespace TRACE.Controllers
             if (relatedCase != null)
             {
                 _context.RelatedCases.Remove(relatedCase);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "DELETE";
+                eventLog.Source = "CASE MANAGEMENT";
+                eventLog.Category = "Related Case";
+                _context.EventLogs.Add(eventLog);
             }
 
             await _context.SaveChangesAsync();

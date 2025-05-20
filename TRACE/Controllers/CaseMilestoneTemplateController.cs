@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -13,10 +14,12 @@ namespace TRACE.Controllers
     public class CaseMilestoneTemplateController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseMilestoneTemplateController(ErcdbContext context)
+        public CaseMilestoneTemplateController(ErcdbContext context, CurrentUserHelper currentUserHelper)
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: CaseMilestoneTemplate

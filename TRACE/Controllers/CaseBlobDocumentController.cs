@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.BlobStorage;
 using TRACE.Context;
+using TRACE.Helpers;
 using TRACE.Models;
 
 namespace TRACE.Controllers
@@ -14,10 +15,12 @@ namespace TRACE.Controllers
     public class CaseBlobDocumentController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseBlobDocumentController(ErcdbContext context)
+        public CaseBlobDocumentController(ErcdbContext context, CurrentUserHelper currentUserHelper)
         {
             _context = context;
+            _currentUserHelper = currentUserHelper;
         }
 
         // GET: CaseBlobDocument
@@ -89,6 +92,15 @@ namespace TRACE.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(caseBlobDocument);
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "CREATE";
+                eventLog.Source = "CASE MANAGEMENT";
+                eventLog.Category = "DOCUMENTS";
+                _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -128,6 +140,15 @@ namespace TRACE.Controllers
                 try
                 {
                     _context.Update(caseBlobDocument);
+                    EventLog eventLog = new EventLog();
+                    eventLog.EventDatetime = DateTime.Now;
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    eventLog.UserId = user.Username;
+                    eventLog.Event = "EDIT";
+                    eventLog.Source = "CASE MANAGEMENT";
+                    eventLog.Category = "DOCUMENTS";
+                    _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -176,6 +197,15 @@ namespace TRACE.Controllers
             }
 
             await _context.SaveChangesAsync();
+            EventLog eventLog = new EventLog();
+            eventLog.EventDatetime = DateTime.Now;
+            var currentUserName = _currentUserHelper.Email;
+            var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+            eventLog.UserId = user.Username;
+            eventLog.Event = "DELETE";
+            eventLog.Source = "CASE MANAGEMENT";
+            eventLog.Category = "DOCUMENTS";
+            _context.EventLogs.Add(eventLog);
             return RedirectToAction(nameof(Index));
         }
 
