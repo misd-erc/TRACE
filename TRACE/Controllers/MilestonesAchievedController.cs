@@ -61,12 +61,12 @@ namespace TRACE.Controllers
                 var milestones = GetCaseMilestonesByErccaseId(id.Value);
 
                 System.Diagnostics.Debug.WriteLine("CHECK HERE "+milestones);
-                ViewData["CaseMilestoneId"] = new SelectList(milestones, "CaseMilestoneID", "Milestone");
+                ViewData["CaseMilestoneId"] = new SelectList(milestones, "CaseMilestoneId", "Milestone");
             }
             else
             {
                 // fallback or empty select list
-                ViewData["CaseMilestoneId"] = new SelectList(Enumerable.Empty<CaseMilestone>(), "CaseMilestoneID", "Milestone");
+                ViewData["CaseMilestoneId"] = new SelectList(Enumerable.Empty<CaseMilestone>(), "CaseMilestoneId", "Milestone");
             }
 
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
