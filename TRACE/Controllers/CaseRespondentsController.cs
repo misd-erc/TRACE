@@ -67,7 +67,12 @@ namespace TRACE.Controllers
         public IActionResult Create()
         {
             ViewData["CompanyId"] = new SelectList(
-                _context.Companies.Take(20), "CompanyId", "CompanyName");
+                _context.Companies
+                    .OrderBy(c => c.CompanyName)
+                    .Take(20),
+                "CompanyId",
+                "CompanyName"
+            );
 
             ViewData["CorrespondentId"] = new SelectList(
                 _context.Correspondents
@@ -75,6 +80,7 @@ namespace TRACE.Controllers
                         c.CorrespondentId,
                         FullName = c.Salutation + " " + c.FirstName + " " + c.LastName
                     })
+                    .OrderBy(c => c.FullName)
                     .Take(20),
                 "CorrespondentId",
                 "FullName"
@@ -207,7 +213,7 @@ namespace TRACE.Controllers
 
             var results = _context.Companies
                 .Where(e => e.CompanyName.ToString().Contains(term))
-                .OrderBy(e => e.CompanyId)
+                .OrderBy(e => e.CompanyName)
                 .Take(15)
                 .Select(e => new
                 {
@@ -226,7 +232,7 @@ namespace TRACE.Controllers
 
             var results = _context.Correspondents
                 .Where(e => (e.FirstName + " " + e.MiddleName + " " + e.LastName).Contains(term))
-                .OrderBy(e => e.CorrespondentId)
+                .OrderBy(e => e.FirstName)
                 .Take(15)
                 .Select(e => new
                 {

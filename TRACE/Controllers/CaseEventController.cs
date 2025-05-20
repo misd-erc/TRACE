@@ -68,7 +68,11 @@ namespace TRACE.Controllers
         // GET: CaseEvent/Create
         public IActionResult Create()
         {
-            ViewData["CaseEventTypeId"] = new SelectList(_context.CaseEventTypes, "CaseEventTypeId", "EventType");
+            ViewData["CaseEventTypeId"] = new SelectList(
+                _context.CaseEventTypes.OrderBy(c => c.EventType),
+                "CaseEventTypeId",
+                "EventType"
+            );
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId");
             return View();
         }
