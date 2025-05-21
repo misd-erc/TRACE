@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\views\\userlogs\\userlogs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\userlogs\\userlogs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\caseapplicantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\caseapplicantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\eventlogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\eventlogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\casedetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\casedetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\usermanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\usermanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\searchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\searchcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -115,10 +139,6 @@
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\casemilestonetemplatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\casedetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\casedetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\administrator\\documents\\github\\trace\\trace\\controllers\\casecategoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\casecategoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -155,7 +175,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 266,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -199,7 +219,59 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CaseApplicantController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseApplicantController.cs",
+              "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseApplicantController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseApplicantController.cs",
+              "RelativeToolTip": "TRACE\\Controllers\\CaseApplicantController.cs",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T15:03:54.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EventLogController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\EventLogController.cs",
+              "RelativeDocumentMoniker": "TRACE\\Controllers\\EventLogController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\EventLogController.cs",
+              "RelativeToolTip": "TRACE\\Controllers\\EventLogController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T15:03:46.891Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CaseDetails.js",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\CaseDetails.js",
+              "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\CaseDetails.js",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\CaseDetails.js",
+              "RelativeToolTip": "TRACE\\wwwroot\\js\\CaseDetails.js",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAowLsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-21T14:57:47.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UserLogs.cshtml",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\UserLogs\\UserLogs.cshtml",
+              "RelativeDocumentMoniker": "TRACE\\Views\\UserLogs\\UserLogs.cshtml",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\UserLogs\\UserLogs.cshtml",
+              "RelativeToolTip": "TRACE\\Views\\UserLogs\\UserLogs.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAuwFUAAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-21T14:52:16.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "SearchController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\SearchController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\SearchController.cs",
@@ -212,7 +284,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "RelatedCaseController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\RelatedCaseController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\RelatedCaseController.cs",
@@ -220,12 +292,37 @@
               "RelativeToolTip": "TRACE\\Controllers\\RelatedCaseController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T15:30:12.058Z",
+              "WhenOpened": "2025-05-20T15:30:12.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CaseDetailsController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseDetailsController.cs",
+              "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseDetailsController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseDetailsController.cs",
+              "RelativeToolTip": "TRACE\\Controllers\\CaseDetailsController.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAwwEIAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T12:20:49.796Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
+              "Title": "UserManagementController.cs",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\UserManagementController.cs",
+              "RelativeDocumentMoniker": "TRACE\\Controllers\\UserManagementController.cs",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\UserManagementController.cs",
+              "RelativeToolTip": "TRACE\\Controllers\\UserManagementController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T15:01:39.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "NotificationManagementController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\NotificationManagementController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\NotificationManagementController.cs",
@@ -233,12 +330,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\NotificationManagementController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T15:30:11.354Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T15:30:11.354Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "NotificationController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\NotificationController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\NotificationController.cs",
@@ -246,12 +342,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\NotificationController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T15:30:04.69Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T15:30:04.69Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\HomeController.cs",
@@ -259,12 +354,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T15:29:58.546Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T15:29:58.546Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "HearingVenueController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\HearingVenueController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\HearingVenueController.cs",
@@ -272,12 +366,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\HearingVenueController.cs",
               "ViewState": "AgIAAKkAAAAAAAAAAAAYwLsAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T15:29:04.729Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T15:29:04.729Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 13,
               "Title": "HearingTypeController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\HearingTypeController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\HearingTypeController.cs",
@@ -285,12 +378,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\HearingTypeController.cs",
               "ViewState": "AgIAAJ0AAAAAAAAAAAAYwLsAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T15:27:46.927Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T15:27:46.927Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "HearingsController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\HearingsController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\HearingsController.cs",
@@ -298,12 +390,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\HearingsController.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T15:26:00.029Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T15:26:00.029Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 14,
               "Title": "HearingController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\HearingController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\HearingController.cs",
@@ -311,12 +402,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\HearingController.cs",
               "ViewState": "AgIAABUBAAAAAAAAAAAIwCoBAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T15:25:54.542Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T15:25:54.542Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "HearingCategoryController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\HearingCategoryController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\HearingCategoryController.cs",
@@ -324,12 +414,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\HearingCategoryController.cs",
               "ViewState": "AgIAAK8AAAAAAAAAAAA3wLwAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:57:25.647Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:57:25.647Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "ErccaseController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\ErccaseController.cs",
@@ -337,12 +426,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\ErccaseController.cs",
               "ViewState": "AgIAADICAAAAAAAAAAAowEoCAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:55:26.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:55:26.108Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "MilestonesAchievedController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\MilestonesAchievedController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\MilestonesAchievedController.cs",
@@ -350,12 +438,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\MilestonesAchievedController.cs",
               "ViewState": "AgIAABUAAAAAAAAAAAAswDUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T04:04:28.413Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T04:04:28.413Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "HandlingOfficerTypeController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\HandlingOfficerTypeController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\HandlingOfficerTypeController.cs",
@@ -363,12 +450,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\HandlingOfficerTypeController.cs",
               "ViewState": "AgIAAKwAAAAAAAAAAAAYwL4AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:56:02.701Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:56:02.701Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "DocumentManagementController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\DocumentManagementController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\DocumentManagementController.cs",
@@ -376,12 +462,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\DocumentManagementController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:55:22.373Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:55:22.373Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 20,
               "Title": "ContentManagementController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ContentManagementController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\ContentManagementController.cs",
@@ -389,12 +474,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\ContentManagementController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:55:21.429Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:55:21.429Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 21,
               "Title": "CompaniesController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CompaniesController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CompaniesController.cs",
@@ -402,12 +486,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CompaniesController.cs",
               "ViewState": "AgIAALsAAAAAAAAAAAAYwLgAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:53:38.107Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:53:38.107Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 22,
               "Title": "CityController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CityController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CityController.cs",
@@ -415,12 +498,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CityController.cs",
               "ViewState": "AgIAAJgAAAAAAAAAAAAAwLEAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:50:38.671Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:50:38.671Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 23,
               "Title": "CaseTaskController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseTaskController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseTaskController.cs",
@@ -428,12 +510,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseTaskController.cs",
               "ViewState": "AgIAAFYBAAAAAAAAAAAswFkBAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:46:49.05Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:46:49.05Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 24,
               "Title": "CaseStatusController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseStatusController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseStatusController.cs",
@@ -441,12 +522,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseStatusController.cs",
               "ViewState": "AgIAAK4AAAAAAAAAAAAIwLYAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:37:56.689Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:37:56.689Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 25,
               "Title": "CaseRespondentsController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseRespondentsController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseRespondentsController.cs",
@@ -454,12 +534,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseRespondentsController.cs",
               "ViewState": "AgIAAM8AAAAAAAAAAAAIwN4AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:36:49.833Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:36:49.833Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 26,
               "Title": "CaseNoteController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseNoteController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseNoteController.cs",
@@ -467,12 +546,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseNoteController.cs",
               "ViewState": "AgIAAEcAAAAAAAAAAAAQwEAAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:36:32.608Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:36:32.608Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 27,
               "Title": "CaseNatureController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseNatureController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseNatureController.cs",
@@ -480,12 +558,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseNatureController.cs",
               "ViewState": "AgIAALMAAAAAAAAAAAAIwMcAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:34:54.258Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:34:54.258Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 28,
               "Title": "CaseMilestoneTemplateMemberController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseMilestoneTemplateMemberController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseMilestoneTemplateMemberController.cs",
@@ -493,12 +570,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseMilestoneTemplateMemberController.cs",
               "ViewState": "AgIAAMYAAAAAAAAAAAAkwNcAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:27:03.26Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:27:03.26Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 33,
               "Title": "CaseMilestoneTemplateController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseMilestoneTemplateController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseMilestoneTemplateController.cs",
@@ -506,12 +582,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseMilestoneTemplateController.cs",
               "ViewState": "AgIAAEUAAAAAAAAAAAAQwD4AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:26:30.31Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:26:30.31Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 32,
               "Title": "CaseMilestoneController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseMilestoneController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseMilestoneController.cs",
@@ -519,12 +594,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseMilestoneController.cs",
               "ViewState": "AgIAAIwAAAAAAAAAAAAgwMwAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:24:50.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:24:50.295Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 31,
               "Title": "CaseManagementController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseManagementController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseManagementController.cs",
@@ -532,12 +606,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseManagementController.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:24:42.748Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:24:42.748Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 30,
               "Title": "CaseEventTypeController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseEventTypeController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseEventTypeController.cs",
@@ -545,12 +618,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseEventTypeController.cs",
               "ViewState": "AgIAAGUAAAAAAAAAAAAuwIkAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:23:22.64Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:23:22.64Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 29,
               "Title": "CaseEventController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseEventController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseEventController.cs",
@@ -558,25 +630,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseEventController.cs",
               "ViewState": "AgIAAL4AAAAAAAAAAAAYwNQAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:21:01.022Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:21:01.022Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "CaseDetailsController.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseDetailsController.cs",
-              "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseDetailsController.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseDetailsController.cs",
-              "RelativeToolTip": "TRACE\\Controllers\\CaseDetailsController.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:20:49.796Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 35,
               "Title": "CaseAssignmentController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseAssignmentController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseAssignmentController.cs",
@@ -584,12 +642,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseAssignmentController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:17:34.104Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:17:34.104Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 34,
               "Title": "CaseCategoriesController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseCategoriesController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseCategoriesController.cs",
@@ -597,12 +654,11 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseCategoriesController.cs",
               "ViewState": "AgIAAH0AAAAAAAAAAAAAwI0AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T12:17:32.661Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:17:32.661Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 36,
               "Title": "ViewResultExecutor.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\.vsdbgsrc\\ca2620e0dabf9e1b5f9b53ccd4a2627067e9084bfa95318c9d8bfc4ac595a8a2\\ViewResultExecutor.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\ca2620e0dabf9e1b5f9b53ccd4a2627067e9084bfa95318c9d8bfc4ac595a8a2\\ViewResultExecutor.cs",
@@ -615,7 +671,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 37,
               "Title": "ViewExecutor.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\.vsdbgsrc\\4a05b8e6420357241794c90bac01120bf8f4f2f05257fd742c4e69a3965515f0\\ViewExecutor.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\4a05b8e6420357241794c90bac01120bf8f4f2f05257fd742c4e69a3965515f0\\ViewExecutor.cs",
@@ -628,7 +684,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 39,
               "Title": "MultiSelectList.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\.vsdbgsrc\\1c565a1e7ec70f2b5b4a6482c2fe5c7bd23c3ad01a1b720eda9bc16d771b9a9b\\MultiSelectList.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\1c565a1e7ec70f2b5b4a6482c2fe5c7bd23c3ad01a1b720eda9bc16d771b9a9b\\MultiSelectList.cs",
@@ -641,7 +697,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 40,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\appsettings.json",
               "RelativeDocumentMoniker": "TRACE\\appsettings.json",
@@ -649,12 +705,11 @@
               "RelativeToolTip": "TRACE\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-20T12:00:48.453Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T12:00:48.453Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 41,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseEvent\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseEvent\\Create.cshtml",
@@ -666,7 +721,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 38,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\Views\\MilestonesAchieved\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\MilestonesAchieved\\Create.cshtml",
@@ -674,8 +729,7 @@
               "RelativeToolTip": "TRACE\\Views\\MilestonesAchieved\\Create.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-20T02:20:16.296Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-20T02:20:16.296Z"
             }
           ]
         }

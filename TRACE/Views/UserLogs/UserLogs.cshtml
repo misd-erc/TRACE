@@ -15,20 +15,20 @@
 <div class="date-filterino shadow border-radius-5 flex h-down gap-10">
     <div>
         <i>Start Date</i><br />
-        <input type="date" class="startodate" />
+        <input type="date" class="startodate" id="startDate" />
     </div>
     <div>
         <i>End Date</i><br />
-        <input type="date" class="endodate" />
+        <input type="date" class="endodate" id="endDate" />
     </div>
 
     <div class="filter-design border-radius-5 flex h-center">
         <i class='bx bx-user'></i>
-        <input type="text" placeholder="Enter User" />
+        <input type="text" placeholder="Enter User" id="userFilter" />
     </div>
 
     <div>
-        <select>
+        <select id="moduleFilter">
             <option disabled selected>Select Module</option>
             <option>Case Management</option>
             <option>Document Management</option>
@@ -37,7 +37,7 @@
         </select>
     </div>
 
-    <button><i class='bx bxs-filter-alt'></i> FILTER</button>
+    <button id="filterBtn"><i class='bx bxs-filter-alt'></i> FILTER</button>
 </div>
 
 <div class="case-card shadow border-radius-5 flex space-between">
@@ -63,3 +63,115 @@
         <span class="next flex h-center" id="nextPage"><i class='bx bx-chevron-right'></i></span>
     </div>
 </div>
+
+<script>
+    let allCaseEvents = [];
+    let currentPage = 1;
+    const rowsPerPage = 10;
+    let allEventLogs = [];
+    document.addEventListener('DOMContentLoaded', function () {
+        renderEventLogsTable();
+
+        document.getElementById('filterBtn').addEventListener('click', () => {
+            const startDate = document.getElementById('startDate');
+            const endDate = document.getElementById('endDate');
+            const user = document.getElementById('userFilter');
+            const module = document.getElementById('moduleFilter');
+
+            const userValue = user.value.trim().toLowerCase();
+            const moduleValue = module.value.trim().toLowerCase();
+
+            const filtered = allEventLogs.filter(log => {
+                const logDate = new Date(log.eventDatetime);
+                const isAfterStart = !startDate.value || logDate >= new Date(startDate.value);
+                const isBeforeEnd = !endDate.value || logDate <= new Date(endDate.value);
+                const matchesUser = !userValue || log.userId.toLowerCase().includes(userValue);
+                const matchesModule = !moduleValue || moduleValue === "Select Module" || log.source.toLowerCase() === moduleValue;
+
+                return isAfterStart && isBeforeEnd && matchesUser && matchesModule;
+            });
+
+            displayLogs(filtered);
+        });
+    });
+
+    
+    function renderEventLogsTable() {
+
+        fetch(`/Eventlog/GetEventlogs`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                allEventLogs = data.data || []; // Save to global variable
+                displayLogs(allEventLogs); // Initial display
+            })
+            .catch(error => {
+                console.error('Error fetching logs:', error);
+            });
+    }
+
+    function displayLogs(logs) {
+        const tbody = document.getElementById('userauditBody');
+        tbody.innerHTML = '';
+
+        if (logs.length > 0) {
+            logs.forEach(event => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td data-label="TIMESTAMP">${event.eventDatetime || 'N/A'}</td>
+                        <td data-label="USER">${event.userId || 'N/A'}</td>
+                        <td data-label="MODULE">${event.source}</td>
+                        <td data-label="EVENT">${event.event}</td>
+                    </tr>`;
+            });
+        } else {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="4">No Logs</td>
+                </tr>`;
+        }
+    }
+   
+
+    function renderPagination() {
+        const totalPages = Math.ceil(allCaseEvents.length / rowsPerPage);
+        const paginationSelect = document.querySelector('#caseEventpagination select');
+        const prev = document.querySelector('#caseEventpagination .prev');
+        const next = document.querySelector('#caseEventpagination .next');
+
+        paginationSelect.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = i;
+            if (i === currentPage) option.selected = true;
+            paginationSelect.appendChild(option);
+        }
+
+        paginationSelect.onchange = (e) => {
+            currentPage = parseInt(e.target.value);
+            renderCaseEventTable();
+        };
+
+        prev.onclick = () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderCaseEventTable();
+                renderPagination();
+            }
+        };
+
+        next.onclick = () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderCaseEventTable();
+                renderPagination();
+            }
+        };
+    }
+</script>
