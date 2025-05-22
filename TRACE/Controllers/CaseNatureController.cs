@@ -79,21 +79,34 @@ namespace TRACE.Controllers
             if (!ModelState.IsValid)
             {
                 _context.Add(caseNature);
-                EventLog eventLog = new EventLog();
-                eventLog.EventDatetime = DateTime.Now;
+
                 var currentUserName = _currentUserHelper.Email;
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                eventLog.UserId = user.Username;
-                eventLog.Event = "CREATE";
-                eventLog.Source = "CONTENT MANAGEMENT";
-                eventLog.Category = "Case Nature";
+
+                EventLog eventLog = new EventLog
+                {
+                    EventDatetime = DateTime.Now,
+                    UserId = user?.Username,
+                    Event = "CREATE",
+                    Source = "CONTENT MANAGEMENT",
+                    Category = "Case Nature"
+                };
+
                 _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return Json(new { success = true, message = "Case Nature created successfully." });
             }
-            ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "Description", caseNature.CaseCategoryId);
-            return View(caseNature);
+
+            // Gather model validation errors
+            var errorMessages = ModelState.Values
+                .SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+
+            return Json(new { success = false, message = "Validation failed.", errors = errorMessages });
         }
+
 
         // GET: CaseNature/Edit/5
         public async Task<IActionResult> Edit(long? id)
@@ -121,41 +134,50 @@ namespace TRACE.Controllers
         {
             if (id != caseNature.CaseNatureId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Invalid request. ID mismatch." });
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
                     _context.Update(caseNature);
-                    EventLog eventLog = new EventLog();
-                    eventLog.EventDatetime = DateTime.Now;
+
                     var currentUserName = _currentUserHelper.Email;
                     var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                    eventLog.UserId = user.Username;
-                    eventLog.Event = "EDIT";
-                    eventLog.Source = "CONTENT MANAGEMENT";
-                    eventLog.Category = "Case Nature";
+
+                    EventLog eventLog = new EventLog
+                    {
+                        EventDatetime = DateTime.Now,
+                        UserId = user?.Username,
+                        Event = "EDIT",
+                        Source = "CONTENT MANAGEMENT",
+                        Category = "Case Nature"
+                    };
+
                     _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
+
+                    return Json(new { success = true, message = "Case Nature updated successfully." });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CaseNatureExists(caseNature.CaseNatureId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "Case Nature no longer exists." });
                     }
                     else
                     {
-                        throw;
+                        return Json(new { success = false, message = "A concurrency error occurred." });
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "CaseCategoryId", caseNature.CaseCategoryId);
-            return View(caseNature);
+
+            // Collect validation errors
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            return Json(new { success = false, message = "Validation failed.", errors });
         }
+
 
         // GET: CaseNature/Delete/5
         public async Task<IActionResult> Delete(long? id)
