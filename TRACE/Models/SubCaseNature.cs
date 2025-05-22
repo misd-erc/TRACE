@@ -1,4 +1,6 @@
-﻿namespace TRACE.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TRACE.Models
 {
     public class SubCaseNature
     {
@@ -8,6 +10,7 @@
 
         public string? Description { get; set; }
 
+        [Display(Name = "Choose Case Nature")]
         public long CaseNatureId { get; set; }
 
         public bool? IsInternal { get; set; }

@@ -33,7 +33,15 @@ namespace TRACE.Controllers
         [HttpGet]
         public async Task<IActionResult> GetSubCaseNature()
         {
-            var categories = await _context.SubCaseNature.ToListAsync();
+            var categories = await _context.SubCaseNature
+                .Include(s => s.CaseNature)
+                .Select(s => new {
+                    s.SubNatureId,
+                    s.SubNatureName,
+                    s.Description,
+                    CaseNatureName = s.CaseNature.Nature // Replace with your actual property
+                })
+                .ToListAsync();
 
             if (categories == null || !categories.Any())
             {
@@ -65,7 +73,7 @@ namespace TRACE.Controllers
         // GET: SubCaseNature/Create
         public IActionResult Create()
         {
-            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNatureId");
+            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "Nature");
             return View();
         }
 
@@ -76,24 +84,32 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("SubNatureId,SubNatureName,Description,CaseNatureId,IsInternal,CreatedAt")] SubCaseNature subCaseNature)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(subCaseNature);
                 await _context.SaveChangesAsync();
-                EventLog eventLog = new EventLog();
-                eventLog.EventDatetime = DateTime.Now;
+
                 var currentUserName = _currentUserHelper.Email;
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                eventLog.UserId = user.Username;
-                eventLog.Event = "CREATE";
-                eventLog.Source = "CONTENT MANAGEMENT";
-                eventLog.Category = "SubCase Nature";
+
+                EventLog eventLog = new EventLog
+                {
+                    EventDatetime = DateTime.Now,
+                    UserId = user?.Username,
+                    Event = "CREATE",
+                    Source = "CONTENT MANAGEMENT",
+                    Category = "SubCase Nature"
+                };
+
                 _context.EventLogs.Add(eventLog);
-                return RedirectToAction(nameof(Index));
+                await _context.SaveChangesAsync();
+
+                return Json(new { success = true, message = "Sub Case Nature successfully created." });
             }
-            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNatureId", subCaseNature.CaseNatureId);
-            return View(subCaseNature);
+
+            return Json(new { success = false, message = "Validation failed. Please check your inputs." });
         }
+
 
         // GET: SubCaseNature/Edit/5
         public async Task<IActionResult> Edit(int? id)

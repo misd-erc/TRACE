@@ -4,28 +4,37 @@
     ViewData["Title"] = "Create";
 }
 
+<div class="crumbs">
+    <a href="/contentmanagement">Content Management</a> > Create
+</div>
+
 <h1>Create</h1>
 
-<h4>SubCaseNature</h4>
+<p>This page is for creating new Sub Case Nature.</p>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form id="createForm" asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
                 <label asp-for="SubNatureName" class="control-label"></label>
                 <input asp-for="SubNatureName" class="form-control" />
                 <span asp-validation-for="SubNatureName" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="CaseNatureId" class="control-label"></label>
-                <select asp-for="CaseNatureId" class ="form-control" asp-items="ViewBag.CaseNatureId"></select>
+                <select asp-for="CaseNatureId" class="form-control" asp-items="ViewBag.CaseNatureId"></select>
+                <span asp-validation-for="CaseNatureId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -33,10 +42,49 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            $("#createForm").submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Success!",
+                                text: response.message,
+                                icon: "success",
+                                confirmButtonText: "OK"
+                            }).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Error!",
+                                text: response.message || "An error occurred while creating.",
+                                icon: "error",
+                                confirmButtonText: "Try Again"
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Oops!",
+                            text: "Something went wrong. Please try again.",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 }
