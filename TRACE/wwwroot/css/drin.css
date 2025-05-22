@@ -1817,8 +1817,8 @@ canvas {
     cursor:pointer;
 }
 
-.my-cases-table td:first-of-type{
-    width:130px !important;
+.wider{
+    width:160px !important;
 }
 
 #ADuserTable td:first-of-type {
