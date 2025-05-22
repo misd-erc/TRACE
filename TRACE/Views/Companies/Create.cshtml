@@ -4,58 +4,111 @@
     ViewData["Title"] = "Create";
 }
 
+<div class="crumbs">
+    <a href="/contentmanagement">Content Management</a> > Create
+</div>
+
 <h1>Create</h1>
 
-<h4>Company</h4>
+<p>This page is for adding companies to the system.</p>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="col-md-6">
+        <form id="createForm" asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CompanyName" class="control-label"></label>
+
+            <div class="form-group mb-3">
+                <label asp-for="CompanyName" class="form-label fw-bold">Company Name</label>
                 <input asp-for="CompanyName" class="form-control" />
                 <span asp-validation-for="CompanyName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AddressLine1" class="control-label"></label>
+
+            <div class="form-group mb-3">
+                <label asp-for="AddressLine1" class="form-label fw-bold">Address Line 1</label>
                 <input asp-for="AddressLine1" class="form-control" />
                 <span asp-validation-for="AddressLine1" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AddressLine2" class="control-label"></label>
+
+            <div class="form-group mb-3">
+                <label asp-for="AddressLine2" class="form-label fw-bold">Address Line 2</label>
                 <input asp-for="AddressLine2" class="form-control" />
                 <span asp-validation-for="AddressLine2" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CityId" class="control-label"></label>
-                <select asp-for="CityId" class ="form-control" asp-items="ViewBag.CityId"></select>
+
+            <div class="form-group mb-3">
+                <label asp-for="CityId" class="form-label fw-bold">City</label>
+                <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId"></select>
+                <span asp-validation-for="CityId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ZipCode" class="control-label"></label>
+
+            <div class="form-group mb-3">
+                <label asp-for="ZipCode" class="form-label fw-bold">ZIP Code</label>
                 <input asp-for="ZipCode" class="form-control" />
                 <span asp-validation-for="ZipCode" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EntityCategoryId" class="control-label"></label>
-                <select asp-for="EntityCategoryId" class ="form-control" asp-items="ViewBag.EntityCategoryId"></select>
+
+            <div class="form-group mb-3">
+                <label asp-for="EntityCategoryId" class="form-label fw-bold">Entity Category</label>
+                <select asp-for="EntityCategoryId" class="form-control" asp-items="ViewBag.EntityCategoryId"></select>
+                <span asp-validation-for="EntityCategoryId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ShortName" class="control-label"></label>
+
+            <div class="form-group mb-3">
+                <label asp-for="ShortName" class="form-label fw-bold">Short Name</label>
                 <input asp-for="ShortName" class="form-control" />
                 <span asp-validation-for="ShortName" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create Company" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            $("#createForm").submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Company Created!",
+                                text: response.message,
+                                icon: "success",
+                                confirmButtonText: "OK"
+                            }).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Error!",
+                                text: response.message,
+                                icon: "error",
+                                confirmButtonText: "Try Again"
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Oops!",
+                            text: "Something went wrong. Please try again.",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 }

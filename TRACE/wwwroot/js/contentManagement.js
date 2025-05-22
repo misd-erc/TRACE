@@ -94,7 +94,7 @@ function loadCaseCompanies() {
             <tr>
                 <td>${item.companyName}</td>
                 <td>${item.shortName}</td>
-                <td><a href="/CaseCategories/Edit/${item.CompanyId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+                <td><a href="/Companies/Edit/${item.companyId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
             </tr>`;
                 });
                 $("#DynamicTable tbody").html(rows);

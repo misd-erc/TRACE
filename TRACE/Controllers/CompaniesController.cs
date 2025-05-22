@@ -78,24 +78,29 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CompanyId,CompanyName,AddressLine1,AddressLine2,CityId,ZipCode,EntityCategoryId,ShortName")] Company company)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(company);
-                EventLog eventLog = new EventLog();
-                eventLog.EventDatetime = DateTime.Now;
+
                 var currentUserName = _currentUserHelper.Email;
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                eventLog.UserId = user.Username;
-                eventLog.Event = "CREATE";
-                eventLog.Source = "ERC CASE";
-                eventLog.Category = "Company";
+
+                EventLog eventLog = new EventLog
+                {
+                    EventDatetime = DateTime.Now,
+                    UserId = user?.Username,
+                    Event = "CREATE",
+                    Source = "CONTENT MANAGEMENT",
+                    Category = "Company"
+                };
+
                 _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return Json(new { success = true, message = "Company created successfully." });
             }
-            ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityId", company.CityId);
-            ViewData["EntityCategoryId"] = new SelectList(_context.EntityCategories, "EntityCategoryId", "EntityCategoryId", company.EntityCategoryId);
-            return View(company);
+
+            return Json(new { success = false, message = "Validation failed. Please check all fields." });
         }
 
         // GET: Companies/Edit/5
@@ -111,8 +116,8 @@ namespace TRACE.Controllers
             {
                 return NotFound();
             }
-            ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityId", company.CityId);
-            ViewData["EntityCategoryId"] = new SelectList(_context.EntityCategories, "EntityCategoryId", "EntityCategoryId", company.EntityCategoryId);
+            ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityName", company.CityId);
+            ViewData["EntityCategoryId"] = new SelectList(_context.EntityCategories, "EntityCategoryId", "Ecategory", company.EntityCategoryId);
             return View(company);
         }
 
@@ -125,42 +130,60 @@ namespace TRACE.Controllers
         {
             if (id != company.CompanyId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Company ID mismatch." });
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
                     _context.Update(company);
-                    EventLog eventLog = new EventLog();
-                    eventLog.EventDatetime = DateTime.Now;
-                    var currentUserName = _currentUserHelper.Email;
-                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                    eventLog.UserId = user.Username;
-                    eventLog.Event = "EDIT";
-                    eventLog.Source = "ERC CASE";
-                    eventLog.Category = "Company";
+
+                    // Event log
+                    EventLog eventLog = new EventLog
+                    {
+                        EventDatetime = DateTime.Now,
+                        UserId = _currentUserHelper.Email,
+                        Event = "EDIT",
+                        Source = "CONTENT MANAGEMENT",
+                        Category = "Company"
+                    };
+
+                    var user = _context.Users.FirstOrDefault(x => x.Email == eventLog.UserId);
+                    if (user != null)
+                    {
+                        eventLog.UserId = user.Username;
+                    }
+
                     _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
+
+                    return Json(new { success = true, message = "Company updated successfully." });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CompanyExists(company.CompanyId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "Company no longer exists." });
                     }
                     else
                     {
-                        throw;
+                        return Json(new { success = false, message = "A concurrency error occurred. Please try again." });
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["CityId"] = new SelectList(_context.Cities, "CityId", "CityId", company.CityId);
-            ViewData["EntityCategoryId"] = new SelectList(_context.EntityCategories, "EntityCategoryId", "EntityCategoryId", company.EntityCategoryId);
-            return View(company);
+
+            var errors = ModelState.Values.SelectMany(v => v.Errors)
+                                          .Select(e => e.ErrorMessage)
+                                          .ToList();
+
+            return Json(new
+            {
+                success = false,
+                message = errors.Any() ? string.Join(" ", errors) : "Invalid data. Please check the form."
+            });
         }
+
 
         // GET: Companies/Delete/5
         public async Task<IActionResult> Delete(long? id)
