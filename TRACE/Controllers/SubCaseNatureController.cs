@@ -124,7 +124,7 @@ namespace TRACE.Controllers
             {
                 return NotFound();
             }
-            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNatureId", subCaseNature.CaseNatureId);
+            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "Nature", subCaseNature.CaseNatureId);
             return View(subCaseNature);
         }
 
@@ -137,41 +137,48 @@ namespace TRACE.Controllers
         {
             if (id != subCaseNature.SubNatureId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Sub Case Nature not found." });
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
                     _context.Update(subCaseNature);
-                    EventLog eventLog = new EventLog();
-                    eventLog.EventDatetime = DateTime.Now;
+
                     var currentUserName = _currentUserHelper.Email;
                     var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                    eventLog.UserId = user.Username;
-                    eventLog.Event = "EDIT";
-                    eventLog.Source = "CONTENT MANAGEMENT";
-                    eventLog.Category = "SubCase Nature";
+
+                    EventLog eventLog = new EventLog
+                    {
+                        EventDatetime = DateTime.Now,
+                        UserId = user?.Username,
+                        Event = "EDIT",
+                        Source = "CONTENT MANAGEMENT",
+                        Category = "SubCase Nature"
+                    };
+
                     _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
+
+                    return Json(new { success = true, message = "Sub Case Nature updated successfully." });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!SubCaseNatureExists(subCaseNature.SubNatureId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "Sub Case Nature no longer exists." });
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNatureId", subCaseNature.CaseNatureId);
-            return View(subCaseNature);
+
+            return Json(new { success = false, message = "Validation failed. Please check the input fields." });
         }
+
 
         // GET: SubCaseNature/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -6,6 +6,7 @@ namespace TRACE.Models
     {
         public int SubNatureId { get; set; }
 
+        [Display(Name = "Sub Case Nature Name")]
         public string SubNatureName { get; set; } = null!;
 
         public string? Description { get; set; }

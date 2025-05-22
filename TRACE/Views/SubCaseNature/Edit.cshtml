@@ -4,40 +4,48 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<div class="crumbs">
+    <a href="/contentmanagement">Content Management</a> > Edit
+</div>
 
-<h4>SubCaseNature</h4>
+<h1>Edit Sub Case Nature</h1>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form id="editForm" asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <input type="hidden" asp-for="SubNatureId" />
+
             <div class="form-group">
                 <label asp-for="SubNatureName" class="control-label"></label>
                 <input asp-for="SubNatureName" class="form-control" />
                 <span asp-validation-for="SubNatureName" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="CaseNatureId" class="control-label"></label>
                 <select asp-for="CaseNatureId" class="form-control" asp-items="ViewBag.CaseNatureId"></select>
                 <span asp-validation-for="CaseNatureId" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="IsInternal" class="control-label"></label>
-                <input asp-for="IsInternal" class="form-control" />
+                <input type="hidden" asp-for="IsInternal" class="form-control" />
                 <span asp-validation-for="IsInternal" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
+                <input type="hidden" asp-for="CreatedAt" class="form-control" />
                 <span asp-validation-for="CreatedAt" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -45,10 +53,49 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            $("#editForm").submit(function (event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr("action"),
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: "Updated!",
+                                text: response.message,
+                                icon: "success",
+                                confirmButtonText: "OK"
+                            }).then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Error!",
+                                text: response.message || "An error occurred during update.",
+                                icon: "error",
+                                confirmButtonText: "Try Again"
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: "Oops!",
+                            text: "Something went wrong.",
+                            icon: "error",
+                            confirmButtonText: "OK"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 }
