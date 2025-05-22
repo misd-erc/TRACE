@@ -66,7 +66,7 @@ namespace TRACE.Controllers
         // GET: City/Create
         public IActionResult Create()
         {
-            ViewData["StateId"] = new SelectList(_context.States, "StateId", "StateId");
+            ViewData["StateId"] = new SelectList(_context.States, "StateId", "StateName");
             return View();
         }
 
@@ -77,24 +77,31 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CityId,CityName,StateId")] City city)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(city);
-                EventLog eventLog = new EventLog();
-                eventLog.EventDatetime = DateTime.Now;
+
                 var currentUserName = _currentUserHelper.Email;
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                eventLog.UserId = user.Username;
-                eventLog.Event = "CREATE";
-                eventLog.Source = "CONTENT MANAGEMENT";
-                eventLog.Category = "CITY";
+
+                EventLog eventLog = new EventLog
+                {
+                    EventDatetime = DateTime.Now,
+                    UserId = user?.Username,
+                    Event = "CREATE",
+                    Source = "CONTENT MANAGEMENT",
+                    Category = "CITY"
+                };
+
                 _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return Json(new { success = true, message = "City created successfully." });
             }
-            ViewData["StateId"] = new SelectList(_context.States, "StateId", "StateId", city.StateId);
-            return View(city);
+
+            return Json(new { success = false, message = "Validation failed. Please check the form and try again." });
         }
+
 
         // GET: City/Edit/5
         public async Task<IActionResult> Edit(long? id)
@@ -109,7 +116,7 @@ namespace TRACE.Controllers
             {
                 return NotFound();
             }
-            ViewData["StateId"] = new SelectList(_context.States, "StateId", "StateId", city.StateId);
+            ViewData["StateId"] = new SelectList(_context.States, "StateId", "StateName", city.StateId);
             return View(city);
         }
 
@@ -122,41 +129,48 @@ namespace TRACE.Controllers
         {
             if (id != city.CityId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "City ID mismatch." });
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
                     _context.Update(city);
-                    EventLog eventLog = new EventLog();
-                    eventLog.EventDatetime = DateTime.Now;
+
                     var currentUserName = _currentUserHelper.Email;
                     var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                    eventLog.UserId = user.Username;
-                    eventLog.Event = "EDIT";
-                    eventLog.Source = "CONTENT MANAGEMENT";
-                    eventLog.Category = "CITY";
+
+                    EventLog eventLog = new EventLog
+                    {
+                        EventDatetime = DateTime.Now,
+                        UserId = user?.Username,
+                        Event = "EDIT",
+                        Source = "CONTENT MANAGEMENT",
+                        Category = "CITY"
+                    };
+
                     _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
+
+                    return Json(new { success = true, message = "City updated successfully." });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CityExists(city.CityId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "City not found." });
                     }
                     else
                     {
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["StateId"] = new SelectList(_context.States, "StateId", "StateId", city.StateId);
-            return View(city);
+
+            return Json(new { success = false, message = "Validation failed. Please check the form." });
         }
+
 
         // GET: City/Delete/5
         public async Task<IActionResult> Delete(long? id)

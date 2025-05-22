@@ -3,10 +3,13 @@
 @{
     ViewData["Title"] = "Create";
 }
+<div class="crumbs">
+    <a href="/contentmanagement">Content Management</a> > Create
+</div>
 
 <h1>Create</h1>
 
-<h4>City</h4>
+<p>This page is for adding cities to the system.</p>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -28,10 +31,6 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
@@ -46,7 +45,7 @@
                     url: $(this).attr("action"),
                     type: "POST",
                     data: $(this).serialize(),
-                    success: function (response) {
+                            success: function (response) {
                         if (response.success) {
                             Swal.fire({
                                 title: "Success!",
@@ -58,7 +57,7 @@
                                     confirmButton: "swal2-confirm"
                                 }
                             }).then(() => {
-                                $("#createForm")[0].reset();
+                                location.reload();
                             });
                         } else {
                             Swal.fire({
