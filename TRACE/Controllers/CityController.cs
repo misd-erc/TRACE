@@ -24,6 +24,19 @@ namespace TRACE.Controllers
             _currentUserHelper = currentUserHelper;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetCities()
+        {
+            var citirino = await _context.Cities.ToListAsync();
+
+            if (citirino == null || !citirino.Any())
+            {
+                return Json(new { success = false, message = "No cities found." });
+            }
+
+            return Json(new { success = true, data = citirino });
+        }
+
         // GET: City
         public async Task<IActionResult> Index()
         {
