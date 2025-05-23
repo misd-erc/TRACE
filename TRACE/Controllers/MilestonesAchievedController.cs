@@ -141,8 +141,7 @@ namespace TRACE.Controllers
                 if (file.Length == 0) continue;
 
                 var attachmentLink = await fileUploadService.UploadDocumentFileAsync(file);
-                if (string.IsNullOrEmpty(attachmentLink)) continue;
-
+                
                 var documentMetadata = new CaseBlobDocument
                 {
                     AttachmentName = file.FileName,
@@ -154,6 +153,7 @@ namespace TRACE.Controllers
                 };
 
                 _context.CaseBlobDocument.Add(documentMetadata);
+                await _context.SaveChangesAsync();
                 uploadedFiles.Add(documentMetadata);
             }
 

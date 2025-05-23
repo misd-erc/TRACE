@@ -357,14 +357,11 @@ public partial class ErcdbContext : DbContext
             entity.Property(e => e.DocumentId).HasColumnName("DocumentID");
             entity.Property(e => e.AttachmentName).HasMaxLength(255);
             entity.Property(e => e.Ercid).HasColumnName("ERCId");
+            entity.Property(e => e.Milestone).HasMaxLength(255);
+            entity.Property(e => e.Module).HasMaxLength(255);
             entity.Property(e => e.UploadedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
-            entity.Property(e => e.Module)
-              .HasMaxLength(255); // assuming max length, adjust as needed
-
-            entity.Property(e => e.Milestone)
-                .HasMaxLength(255); // assuming max length, adjust as needed
         });
 
         base.OnModelCreating(modelBuilder);

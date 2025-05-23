@@ -140,7 +140,7 @@
             const formData = new FormData();
 
             formData.append("CaseNumber", erccaseId);
-             formData.append("milestone", milestone);
+            formData.append("milestone", milestone.value);
 
             files.forEach(file => {
                 formData.append("Files", file);
