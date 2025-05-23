@@ -87,7 +87,7 @@ namespace TRACE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DocumentId,AttachmentName,Ercid,AttachmentLink,UploadedAt")] CaseBlobDocument caseBlobDocument)
+        public async Task<IActionResult> Create([Bind("DocumentId,AttachmentName,Ercid,AttachmentLink,UploadedAt,Module,Milestone")] CaseBlobDocument caseBlobDocument)
         {
             if (ModelState.IsValid)
             {
@@ -128,7 +128,7 @@ namespace TRACE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DocumentId,AttachmentName,Ercid,AttachmentLink,UploadedAt")] CaseBlobDocument caseBlobDocument)
+        public async Task<IActionResult> Edit(int id, [Bind("DocumentId,AttachmentName,Ercid,AttachmentLink,UploadedAt,Module,Milestone")] CaseBlobDocument caseBlobDocument)
         {
             if (id != caseBlobDocument.DocumentId)
             {

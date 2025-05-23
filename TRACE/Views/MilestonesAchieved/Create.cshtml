@@ -60,6 +60,7 @@
     <script>
         const fileInput = document.getElementById("fileUpload");
         const fileNamesDisplay = document.getElementById("fileNames");
+        
         var files;
         var ercid = 0;
         fileInput.addEventListener("change", function () {
@@ -81,6 +82,7 @@
                 // Append files to the form data
                 files.forEach((file, index) => {
                     formData.append("files", file);
+                   
                 });
 
                 $.ajax({
@@ -134,9 +136,11 @@
         function callPostCaseBlobDocumentAPI(files) {
             const urlParams = new URLSearchParams(window.location.search);
             const erccaseId = urlParams.get('id');
+            const milestone = document.getElementById("_milestone");
             const formData = new FormData();
 
             formData.append("CaseNumber", erccaseId);
+             formData.append("milestone", milestone);
 
             files.forEach(file => {
                 formData.append("Files", file);

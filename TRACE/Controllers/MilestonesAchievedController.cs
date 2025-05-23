@@ -121,8 +121,6 @@ namespace TRACE.Controllers
         }
 
         [HttpPost]
-
-
         public async Task<ActionResult> PostCaseBlobDocument([FromForm] CaseBlobDocumentRequest request)
         {
             if (request.Files == null || request.Files.Length == 0)
@@ -135,56 +133,43 @@ namespace TRACE.Controllers
                 return BadRequest("Invalid CaseNumber format.");
             }
 
-            var uploadedFiles = new List<CaseBlobDocument>();  // To store metadata for each uploaded file
+            var uploadedFiles = new List<CaseBlobDocument>();
+            var fileUploadService = new FileUploadService(); // Move service initialization outside loop
 
             foreach (var file in request.Files)
             {
-                if (file.Length == 0)
-                {
-                    continue; // Skip empty files
-                }
+                if (file.Length == 0) continue;
 
-                // Generate a unique file name (you can also use any other naming strategy)
-                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                FileUploadService fileUploadService = new FileUploadService();
-                // Get a reference to the blob
-                string attachmentLink = await fileUploadService.UploadDocumentFileAsync(file);
+                var attachmentLink = await fileUploadService.UploadDocumentFileAsync(file);
+                if (string.IsNullOrEmpty(attachmentLink)) continue;
 
-                if (string.IsNullOrEmpty(attachmentLink))
-                {
-                    continue; // Skip if blob upload fails
-                }
-
-                // Save the file metadata to the database
                 var documentMetadata = new CaseBlobDocument
                 {
-                    AttachmentName = attachmentLink,
+                    AttachmentName = file.FileName,
                     AttachmentLink = attachmentLink,
                     Ercid = caseNumberParsed,
                     UploadedAt = DateTime.UtcNow,
-                    // Other fields from caseBlobDocument can be set here
+                    Module = request.Module,
+                    Milestone = request.Milestone
                 };
 
                 _context.CaseBlobDocument.Add(documentMetadata);
-                int result = _context.SaveChanges();
                 uploadedFiles.Add(documentMetadata);
-                try
-                {
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    Console.WriteLine($"Concurrency error: {ex.Message}");
-                    return Conflict("There was a concurrency error. Please try again.");
-                }
             }
 
-            // Save all the uploaded file metadata to the database
-        
+            try
+            {
+                await _context.SaveChangesAsync(); // Save once after loop
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                Console.WriteLine($"Concurrency error: {ex.Message}");
+                return Conflict("There was a concurrency error. Please try again.");
+            }
 
-            // Return the metadata of all uploaded files
             return Ok(new { success = true, message = "Success! Data has been saved.", data = uploadedFiles });
         }
+
 
 
 
