@@ -218,38 +218,6 @@
             }
         });
     }
-    function deletemilestonemember(milestoneId, templateId) {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "This will permanently delete the milestone template mapping.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const formData = new FormData();
-                formData.append("caseMilestoneId", milestoneId);
-                formData.append("caseMilestoneTemplateId", templateId);
-
-                fetch('/CaseMilestoneTemplateMember/DeleteMember', {
-                    method: 'POST',
-                    body: formData
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            Swal.fire('Deleted!', 'The mapping has been removed.', 'success')
-                                .then(() => location.reload());
-                        } else {
-                            Swal.fire('Error!', 'Something went wrong.', 'error');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Fetch error:', error);
-                        Swal.fire('Error!', 'Could not connect to the server.', 'error');
-                    });
-            }
-        });
-    }
     function loadCaseMilestoneTemplate() {
         $(".cms-modal .modal-content .modal-btn")
             .html("<i class='bx bx-plus'></i> Add New Milestone Template")
@@ -265,8 +233,8 @@
                     response.data.forEach(item => {
                         rows += `
                     <tr>
-                        <td>${item.caseMilestoneTemplateId}</td>
                         <td>${item.templateName}</td>
+                        <td>Case Category: ${item.caseCategoryName}</td>
                         <td><a href="/CaseMilestoneTemplate/Edit/${item.caseMilestoneTemplateId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
                     </tr>`;
                     });
@@ -284,7 +252,7 @@
     function loadCaseMilestoneTemplateMembers() {
         $(".cms-modal .modal-content .modal-btn")
             .html("<i class='bx bx-plus'></i> Add New Milestone Template Members")
-            .attr("onclick", "window.location.href='/CaseMilestoneTemplate/Create'");
+            .attr("onclick", "window.location.href='/CaseMilestoneTemplateMember/Create'");
         $.ajax({
             url: "/CaseMilestoneTemplateMember/GetCaseMilestoneTemplateMember",
             type: "GET",
@@ -299,11 +267,7 @@
                             <tr>
                                 <td>${item.milestone}</td>
                                 <td>${item.templateName}</td>
-                                <td>
-                                            <button onclick="deletemilestonemember(${item.milestoneId}, ${item.templateId})">
-                                        <i class='bx bxs-trash-alt'></i> Delete
-                                    </button>
-                                </td>
+                                <td><button class="red-bg" onclick="deletemilestonemember(${item.milestoneId}, ${item.templateId})">REMOVE</button></td>
                             </tr>`;
                     });
                     $("#DynamicTable tbody").html(rows);
@@ -317,6 +281,40 @@
             }
         });
     }
+
+        function deletemilestonemember(milestoneId, templateId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This will permanently delete the milestone template mapping.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const formData = new FormData();
+                    formData.append("caseMilestoneId", milestoneId);
+                    formData.append("caseMilestoneTemplateId", templateId);
+
+                    fetch('/CaseMilestoneTemplateMember/DeleteMember', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                Swal.fire('Deleted!', 'The mapping has been removed.', 'success')
+                                    .then(() => location.reload());
+                            } else {
+                                Swal.fire('Error!', 'Something went wrong.', 'error');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Fetch error:', error);
+                            Swal.fire('Error!', 'Could not connect to the server.', 'error');
+                        });
+                }
+            });
+        }
+
     function loadSubCaseNature() {
         $(".cms-modal .modal-content .modal-btn")
             .html("<i class='bx bx-plus'></i> Add New Sub Case Nature")

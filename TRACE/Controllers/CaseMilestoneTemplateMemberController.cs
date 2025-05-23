@@ -90,22 +90,30 @@ namespace TRACE.Controllers
             {
                 _context.Add(caseMilestoneTemplateMember);
                 await _context.SaveChangesAsync();
-                EventLog eventLog = new EventLog();
-                eventLog.EventDatetime = DateTime.Now;
+
                 var currentUserName = _currentUserHelper.Email;
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                eventLog.UserId = user.Username;
-                eventLog.Event = "CREATE";
-                eventLog.Source = "CONTENT MANAGEMENT";
-                eventLog.Category = "Create Case Milestone Template Member";
+
+                EventLog eventLog = new EventLog
+                {
+                    EventDatetime = DateTime.Now,
+                    UserId = user?.Username ?? "Unknown",
+                    Event = "CREATE",
+                    Source = "CONTENT MANAGEMENT",
+                    Category = "Create Case Milestone Template Member"
+                };
+
                 _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
+
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
-            ViewData["CaseMilestoneId"] = new SelectList(_context.CaseMilestones, "CaseMilestoneId", "CaseMilestoneId", caseMilestoneTemplateMember.CaseMilestoneId);
-            ViewData["CaseMilestoneTemplateId"] = new SelectList(_context.CaseMilestoneTemplates, "CaseMilestoneTemplateId", "CaseMilestoneTemplateId", caseMilestoneTemplateMember.CaseMilestoneTemplateId);
-            return Json(new { success = false, message = "Error! Please check your input." });
+
+            // Extract validation messages
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            return Json(new { success = false, message = string.Join(" ", errors) });
         }
+
 
         // GET: CaseMilestoneTemplateMember/Edit/5
         public async Task<IActionResult> Edit(long? id)

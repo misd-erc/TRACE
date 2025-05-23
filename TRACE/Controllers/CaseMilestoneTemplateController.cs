@@ -31,14 +31,21 @@ namespace TRACE.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCaseMilestoneTemplate()
         {
-            var categories = await _context.CaseMilestoneTemplates.ToListAsync();
+            var templates = await _context.CaseMilestoneTemplates
+                .Include(c => c.CaseCategory)
+                .Select(t => new {
+                    t.CaseMilestoneTemplateId,
+                    t.TemplateName,
+                    CaseCategoryName = t.CaseCategory.Category
+                })
+                .ToListAsync();
 
-            if (categories == null || !categories.Any())
+            if (templates == null || !templates.Any())
             {
-                return Json(new { success = false, message = "No categories found." });
+                return Json(new { success = false, message = "No data found." });
             }
 
-            return Json(new { success = true, data = categories });
+            return Json(new { success = true, data = templates });
         }
 
         // GET: CaseMilestoneTemplate/Details/5
@@ -74,24 +81,31 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CaseMilestoneTemplateId,TemplateName,CaseCategoryId")] CaseMilestoneTemplate caseMilestoneTemplate)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(caseMilestoneTemplate);
 
-                EventLog eventLog = new EventLog();
-                eventLog.EventDatetime = DateTime.Now;
                 var currentUserName = _currentUserHelper.Email;
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                eventLog.UserId = user.Username;
-                eventLog.Event = "CREATE";
-                eventLog.Source = "CONTENT MANAGEMENT";
-                eventLog.Category = "Case Milestone Template";
+
+                EventLog eventLog = new EventLog
+                {
+                    EventDatetime = DateTime.Now,
+                    UserId = user?.Username ?? "Unknown",
+                    Event = "CREATE",
+                    Source = "CONTENT MANAGEMENT",
+                    Category = "Case Milestone Template"
+                };
                 _context.EventLogs.Add(eventLog);
+
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return Json(new { success = true, message = "Milestone Template created successfully!" });
             }
-            ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "CaseCategoryId", caseMilestoneTemplate.CaseCategoryId);
-            return View(caseMilestoneTemplate);
+
+            // Extract validation error messages
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            return Json(new { success = false, message = string.Join(" ", errors) });
         }
 
         // GET: CaseMilestoneTemplate/Edit/5
@@ -120,41 +134,50 @@ namespace TRACE.Controllers
         {
             if (id != caseMilestoneTemplate.CaseMilestoneTemplateId)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Invalid template ID." });
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
                     _context.Update(caseMilestoneTemplate);
-                    EventLog eventLog = new EventLog();
-                    eventLog.EventDatetime = DateTime.Now;
+
                     var currentUserName = _currentUserHelper.Email;
                     var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                    eventLog.UserId = user.Username;
-                    eventLog.Event = "EDIT";
-                    eventLog.Source = "CONTENT MANAGEMENT";
-                    eventLog.Category = "Case Milestone Template";
+
+                    EventLog eventLog = new EventLog
+                    {
+                        EventDatetime = DateTime.Now,
+                        UserId = user?.Username ?? "Unknown",
+                        Event = "EDIT",
+                        Source = "CONTENT MANAGEMENT",
+                        Category = "Case Milestone Template"
+                    };
                     _context.EventLogs.Add(eventLog);
+
                     await _context.SaveChangesAsync();
+
+                    return Json(new { success = true, message = "Milestone Template updated successfully!" });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CaseMilestoneTemplateExists(caseMilestoneTemplate.CaseMilestoneTemplateId))
                     {
-                        return NotFound();
+                        return Json(new { success = false, message = "Milestone Template not found." });
                     }
                     else
                     {
-                        throw;
+                        return Json(new { success = false, message = "A concurrency error occurred. Please try again." });
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "CaseCategoryId", caseMilestoneTemplate.CaseCategoryId);
-            return View(caseMilestoneTemplate);
+
+            // Collect validation errors
+            var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+            return Json(new { success = false, message = string.Join(" ", errors) });
         }
+
 
         // GET: CaseMilestoneTemplate/Delete/5
         public async Task<IActionResult> Delete(long? id)

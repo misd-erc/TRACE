@@ -3,10 +3,13 @@
 @{
     ViewData["Title"] = "Create";
 }
+<div class="crumbs">
+    <a href="/contentmanagement">Content Management</a> > Create
+</div>
 
 <h1>Create</h1>
 
-<h4>CaseMilestoneTemplateMember</h4>
+<p>This page is for adding milestone members to a template.</p>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,7 +20,7 @@
                 <select asp-for="CaseMilestoneTemplateId" class ="form-control" asp-items="ViewBag.CaseMilestoneTemplateId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="CaseMilestoneId" class="control-label"></label>
+                <label>Select the milestone you wish to add to the selected template above.</label>
                 <select asp-for="CaseMilestoneId" class ="form-control" asp-items="ViewBag.CaseMilestoneId"></select>
             </div>
             <div class="form-group">
@@ -27,9 +30,6 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
