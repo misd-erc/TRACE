@@ -987,3 +987,35 @@ function archiveUserAssign(id) {
         }
     });
 }
+
+//MODALITY HEHE
+function openDrinardModal(action) {
+    document.getElementById('drinardActionType').value = action;
+    document.getElementById('drinardRemarks').value = '';
+    const titleElement = document.getElementById('drinardModalTitle');
+    titleElement.textContent = `${action} Confirmation`;
+
+    document.getElementById('drinardModal').classList.remove('drinard-hidden');
+}
+
+function closeDrinardModal() {
+    document.getElementById('drinardModal').classList.add('drinard-hidden');
+}
+
+function submitDrinardAction() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const caseId = urlParams.get('id');
+    const action = document.getElementById('drinardActionType').value;
+    const remarks = document.getElementById('drinardRemarks').value;
+
+    const now = new Date();
+    const formattedDateTime = now.toLocaleString();
+
+    const username = typeof loggedInUsername !== 'undefined' ? loggedInUsername : 'unknown';
+
+    console.log('CaseID:', caseId);
+    console.log('Action:', action);
+    console.log('Remarks:', remarks);
+    console.log('Performed by:', username);
+    console.log('Date and Time:', formattedDateTime);
+}

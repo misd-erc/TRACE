@@ -2067,8 +2067,45 @@ canvas {
     margin-right:10px;
 }
 
+.milestone-details span strong, .player-details p strong {
+    color: var(--primary-color);
+}
+
 .milestone-details{
-    padding:0px 0px 20px 0px;
+    padding:0px 0px 60px 0px;
+}
+
+.case-aging-player{
+    background: var(--active-color);
+    padding:10px 10px;
+    margin-bottom:15px;
+    border-radius:50px;
+   
+}
+
+.case-aging-player .bxr {
+    font-size: 35px;
+    color:#fff;
+    cursor: pointer;
+}
+
+.playerbuttons{
+    width:fit-content !important;
+}
+
+.clickablebuttons{
+    background: var(--primary-color);
+    padding:6px 15px;
+    color: #fff;
+    border-radius:50px;
+    width:120px;
+    text-align:center;
+    gap:5px;
+    cursor:pointer;
+}
+
+.clickablebuttons:hover {
+    background: var(--secondary-color);
 }
 
 @media (max-width: 999px) {
@@ -2451,3 +2488,48 @@ canvas {
 
 }
 /*AUDIT LOGS*/
+
+/*CASE PAUSE MODAL*/
+.drinard-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+.drinard-hidden {
+    display: none;
+}
+
+.drinard-modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.drinard-modal-content h3 {
+    margin-top: 0;
+}
+
+.drinard-modal-buttons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.drinard-textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+/*CASE PAUSE MODAL*/

@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "My Cases - Case No.";
+    var rawEmail = User.FindFirst("preferred_username")?.Value ?? "unknown@erc.ph";
+    var username = rawEmail.Replace("@erc.ph", "");
 }
 
 <div class="crumbs">
@@ -35,16 +37,31 @@
 
     <div class="cms-wrap shadow border-radius-5">
         <div id="milestones" class="cms-content active">
+            <h3 style="margin-bottom:0px;">Case Pause</h3>
+            <p>Pending External Party Action</p>
+            <div class="case-aging-player flex h-center">
+                <div class="flex h-center gap-10 playerbuttons">
+                    <div class="flex h-center clickablebuttons" onclick="openDrinardModal('Pause')">
+                        <i class='bxr bx-pause-circle'></i> PAUSE
+                    </div>
+                    <div class="flex h-center clickablebuttons" onclick="openDrinardModal('Resume')">
+                        <i class='bxr bx-play-circle'></i> RESUME
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="player-details">
+                <p><strong>Case Aging Status: </strong> <i id="caseagingstatus">No Data Available</i></p>
+                <p><strong>Case Aging Remarks: </strong> <i id="caseagingstatus">No Data Available</i></p>
+            </div>
+            <hr />
             <h3>Milestones</h3>
             <div class="milestone-details">
-                <span><strong>Case Age: </strong> <i id="caseage">??</i></span>
+                <span><strong>Case Age: </strong> <i id="caseage">No Data Available</i></span>
                 <span><strong>Current Milestone Age: </strong> <i id="currentmilestoneage">No Data Available</i></span>
             </div>
             <div class="case-milestone-wrapper" >
-                <div class="progress-container" id="casemilestone">
-                    
-                </div>
-
+                <div class="progress-container" id="casemilestone"></div>
             </div>
             @await Html.PartialAsync("Components/Loader/Mini-Loader-2")
         </div>
@@ -289,6 +306,24 @@
 
     </div>
 </div>
+
+<div id="drinardModal" class="drinard-modal drinard-hidden">
+    <div class="drinard-modal-content">
+        <h3 id="drinardModalTitle">Something went wrong!</h3>
+        <input type="hidden" id="drinardActionType" name="actionType" />
+
+        <label for="drinardRemarks">Remarks:</label>
+        <textarea id="drinardRemarks" name="remarks" rows="4" class="drinard-textarea"></textarea>
+
+        <div class="drinard-modal-buttons">
+            <button onclick="submitDrinardAction()">Submit</button>
+            <button onclick="closeDrinardModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+<script>
+    const loggedInUsername = "@username";
+</script>
 <script src="~/js/CaseDetails.js"></script>
 <script>
     function CreateHearing() {
