@@ -1931,6 +1931,15 @@ canvas {
     display: inline-block;
 }
 
+.form-input-div.uploader{
+    border: 3px dashed var(--primary-color);
+    margin:0px 10px;
+}
+
+.form-input-div.uploader input {
+    border: none;
+}
+
 .create-lc{
 }
 /*CREATE CASE*/

@@ -9,8 +9,8 @@
 <form id="createForm" asp-action="Create" method="post">
     <div class="main-head-div flex h-center space-between">
         <div class="title-div">
-            <h3>ADD HEARING</h3>
-            <p>This page is for creating hearings for the selected erc case</p>
+            <h3>ADD ACTIVITIES/EVENTS</h3>
+            <p>This page is for creating activities/events for the selected erc case</p>
         </div>
 
         <div class="btn-div">
@@ -22,6 +22,12 @@
             <div class="grid grid-three-fr gap-10">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-input-div">
+                    <label asp-for="EventDescription" class="control-label">Description</label>
+                    <textarea asp-for="EventDescription" class="form-control"></textarea>
+                    <span asp-validation-for="EventDescription" class="text-danger"></span>
+                </div>
+
+                <div class="form-input-div">
                     <label asp-for="EventDatetime" class="control-label">Event DateTime</label>
                     <input asp-for="EventDatetime" class="form-control" />
                     <span asp-validation-for="EventDatetime" class="text-danger"></span>
@@ -30,10 +36,10 @@
                     <label asp-for="CaseEventTypeId" class="control-label">Event Type</label>
                     <select asp-for="CaseEventTypeId" class="form-control" asp-items="ViewBag.CaseEventTypeId"></select>
                 </div>
-                <div class="form-input-div">
-                    <label asp-for="EventDescription" class="control-label">Description</label>
-                    <textarea asp-for="EventDescription" class="form-control"></textarea>
-                    <span asp-validation-for="EventDescription" class="text-danger"></span>
+
+                <div class="form-input-div uploader">
+                    <label class="control-label">Attach Files</label>
+                    <input type="file" class="form-control"/>
                 </div>
 
                 <div class="form-input-div" style="display:none">
