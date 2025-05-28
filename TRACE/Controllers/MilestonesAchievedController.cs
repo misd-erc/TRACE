@@ -150,7 +150,7 @@ namespace TRACE.Controllers
                     UploadedAt = DateTime.UtcNow,
                     Module = request.Module,
                     Milestone = request.Milestone,
-                    DataId =int.Parse( request.DataId),
+                    DataId =int.Parse(request.DataId),
                 };
 
                 _context.CaseBlobDocument.Add(documentMetadata);

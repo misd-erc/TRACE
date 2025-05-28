@@ -329,20 +329,89 @@
         <input type="hidden" id="hearingidused" name="actionType" />
         <br />
         <div class="form-input-div uploader">
-            <input type="file" multiple />
+            <input type="file" id="fileUpload" multiple />
         </div>
+        <!-- ✅ Add this for displaying selected file names -->
+        <div id="fileNamesDisplay" style="margin-top: 10px; font-style: italic;"></div>
+
         <div class="drinard-modal-buttons">
-            <button onclick="">Submit</button>
+            <button onclick="callPostCaseBlobDocumentAPI()">Submit</button>
             <button onclick="closeFilesHearingModal()">Cancel</button>
         </div>
     </div>
 </div>
+
 
 <script>
     const loggedInUsername = "@username";
 </script>
 <script src="~/js/CaseDetails.js"></script>
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fileInput = document.getElementById("fileUpload");
+        const fileNamesDisplay = document.getElementById("fileNamesDisplay");
+
+        fileInput.addEventListener("change", function () {
+            files = Array.from(fileInput.files);
+            if (files.length > 0) {
+                fileNamesDisplay.innerHTML = files.map(f => f.name).join("<br>");
+            } else {
+                fileNamesDisplay.textContent = "No files selected.";
+            }
+        });
+    });
+    function callPostCaseBlobDocumentAPI() {
+        const fileInput = document.getElementById("fileUpload");
+        const newId = document.getElementById("hearingidused").value;
+        const urlParams = new URLSearchParams(window.location.search);
+        const erccaseId = urlParams.get('id');
+        const formData = new FormData();
+
+        // Refresh files in case user clicks Submit without selecting again
+        files = Array.from(fileInput.files);
+
+        if (files.length === 0) {
+            Swal.fire("No Files", "Please select files to upload.", "warning");
+            return;
+        }
+
+        formData.append("CaseNumber", erccaseId);
+        formData.append("DataId", newId);
+        formData.append("Module", "Hearing");
+
+        files.forEach(file => {
+            formData.append("Files", file);
+        });
+
+        $.ajax({
+            url: '/MilestonesAchieved/PostCaseBlobDocument',
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                Swal.fire({
+                    title: "File Uploaded!",
+                    text: "Files have been uploaded successfully.",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                });
+                // Optional: clear file input and display
+                fileInput.value = "";
+                document.getElementById("fileNamesDisplay").innerHTML = "";
+                files = [];
+            },
+            error: function (xhr) {
+                console.log(xhr.responseText);
+                Swal.fire({
+                    title: "Oops!",
+                    text: "Something went wrong while calling the PostCaseBlobDocument API.",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
+            }
+        });
+    }
     function CreateHearing() {
         const urlParams = new URLSearchParams(window.location.search);
         const erccaseId = urlParams.get('id');
