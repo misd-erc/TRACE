@@ -2508,7 +2508,7 @@ canvas {
 }
 
 .drinard-modal-content {
-    background: #fff;
+    background: var(--theme);
     padding: 20px;
     border-radius: 8px;
     width: 300px;
@@ -2530,6 +2530,10 @@ canvas {
 .drinard-textarea {
     width: 100%;
     resize: vertical;
+    background: var(--theme);
+    outline:none;
+    padding:10px 5px;
+    font-family: var(--font-body);
 }
 
 /*CASE PAUSE MODAL*/
