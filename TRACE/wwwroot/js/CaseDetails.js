@@ -526,9 +526,9 @@ function fetchCaseHearingWithErcId(caseId) {
                         ? new Date(caseData.HearingDate).toLocaleDateString('en-GB')
                         : 'N/A';
 
-                    // Update Hearing Types and Descriptions based on the concatenated data
-                    const hearingTypes = caseData.HearingTypes || 'N/A';  // Default to 'N/A' if no HearingTypes are found
-                    const hearingTypeDescriptions = caseData.HearingTypeDescriptions || 'N/A';  // Default to 'N/A' if no Description
+                    
+                    const hearingTypes = caseData.HearingTypes || 'N/A';
+                    const hearingTypeDescriptions = caseData.HearingTypeDescriptions || 'N/A';
 
                     casehearing.innerHTML += `
                     <tr>
@@ -551,7 +551,7 @@ function fetchCaseHearingWithErcId(caseId) {
                         <td data-label="TYPE">${hearingTypeDescriptions} (${hearingTypes})</td>
                         <td data-label="REMARKS">${caseData.Remarks}</td>
                         <td data-label="ACTION" class="actions">
-                            <i class='bx bxs-edit' title="Edit"></i>
+                            <i class='bx bx-folder-up-arrow' title="Attach Files" onclick="openFilesHearingModal(${caseData.HearingID})"></i>
                         </td>
                     </tr>
                     `;
@@ -594,7 +594,6 @@ function fetchCaseNoteWithErcId(caseId) {
                         <td data-label="DATE">${formattedDate}</td>
                         <td data-label="ACTION" class="actions">
                             <i class='bx bxs-edit' title="Edit" onclick="CasenoteEdit(${caseData.caseNoteId})"></i>
-                            <i class='bx bxs-x-circle' title="Archive"></i>
                         </td>
                     </tr>
                 `;
@@ -1018,4 +1017,14 @@ function submitDrinardAction() {
     console.log('Remarks:', remarks);
     console.log('Performed by:', username);
     console.log('Date and Time:', formattedDateTime);
+}
+
+function openFilesHearingModal(hearingid) {
+    document.getElementById('hearingidused').value = hearingid;
+
+    document.getElementById('hearingattachments').classList.remove('filehearing-hidden');
+}
+
+function closeFilesHearingModal() {
+    document.getElementById('hearingattachments').classList.add('filehearing-hidden');
 }

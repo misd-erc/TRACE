@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\views\\caseevent\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\caseevent\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\views\\casemanagement\\casedetails\\casedetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\casemanagement\\casedetails\\casedetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\wwwroot\\css\\drin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\css\\drin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -59,14 +67,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseEvent\\Create.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\CaseEvent\\Create.cshtml",
-              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseEvent\\Create.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\CaseEvent\\Create.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAA5AAAAAAAAAA==",
+              "Title": "CaseDetails.js",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\CaseDetails.js",
+              "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\CaseDetails.js",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\CaseDetails.js",
+              "RelativeToolTip": "TRACE\\wwwroot\\js\\CaseDetails.js",
+              "ViewState": "AgIAAAwCAAAAAAAAAAASwCkCAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-28T01:49:28.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CaseDetails.cshtml",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseManagement\\CaseDetails\\CaseDetails.cshtml",
+              "RelativeDocumentMoniker": "TRACE\\Views\\CaseManagement\\CaseDetails\\CaseDetails.cshtml",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseManagement\\CaseDetails\\CaseDetails.cshtml",
+              "RelativeToolTip": "TRACE\\Views\\CaseManagement\\CaseDetails\\CaseDetails.cshtml",
+              "ViewState": "AgIAALMAAAAAAAAAAAASwMIAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-28T01:21:15.556Z",
+              "WhenOpened": "2025-05-28T01:49:17.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "drin.css",
+              "DocumentMoniker": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\css\\drin.css",
+              "RelativeDocumentMoniker": "TRACE\\wwwroot\\css\\drin.css",
+              "ToolTip": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\css\\drin.css",
+              "RelativeToolTip": "TRACE\\wwwroot\\css\\drin.css",
+              "ViewState": "AgIAABsBAAAAAAAAAAASwDUBAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-28T01:27:52.312Z",
               "EditorCaption": ""
             }
           ]
