@@ -6,5 +6,7 @@
         public string CaseNumber { get; set; }
         public string Module { get; set; }
         public string Milestone { get; set; }
+        public string DataId { get; set; }
+
     }
 }

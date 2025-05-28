@@ -88,21 +88,38 @@ namespace TRACE.Controllers
             {
                 var currentUserName = _currentUserHelper.Email;
                 var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+
+                if (user == null)
+                {
+                    return Json(new { success = false, message = "User not found." });
+                }
+
                 caseEvent.UserId = user.Username;
                 _context.Add(caseEvent);
-                await _context.SaveChangesAsync();
-                EventLog eventLog = new EventLog();
-                eventLog.EventDatetime = DateTime.Now;
-                
-                eventLog.UserId = user.Username;
-                eventLog.Event = "CREATE";
-                eventLog.Source = "CASE MANAGEMENT";
-                eventLog.Category = "Create Case Event";
+                await _context.SaveChangesAsync(); // Save and generate caseEvent.Id
+
+                // Now caseEvent.Id has the new primary key
+                var newId = caseEvent.CaseEventId;
+
+                EventLog eventLog = new EventLog
+                {
+                    EventDatetime = DateTime.Now,
+                    UserId = user.Username,
+                    Event = "CREATE",
+                    Source = "CASE MANAGEMENT",
+                    Category = "Create Case Event"
+                };
+
                 _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
 
-                return Json(new { success = true, message = "Success! Data has been saved." });
+                return Json(new { success = true, message = "Success! Data has been saved.", newId = newId });
             }
+            else
+            {
+                return Json(new { success = false, message = "Model state is invalid." });
+            }
+
             ViewData["CaseEventTypeId"] = new SelectList(_context.CaseEventTypes, "CaseEventTypeId", "CaseEventTypeId", caseEvent.CaseEventTypeId);
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseEvent.ErccaseId);
             return Json(new { success = false, message = "Error! Please check your input." });

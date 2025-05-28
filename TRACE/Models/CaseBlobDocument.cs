@@ -9,6 +9,7 @@
         public DateTime UploadedAt { get; set; }
         public string? Module { get; set; }
         public string? Milestone { get; set; }
+        public int DataId { get; set; }
 
     }
 }

@@ -362,6 +362,8 @@ public partial class ErcdbContext : DbContext
             entity.Property(e => e.UploadedAt)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
+            entity.Property(e => e.DataId).HasColumnName("DataId");
+
         });
 
         base.OnModelCreating(modelBuilder);

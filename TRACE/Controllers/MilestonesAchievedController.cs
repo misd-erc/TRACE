@@ -149,7 +149,8 @@ namespace TRACE.Controllers
                     Ercid = caseNumberParsed,
                     UploadedAt = DateTime.UtcNow,
                     Module = request.Module,
-                    Milestone = request.Milestone
+                    Milestone = request.Milestone,
+                    DataId =int.Parse( request.DataId),
                 };
 
                 _context.CaseBlobDocument.Add(documentMetadata);
