@@ -136,11 +136,11 @@
 
         <div id="documents" class="cms-content">
             <div class="cdeets flex h-center space-between">
-                <h3>Attached Documents</h3>
-                <button onclick="Create('MilestonesAchieved')">+ Attach Document</button>
+                <h3>Update Milestones and Attach Documents</h3>
+                <button onclick="Create('MilestonesAchieved')">Update Milestone</button>
             </div>
-            <i class="helper">You can manage and download the file attachment.</i>
-            <div class="nopaginationdiv">
+            <i class="helper">You can manage and download file attachments, as well as update case milestones.</i>
+            @* <div class="nopaginationdiv">
                 <table class="my-cases-table">
                     <thead>
                         <tr>
@@ -151,6 +151,45 @@
                     <tbody id="attacheddocs">
                     </tbody>
                 </table>
+            </div> *@
+            <div class="file-manager-wrapper grid grid-cms">
+                <div class="folders-nav">
+                    <ol>
+                        <li><i class='bx bxs-folder'></i>Activities and Events Files</li>
+                        <li><i class='bx bxs-folder'></i>Hearing Files</li>
+                        <li><i class='bx bxs-folder'></i>Milestone Files</li>
+                    </ol>
+                </div>
+                <div class="files-nav">
+                    <div class="files-heading flex space-between h-center">
+                        <h3>Activities and Events Files</h3>
+                        <div class="filter-design border-radius-5 flex h-center">
+                            <i class='bx bx-search'></i>
+                            <input type="text" placeholder="Search File" />
+                        </div>
+                    </div>
+                    <div class="grid grid-four-fr">
+                        <div class="thefile">
+                            <div class="file-options">⋮</div>
+                            <img src="~/images/icons/PDF.png" class="filetype-img" />
+                            <p>Sample-file.pdf</p>
+                        </div>
+
+                        <div class="thefile">
+                            <div class="file-options">⋮</div>
+                            <img src="~/images/icons/DOC.png" class="filetype-img" />
+                            <p>Sample-file.doc</p>
+                        </div>
+
+                        <div class="thefile">
+                            <div class="file-options">⋮</div>
+                            <img src="~/images/icons/XL.png" class="filetype-img" />
+                            <p>Sample-file.xlsx</p>
+                        </div>
+                    </div>
+                </div>
+
+                
             </div>
         </div>
 

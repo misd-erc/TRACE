@@ -2455,6 +2455,95 @@ canvas {
     text-align:center;
 }
 
+.file-manager-wrapper{
+    background: var(--body-color);
+    margin-top:10px;
+    min-height:400px;
+    
+}
+
+.folders-nav {
+    border: 1px solid var(--active-color);
+    padding: 20px;
+    overflow: auto;
+}
+
+.folders-nav ol{
+    list-style:none;
+    padding:0px;
+}
+
+.folders-nav ol li{
+    margin:5px 0px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    cursor:pointer;
+    width: fit-content;
+}
+
+.folders-nav ol li:hover {
+    color: var(--secondary-color);
+}
+
+.folders-nav ol li .bx{
+    color: #e3c512;
+}
+
+.files-nav {
+    overflow: auto;
+    padding: 20px;
+}
+
+.files-nav h3{
+    margin:0px;
+}
+
+.files-heading{
+    margin-bottom:20px;
+}
+
+.files-heading .filter-design{
+    border:1px solid var(--active-color);
+}
+
+.files-nav .filetype-img {
+    width: 65px;
+    height: 70px;
+}
+
+.files-nav .thefile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.files-nav .thefile:hover {
+    background: var(--active-color);
+}
+
+.files-nav .file-options {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    display: none;
+    color: var(--font-color);
+}
+
+.files-nav .thefile:hover .file-options {
+    display: block;
+}
+
+
 /*CASE ATTACHMENT DOCS*/
 
 .checktype input[type=checkbox]{
