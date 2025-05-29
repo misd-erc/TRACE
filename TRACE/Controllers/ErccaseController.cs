@@ -560,29 +560,30 @@ namespace TRACE.Controllers
                     int numericPart = int.Parse(parts[2]) + 1;
 
                     // Format with leading zeros (e.g., 0001, 0002, etc.)
-                    erccase.CaseNo = $"{year}-{numericPart:D4}-"+ initalcategory;
+                    erccase.CaseNo = $"{year}-{numericPart:D4}"+ initalcategory;
                 }
                 else
                 {
                     // If no previous case exists, start from 0001
-                    erccase.CaseNo = $"{year}-0001-" + initalcategory;
+                    erccase.CaseNo = $"{year}-0001" + initalcategory;
                 }
             }
 
            
             erccase.CaseStatus =  _context.CaseStatuses.FirstOrDefault(cs => cs.CaseStatusId == 1); 
-            erccase.CaseCategory = _context.CaseCategories.FirstOrDefault(cs => cs.CaseCategoryId == 1);
+            //erccase.CaseCategory = _context.CaseCategories.FirstOrDefault(cs => cs.CaseCategoryId == 1);
             ModelState.Remove("CaseStatus");
             ModelState.Remove("CaseCategory");
             ModelState.Remove("CaseNo");
 
             if (ModelState.IsValid)
             {
+                _context.Add(erccase);
+                await _context.SaveChangesAsync();
                 FileUploadService fileUploadService = new FileUploadService();
                 int folderCount = erccase.NoOfFolders ?? 1;
                await fileUploadService.CreateFolders(erccase.CaseNo, folderCount);
-                _context.Add(erccase);
-                await _context.SaveChangesAsync();
+               
                 return Json(new { success = true, message = "Success! Data has been saved." });
             }
 
