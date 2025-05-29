@@ -165,7 +165,7 @@
 
             $("#createForm").submit(function (event) {
                 event.preventDefault();
-
+                console.log($(this).serializeArray());
                 $.ajax({
                     url: $(this).attr("action"),
                     type: "POST",

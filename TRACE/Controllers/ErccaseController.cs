@@ -540,65 +540,83 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ErccaseId,CaseNo,CaseCategoryId,Title,CaseNatureId,DateFiled,DateDocketed,DocketedBy,CaseStatusId,Synopsis,NoOfFolders,MeterSin,AmountClaimed,AmountSettled,IsArchived,TargetPaissuance,ActualPaissuance,TargetFaissuance,ActualFaissuance,SubmittedForResolution,PrayedForPa,IsApproved,ApprovedBy,DatetimeApproved,CaseBoxLocation,PadeliberationDate,FadeliberationDate,PatargetOrder,FatargetOrder")] Erccase erccase)
         {
-            
-            var year = DateTime.Now.ToString("yyyy-MM");
-            var casecategory = _context.CaseCategories.Find(erccase.CaseCategoryId);
+            try
+            {
+                var year = DateTime.Now.ToString("yyyy-MM");
 
-            var initalcategory = "-"+GetInitials(casecategory.Description);
-            var designatedCaseNo = _context.Erccases.Where(c => c.CaseNo.Contains(initalcategory) && c.CaseNo.Contains(year)).OrderByDescending(c => c.ErccaseId).FirstOrDefault(); 
-            if(designatedCaseNo == null)
-            {
-                erccase.CaseNo = year +"-0001"+initalcategory;
-            }
-            else
-            {
-                string newCaseNumber;
-                if (designatedCaseNo != null)
+                var casecategory = await _context.CaseCategories.FindAsync(erccase.CaseCategoryId);
+                if (casecategory == null)
+                    return Json(new { success = false, message = $"Case Category with ID {erccase.CaseCategoryId} not found." });
+
+                if (string.IsNullOrWhiteSpace(casecategory.Description))
+                    return Json(new { success = false, message = "Case Category description is null or empty." });
+
+                var initalcategory = "-" + GetInitials(casecategory.Description);
+
+                var designatedCaseNo = _context.Erccases
+                    .Where(c => c.CaseNo.Contains(initalcategory) && c.CaseNo.Contains(year))
+                    .OrderByDescending(c => c.ErccaseId)
+                    .FirstOrDefault();
+
+                if (designatedCaseNo == null)
                 {
-                    // Extract the numeric part and increment
-                    var parts = designatedCaseNo.CaseNo.Split('-');
-                    int numericPart = int.Parse(parts[2]) + 1;
-
-                    // Format with leading zeros (e.g., 0001, 0002, etc.)
-                    erccase.CaseNo = $"{year}-{numericPart:D4}"+ initalcategory;
+                    erccase.CaseNo = year + "-0001" + initalcategory;
                 }
                 else
                 {
-                    // If no previous case exists, start from 0001
-                    erccase.CaseNo = $"{year}-0001" + initalcategory;
+                    var parts = designatedCaseNo.CaseNo.Split('-');
+                    if (parts.Length >= 3 && int.TryParse(parts[2], out int numericPart))
+                    {
+                        numericPart += 1;
+                        erccase.CaseNo = $"{year}-{numericPart:D4}" + initalcategory;
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = "Failed to parse the last case number format." });
+                    }
                 }
+
+                erccase.CaseStatus = await _context.CaseStatuses.FirstOrDefaultAsync(cs => cs.CaseStatusId == 1);
+
+                ModelState.Remove("CaseStatus");
+                ModelState.Remove("CaseCategory");
+                ModelState.Remove("CaseNo");
+
+                if (ModelState.IsValid)
+                {
+                    _context.Add(erccase);
+                    await _context.SaveChangesAsync();
+
+                    var fileUploadService = new FileUploadService();
+                    int folderCount = erccase.NoOfFolders ?? 1;
+                    await fileUploadService.CreateFolders(erccase.CaseNo, folderCount);
+
+                    return Json(new { success = true, message = "Success! Data has been saved." });
+                }
+
+                await _eventLogger.LogEventAsync("CREATE", "ERC CASE", "Create Case");
+
+                var errors = ModelState
+                    .Where(m => m.Value.Errors.Count > 0)
+                    .ToDictionary(
+                        m => m.Key,
+                        m => m.Value.Errors.Select(e => e.ErrorMessage).ToList()
+                    );
+
+                return Json(new { success = false, message = "Validation failed!", errors });
             }
-
-           
-            erccase.CaseStatus =  _context.CaseStatuses.FirstOrDefault(cs => cs.CaseStatusId == 1); 
-            //erccase.CaseCategory = _context.CaseCategories.FirstOrDefault(cs => cs.CaseCategoryId == 1);
-            ModelState.Remove("CaseStatus");
-            ModelState.Remove("CaseCategory");
-            ModelState.Remove("CaseNo");
-
-            if (ModelState.IsValid)
+            catch (Exception ex)
             {
-                _context.Add(erccase);
-                await _context.SaveChangesAsync();
-                FileUploadService fileUploadService = new FileUploadService();
-                int folderCount = erccase.NoOfFolders ?? 1;
-               await fileUploadService.CreateFolders(erccase.CaseNo, folderCount);
-               
-                return Json(new { success = true, message = "Success! Data has been saved." });
+                return Json(new
+                {
+                    success = false,
+                    message = "An error occurred during case creation.",
+                    error = ex.Message,
+                    innerException = ex.InnerException?.Message
+                });
             }
-
-            await _eventLogger.LogEventAsync("CREATE", "ERC CASE", "Create Case");
-
-
-            ViewData["CaseCategoryId"] = new SelectList(_context.CaseCategories, "CaseCategoryId", "Description");
-            ViewData["CaseNatureId"] = new SelectList(_context.CaseNatures, "CaseNatureId", "CaseNature");
-
-            ViewData["CaseStatusId"] = new SelectList(_context.CaseStatuses, "CaseStatusId", "Description");
-             var errors = ModelState.Where(m => m.Value.Errors.Count > 0)
-                       .ToDictionary(m => m.Key, m => m.Value.Errors.Select(e => e.ErrorMessage).ToList());
-
-            return Json(new { success = false, message = "Validation failed!", errors });
         }
+
 
         // GET: Erccase/Edit/5
         public async Task<IActionResult> Edit(long? id)
