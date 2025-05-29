@@ -516,6 +516,17 @@ namespace TRACE.Controllers
             return View();
         }
 
+        [HttpGet]
+        public JsonResult GetCaseNatures(int categoryId)
+        {
+            var caseNatures = _context.CaseNatures
+                .Where(x => x.CaseCategoryId == categoryId)
+                .Select(x => new { x.CaseNatureId, x.Nature })
+                .ToList();
+
+            return Json(caseNatures);
+        }
+
         static string GetInitials(string input)
         {
             if (string.IsNullOrWhiteSpace(input))

@@ -35,8 +35,10 @@
                     </div>
                     <div class="form-input-div">
                         <label asp-for="CaseNature" class="control-label"></label><span style="color:red">*</span>
-                        <select asp-for="CaseNatureId" class="form-control" asp-items="ViewBag.CaseNatureId" id="CasenatureIdDropdown">
+                        <select asp-for="CaseNatureId" class="form-control" id="CasenatureIdDropdown">
+                            <option value="">-- Select Nature --</option>
                         </select>
+
                     </div>
                     <div class="form-input-div">
                         <label asp-for="Title" class="control-label"></label><span style="color:red">*</span>
@@ -139,6 +141,22 @@
         });
 
         $(document).ready(function () {
+             $('#CaseCategoryIdDropdown').change(function () {
+            var categoryId = $(this).val();
+            $('#CasenatureIdDropdown').empty();
+
+            $('#CasenatureIdDropdown').empty().append('<option>Loading...</option>');
+
+            $.getJSON('/Erccase/GetCaseNatures', { categoryId: categoryId }, function (data) {
+                $('#CasenatureIdDropdown').empty().append('<option value="">-- Select Nature --</option>');
+                $.each(data, function (i, item) {
+                    $('#CasenatureIdDropdown').append($('<option>', {
+                        value: item.caseNatureId,
+                        text: item.nature
+                    }));
+                });
+            });
+        });
             const element = document.getElementById('CaseCategoryIdDropdown');
             const choices = new Choices(element, {
                 searchEnabled: true,
@@ -151,17 +169,17 @@
                 position: 'bottom',
             });
 
-            const element2 = document.getElementById('CasenatureIdDropdown');
-            const choices2 = new Choices(element2, {
-                searchEnabled: true,
-                searchFuzzy: true,
-                removeItemButton: true,
-                placeholder: true,
-                placeholderValue: 'Search Case Nature',
-                searchChoices: true,
-                searchResultLimit: 9,
-                position: 'bottom',
-            });
+            // const element2 = document.getElementById('CasenatureIdDropdown');
+            // const choices2 = new Choices(element2, {
+            //     searchEnabled: true,
+            //     searchFuzzy: true,
+            //     removeItemButton: true,
+            //     placeholder: true,
+            //     placeholderValue: 'Search Case Nature',
+            //     searchChoices: true,
+            //     searchResultLimit: 9,
+            //     position: 'bottom',
+            // });
 
             $("#createForm").submit(function (event) {
                 event.preventDefault();
