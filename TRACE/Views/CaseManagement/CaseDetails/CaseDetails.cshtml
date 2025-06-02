@@ -168,22 +168,8 @@
                         </div>
                     </div>
                     <div class="grid grid-four-fr" id="Files">
-                        <div class="thefile">
-                            <div class="file-options">⋮</div>
-                            <img src="~/images/icons/PDF.png" class="filetype-img" />
-                            <p>Sample-file.pdf</p>
-                        </div>
-
-                        <div class="thefile">
-                            <div class="file-options">⋮</div>
-                            <img src="~/images/icons/DOC.png" class="filetype-img" />
-                            <p>Sample-file.doc</p>
-                        </div>
-
-                        <div class="thefile">
-                            <div class="file-options">⋮</div>
-                            <img src="~/images/icons/XL.png" class="filetype-img" />
-                            <p>Sample-file.xlsx</p>
+                        <div class="no-document">
+                            No Data Available
                         </div>
                     </div>
                 </div>
@@ -388,6 +374,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         const fileInput = document.getElementById("fileUpload");
         const fileNamesDisplay = document.getElementById("fileNamesDisplay");
+        showDocuments('Event');
 
         fileInput.addEventListener("change", function () {
             files = Array.from(fileInput.files);
@@ -398,11 +385,12 @@
             }
         });
     });
-    function showDocuments(module){
+
+    function showDocuments(module) {
         var param = module;
         const urlParams = new URLSearchParams(window.location.search);
         const erccaseId = urlParams.get('id');
-        /*console.log("Calling API with caseId:", caseId);*/
+        console.log(module);
         fetch(`/CaseBlobDocument/GetCaseBlobDocumentByModule?module=${param}&ercId=${erccaseId}`)
             .then(response => {
                 if (!response.ok) {
@@ -413,34 +401,24 @@
             .then(data => {
                 const applicantstbody = document.getElementById('Files');
                 applicantstbody.innerHTML = '';
-                if (data.data.length > 0) {
-                    const caseData = data[0];
-                    
-                   
+                if (data && Array.isArray(data.data) && data.data?.length > 0) {
+                    // const caseData = data[0];
                     data.data.forEach(event => {
-                      
+
                         const formattedDate = event.DateAssigned
                             ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
                             : 'N/A';
 
-                       
+
                         if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.pdf')) {
-                            applicantstbody.innerHTML += `
-                                <div class="thefile">
-                                    <div class="file-options">⋮</div>
-                                    <img src="/images/icons/PDF.png" class="filetype-img" />
-                                            <p>${event.attachmentName}</p>
-                                </div>`;
-                        }
-                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.pptx')) {
                             applicantstbody.innerHTML += `
                                     <div class="thefile">
                                         <div class="file-options">⋮</div>
                                         <img src="/images/icons/PDF.png" class="filetype-img" />
-                                            <p>${event.attachmentName}</p>
+                                                <p>${event.attachmentName}</p>
                                     </div>`;
                         }
-                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.ico')) {
+                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.pptx')) {
                             applicantstbody.innerHTML += `
                                         <div class="thefile">
                                             <div class="file-options">⋮</div>
@@ -448,39 +426,54 @@
                                                 <p>${event.attachmentName}</p>
                                         </div>`;
                         }
-                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.xlsx')) {
+                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.ico')) {
                             applicantstbody.innerHTML += `
-                                <div class="thefile">
-                                    <div class="file-options">⋮</div>
-                                        <img src="/images/icons/XL.png" class="filetype-img" />
-                                         <p>${event.attachmentName}</p>
-                                </div>`;
+                                            <div class="thefile">
+                                                <div class="file-options">⋮</div>
+                                                <img src="/images/icons/PDF.png" class="filetype-img" />
+                                                    <p>${event.attachmentName}</p>
+                                            </div>`;
                         }
-                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.docx')) {
+                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.xlsx')) {
                             applicantstbody.innerHTML += `
                                     <div class="thefile">
                                         <div class="file-options">⋮</div>
-                                            <img src="/images/icons/DOC.png" class="filetype-img" />
-                                            <p>${event.attachmentName}</p>
+                                            <img src="/images/icons/XL.png" class="filetype-img" />
+                                             <p>${event.attachmentName}</p>
                                     </div>`;
                         }
-                        
+                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.docx')) {
+                            applicantstbody.innerHTML += `
+                                        <div class="thefile">
+                                            <div class="file-options">⋮</div>
+                                                <img src="/images/icons/DOC.png" class="filetype-img" />
+                                                <p>${event.attachmentName}</p>
+                                        </div>`;
+                        }
+                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.png')) {
+                            applicantstbody.innerHTML += `
+                                        <div class="thefile">
+                                            <div class="file-options">⋮</div>
+                                                <img src="/images/icons/DOC.png" class="filetype-img" />
+                                                <p>${event.attachmentName}</p>
+                                        </div>`;
+                        }
+
                     })
 
                 } else {
-                    console.log(data)
                     applicantstbody.innerHTML = `
-                                <tr>
-                                      <td colspan="3">No Document</td>
-                                </tr>
-                            `;
+                        <div class="no-document">No Document</div>
+                    `;
                 }
 
             })
             .catch(error => {
-                console.error('Error fetching case details:', error);
+                console.error('Error fetching case files:', error);
             });
     }
+    
+
     function callPostCaseBlobDocumentAPI() {
         const fileInput = document.getElementById("fileUpload");
         const newId = document.getElementById("hearingidused").value;

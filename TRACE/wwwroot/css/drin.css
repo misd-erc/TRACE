@@ -2651,3 +2651,12 @@ canvas {
 }
 
 /*CASE PAUSE MODAL*/
+
+/*FILES*/
+.no-document {
+    padding: 1rem;
+    text-align: center;
+    color: var(--font-color);
+    font-style: italic;
+}
+/*FILES*/

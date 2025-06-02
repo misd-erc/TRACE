@@ -42,6 +42,7 @@ namespace TRACE.Controllers
 
             return Json(new { success = true, data = documents });
         }
+
         [HttpGet]
         public async Task<IActionResult> GetCaseBlobDocumentByModule(string module,int ercId)
         {
@@ -61,8 +62,8 @@ namespace TRACE.Controllers
             if (module == "Milestone")
             {
                 documents = await _context.CaseBlobDocument
-               .Where(x => x.Milestone != "" || x.Milestone != null && x.Ercid == ercId)
-               .ToListAsync();
+                    .Where(x => x.Module == "Milestone" && x.Ercid == ercId && !string.IsNullOrEmpty(x.Milestone))
+                    .ToListAsync();
             }
 
 
