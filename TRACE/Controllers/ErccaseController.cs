@@ -446,6 +446,65 @@ namespace TRACE.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllMOSCases()
+        {
+            try
+            {
+                var email = _currentUserHelper.Email;
+                var currentUser = email.Split('@')[0];
+
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                var sql = @"
+                        SELECT 
+                            c.ERCCaseID,
+                            cr.CaseRespondentID,
+                            ISNULL(cr.Remarks, 'N/A') AS RespondentRemarks,
+                            cr.CorrespondentID AS RespondentCorrespondentID,
+                            cr.CompanyID AS RespondentCompanyID,
+
+                            c.CaseNo,
+                            c.Title,
+                            ISNULL(cc.Category, 'N/A') AS Category,
+                            ISNULL(cn.Nature, 'NOT SET') AS Nature,
+                            c.DateFiled,
+                            c.DateDocketed,
+                            c.DocketedBy,
+                            ISNULL(cs.[Status], 'N/A') AS CaseStatus,
+
+                            ISNULL(comp.CompanyName, 'N/A') AS CompanyName,  
+                            ISNULL(cor.LastName + ' ' + cor.FirstName, 'N/A') AS CorrespondentLastName,
+                            ISNULL(ca.UserID, 'N/A') AS AssignedTo
+
+                        FROM cases.ERCCases c
+                        LEFT JOIN ercdb.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
+                        LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
+                        LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
+                        LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
+                        LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
+                        LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+                        LEFT JOIN cases.CaseAssignments ca ON c.ERCCaseID = ca.ERCCaseID
+
+                        WHERE c.DateDocketed IS NOT NULL 
+                          AND ca.UserID = @AssignedTo 
+                          AND ca.IsActive = 1
+                          AND cc.Category IN ('COC', 'RES', 'LRES')
+
+                        ORDER BY c.ERCCaseID DESC;
+                    ";
+
+                var result = await connection.QueryAsync<dynamic>(sql, new { AssignedTo = currentUser });
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
+
+
 
         [HttpGet]
         public async Task<IActionResult> GetLastCases(long casecategoryId)
