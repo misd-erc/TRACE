@@ -42,6 +42,37 @@ namespace TRACE.Controllers
 
             return Json(new { success = true, data = documents });
         }
+        [HttpGet]
+        public async Task<IActionResult> GetCaseBlobDocumentByModule(string module,int ercId)
+        {
+            List<CaseBlobDocument> documents = new List<CaseBlobDocument>();
+            if (module == "Event")
+            {
+             documents = await _context.CaseBlobDocument
+            .Where(x => x.Module == "Event" && x.Ercid == ercId)
+            .ToListAsync();
+            }
+            if (module == "Hearing")
+            {
+                documents = await _context.CaseBlobDocument
+               .Where(x => x.Module == "Hearing" && x.Ercid == ercId)
+               .ToListAsync();
+            }
+            if (module == "Milestone")
+            {
+                documents = await _context.CaseBlobDocument
+               .Where(x => x.Milestone != "" || x.Milestone != null && x.Ercid == ercId)
+               .ToListAsync();
+            }
+
+
+            if (documents == null || documents.Count == 0)
+            {
+                return Json(new { success = false, message = "No documents found." });
+            }
+
+            return Json(new { success = true, data = documents });
+        }
 
         [HttpGet]
         public async Task<IActionResult> Download(string fileName)

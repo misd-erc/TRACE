@@ -154,9 +154,9 @@
             <div class="file-manager-wrapper grid grid-cms">
                 <div class="folders-nav">
                     <ol>
-                        <li><i class='bx bxs-folder'></i>Activities and Events Files</li>
-                        <li><i class='bx bxs-folder'></i>Hearing Files</li>
-                        <li><i class='bx bxs-folder'></i>Milestone Files</li>
+                        <li onclick="showDocuments('Event')"><i class='bx bxs-folder'></i>Activities and Events Files</li>
+                        <li onclick="showDocuments('Hearing')"><i class='bx bxs-folder'></i>Hearing Files</li>
+                        <li onclick="showDocuments('Milestone')"><i class='bx bxs-folder'></i>Milestone Files</li>
                     </ol>
                 </div>
                 <div class="files-nav">
@@ -167,7 +167,7 @@
                             <input type="text" placeholder="Search File" />
                         </div>
                     </div>
-                    <div class="grid grid-four-fr">
+                    <div class="grid grid-four-fr" id="Files">
                         <div class="thefile">
                             <div class="file-options">⋮</div>
                             <img src="~/images/icons/PDF.png" class="filetype-img" />
@@ -398,6 +398,89 @@
             }
         });
     });
+    function showDocuments(module){
+        var param = module;
+        const urlParams = new URLSearchParams(window.location.search);
+        const erccaseId = urlParams.get('id');
+        /*console.log("Calling API with caseId:", caseId);*/
+        fetch(`/CaseBlobDocument/GetCaseBlobDocumentByModule?module=${param}&ercId=${erccaseId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const applicantstbody = document.getElementById('Files');
+                applicantstbody.innerHTML = '';
+                if (data.data.length > 0) {
+                    const caseData = data[0];
+                    
+                   
+                    data.data.forEach(event => {
+                      
+                        const formattedDate = event.DateAssigned
+                            ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
+                            : 'N/A';
+
+                       
+                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.pdf')) {
+                            applicantstbody.innerHTML += `
+                                <div class="thefile">
+                                    <div class="file-options">⋮</div>
+                                    <img src="/images/icons/PDF.png" class="filetype-img" />
+                                            <p>${event.attachmentName}</p>
+                                </div>`;
+                        }
+                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.pptx')) {
+                            applicantstbody.innerHTML += `
+                                    <div class="thefile">
+                                        <div class="file-options">⋮</div>
+                                        <img src="/images/icons/PDF.png" class="filetype-img" />
+                                            <p>${event.attachmentName}</p>
+                                    </div>`;
+                        }
+                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.ico')) {
+                            applicantstbody.innerHTML += `
+                                        <div class="thefile">
+                                            <div class="file-options">⋮</div>
+                                            <img src="/images/icons/PDF.png" class="filetype-img" />
+                                                <p>${event.attachmentName}</p>
+                                        </div>`;
+                        }
+                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.xlsx')) {
+                            applicantstbody.innerHTML += `
+                                <div class="thefile">
+                                    <div class="file-options">⋮</div>
+                                        <img src="/images/icons/XL.png" class="filetype-img" />
+                                         <p>${event.attachmentName}</p>
+                                </div>`;
+                        }
+                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.docx')) {
+                            applicantstbody.innerHTML += `
+                                    <div class="thefile">
+                                        <div class="file-options">⋮</div>
+                                            <img src="/images/icons/DOC.png" class="filetype-img" />
+                                            <p>${event.attachmentName}</p>
+                                    </div>`;
+                        }
+                        
+                    })
+
+                } else {
+                    console.log(data)
+                    applicantstbody.innerHTML = `
+                                <tr>
+                                      <td colspan="3">No Document</td>
+                                </tr>
+                            `;
+                }
+
+            })
+            .catch(error => {
+                console.error('Error fetching case details:', error);
+            });
+    }
     function callPostCaseBlobDocumentAPI() {
         const fileInput = document.getElementById("fileUpload");
         const newId = document.getElementById("hearingidused").value;
