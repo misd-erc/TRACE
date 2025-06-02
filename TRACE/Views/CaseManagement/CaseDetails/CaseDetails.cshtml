@@ -154,20 +154,20 @@
             <div class="file-manager-wrapper grid grid-cms">
                 <div class="folders-nav">
                     <ol>
-                        <li onclick="showDocuments('Event')"><i class='bx bxs-folder'></i>Activities and Events Files</li>
-                        <li onclick="showDocuments('Hearing')"><i class='bx bxs-folder'></i>Hearing Files</li>
-                        <li onclick="showDocuments('Milestone')"><i class='bx bxs-folder'></i>Milestone Files</li>
+                        <li class="folder-item active" onclick="showDocuments('Event', this)"><i class='bx bxs-folder'></i>Activities and Events Files</li>
+                        <li class="folder-item" onclick="showDocuments('Hearing', this)"><i class='bx bxs-folder'></i>Hearing Files</li>
+                        <li class="folder-item" onclick="showDocuments('Milestone', this)"><i class='bx bxs-folder'></i>Milestone Files</li>
                     </ol>
                 </div>
                 <div class="files-nav">
                     <div class="files-heading flex space-between h-center">
-                        <h3>Activities and Events Files</h3>
+                        <h3 id="foldername">Activities and Events Files</h3>
                         <div class="filter-design border-radius-5 flex h-center">
                             <i class='bx bx-search'></i>
                             <input type="text" placeholder="Search File" />
                         </div>
                     </div>
-                    <div class="grid grid-four-fr" id="Files">
+                    <div class="grid grid-files" id="Files">
                         <div class="no-document">
                             No Data Available
                         </div>
@@ -386,11 +386,30 @@
         });
     });
 
-    function showDocuments(module) {
+        function showDocuments(module, element) {
         var param = module;
+
+        const foldername = document.getElementById('foldername');
+        if (foldername) {
+            if (module === "Hearing") {
+                foldername.innerHTML = 'Hearing Files';
+            } else if (module === "Event") {
+                foldername.innerHTML = 'Activities and Events Files';
+            } else {
+                foldername.innerHTML = 'Milestone Files';
+            }
+        }
+
+        document.querySelectorAll('.folder-item').forEach(item => {
+            item.classList.remove('active');
+        });
+
+        if (element) {
+            element.classList.add('active');
+        }
+
         const urlParams = new URLSearchParams(window.location.search);
         const erccaseId = urlParams.get('id');
-        console.log(module);
         fetch(`/CaseBlobDocument/GetCaseBlobDocumentByModule?module=${param}&ercId=${erccaseId}`)
             .then(response => {
                 if (!response.ok) {
@@ -401,77 +420,40 @@
             .then(data => {
                 const applicantstbody = document.getElementById('Files');
                 applicantstbody.innerHTML = '';
-                if (data && Array.isArray(data.data) && data.data?.length > 0) {
-                    // const caseData = data[0];
+                if (data && Array.isArray(data.data) && data.data.length > 0) {
                     data.data.forEach(event => {
-
                         const formattedDate = event.DateAssigned
                             ? new Date(event.DateAssigned).toLocaleDateString('en-GB')
                             : 'N/A';
 
+                        let fileIcon = '/images/icons/DOC.png';
+                        const link = event.attachmentLink?.toLowerCase() || '';
 
-                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.pdf')) {
-                            applicantstbody.innerHTML += `
-                                    <div class="thefile">
-                                        <div class="file-options">⋮</div>
-                                        <img src="/images/icons/PDF.png" class="filetype-img" />
-                                                <p>${event.attachmentName}</p>
-                                    </div>`;
-                        }
-                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.pptx')) {
-                            applicantstbody.innerHTML += `
-                                        <div class="thefile">
-                                            <div class="file-options">⋮</div>
-                                            <img src="/images/icons/PDF.png" class="filetype-img" />
-                                                <p>${event.attachmentName}</p>
-                                        </div>`;
-                        }
-                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.ico')) {
-                            applicantstbody.innerHTML += `
-                                            <div class="thefile">
-                                                <div class="file-options">⋮</div>
-                                                <img src="/images/icons/PDF.png" class="filetype-img" />
-                                                    <p>${event.attachmentName}</p>
-                                            </div>`;
-                        }
-                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.xlsx')) {
-                            applicantstbody.innerHTML += `
-                                    <div class="thefile">
-                                        <div class="file-options">⋮</div>
-                                            <img src="/images/icons/XL.png" class="filetype-img" />
-                                             <p>${event.attachmentName}</p>
-                                    </div>`;
-                        }
-                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.docx')) {
-                            applicantstbody.innerHTML += `
-                                        <div class="thefile">
-                                            <div class="file-options">⋮</div>
-                                                <img src="/images/icons/DOC.png" class="filetype-img" />
-                                                <p>${event.attachmentName}</p>
-                                        </div>`;
-                        }
-                        if (event.attachmentLink && event.attachmentLink.toLowerCase().includes('.png')) {
-                            applicantstbody.innerHTML += `
-                                        <div class="thefile">
-                                            <div class="file-options">⋮</div>
-                                                <img src="/images/icons/DOC.png" class="filetype-img" />
-                                                <p>${event.attachmentName}</p>
-                                        </div>`;
-                        }
+                        if (link.includes('.pdf')) fileIcon = '/images/icons/PDF.png';
+                        else if (link.includes('.pptx')) fileIcon = '/images/icons/PDF.png';
+                        else if (link.includes('.ico')) fileIcon = '/images/icons/PDF.png';
+                        else if (link.includes('.xlsx')) fileIcon = '/images/icons/XL.png';
+                        else if (link.includes('.docx')) fileIcon = '/images/icons/DOC.png';
+                        else if (link.includes('.png')) fileIcon = '/images/icons/DOC.png';
 
-                    })
-
+                        applicantstbody.innerHTML += `
+                            <div class="thefile">
+                                <div class="file-options">⋮</div>
+                                <img src="${fileIcon}" class="filetype-img" />
+                                <p>${event.attachmentName}</p>
+                            </div>`;
+                    });
                 } else {
                     applicantstbody.innerHTML = `
                         <div class="no-document">No Document</div>
                     `;
                 }
-
             })
             .catch(error => {
                 console.error('Error fetching case files:', error);
             });
     }
+
     
 
     function callPostCaseBlobDocumentAPI() {
