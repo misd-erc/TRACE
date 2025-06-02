@@ -988,6 +988,12 @@ function archiveUserAssign(id) {
 }
 
 //MODALITY HEHE
+
+function handleDrinardClick(element, action) {
+    if (element.classList.contains('off')) return; 
+    openDrinardModal(action);
+}
+
 function openDrinardModal(action) {
     document.getElementById('drinardActionType').value = action;
     document.getElementById('drinardRemarks').value = '';

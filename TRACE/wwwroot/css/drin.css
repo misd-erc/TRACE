@@ -2095,7 +2095,6 @@ canvas {
 .case-aging-player .bxr {
     font-size: 35px;
     color:#fff;
-    cursor: pointer;
 }
 
 .playerbuttons{
@@ -2113,8 +2112,25 @@ canvas {
     cursor:pointer;
 }
 
+.clickablebuttons.off {
+    background: var(--active-color);
+    padding: 6px 15px;
+    color: #fff;
+    border-radius: 50px;
+    width: 120px;
+    text-align: center;
+    gap: 5px;
+    cursor: default;
+    
+}
+
 .clickablebuttons:hover {
     background: var(--secondary-color);
+}
+
+.clickablebuttons.off:hover {
+    pointer-events: none;
+    background: var(--active-color);
 }
 
 @media (max-width: 999px) {

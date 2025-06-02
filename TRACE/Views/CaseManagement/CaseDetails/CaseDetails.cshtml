@@ -41,13 +41,12 @@
             <p>Pending External Party Action</p>
             <div class="case-aging-player flex h-center">
                 <div class="flex h-center gap-10 playerbuttons">
-                    <div class="flex h-center clickablebuttons" onclick="openDrinardModal('Pause')">
+                    <div class="flex h-center clickablebuttons" onclick="handleDrinardClick(this, 'Pause')">
                         <i class='bxr bx-pause-circle'></i> PAUSE
                     </div>
-                    <div class="flex h-center clickablebuttons" onclick="openDrinardModal('Resume')">
+                    <div class="flex h-center clickablebuttons off" onclick="handleDrinardClick(this, 'Resume')">
                         <i class='bxr bx-play-circle'></i> RESUME
                     </div>
-                    
                 </div>
             </div>
             <div class="player-details">
