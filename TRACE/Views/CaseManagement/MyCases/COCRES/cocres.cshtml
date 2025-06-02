@@ -74,13 +74,17 @@
             let paginatedItems = filteredCaseData.slice(start, end);
 
             $.each(paginatedItems, function (index, item) {
+                let shortTitle = item.Title && item.Title.length > 50
+                    ? item.Title.substring(0, 70) + "..."
+                    : item.Title ?? "N/A";
+
                 let row = `
                     <tr>
-                        <td data-label="Case No.">${item.CaseNo}</td>
-                            <td data-label="Case Title" class="case-title" onclick="location.href='/CaseDetails?id=${item.ERCCaseID}'">${item.Title}</td>
+                        <td data-label="Case No.">${item.CaseNo ?? 'N/A'}</td>
+                        <td data-label="Case Title" class="case-title" title="${item.Title ?? ''}" onclick="location.href='/CaseDetails?id=${item.ERCCaseID}'">${shortTitle}</td>
                         <td data-label="Date Filed">${formatDate(item.DateFiled)}</td>
                         <td data-label="Date Docketed">${formatDate(item.DateDocketed)}</td>
-                        <td data-label="Status">${item.CaseStatus}</td>
+                        <td data-label="Status">${item.CaseStatus ?? 'N/A'}</td>
                         <td data-label="Applicant/Petitioner">${item.CorrespondentLastName ?? 'N/A'}</td>
                         <td data-label="Respondent">${item.CompanyName ?? 'N/A'}</td>
                         <td class="actions" data-label="ACTIONS">

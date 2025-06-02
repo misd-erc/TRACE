@@ -106,7 +106,7 @@ $(document).ready(function () {
     let caseData = [];
     let filteredCaseData = [];
 
-    function displayTablePage(page) {
+        function displayTablePage(page) {
         const tableBody = $("#caseRespondentsTable tbody");
         tableBody.empty();
 
@@ -115,12 +115,16 @@ $(document).ready(function () {
         let paginatedItems = filteredCaseData.slice(start, end);
 
         $.each(paginatedItems, function (index, item) {
+            let shortTitle = item.Title && item.Title.length > 50
+                ? item.Title.substring(0, 70) + "..."
+                : item.Title ?? "N/A";
+
             let row = `
-                    <tr onclick="location.href='/CaseDetails?id=${item.ERCCaseID}'", "CaseManagement")'">
-                    <td>${item.CaseNo}</td>
-                    <td>${item.Title}</td>
+                <tr onclick="location.href='/CaseDetails?id=${item.ERCCaseID}'">
+                    <td>${item.CaseNo ?? 'N/A'}</td>
+                    <td title="${item.Title ?? ''}">${shortTitle}</td>
                     <td>${formatDate(item.DateFiled)}</td>
-                    <td>${item.CaseStatus}</td>
+                    <td>${item.CaseStatus ?? 'N/A'}</td>
                     <td>${item.CorrespondentLastName ?? 'N/A'}</td>
                     <td>${item.CompanyName ?? 'N/A'}</td>
                 </tr>`;
