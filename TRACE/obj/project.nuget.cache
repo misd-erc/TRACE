@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zBJ1eINdlQw=",
+  "dgSpecHash": "LK/OLWTmItA=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\trace\\TRACE.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\Documents\\GitHub\\TRACE\\TRACE\\TRACE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\azure.core\\1.46.1\\azure.core.1.46.1.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\azure.extensions.aspnetcore.configuration.secrets\\1.4.0\\azure.extensions.aspnetcore.configuration.secrets.1.4.0.nupkg.sha512",

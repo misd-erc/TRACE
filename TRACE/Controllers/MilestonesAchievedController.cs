@@ -141,7 +141,15 @@ namespace TRACE.Controllers
                 if (file.Length == 0) continue;
 
                 var attachmentLink = await fileUploadService.UploadDocumentFileAsync(file);
-                
+                var dataId = 0;
+                if (!string.IsNullOrWhiteSpace(request.DataId))
+                {
+                    dataId = int.Parse(request.DataId);
+                }
+                else
+                {
+                    dataId = 0;
+                }
                 var documentMetadata = new CaseBlobDocument
                 {
                     AttachmentName = file.FileName,
@@ -150,7 +158,8 @@ namespace TRACE.Controllers
                     UploadedAt = DateTime.UtcNow,
                     Module = request.Module,
                     Milestone = request.Milestone,
-                    DataId =int.Parse(request.DataId),
+                    
+                    DataId =dataId,
                 };
 
                 _context.CaseBlobDocument.Add(documentMetadata);
