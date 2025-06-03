@@ -153,10 +153,19 @@
             </div> *@
             <div class="file-manager-wrapper grid grid-cms">
                 <div class="folders-nav">
-                    <ol>
-                        <li class="folder-item active" onclick="showDocuments('Event', this)"><i class='bx bxs-folder'></i>Activities and Events Files</li>
-                        <li class="folder-item" onclick="showDocuments('Hearing', this)"><i class='bx bxs-folder'></i>Hearing Files</li>
-                        <li class="folder-item" onclick="showDocuments('Milestone', this)"><i class='bx bxs-folder'></i>Milestone Files</li>
+                    <ol id="folder-list">
+                        <li class="folder-item active" onclick="getBlobFolders('Event', this)">
+                            <i class='bx bxs-folder'></i> Activities and Events Files
+                            <ul class="subfolders"></ul>
+                        </li>
+                        <li class="folder-item" onclick="getBlobFolders('Hearing', this)">
+                            <i class='bx bxs-folder'></i> Hearing Files
+                            <ul class="subfolders"></ul>
+                        </li>
+                        <li class="folder-item" onclick="getBlobFolders('Milestone', this)">
+                            <i class='bx bxs-folder'></i> Milestone Files
+                            <ul class="subfolders"></ul>
+                        </li>
                     </ol>
                 </div>
                 <div class="files-nav">
@@ -355,7 +364,7 @@
         <div class="form-input-div uploader">
             <input type="file" id="fileUpload" multiple />
         </div>
-        <!-- ✅ Add this for displaying selected file names -->
+
         <div id="fileNamesDisplay" style="margin-top: 10px; font-style: italic;"></div>
 
         <div class="drinard-modal-buttons">
@@ -386,7 +395,7 @@
         });
     });
 
-        function showDocuments(module, element) {
+    function showDocuments(module, element) {
         var param = module;
 
         const foldername = document.getElementById('foldername');
@@ -430,11 +439,11 @@
                         const link = event.attachmentLink?.toLowerCase() || '';
 
                         if (link.includes('.pdf')) fileIcon = '/images/icons/PDF.png';
-                        else if (link.includes('.pptx')) fileIcon = '/images/icons/PDF.png';
-                        else if (link.includes('.ico')) fileIcon = '/images/icons/PDF.png';
+                        else if (link.includes('.pptx')) fileIcon = '/images/icons/pptx.png';
+                        else if (link.includes('.ico')) fileIcon = '/images/icons/ico.png';
                         else if (link.includes('.xlsx')) fileIcon = '/images/icons/XL.png';
                         else if (link.includes('.docx')) fileIcon = '/images/icons/DOC.png';
-                        else if (link.includes('.png')) fileIcon = '/images/icons/DOC.png';
+                        else if (link.includes('.png')) fileIcon = '/images/icons/png.png';
 
                         applicantstbody.innerHTML += `
                             <div class="thefile">
@@ -454,7 +463,39 @@
             });
     }
 
-    
+    async function getBlobFolders(module, listItem) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const ercId = urlParams.get('id');
+
+        try {
+            const response = await fetch(`/CaseBlobDocument/GetBlobFoldersdac?module=${module}&ercId=${ercId}`);
+            const result = await response.json();
+
+            document.querySelectorAll('.folder-item').forEach(li => li.classList.remove('active'));
+            listItem.classList.add('active');
+
+            const subfolderList = listItem.querySelector('.subfolders');
+            subfolderList.innerHTML = '';
+
+            if (result.success && result.data.length > 0) {
+                result.data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i class='bx bxs-folder'></i> ${item.milestone ? `${item.dataId} (${item.milestone})` : item.dataId}`;
+                    subfolderList.appendChild(li);
+                });
+            } else {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class='bx bxs-folder'></i> ${result.message || 'No folders found.'}`;
+                subfolderList.appendChild(li);
+            }
+        } catch (error) {
+            console.error("Error fetching folders:", error);
+            const subfolderList = listItem.querySelector('.subfolders');
+            subfolderList.innerHTML = `<li><i class='bx bxs-folder'></i> Error loading folders.</li>`;
+        }
+    }
+
+
 
     function callPostCaseBlobDocumentAPI() {
         const fileInput = document.getElementById("fileUpload");

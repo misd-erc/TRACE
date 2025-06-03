@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TRACE.BlobStorage;
 using TRACE.Context;
@@ -15,12 +17,14 @@ namespace TRACE.Controllers
     public class CaseBlobDocumentController : Controller
     {
         private readonly ErcdbContext _context;
+        private readonly string _connectionString;
         private readonly CurrentUserHelper _currentUserHelper;
 
-        public CaseBlobDocumentController(ErcdbContext context, CurrentUserHelper currentUserHelper)
+        public CaseBlobDocumentController(ErcdbContext context, IConfiguration configuration, CurrentUserHelper currentUserHelper)
         {
             _context = context;
             _currentUserHelper = currentUserHelper;
+            _connectionString = configuration.GetConnectionString("ErcDatabase");
         }
 
         // GET: CaseBlobDocument
@@ -49,9 +53,9 @@ namespace TRACE.Controllers
             List<CaseBlobDocument> documents = new List<CaseBlobDocument>();
             if (module == "Event")
             {
-             documents = await _context.CaseBlobDocument
-            .Where(x => x.Module == "Event" && x.Ercid == ercId)
-            .ToListAsync();
+                 documents = await _context.CaseBlobDocument
+                .Where(x => x.Module == "Event" && x.Ercid == ercId)
+                .ToListAsync();
             }
             if (module == "Hearing")
             {
@@ -240,6 +244,60 @@ namespace TRACE.Controllers
             _context.EventLogs.Add(eventLog);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetBlobFoldersdac(string module, int ercId)
+        {
+            try
+            {
+                using var connection = new SqlConnection(_connectionString);
+                await connection.OpenAsync();
+
+                var parameters = new DynamicParameters();
+                parameters.Add("@caseid", ercId);
+
+                string sql;
+
+                if (module == "Hearing" || module == "Event")
+                {
+                    sql = @"
+                        SELECT DataId
+                        FROM [ercdb].[cases].[CaseBlobDocuments]
+                        WHERE ERCId = @caseid AND Module = @module
+                        GROUP BY DataId";
+                    parameters.Add("@module", module);
+                }
+                else if (module == "Milestone")
+                {
+                    sql = @"
+                        SELECT DataId, Milestone
+                        FROM [ercdb].[cases].[CaseBlobDocuments]
+                        WHERE ERCId = @caseid AND Module IS NULL AND Milestone IS NOT NULL
+                        GROUP BY DataId, Milestone";
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Invalid module." });
+                }
+
+                var folders = (await connection.QueryAsync<CaseBlobDocument>(sql, parameters)).ToList();
+
+                if (folders == null || folders.Count == 0)
+                {
+                    return Json(new { success = false, message = "No Folders found." });
+                }
+
+                return Json(new { success = true, data = folders });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "Error fetching folders.", error = ex.Message });
+            }
+        }
+
+
+
+
 
         private bool CaseBlobDocumentExists(int id)
         {

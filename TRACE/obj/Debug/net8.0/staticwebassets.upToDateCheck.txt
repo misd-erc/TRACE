@@ -13,7 +13,10 @@ wwwroot\images\icons\document.png
 wwwroot\images\icons\document-white.png
 wwwroot\images\icons\hearing.png
 wwwroot\images\icons\hearing-white.png
+wwwroot\images\icons\ico.png
 wwwroot\images\icons\PDF.png
+wwwroot\images\icons\png.png
+wwwroot\images\icons\pptx.png
 wwwroot\images\icons\XL.png
 wwwroot\images\login-bg.jpg
 wwwroot\images\whitetech.jpg

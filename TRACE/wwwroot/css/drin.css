@@ -2493,53 +2493,63 @@ canvas {
     border: 1px solid var(--active-color);
     padding: 20px;
     overflow: auto;
+    max-height: 100%;
+    background-color: var(--background-color, #f9f9f9);
 }
 
-.folders-nav ol{
-    list-style:none;
-    padding:0px;
+.folders-nav ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.folders-nav ol li{
-    margin:5px 0px;
-    padding:0px 3px;
-    display:flex;
-    gap:10px;
-    align-items:center;
-    cursor:pointer;
-    width: fit-content;
+.folders-nav ol li.folder-item {
+    margin: 5px 0;
+    padding: 6px 10px;
+    gap: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
 }
 
 .folder-item.active {
     background-color: var(--active-color);
-    font-weight: bold;
-    color: var(--font-color);
+    color: var(--font-color, #fff);
 }
 
-.folders-nav ol li:hover {
+.folders-nav ol li.folder-item:hover {
+    background-color: var(--hover-bg-color, #efefef);
     color: var(--secondary-color);
 }
 
-.folders-nav ol li .bx{
+.folders-nav ol li .bx {
     color: #e3c512;
+    font-size: 1.2em;
+    flex-shrink: 0;
 }
 
-.files-nav {
-    overflow: auto;
-    padding: 20px;
+/* Subfolders */
+.folders-nav .subfolders {
+    list-style: none;
+    padding-left: 34px;
+    margin-top: 4px;
+    color: var(--subfolder-color, #444);
 }
 
-.files-nav h3{
-    margin:0px;
+.folders-nav .subfolders li {
+    padding: 3px 0;
+    font-size: 0.95em;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.files-heading{
-    margin-bottom:20px;
+.folders-nav .subfolders li i.bx {
+    color: #9b9b9b;
+    font-size: 1em;
 }
 
-.files-heading .filter-design{
-    border:1px solid var(--active-color);
-}
 
 .files-nav .filetype-img {
     width: 65px;

@@ -4,8 +4,20 @@ using Microsoft.EntityFrameworkCore;
 using TRACE.Helpers;
 using TRACE.Context;
 using System.Security.Claims;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+
+DotNetEnv.Env.Load();
+
+builder.Configuration["AzureAd:Instance"] = Environment.GetEnvironmentVariable("AZURE_AD_INSTANCE");
+builder.Configuration["AzureAd:TenantId"] = Environment.GetEnvironmentVariable("AZURE_AD_TENANT_ID");
+builder.Configuration["AzureAd:ClientId"] = Environment.GetEnvironmentVariable("AZURE_AD_CLIENT_ID");
+builder.Configuration["AzureAd:ClientSecret"] = Environment.GetEnvironmentVariable("AZURE_AD_CLIENT_SECRET");
+builder.Configuration["AzureAd:GroupId"] = Environment.GetEnvironmentVariable("AZURE_AD_GROUP_ID");
+builder.Configuration["AzureAd:CallbackPath"] = Environment.GetEnvironmentVariable("AZURE_AD_CALLBACK_PATH");
+builder.Configuration["AzureAd:Scopes"] = Environment.GetEnvironmentVariable("AZURE_AD_SCOPES");
+
 
 builder.Services.AddControllersWithViews();
 

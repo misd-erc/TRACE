@@ -1539,3 +1539,5 @@ C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Std.UriTemplate.dll
 C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\System.IO.Hashing.dll
 C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Azure.Extensions.AspNetCore.Configuration.Secrets.dll
 C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Azure.Extensions.AspNetCore.Configuration.Secrets.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\DotNetEnv.dll
+C:\Users\acer\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Sprache.dll
