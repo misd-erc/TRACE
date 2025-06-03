@@ -216,6 +216,7 @@ public partial class ErcdbContext : DbContext
     public virtual DbSet<CaseBlobDocument> CaseBlobDocument { get; set; }
     public virtual DbSet<CaseMilestoneTemplateMember> CaseMilestoneTemplateMember { get; set; }
     public virtual DbSet<Notification> Notifications { get; set; }
+    public virtual DbSet<TimePauseHistory> TimePauseHistories { get; set; }
     public DbSet<CaseMilestoneTemplateMember> CaseMilestoneTemplateMembers { get; set; }
 
 
@@ -293,6 +294,22 @@ public partial class ErcdbContext : DbContext
                         j.IndexerProperty<long>("AccountId").HasColumnName("AccountID");
                         j.IndexerProperty<long>("AccountGroupId").HasColumnName("AccountGroupID");
                     });
+        });
+
+        modelBuilder.Entity<TimePauseHistory>(entity =>
+        {
+            entity.ToTable("TimePauseHistory");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.DateUpdated)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Remarks)
+                .HasMaxLength(250)
+                .IsUnicode(false);
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<Notification>(entity =>
