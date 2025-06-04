@@ -300,18 +300,25 @@ public partial class ErcdbContext : DbContext
         {
             entity.ToTable("TimePauseHistory");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedOnAdd();
+
             entity.Property(e => e.DateUpdated)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.Remarks)
-                .HasMaxLength(250)
-                .IsUnicode(false);
+
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .IsUnicode(false);
+
             entity.Property(e => e.UserId)
                 .HasMaxLength(50)
+                .IsUnicode(false);
+
+            entity.Property(e => e.Remarks)
+                .HasMaxLength(250)
                 .IsUnicode(false);
         });
 

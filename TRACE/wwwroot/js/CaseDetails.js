@@ -1019,11 +1019,6 @@ function submitDrinardAction() {
 
     const username = typeof loggedInUsername !== 'undefined' ? loggedInUsername : 'unknown';
 
-    //console.log('CaseID:', caseId);
-    //console.log('Action:', action);
-    //console.log('Remarks:', remarks);
-    //console.log('Performed by:', username);
-    //console.log('Date and Time:', formattedDateTime);
 
     const token = document.querySelector('input[name="__RequestVerificationToken"]').value
 
@@ -1035,11 +1030,16 @@ function submitDrinardAction() {
     formData.append("Remarks", remarks)
     formData.append("__RequestVerificationToken", token)
 
-    fetch("/TimePauseHistory/Create", {
+
+
+    fetch("/TimePauseHistory/Savestatus", {
         method: "POST",
         body: formData
     }).then(res => {
-        console.log(res)
+        console.log("RESULT: " + res);
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
     }).catch(e => {
         console.error(e.message)
     })

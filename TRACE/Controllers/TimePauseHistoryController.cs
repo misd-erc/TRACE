@@ -54,15 +54,17 @@ namespace TRACE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DateUpdated,Status,ErcId,UserId,Remarks")] TimePauseHistory timePauseHistory)
+        public async Task<IActionResult> Savestatus([Bind("DateUpdated,Status,ErcId,UserId,Remarks")] TimePauseHistory timePauseHistory)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(timePauseHistory);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                return BadRequest(string.Join("; ", errors));
             }
-            return View(timePauseHistory);
+
+            _context.Add(timePauseHistory);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: TimePauseHistory/Edit/5
