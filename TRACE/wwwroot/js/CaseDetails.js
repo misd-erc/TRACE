@@ -1019,11 +1019,30 @@ function submitDrinardAction() {
 
     const username = typeof loggedInUsername !== 'undefined' ? loggedInUsername : 'unknown';
 
-    console.log('CaseID:', caseId);
-    console.log('Action:', action);
-    console.log('Remarks:', remarks);
-    console.log('Performed by:', username);
-    console.log('Date and Time:', formattedDateTime);
+    //console.log('CaseID:', caseId);
+    //console.log('Action:', action);
+    //console.log('Remarks:', remarks);
+    //console.log('Performed by:', username);
+    //console.log('Date and Time:', formattedDateTime);
+
+    const token = document.querySelector('input[name="__RequestVerificationToken"]').value
+
+    const formData = new FormData()
+    formData.append("DateUpdated", formattedDateTime)
+    formData.append("Status", action)
+    formData.append("ErcId", parseInt(caseId))
+    formData.append("UserId", username)
+    formData.append("Remarks", remarks)
+    formData.append("__RequestVerificationToken", token)
+
+    fetch("/TimePauseHistory/Create", {
+        method: "POST",
+        body: formData
+    }).then(res => {
+        console.log(res)
+    }).catch(e => {
+        console.error(e.message)
+    })
 }
 
 function openFilesHearingModal(hearingid) {
