@@ -1008,40 +1008,73 @@ function closeDrinardModal() {
     document.getElementById('drinardModal').classList.add('drinard-hidden');
 }
 
+function _showSuccessSweetAlert(title, text, callback) {
+    Swal.fire({
+        title: title || "Success!",
+        text: text || '',
+        icon: "success",
+        confirmButtonText: "OK"
+    }).then(() => callback?.());
+}
+
+function _showErrorSweetAlert(title, text) {
+    Swal.fire({
+        title: title || "Oops! sommething went wrong.",
+        text: text || '',
+        icon: "error",
+        confirmButtonText: "OK"
+    });
+}
+
 function submitDrinardAction() {
     const urlParams = new URLSearchParams(window.location.search);
     const caseId = urlParams.get('id');
     const action = document.getElementById('drinardActionType').value;
     const remarks = document.getElementById('drinardRemarks').value;
 
+    if (remarks.trim() === "") {
+        _showErrorSweetAlert(
+            title = "Remarks is Required.",
+            text = "Your remarks is required to explain why the case timer is being paused.\nThis ensures proper documentation and accountability"
+        );
+        return;
+    }
     const now = new Date();
     const formattedDateTime = now.toLocaleString();
 
     const username = typeof loggedInUsername !== 'undefined' ? loggedInUsername : 'unknown';
 
+    const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
 
-    const token = document.querySelector('input[name="__RequestVerificationToken"]').value
-
-    const formData = new FormData()
-    formData.append("DateUpdated", formattedDateTime)
-    formData.append("Status", action)
-    formData.append("ErcId", parseInt(caseId))
-    formData.append("UserId", username)
-    formData.append("Remarks", remarks)
-    formData.append("__RequestVerificationToken", token)
-
-
+    const formData = new FormData();
+    formData.append("DateUpdated", formattedDateTime);
+    formData.append("Status", action);
+    formData.append("ErcId", parseInt(caseId));
+    formData.append("UserId", username);
+    formData.append("Remarks", remarks);
+    formData.append("__RequestVerificationToken", token);
 
     fetch("/TimePauseHistory/Savestatus", {
         method: "POST",
         body: formData
-    }).then(res => {
-        console.log("RESULT: " + res);
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
+    }).then(async res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        closeDrinardModal();
+        if (res.status == 200) {
+            _showSuccessSweetAlert(
+                title = "Case Time Status Updated!",
+                text = "Case have been paused successfully.",
+                () => { location.reload(); }
+            );
+        } else if (res.status >= 300 || res.status < 400) {
+            _showSuccessSweetAlert(
+                title = "Case Time Status Updated!",
+                text = "Case have been paused successfully.\nYou will be redirected shortly.",
+                () => { if (res.url) window.location = res.url; }
+            );
         }
     }).catch(e => {
-        console.error(e.message)
+        _showErrorSweetAlert(text = "Please reach out to the administrator for assistance")
     })
 }
 
