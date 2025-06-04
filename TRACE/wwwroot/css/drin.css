@@ -2491,10 +2491,10 @@ canvas {
 
 .folders-nav {
     border: 1px solid var(--active-color);
-    padding: 20px;
+    padding: 10px;
     overflow: auto;
     max-height: 100%;
-    background-color: var(--background-color, #f9f9f9);
+    background-color: var(--background-color);
 }
 
 .folders-nav ol {
@@ -2507,21 +2507,48 @@ canvas {
     list-style: none;
 }
 
-.folder-items .bx {
+.folder-item .bx {
     color: #e3c512;
 }
 
-.folder-label{
-
+.folder-item {
+    margin: 10px 0px;
+    width: fit-content;
 }
 
+.folder-label {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
 
+.folder-label:hover {
+    cursor: pointer;
+    color: var(--secondary-color);
+}
 
+.subfolder-item {
+    margin: 5px 0px;
+    width: fit-content;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.subfolder-item:hover {
+    cursor:pointer;
+}
+
+.files-nav{
+    margin:10px;
+}
 
 
 .files-nav .filetype-img {
     width: 65px;
-    height: 70px;
+    height: 60px;
 }
 
 .files-nav .thefile {
@@ -2555,6 +2582,20 @@ canvas {
     display: block;
 }
 
+#foldername{
+    margin:0;
+}
+
+.file-search{
+    border: 1px solid var(--active-color);
+}
+
+.no-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
 
 /*CASE ATTACHMENT DOCS*/
 

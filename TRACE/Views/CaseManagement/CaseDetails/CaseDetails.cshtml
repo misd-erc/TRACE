@@ -154,25 +154,26 @@
             <div class="file-manager-wrapper grid grid-cms">
                 <div class="folders-nav">
                     <ol id="folder-list">
-                        <li class="folder-item active" onclick="getBlobFolders('Event', this)">
-                            <i class='bx bxs-folder'></i> <span class="folder-label">Activities and Events Files</span>
+                        <li class="folder-item" onclick="toggleFolder('Event', this, event)">
+                            <i class='bx bxs-folder'></i> <span class="folder-label no-select">Activities and Events Files</span>
                             <ul class="subfolders"></ul>
                         </li>
-                        <li class="folder-item" onclick="getBlobFolders('Hearing', this)">
-                            <i class='bx bxs-folder'></i> <span class="folder-label">Hearing Files</span>
+                        <li class="folder-item" onclick="toggleFolder('Hearing', this, event)">
+                            <i class='bx bxs-folder'></i> <span class="folder-label no-select">Hearing Files</span>
                             <ul class="subfolders"></ul>
                         </li>
-                        <li class="folder-item" onclick="getBlobFolders('Milestone', this)">
-                            <i class='bx bxs-folder'></i> <span class="folder-label">Milestone Files</span>
+                        <li class="folder-item" onclick="toggleFolder('Milestone', this, event)">
+                            <i class='bx bxs-folder'></i> <span class="folder-label no-select">Milestone Files</span>
                             <ul class="subfolders"></ul>
                         </li>
                     </ol>
 
+
                 </div>
                 <div class="files-nav">
                     <div class="files-heading flex space-between h-center">
-                        <h3 id="foldername">Activities and Events Files</h3>
-                        <div class="filter-design border-radius-5 flex h-center">
+                        <h3 id="foldername">Choose Folder</h3>
+                        <div class="filter-design border-radius-5 flex h-center file-search">
                             <i class='bx bx-search'></i>
                             <input type="text" placeholder="Search File" />
                         </div>
@@ -384,7 +385,6 @@
     document.addEventListener("DOMContentLoaded", function () {
         const fileInput = document.getElementById("fileUpload");
         const fileNamesDisplay = document.getElementById("fileNamesDisplay");
-        showDocuments('Event');
 
         fileInput.addEventListener("change", function () {
             files = Array.from(fileInput.files);
@@ -396,31 +396,77 @@
         });
     });
 
-    function showDocuments(module, element) {
+    async function toggleFolder(module, listItem, event) {
+        if (event) event.stopPropagation();
+
+        const subfolderList = listItem.querySelector('.subfolders');
+
+        if (subfolderList.style.display === 'none' || subfolderList.style.display === '') {
+            if (!subfolderList.hasChildNodes()) {
+                await getBlobFolders(module, listItem);
+            }
+            subfolderList.style.display = 'block';
+        } else {
+            subfolderList.style.display = 'none';
+        }
+    }
+
+    async function getBlobFolders(module, listItem) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const ercId = urlParams.get('id');
+
+        try {
+            const response = await fetch(`/CaseBlobDocument/GetBlobFoldersdac?module=${module}&ercId=${ercId}`);
+            const result = await response.json();
+
+            const subfolderList = listItem.querySelector('.subfolders');
+            subfolderList.innerHTML = '';
+
+            if (result.success && result.data.length > 0) {
+                result.data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.classList.add('subfolder-item');
+                    li.innerHTML = `
+                        <i class='bx bxs-folder'></i>
+                        <span class="folder-label no-select" onclick="showDocuments('${item.module}', ${item.dataId})">${item.milestone ? `${item.dataId} (${item.milestone})` : item.dataId}</span>`;
+
+                    li.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                    });
+
+                    subfolderList.appendChild(li);
+                });
+            } else {
+                const li = document.createElement('li');
+                li.textContent = result.message || 'No folders found.';
+                subfolderList.appendChild(li);
+            }
+        } catch (error) {
+            console.error("Error fetching folders:", error);
+            const subfolderList = listItem.querySelector('.subfolders');
+            subfolderList.innerHTML = `<li style="font-style:italic;">Error loading folders.</li>`;
+        }
+    }
+
+    function showDocuments(module, dataid) {
         var param = module;
+        var _dataid = dataid;
+
 
         const foldername = document.getElementById('foldername');
         if (foldername) {
             if (module === "Hearing") {
-                foldername.innerHTML = 'Hearing Files';
+                foldername.innerHTML = 'Hearing Files > '+ dataid ;
             } else if (module === "Event") {
-                foldername.innerHTML = 'Activities and Events Files';
+                foldername.innerHTML = 'Activities and Events Files > '+ dataid ;
             } else {
-                foldername.innerHTML = 'Milestone Files';
+                foldername.innerHTML = 'Milestone Files > '+ dataid ;
             }
-        }
-
-        document.querySelectorAll('.folder-item').forEach(item => {
-            item.classList.remove('active');
-        });
-
-        if (element) {
-            element.classList.add('active');
         }
 
         const urlParams = new URLSearchParams(window.location.search);
         const erccaseId = urlParams.get('id');
-        fetch(`/CaseBlobDocument/GetCaseBlobDocumentByModule?module=${param}&ercId=${erccaseId}`)
+        fetch(`/CaseBlobDocument/GetCaseBlobDocumentByModule?module=${param}&ercId=${erccaseId}&dataId=${_dataid}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -464,42 +510,6 @@
             });
     }
 
-    async function getBlobFolders(module, listItem) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const ercId = urlParams.get('id');
-
-        try {
-            const response = await fetch(`/CaseBlobDocument/GetBlobFoldersdac?module=${module}&ercId=${ercId}`);
-            const result = await response.json();
-
-            
-
-            const subfolderList = listItem.querySelector('.subfolders');
-            subfolderList.innerHTML = '';
-
-            if (result.success && result.data.length > 0) {
-                result.data.forEach(item => {
-                    const li = document.createElement('li');
-                    li.classList.add('subfolder-item');
-                    li.innerHTML = `
-                        <i class='bx bxs-folder'></i>
-                        <span class="folder-label">${item.milestone ? `${item.dataId} (${item.milestone})` : item.dataId}</span>`;
-                    subfolderList.appendChild(li);
-                });
-            } else {
-                const li = document.createElement('li');
-                li.innerHTML = `<i class='bx bxs-folder'></i> ${result.message || 'No folders found.'}`;
-                subfolderList.appendChild(li);
-            }
-        } catch (error) {
-            console.error("Error fetching folders:", error);
-            const subfolderList = listItem.querySelector('.subfolders');
-            subfolderList.innerHTML = `<li><i class='bx bxs-folder'></i> Error loading folders.</li>`;
-        }
-    }
-
-
-
     function callPostCaseBlobDocumentAPI() {
         const fileInput = document.getElementById("fileUpload");
         const newId = document.getElementById("hearingidused").value;
@@ -507,7 +517,6 @@
         const erccaseId = urlParams.get('id');
         const formData = new FormData();
 
-        // Refresh files in case user clicks Submit without selecting again
         files = Array.from(fileInput.files);
 
         if (files.length === 0) {

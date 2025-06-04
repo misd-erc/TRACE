@@ -48,7 +48,7 @@ namespace TRACE.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCaseBlobDocumentByModule(string module,int ercId)
+        public async Task<IActionResult> GetCaseBlobDocumentByModule(string module,int ercId, int dataid)
         {
             List<CaseBlobDocument> documents = new List<CaseBlobDocument>();
             if (module == "Event")
@@ -261,19 +261,19 @@ namespace TRACE.Controllers
                 if (module == "Hearing" || module == "Event")
                 {
                     sql = @"
-                        SELECT DataId
+                        SELECT DataId, Module
                         FROM [ercdb].[cases].[CaseBlobDocuments]
                         WHERE ERCId = @caseid AND Module = @module
-                        GROUP BY DataId";
+                        GROUP BY DataId, Module";
                     parameters.Add("@module", module);
                 }
                 else if (module == "Milestone")
                 {
                     sql = @"
-                        SELECT DataId, Milestone
+                        SELECT DataId, Milestone, Module
                         FROM [ercdb].[cases].[CaseBlobDocuments]
                         WHERE ERCId = @caseid AND Module IS NULL AND Milestone IS NOT NULL
-                        GROUP BY DataId, Milestone";
+                        GROUP BY DataId, Milestone, Module";
                 }
                 else
                 {
