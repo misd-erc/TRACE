@@ -54,7 +54,7 @@ namespace TRACE.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DateUpdated,Status,ErcId,UserId,Remarks")] TimePauseHistory timePauseHistory)
+        public async Task<IActionResult> Create([Bind("DateUpdated,Status,ErcId,UserId,Remarks")] TimePauseHistory timePauseHistory)
         {
             if (ModelState.IsValid)
             {
