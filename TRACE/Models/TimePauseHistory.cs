@@ -13,7 +13,7 @@ public partial class TimePauseHistory
 
     public int? ErcId { get; set; }
 
-    public int? UserId { get; set; }
+    public string? UserId { get; set; }
 
     public string? Remarks { get; set; }
 }
