@@ -107,9 +107,9 @@ namespace TRACE.Controllers
                 _context.Add(user);
                 EventLog eventLog = new EventLog();
                 eventLog.EventDatetime = DateTime.Now;
-                var currentUserName = _currentUserHelper.Email;
-                var users = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                eventLog.UserId = users.Username;
+                var email = _currentUserHelper.Email;
+                var currentUserName = email.Split('@')[0];
+                eventLog.UserId = currentUserName;
                 eventLog.Event = "CREATE";
                 eventLog.Source = "USER MANAGEMENT";
                 eventLog.Category = "USER";

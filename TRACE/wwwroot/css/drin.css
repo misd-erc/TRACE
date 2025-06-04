@@ -2503,52 +2503,20 @@ canvas {
     margin: 0;
 }
 
-.folders-nav ol li.folder-item {
-    margin: 5px 0;
-    padding: 6px 10px;
-    gap: 10px;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background-color 0.2s ease;
-}
-
-.folder-item.active {
-    background-color: var(--active-color);
-    color: var(--font-color, #fff);
-}
-
-.folders-nav ol li.folder-item:hover {
-    background-color: var(--hover-bg-color, #efefef);
-    color: var(--secondary-color);
-}
-
-.folders-nav ol li .bx {
-    color: #e3c512;
-    font-size: 1.2em;
-    flex-shrink: 0;
-}
-
-/* Subfolders */
-.folders-nav .subfolders {
+.subfolders {
     list-style: none;
-    padding-left: 34px;
-    margin-top: 4px;
-    color: var(--subfolder-color, #444);
 }
 
-.folders-nav .subfolders li {
-    padding: 3px 0;
-    font-size: 0.95em;
-    line-height: 1.4;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.folder-items .bx {
+    color: #e3c512;
 }
 
-.folders-nav .subfolders li i.bx {
-    color: #9b9b9b;
-    font-size: 1em;
+.folder-label{
+
 }
+
+
+
 
 
 .files-nav .filetype-img {

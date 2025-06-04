@@ -143,7 +143,7 @@
                 <table class="my-cases-table">
                     <thead>
                         <tr>
-                            <th>FILE NAME</th>                          
+                            <th>FILE NAME</th>
                             <th>DATE</th>
                         </tr>
                     </thead>
@@ -155,18 +155,19 @@
                 <div class="folders-nav">
                     <ol id="folder-list">
                         <li class="folder-item active" onclick="getBlobFolders('Event', this)">
-                            <i class='bx bxs-folder'></i> Activities and Events Files
+                            <i class='bx bxs-folder'></i> <span class="folder-label">Activities and Events Files</span>
                             <ul class="subfolders"></ul>
                         </li>
                         <li class="folder-item" onclick="getBlobFolders('Hearing', this)">
-                            <i class='bx bxs-folder'></i> Hearing Files
+                            <i class='bx bxs-folder'></i> <span class="folder-label">Hearing Files</span>
                             <ul class="subfolders"></ul>
                         </li>
                         <li class="folder-item" onclick="getBlobFolders('Milestone', this)">
-                            <i class='bx bxs-folder'></i> Milestone Files
+                            <i class='bx bxs-folder'></i> <span class="folder-label">Milestone Files</span>
                             <ul class="subfolders"></ul>
                         </li>
                     </ol>
+
                 </div>
                 <div class="files-nav">
                     <div class="files-heading flex space-between h-center">
@@ -471,8 +472,7 @@
             const response = await fetch(`/CaseBlobDocument/GetBlobFoldersdac?module=${module}&ercId=${ercId}`);
             const result = await response.json();
 
-            document.querySelectorAll('.folder-item').forEach(li => li.classList.remove('active'));
-            listItem.classList.add('active');
+            
 
             const subfolderList = listItem.querySelector('.subfolders');
             subfolderList.innerHTML = '';
@@ -480,7 +480,10 @@
             if (result.success && result.data.length > 0) {
                 result.data.forEach(item => {
                     const li = document.createElement('li');
-                    li.innerHTML = `<i class='bx bxs-folder'></i> ${item.milestone ? `${item.dataId} (${item.milestone})` : item.dataId}`;
+                    li.classList.add('subfolder-item');
+                    li.innerHTML = `
+                        <i class='bx bxs-folder'></i>
+                        <span class="folder-label">${item.milestone ? `${item.dataId} (${item.milestone})` : item.dataId}</span>`;
                     subfolderList.appendChild(li);
                 });
             } else {
