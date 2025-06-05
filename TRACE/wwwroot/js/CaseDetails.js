@@ -1009,7 +1009,6 @@ function fetchTimePauseHistory(id) {
         .then(async res => {
             if (res.ok) {
                 const data = await res.json();
-                console.log(data)
                 const isCaseCanPaused = data.status != "Pause"
                 toggleCaseStatusTogglerButtons(enablePause = isCaseCanPaused)
             }
@@ -1082,6 +1081,11 @@ function submitDrinardAction() {
         );
         return;
     }
+
+    Swal.fire({
+        title: "Processing...",
+        didOpen: () => { Swal.showLoading(); },
+    })
 
     const now = new Date();
     const formattedDateTime = now.toLocaleString();
