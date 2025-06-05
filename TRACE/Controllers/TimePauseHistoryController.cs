@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol;
 using TRACE.Context;
 using TRACE.Models;
 
@@ -154,6 +155,32 @@ namespace TRACE.Controllers
         private bool TimePauseHistoryExists(int id)
         {
             return _context.TimePauseHistories.Any(e => e.Id == id);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ByCaseId(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var isJsonRequest = Request.Headers.ContentType.Contains("application/json")
+                    || Request.Headers.XRequestedWith == "XMLHttpRequest";
+            if (!isJsonRequest)
+            {
+                return StatusCode(StatusCodes.Status406NotAcceptable);
+            }
+
+            var timePauseHistory = await _context.TimePauseHistories.OrderByDescending(t => t.Id)
+                .FirstOrDefaultAsync(t => t.ErcId == id);
+            if (timePauseHistory == null)
+            {
+                return NotFound();
+            }
+
+            return Json(timePauseHistory);
         }
     }
 }

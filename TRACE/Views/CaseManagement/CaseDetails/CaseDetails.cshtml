@@ -2,6 +2,7 @@
     ViewData["Title"] = "My Cases - Case No.";
     var rawEmail = User.FindFirst("preferred_username")?.Value ?? "unknown@erc.ph";
     var username = rawEmail.Replace("@erc.ph", "");
+    // var isCasePaused = 
 }
 
 <div class="crumbs">
@@ -41,10 +42,10 @@
             <p>Pending External Party Action</p>
             <div class="case-aging-player flex h-center">
                 <div class="flex h-center gap-10 playerbuttons">
-                    <div class="flex h-center clickablebuttons" onclick="handleDrinardClick(this, 'Pause')">
+                    <div id="casestatusPauseBtn" class="flex h-center clickablebuttons off" onclick="handleDrinardClick(this, 'Pause')">
                         <i class='bxr bx-pause-circle'></i> PAUSE
                     </div>
-                    <div class="flex h-center clickablebuttons off" onclick="handleDrinardClick(this, 'Resume')">
+                    <div id="caseStatusResumeBtn" class="flex h-center clickablebuttons off" onclick="handleDrinardClick(this, 'Resume')">
                         <i class='bxr bx-play-circle'></i> RESUME
                     </div>
                 </div>

@@ -20,10 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         GetCaseRelatedByErcID(caseId);
         fetchCaseRespondentWithErcId(caseId);
         fetchCaseApplicantWithErcId(caseId);
-        
-      
-     
-
+        fetchTimePauseHistory(caseId)
     } else {
         console.error('No case ID found in URL.');
     }
@@ -988,6 +985,46 @@ function archiveUserAssign(id) {
     });
 }
 
+function toggleCaseStatusTogglerButtons(
+    enablePause = false
+) {
+    const pauseBtn = document.getElementById('casestatusPauseBtn');
+    const resumeBtn = document.getElementById('caseStatusResumeBtn');
+
+    if (enablePause) {
+        pauseBtn.classList.remove("off")
+        resumeBtn.classList.add("off")
+    } else {
+        pauseBtn.classList.add("off")
+        resumeBtn.classList.remove("off")
+    }
+}
+
+function fetchTimePauseHistory(id) {
+    fetch(`/TimePauseHistory/ByCaseId/${id}`, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then(async res => {
+            if (res.ok) {
+                const data = await res.json();
+                console.log(data)
+                const isCaseCanPaused = data.status != "Pause"
+                toggleCaseStatusTogglerButtons(enablePause = isCaseCanPaused)
+            }
+            else if (res.status == 404) {
+                toggleCaseStatusTogglerButtons(enablePause = true)
+            }
+            else {
+                throw new Error('Network response was not ok')
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching case details:', error)
+        })
+}
+
 //MODALITY HEHE
 
 function handleDrinardClick(element, action) {
@@ -1008,21 +1045,28 @@ function closeDrinardModal() {
     document.getElementById('drinardModal').classList.add('drinard-hidden');
 }
 
-function _showSuccessSweetAlert(title, text, callback) {
+function _showSuccessSweetAlert(
+    title = 'Success!',
+    text = '',
+    callback = null
+) {
     Swal.fire({
-        title: title || "Success!",
-        text: text || '',
-        icon: "success",
-        confirmButtonText: "OK"
+        title: title,
+        text: text,
+        icon: 'success',
+        confirmButtonText: 'OK'
     }).then(() => callback?.());
 }
 
-function _showErrorSweetAlert(title, text) {
+function _showErrorSweetAlert(
+    title = 'Oops! sommething went wrong.',
+    text = ''
+) {
     Swal.fire({
-        title: title || "Oops! sommething went wrong.",
-        text: text || '',
-        icon: "error",
-        confirmButtonText: "OK"
+        title: title,
+        text: text,
+        icon: 'error',
+        confirmButtonText: 'OK'
     });
 }
 
@@ -1031,14 +1075,14 @@ function submitDrinardAction() {
     const caseId = urlParams.get('id');
     const action = document.getElementById('drinardActionType').value;
     const remarks = document.getElementById('drinardRemarks').value;
-
-    if (remarks.trim() === "") {
+    if (remarks.trim() === '') {
         _showErrorSweetAlert(
-            title = "Remarks is Required.",
-            text = "Your remarks is required to explain why the case timer is being paused.\nThis ensures proper documentation and accountability"
+            title = 'Remarks is Required.',
+            text = 'Your remarks is required to explain why the case timer is being paused.\nThis ensures proper documentation and accountability'
         );
         return;
     }
+
     const now = new Date();
     const formattedDateTime = now.toLocaleString();
 
@@ -1054,27 +1098,30 @@ function submitDrinardAction() {
     formData.append("Remarks", remarks);
     formData.append("__RequestVerificationToken", token);
 
-    fetch("/TimePauseHistory/Savestatus", {
-        method: "POST",
+    fetch('/TimePauseHistory/Savestatus', {
+        method: 'POST',
         body: formData
     }).then(async res => {
         if (!res.ok) throw new Error('Network response was not ok');
         closeDrinardModal();
         if (res.status == 200) {
             _showSuccessSweetAlert(
-                title = "Case Time Status Updated!",
-                text = "Case have been paused successfully.",
-                () => { location.reload(); }
+                title = 'Case Time Status Updated!',
+                text = `Case have been ${action.toLowerCase()} successfully.`,
+                //() => { location.reload(); }
             );
+            toggleCaseStatusTogglerButtons(
+                enablePause = (action != "Pause")
+            )
         } else if (res.status >= 300 || res.status < 400) {
             _showSuccessSweetAlert(
-                title = "Case Time Status Updated!",
-                text = "Case have been paused successfully.\nYou will be redirected shortly.",
+                title = 'Case Time Status Updated!',
+                text = `Case have been ${action.toLowerCase()} successfully.\nYou will be redirected shortly.`,
                 () => { if (res.url) window.location = res.url; }
             );
         }
     }).catch(e => {
-        _showErrorSweetAlert(text = "Please reach out to the administrator for assistance")
+        _showErrorSweetAlert(text = 'Please reach out to the administrator for assistance');
     })
 }
 
@@ -1087,3 +1134,4 @@ function openFilesHearingModal(hearingid) {
 function closeFilesHearingModal() {
     document.getElementById('hearingattachments').classList.add('filehearing-hidden');
 }
+
