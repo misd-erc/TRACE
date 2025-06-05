@@ -1007,17 +1007,20 @@ function fetchTimePauseHistory(id) {
         }
     })
         .then(async res => {
-            if (res.ok) {
+            if (!res.ok) {
+                //if (res.status == 404) {
+                //    toggleCaseStatusTogglerButtons(enablePause = true)
+                //}
+                throw new Error('Network response was not ok')
+            }
+            if (res.status == 200) {
                 const data = await res.json();
                 const isCaseCanPaused = data.status != "Pause"
                 toggleCaseStatusTogglerButtons(enablePause = isCaseCanPaused)
             }
-            else if (res.status == 404) {
-                toggleCaseStatusTogglerButtons(enablePause = true)
-            }
-            else {
-                throw new Error('Network response was not ok')
-            }
+            //else if (res.status == 204) {
+            //    toggleCaseStatusTogglerButtons(enablePause = true);
+            //}
         })
         .catch(error => {
             console.error('Error fetching case details:', error)
@@ -1117,7 +1120,8 @@ function submitDrinardAction() {
             toggleCaseStatusTogglerButtons(
                 enablePause = (action != "Pause")
             )
-        } else if (res.status >= 300 || res.status < 400) {
+        }
+        else if (res.status >= 300 || res.status < 400) {
             _showSuccessSweetAlert(
                 title = 'Case Time Status Updated!',
                 text = `Case have been ${action.toLowerCase()} successfully.\nYou will be redirected shortly.`,

@@ -177,7 +177,7 @@ namespace TRACE.Controllers
                 .FirstOrDefaultAsync(t => t.ErcId == id);
             if (timePauseHistory == null)
             {
-                return NotFound();
+                return NoContent();
             }
 
             return Json(timePauseHistory);
