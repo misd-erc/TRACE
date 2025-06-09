@@ -266,5 +266,20 @@ namespace TRACE.Controllers
         {
             return _context.CaseMilestones.Any(e => e.CaseMilestoneId == id);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetFolderMilestoneName(int id)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                string sql = "SELECT Milestone FROM ercdb.cases.CaseMilestones WHERE CaseMilestoneID = @Id";
+                var milestoneName = await connection.QueryFirstOrDefaultAsync<string>(sql, new { Id = id });
+
+                if (milestoneName != null)
+                    return Ok(new { success = true, milestone = milestoneName });
+                else
+                    return NotFound(new { success = false, message = "Milestone not found." });
+            }
+        }
     }
 }

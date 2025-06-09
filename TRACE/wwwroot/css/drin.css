@@ -2582,8 +2582,16 @@ canvas {
     display: block;
 }
 
+.files-heading{
+    margin-bottom:12px;
+}
+
 #foldername{
     margin:0;
+}
+
+.subfolder-item{
+    font-size:12px;
 }
 
 .file-search{

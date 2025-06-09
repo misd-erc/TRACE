@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dev\\OJT\\TRACE\\TRACE\\TRACE.csproj": {}
+    "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\TRACE.csproj": {}
   },
   "projects": {
-    "D:\\Dev\\OJT\\TRACE\\TRACE\\TRACE.csproj": {
+    "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\TRACE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dev\\OJT\\TRACE\\TRACE\\TRACE.csproj",
+        "projectUniqueName": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\TRACE.csproj",
         "projectName": "TRACE",
-        "projectPath": "D:\\Dev\\OJT\\TRACE\\TRACE\\TRACE.csproj",
-        "packagesPath": "C:\\Users\\felix\\.nuget\\packages\\",
-        "outputPath": "D:\\Dev\\OJT\\TRACE\\TRACE\\obj\\",
+        "projectPath": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\TRACE.csproj",
+        "packagesPath": "C:\\Users\\acer\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\acer\\Documents\\GitHub\\TRACE\\TRACE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\felix\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -42,9 +42,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
+          "auditMode": "all"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -126,7 +126,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
