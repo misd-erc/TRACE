@@ -347,38 +347,43 @@ namespace TRACE.Controllers
                 using var connection = new SqlConnection(_connectionString);
                 await connection.OpenAsync(); // Ensure connection opens
 
-                var sql = @"SELECT 
-                        c.ERCCaseID,
-                        (
-                            SELECT TOP 1 cm.Milestone 
-                            FROM cases.CaseMilestones cm 
-                            WHERE cm.CaseMilestoneID = ma.CaseMilestoneID
-                        ) AS MilestoneDescription,
-                        ma.DatetimeAchieved,
-                        ma.CaseMilestoneID,
-                        c.CaseNo,
-                        c.Title,
-                        ISNULL(cc.Category, 'N/A') AS Category,
-                        ISNULL(cn.Nature, 'NOT SET') AS Nature,
-                        c.DateFiled,
-                        c.DateDocketed,
-                        c.DocketedBy,
-                        ISNULL(cs.[Status], 'N/A') AS CaseStatus
+                var sql = @"WITH LatestMilestone AS (
+                            SELECT 
+                                ma.ERCCaseID,
+                                ma.CaseMilestoneID,
+                                ma.DatetimeAchieved,
+                                ROW_NUMBER() OVER (PARTITION BY ma.ERCCaseID ORDER BY ma.DatetimeAchieved DESC) AS rn
+                            FROM cases.MilestonesAchieved ma
+                        )
+                        SELECT 
+                            c.ERCCaseID,
+                            ISNULL(cm.Milestone, 'N/A') AS MilestoneDescription,
+                            lm.DatetimeAchieved,
+                            lm.CaseMilestoneID,
+                            c.CaseNo,
+                            c.Title,
+                            ISNULL(cc.Category, 'N/A') AS Category,
+                            ISNULL(cn.Nature, 'NOT SET') AS Nature,
+                            c.DateFiled,
+                            c.DateDocketed,
+                            c.DocketedBy,
+                            ISNULL(cs.[Status], 'N/A') AS CaseStatus
 
-                    FROM cases.ERCCases c
-                    LEFT JOIN cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
-                    LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
-                    LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
-                    LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
-                    LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID 
-                    LEFT JOIN cases.MilestonesAchieved ma ON c.ERCCaseID = ma.ERCCaseID
-                    LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
-                    LEFT JOIN cases.CaseAssignments ca ON c.ERCCaseID = ca.ERCCaseID
+                        FROM cases.ERCCases c
+                        LEFT JOIN cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
+                        LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
+                        LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
+                        LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
+                        LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID 
+                        LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+                        LEFT JOIN cases.CaseAssignments ca ON c.ERCCaseID = ca.ERCCaseID
+                        LEFT JOIN LatestMilestone lm ON c.ERCCaseID = lm.ERCCaseID AND lm.rn = 1
+                        LEFT JOIN cases.CaseMilestones cm ON lm.CaseMilestoneID = cm.CaseMilestoneID
 
+                        WHERE ca.UserID = @AssignedTo AND ca.IsActive = 1
 
-                    WHERE ca.UserID = @AssignedTo AND ca.IsActive = 1
+                        ORDER BY c.ERCCaseID DESC
 
-                    ORDER BY c.ERCCaseID DESC
                     "
                     ;
 
