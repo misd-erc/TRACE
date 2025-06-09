@@ -2702,3 +2702,15 @@ canvas {
     align-items:center;
 }
 /*FILES*/
+
+/*REPORT GENERATION*/
+.bx-arrow-up-stroke-square{
+    color:#fff;
+    font-size:20px;
+}
+
+.genrep {
+    background: var(--theme);
+    position: relative;
+}
+/*REPORT GENERATION*/

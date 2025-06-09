@@ -1,1 +1,63 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Generate Case Report";
+}
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > Generate Case Report
+</div>
+
+<div class="main-head-div flex h-center space-between">
+    <div class="title-div">
+        <h3>Case Report Generation</h3>
+        <p>Filter and generate reports based on your criteria.</p>
+    </div>
+
+    <div class="btn-div">
+        <button class="flex h-center gap-5"><i class='bxr bx-arrow-up-stroke-square'></i> EXPORT</button>
+    </div>
+</div>
+
+<div class="genrep shadow border-radius-5">
+    <div class="grid grid-three-fr gap-10">
+        <div class="form-input-div">
+            <label>Inventory of Cases</label>
+            <select>
+                <option selected disabled>Select Case</option>
+            </select>
+        </div>
+        <div class="form-input-div">
+            <label>Current Milestones</label>
+            <select>
+                <option selected disabled>Select Milestone</option>
+            </select>
+        </div>
+        <div class="form-input-div">
+            <label>Applicant/Respondent</label>
+            <select>
+                <option selected disabled>Select Applicants/Respondents</option>
+            </select>
+        </div>
+        <div class="form-input-div">
+            <label>Year</label>
+            <select>
+                <option selected disabled>Choose Year</option>
+                <option>2025</option>
+            </select>
+        </div>
+        <div class="form-input-div">
+            <label>Region</label>
+            <select>
+                <option selected disabled>Choose Region</option>
+            </select>
+        </div>
+        <div class="form-input-div checktype">
+            <label class="control-label">Case Categories</label>
+            <div>
+                <input type="checkbox" />Pull all Categories from db
+                <input type="checkbox" />Pull all Categories from db
+                <input type="checkbox" />Pull all Categories from db
+                <input type="checkbox" />Pull all Categories from db
+            </div>
+            
+        </div>
+    </div>
+</div>
