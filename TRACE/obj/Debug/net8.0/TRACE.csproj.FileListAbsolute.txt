@@ -1857,3 +1857,5 @@ D:\Dev\OJT\TRACE\TRACE\obj\Debug\net8.0\refint\TRACE.dll
 D:\Dev\OJT\TRACE\TRACE\obj\Debug\net8.0\TRACE.pdb
 D:\Dev\OJT\TRACE\TRACE\obj\Debug\net8.0\TRACE.genruntimeconfig.cache
 D:\Dev\OJT\TRACE\TRACE\obj\Debug\net8.0\ref\TRACE.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\DotNetEnv.dll
+C:\Users\Administrator\Documents\GitHub\TRACE\TRACE\bin\Debug\net8.0\Sprache.dll
