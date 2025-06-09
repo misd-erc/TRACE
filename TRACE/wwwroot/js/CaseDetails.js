@@ -1014,7 +1014,7 @@ function fetchTimePauseHistory(id) {
             if (res.status === 200) {
                 const data = await res.json();
 
-                document.getElementById('caseagingstatus').textContent = data.status || 'No Data Available';
+                document.getElementById('caseagingstatus').textContent = data.status+'d' || 'No Data Available';
                 document.getElementById('caseagingremarks').textContent = data.remarks || 'No Data Available';
 
                 const isCaseCanPaused = data.status !== "Pause";
