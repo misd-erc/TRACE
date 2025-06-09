@@ -1008,23 +1008,22 @@ function fetchTimePauseHistory(id) {
     })
         .then(async res => {
             if (!res.ok) {
-                //if (res.status == 404) {
-                //    toggleCaseStatusTogglerButtons(enablePause = true)
-                //}
-                throw new Error('Network response was not ok')
+                throw new Error('Network response was not ok');
             }
-            if (res.status == 200) {
+
+            if (res.status === 200) {
                 const data = await res.json();
-                const isCaseCanPaused = data.status != "Pause"
-                toggleCaseStatusTogglerButtons(enablePause = isCaseCanPaused)
+
+                document.getElementById('caseagingstatus').textContent = data.status || 'No Data Available';
+                document.getElementById('caseagingremarks').textContent = data.remarks || 'No Data Available';
+
+                const isCaseCanPaused = data.status !== "Pause";
+                toggleCaseStatusTogglerButtons(enablePause = isCaseCanPaused);
             }
-            //else if (res.status == 204) {
-            //    toggleCaseStatusTogglerButtons(enablePause = true);
-            //}
         })
         .catch(error => {
-            console.error('Error fetching case details:', error)
-        })
+            console.error('Error fetching case details:', error);
+        });
 }
 
 //MODALITY HEHE
