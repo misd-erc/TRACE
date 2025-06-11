@@ -143,7 +143,12 @@
             const formData = new FormData();
 
             formData.append("CaseNumber", erccaseId);
+            formData.append("DataId", erccaseId);
+            formData.append("Module", "EVENT");
 
+            files.forEach(file => {
+                formData.append("Files", file);
+            });
             files.forEach(file => {
                 formData.append("Files", file);
             });
