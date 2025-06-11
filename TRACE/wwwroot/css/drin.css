@@ -32,6 +32,10 @@ body{
     color:#898989;
 }
 
+#logout-link{
+    cursor:pointer;
+}
+
 .green-txt{
     color: #01e841;
 }
