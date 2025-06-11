@@ -195,6 +195,37 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/userManagement.js"></script>
 <script>
+    let willLogoutOnInactivity = true
+    let inactivityTimer;
+    const logoutAfterMs = 2 * 60 * 60 * 1000;
+    function resetLogoutTimer() {
+        clearTimeout(inactivityTimer);
+        inactivityTimer = setTimeout(() => {
+            Swal.fire({
+                title: "You are Inactive.",
+                text: "You will be log out shortly.",
+                customClass: {
+                    popup: "swal2-popup",
+                    confirmButton: "swal2-confirm"
+                },
+                confirmButtonText: "Keep me logged in",
+                timerProgressBar: true,
+                timer: 5000,
+                allowOutsideClick: false,
+                didOpen: () => { willLogoutOnInactivity = true },
+                didDestroy: () => {
+                    if (willLogoutOnInactivity) {
+                        window.location.href = '@Url.Action("Logout", "External")'
+                    }
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    willLogoutOnInactivity = false;
+                }
+            })
+        }, logoutAfterMs)
+    }
+
     $(document).ready(function () {
         $("#searchInput").on("input", function () {
             var query = $(this).val().trim();
@@ -273,6 +304,10 @@
             Swal.fire({
                 title: "Are you sure you want to log out?",
                 icon: "question",
+                customClass: {
+                    popup: "swal2-popup",
+                    confirmButton: "swal2-confirm"
+                },
                 confirmButtonColor: "#3085d6",
                 showDenyButton: true,
                 confirmButtonText: "Yes, log me out",
@@ -283,6 +318,10 @@
                 }
             });
         })
+       
+        document.addEventListener('click', resetLogoutTimer);
+
+        resetLogoutTimer();
     });
 
     async function createUser() {

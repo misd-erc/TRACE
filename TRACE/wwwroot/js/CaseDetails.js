@@ -1055,6 +1055,10 @@ function _showSuccessSweetAlert(
         title: title,
         text: text,
         icon: 'success',
+        customClass: {
+            popup: "swal2-popup",
+            confirmButton: "swal2-confirm"
+        },
         confirmButtonText: 'OK'
     }).then(() => callback?.());
 }
@@ -1067,6 +1071,10 @@ function _showErrorSweetAlert(
         title: title,
         text: text,
         icon: 'error',
+        customClass: {
+            popup: "swal2-popup",
+            confirmButton: "swal2-confirm"
+        },
         confirmButtonText: 'OK'
     });
 }
