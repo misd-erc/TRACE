@@ -62,24 +62,39 @@
     }
 
     <script>
+        const fileInput = document.getElementById("fileUpload");
+        const fileNamesDisplay = document.getElementById("fileNames");
+
+        var files;
+        var ercid = 0;
+        fileInput.addEventListener("change", function () {
+            files = Array.from(fileInput.files);
+            if (files.length > 0) {
+                fileNamesDisplay.innerHTML = files.map(f => f.name).join("<br>");
+            } else {
+                fileNamesDisplay.textContent = "No files selected.";
+            }
+        });
+
         $(document).ready(function () {
             $("#createForm").submit(function (event) {
                 event.preventDefault();
-                const fileInput = document.getElementById("fileUpload");
 
-                fileInput.addEventListener("change", function () {
-                    files = Array.from(fileInput.files);
-                    if (files.length > 0) {
-                        fileNamesDisplay.innerHTML = files.map(f => f.name).join("<br>");
-                    } else {
-                        fileNamesDisplay.textContent = "No files selected.";
-                    }
+                // Prepare form data including files
+                let formData = new FormData(this);
+
+                // Append files to the form data
+                files.forEach((file, index) => {
+                    formData.append("files", file);
+
                 });
 
                 $.ajax({
                     url: $(this).attr("action"),
                     type: "POST",
-                    data: $(this).serialize(),
+                    data: formData,
+                    processData: false, // Required for file uploads
+                    contentType: false, // Required for file uploads
                     success: function (response) {
                         if (response.success) {
                             Swal.fire({
@@ -92,7 +107,8 @@
                                     confirmButton: "swal2-confirm"
                                 }
                             }).then(() => {
-                                callPostCaseBlobDocumentAPI(files,response.newId)
+                                // Call the PostCaseBlobDocument API with the `files` array
+                                callPostCaseBlobDocumentAPI(files);  // Pass the `files` array here
                                 $("#createForm")[0].reset();
                             });
                         } else {
@@ -103,8 +119,6 @@
                                 confirmButtonText: "Try Again"
                             });
                         }
-
-
                     },
                     error: function () {
                         Swal.fire({
@@ -122,7 +136,8 @@
             });
         });
 
-        function callPostCaseBlobDocumentAPI(files,newId) {
+        // Function to call the PostCaseBlobDocument API with the files array
+        function callPostCaseBlobDocumentAPI(files) {
             const urlParams = new URLSearchParams(window.location.search);
             const erccaseId = urlParams.get('id');
             const formData = new FormData();
@@ -130,9 +145,7 @@
             formData.append("CaseNumber", erccaseId);
 
             files.forEach(file => {
-                formData.append("DataId", newId);
                 formData.append("Files", file);
-                formData.append("Module", "Event");
             });
 
             $.ajax({
@@ -160,24 +173,42 @@
                 }
             });
         }
-    </script>
-}
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Get the URL parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const erccaseId = urlParams.get('id');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const erccaseId = urlParams.get('id');
 
-        // Set the hidden input field value if erccaseId exists
-        if (erccaseId) {
-            const inputElement = document.getElementById('ErccaseId');
 
-            if (inputElement) {
-                inputElement.value = erccaseId;
-            } else {
-                console.error('ErccaseId input not found');
+            // Set the hidden input field value if erccaseId exists
+            if (erccaseId) {
+                const inputElement = document.getElementById('ErccaseId');
+
+                if (inputElement) {
+                    inputElement.value = erccaseId;
+                } else {
+                    console.error('ErccaseId input not found');
+                }
             }
-        }
-    });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const erccaseId = urlParams.get('id');
 
-</script>
+            // Set the hidden input field value if erccaseId exists
+            if (erccaseId) {
+                const inputElement = document.getElementById('ErccaseId');
+
+                if (inputElement) {
+                    inputElement.value = erccaseId;
+                } else {
+                    console.error('ErccaseId input not found');
+                }
+            }
+        });
+
+    </script>
+
+}
