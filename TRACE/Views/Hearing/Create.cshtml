@@ -24,7 +24,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-input-div">
                     <label asp-for="HearingDate" class="control-label">Hearing Date</label>
-                    <input asp-for="HearingDate" type="date" class="form-control" />
+                    <input asp-for="HearingDate" id="hearing-date" type="date" class="form-control" />
                     <span asp-validation-for="HearingDate" class="text-danger"></span>
                 </div>
                 <div class="form-input-div">
@@ -34,17 +34,17 @@
                 </div>
                 <div class="form-input-div">
                     <label asp-for="HearingVenueId" class="control-label"> Hearing Venue</label>
-                    <select asp-for="HearingVenueId" class="form-control" asp-items="ViewBag.HearingVenueId"></select>
+                    <select asp-for="HearingVenueId" id="hearing-venue" class="form-control" asp-items="ViewBag.HearingVenueId"></select>
                 </div>
                 <div class="form-input-div">
                     <label asp-for="Remarks" class="control-label"></label>
                     <i class="helper">(Include Hearing Officer incharge)</i>
-                    <textarea asp-for="Remarks" class="form-control"></textarea>
+                    <textarea asp-for="Remarks" id="remarks" class="form-control"></textarea>
                     <span asp-validation-for="Remarks" class="text-danger"></span>
                 </div>
                 <div class="form-input-div">
                     <label asp-for="HearingCategoryId" class="control-label">Hearing Category</label>
-                    <select asp-for="HearingCategoryId" class="form-control" asp-items="ViewBag.HearingCategoryId"></select>
+                    <select asp-for="HearingCategoryId" id="hearing-category" class="form-control" asp-items="ViewBag.HearingCategoryId"></select>
                 </div>
 
                 <div class="form-input-div checktype">
@@ -105,24 +105,63 @@
     }
 
     <script>
+        function showErrorAlert(
+            title = "",
+            text = ""
+        ) {
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: "error",
+                confirmButtonText: "Try Again"
+            });
+        }
+
+        function isInputHasValue(
+            selector = "",
+            keyName = ""
+        ) {
+            if ($(selector).val().trim()) return true;
+            showErrorAlert(`"${keyName}" is Required.`);
+            return false;
+        }
+
+        function isHearingDateValid() {
+            const date = $("#hearing-date").val();
+            if (!date) {
+                showErrorAlert('"Hearing Date" is Required.');
+                return false;
+            }
+            const isDateFormatValid = /^\d{4}-\d{2}-\d{2}$/.test(date);
+            const isDateValueValid = !isNaN(Date.parse(date));
+
+            if (isDateFormatValid && isDateValueValid) return true;;
+
+            showErrorAlert('"Hearing Date" is Invalid.');
+            return false;
+        }
+
         $(document).ready(function () {
             $("#createForm").submit(function (event) {
                 event.preventDefault();
 
-                var formData = $(this).serializeArray();
-
-                console.log("Standard form data:");
-                formData.forEach(function (field) {
-                    console.log(`${field.name}: ${field.value}`);
-                });
+                if (!isHearingDateValid()) return;
+                if (!isInputHasValue("#timeDropdown", "Time")) return;
+                if (!isInputHasValue("#hearing-venue", "Hearing Venue")) return;
+                if (!isInputHasValue("#remarks", "Remarks")) return;
+                if (!isInputHasValue("#hearing-category", "Hearing Category")) return;
 
                 var hearingTypes = [];
                 $("input[name='HearingTypes']:checked").each(function () {
                     hearingTypes.push($(this).val());
                 });
 
-                console.log("Selected Hearing Types:", hearingTypes);
+                if (hearingTypes.length <= 0) {
+                    showErrorAlert('"Hearing Types" is Required.');
+                    return;
+                }
 
+        var formData = $(this).serializeArray();
                 $.ajax({
                     url: $(this).attr("action"),
                     type: "POST",

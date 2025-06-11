@@ -2582,8 +2582,16 @@ canvas {
     display: block;
 }
 
+.files-heading{
+    margin-bottom:12px;
+}
+
 #foldername{
     margin:0;
+}
+
+.subfolder-item{
+    font-size:12px;
 }
 
 .file-search{
@@ -2702,3 +2710,29 @@ canvas {
     align-items:center;
 }
 /*FILES*/
+
+/*REPORT GENERATION*/
+.bx-arrow-up-stroke-square{
+    color:#fff;
+    font-size:20px;
+}
+
+.genrep {
+    background: var(--theme);
+    position: relative;
+    padding:20px;
+}
+
+.limit{
+    height:200px;
+    overflow-y: auto;
+    padding:10px;
+    border: 2px solid var(--font-color);
+    border-radius:5px;
+    background: var(--body-color);
+}
+
+.genrep-btn{
+    margin:10px;
+}
+/*REPORT GENERATION*/

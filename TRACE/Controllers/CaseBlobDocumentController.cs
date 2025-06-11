@@ -57,16 +57,16 @@ namespace TRACE.Controllers
                 .Where(x => x.Module == "Event" && x.Ercid == ercId)
                 .ToListAsync();
             }
-            if (module == "Hearing")
+            else if (module == "Hearing")
             {
                 documents = await _context.CaseBlobDocument
                .Where(x => x.Module == "Hearing" && x.Ercid == ercId)
                .ToListAsync();
             }
-            if (module == "Milestone")
+            else
             {
                 documents = await _context.CaseBlobDocument
-                    .Where(x => x.Module == "Milestone" && x.Ercid == ercId && !string.IsNullOrEmpty(x.Milestone))
+                    .Where(x => x.Milestone == module && x.Ercid == ercId && !string.IsNullOrEmpty(x.Milestone))
                     .ToListAsync();
             }
 

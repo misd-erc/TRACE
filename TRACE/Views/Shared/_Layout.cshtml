@@ -145,6 +145,13 @@
                         <i class='bx bxs-user-circle'  ></i>
                         <span>User Audit</span>
                     </li>
+                    <li class="has-dropdown" onclick="toggleCollapse(event)">
+                        <i class='bxr bx-file-report'></i>
+                        <span>Reports <i class='bx bx-chevron-down'></i></span>
+                    </li>
+                    <ul class="cads-dropdown">
+                        <li onclick="location.href='@Url.Action("GenerateReports", "Reports")'">Generate Case Reports</li>
+                    </ul>
                 </ul>
             </div>
         </div>
