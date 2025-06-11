@@ -195,7 +195,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/userManagement.js"></script>
 <script>
-    let willLogoutOnInactivity = true
     let inactivityTimer;
     const _2Hrs = 2 * 60 * 60 * 1000;
     const _5Mins = 5 * 60 * 1000;
@@ -204,24 +203,33 @@
         inactivityTimer = setTimeout(() => {
             Swal.fire({
                 title: "You are Inactive.",
-                text: "You will be log out shortly.",
+                html: "You will be automatically logged out in <b></b> seconds if no activity is detected.",
+                timer: _5Mins,
+                icon: "warning",
+                // allowOutsideClick: false,
+                timerProgressBar: true,
                 customClass: {
                     popup: "swal2-popup",
                     confirmButton: "swal2-confirm"
                 },
                 confirmButtonText: "Keep me logged in",
-                timerProgressBar: true,
-                timer: _5Mins,
-                allowOutsideClick: false,
-                didOpen: () => { willLogoutOnInactivity = true },
-                didDestroy: () => {
-                    if (willLogoutOnInactivity) {
-                        window.location.href = '@Url.Action("Logout", "External")'
-                    }
-                }
+                didOpen: () => { 
+                    Swal.showLoading();
+                     const timer = Swal.getPopup().querySelector("b");
+                    timerInterval = setInterval(() => {
+                        const remainingTime = Math.ceil(Swal.getTimerLeft() / 1000);
+                        timer.textContent = `${remainingTime}`;
+                    }, 100);
+                },
+                willClose: () => {
+                    clearInterval(timerInterval);
+                },
             }).then((result) => {
-                if (result.isConfirmed) {
-                    willLogoutOnInactivity = false;
+                // if (result.isConfirmed) {
+                //     willLogoutOnInactivity = false;
+                // }
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    window.location.href = '@Url.Action("Logout", "External")'
                 }
             })
         }, _2Hrs)
