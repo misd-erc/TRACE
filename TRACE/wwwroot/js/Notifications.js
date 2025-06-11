@@ -108,7 +108,20 @@ function createNotificationListItem(notif) {
 }
 
 function formatDate(dateString) {
+    if (
+        !dateString ||
+        dateString === '0' ||
+        dateString === 0 ||
+        dateString === '0000-00-00'
+    ) {
+        return 'N/A';
+    }
+
     const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+        return 'N/A';
+    }
+
     return date.toLocaleString('en-US', {
         month: 'short',
         day: '2-digit',
@@ -118,6 +131,7 @@ function formatDate(dateString) {
         hour12: true
     });
 }
+
 
 function showTab2(tabName) {
     document.querySelectorAll('.cms-content-notif').forEach(function (content) {

@@ -68,18 +68,16 @@ function fetchCaseEvent(caseId) {
             return response.json();
         })
         .then(result => {
-            if (!result.success) {
-                console.error('No events found:', result.message);
-                return;
-            }
-
-            allCaseEvents = result.data || [];
+            allCaseEvents = (result.success && result.data) ? result.data : [];
             currentPage = 1;
             renderCaseEventTable();
             renderPagination();
         })
         .catch(error => {
             console.error('Error fetching case details:', error);
+            allCaseEvents = [];
+            renderCaseEventTable();
+            renderPagination();
         });
 }
 
@@ -93,7 +91,7 @@ function renderCaseEventTable() {
     if (paginatedData.length === 0) {
         const row = `
             <tr>
-                <td colspan="3" style="text-align:center; font-style:italic; color:#888;">
+                <td>
                     No Events Available for this case yet
                 </td>
             </tr>
@@ -117,6 +115,45 @@ function renderCaseEventTable() {
         caseeventbody.innerHTML += row;
     });
 }
+
+function renderPagination() {
+    const totalPages = Math.ceil(allCaseEvents.length / rowsPerPage);
+    const paginationSelect = document.querySelector('#caseEventpagination select');
+    const prev = document.querySelector('#caseEventpagination .prev');
+    const next = document.querySelector('#caseEventpagination .next');
+
+    paginationSelect.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        if (i === currentPage) option.selected = true;
+        paginationSelect.appendChild(option);
+    }
+
+    paginationSelect.onchange = (e) => {
+        currentPage = parseInt(e.target.value);
+        renderCaseEventTable();
+    };
+
+    prev.onclick = () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderCaseEventTable();
+            renderPagination();
+        }
+    };
+
+    next.onclick = () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderCaseEventTable();
+            renderPagination();
+        }
+    };
+}
+
 async function downloadFile(fileName) {
    
 
@@ -184,44 +221,6 @@ async function downloadFile(fileName) {
 //            console.error('Error fetching case details:', error);
 //        });
 //}
-
-function renderPagination() {
-    const totalPages = Math.ceil(allCaseEvents.length / rowsPerPage);
-    const paginationSelect = document.querySelector('#caseEventpagination select');
-    const prev = document.querySelector('#caseEventpagination .prev');
-    const next = document.querySelector('#caseEventpagination .next');
-
-    paginationSelect.innerHTML = '';
-
-    for (let i = 1; i <= totalPages; i++) {
-        const option = document.createElement('option');
-        option.value = i;
-        option.textContent = i;
-        if (i === currentPage) option.selected = true;
-        paginationSelect.appendChild(option);
-    }
-
-    paginationSelect.onchange = (e) => {
-        currentPage = parseInt(e.target.value);
-        renderCaseEventTable();
-    };
-
-    prev.onclick = () => {
-        if (currentPage > 1) {
-            currentPage--;
-            renderCaseEventTable();
-            renderPagination();
-        }
-    };
-
-    next.onclick = () => {
-        if (currentPage < totalPages) {
-            currentPage++;
-            renderCaseEventTable();
-            renderPagination();
-        }
-    };
-}
 function completeTask(id) {
     Swal.fire({
         title: 'Are you sure?',
@@ -703,7 +702,35 @@ function CasenoteEdit(caseNoteID) {
 }
 
 function formatDate(dateStr) {
-    return dateStr ? new Date(dateStr).toLocaleDateString('en-GB') : 'N/A';
+    console.log('Raw input:', dateStr);
+
+    if (
+        !dateStr ||
+        dateStr === '0' ||
+        dateStr === 0 ||
+        dateStr === '0000-00-00' ||
+        dateStr === '1970-01-01T00:00:00Z'
+    ) {
+        return 'N/A';
+    }
+
+    const date = new Date(dateStr);
+
+    if (
+        isNaN(date.getTime()) ||
+        date.getFullYear() === 1970 // Catch Unix epoch default
+    ) {
+        return 'N/A';
+    }
+
+    return date.toLocaleString('en-GB', {
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    });
 }
 function fetchCaseDetails(caseId) {
     fetch(`/CaseDetails/GetCaseDetails?id=${caseId}`)
@@ -714,6 +741,9 @@ function fetchCaseDetails(caseId) {
             return response.json();
         })
         .then(data => {
+            //console.log('Type:', typeof data);
+            //console.log('Data:', data);
+
             if (data.length > 0) {
                 const caseData = data[0];
                 caseTitle = caseData.Title;
@@ -725,17 +755,17 @@ function fetchCaseDetails(caseId) {
                 const caseage = document.getElementById('caseage');
                 caseage.innerHTML = calculateDays(caseData.DateFiled) + " Days";
 
-                const formattedDateFiled = formatDate(caseData.DateFiled);
-                const formattedDateDocketed = formatDate(caseData.DateDocketed);
-                const formattedDateApproved = formatDate(caseData.DatetimeApproved);
-                const formattedPADeliberation = formatDate(caseData.PADeliberationDate);
-                const formattedFADeliberation = formatDate(caseData.FADeliberationDate);
-                const formattedPATargetOrder = formatDate(caseData.PATargetOrder);
-                const formattedFATargetOrder = formatDate(caseData.FATargetOrder);
-                const formattedSubmittedResolution = formatDate(caseData.SubmittedForResolution);
-                const formattedMeterSIN = formatDate(caseData.MeterSIN);
-                const formattedTargetFAIssuance = formatDate(caseData.TargetFAIssuance);
-                const formattedTargetPAIssuance = formatDate(caseData.TargetPAIssuance);
+                const formattedDateFiled = caseData.DateFiled ? formatDate(caseData.DateFiled) : 'N/A';
+                const formattedDateDocketed = caseData.DateDocketed ? formatDate(caseData.DateDocketed) : 'N/A';
+                const formattedDateApproved = caseData.DatetimeApproved ? formatDate(caseData.DatetimeApproved) : 'N/A';
+                const formattedPADeliberation = caseData.PADeliberationDate ? formatDate(caseData.PADeliberationDate) : 'N/A';
+                const formattedFADeliberation = caseData.FADeliberationDate ? formatDate(caseData.FADeliberationDate) : 'N/A';
+                const formattedPATargetOrder = caseData.PATargetOrder ? formatDate(caseData.PATargetOrder) : 'N/A';
+                const formattedFATargetOrder = caseData.FATargetOrder ? formatDate(caseData.FATargetOrder) : 'N/A';
+                const formattedSubmittedResolution = caseData.SubmittedForResolution ? formatDate(caseData.SubmittedForResolution) : 'N/A';
+                const formattedMeterSIN = caseData.MeterSIN ? formatDate(caseData.MeterSIN) : 'N/A';
+                const formattedTargetFAIssuance = caseData.TargetFAIssuance ? formatDate(caseData.TargetFAIssuance) : 'N/A';
+                const formattedTargetPAIssuance = caseData.TargetPAIssuance ? formatDate(caseData.TargetPAIssuance) : 'N/A';
 
 
                 function getStatusClass(status) {
@@ -785,16 +815,16 @@ function fetchCaseDetails(caseId) {
                     </div>
                     <div>
                         <span><strong>Target FA Issuance: </strong> <i>${formattedTargetFAIssuance ?? 'N/A'}</i></span>
-                        <span><strong>PA Deliberation Date: </strong> <i>${formattedPADeliberation}</i></span>
-                        <span><strong>FA Deliberation Date: </strong> <i>${formattedFADeliberation}</i></span>
+                        <span><strong>PA Deliberation Date: </strong> <i>${formattedPADeliberation ?? 'N/A'}</i></span>
+                        <span><strong>FA Deliberation Date: </strong> <i>${formattedFADeliberation ?? 'N/A'}</i></span>
                     </div>
                     <div>
-                        <span><strong>PA Target Order: </strong> <i>${formattedPATargetOrder}</i></span>
-                        <span><strong>FA Target Order: </strong> <i>${formattedFATargetOrder}</i></span>
+                        <span><strong>PA Target Order: </strong> <i>${formattedPATargetOrder ?? 'N/A'}</i></span>
+                        <span><strong>FA Target Order: </strong> <i>${formattedFATargetOrder ?? 'N/A'}</i></span>
                         <span><strong>Synopsis: </strong> <i>${caseData.Synopsis ?? 'No Synopsis Yet'}</i></span>
                     </div>
                     <div>
-                        <span><strong>Submitted for Resolution: </strong> <i>${formattedSubmittedResolution}</i></span>
+                        <span><strong>Submitted for Resolution: </strong> <i>${formattedSubmittedResolution ?? 'N/A'}</i></span>
                         <span><strong>Meter SIN: </strong> <i>${caseData.MeterSIN ?? 'N/A'}</i></span>
                         <span><strong>Remarks: </strong> <i>${caseData.Remarks ?? 'None'}</i></span>
                     </div>
