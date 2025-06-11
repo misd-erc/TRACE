@@ -1944,7 +1944,7 @@ canvas {
 
 .form-input-div.uploader{
     border: 3px dashed var(--primary-color);
-    margin:00px;
+    margin:10px;
 }
 
 .form-input-div.uploader input {
