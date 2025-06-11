@@ -197,7 +197,8 @@
 <script>
     let willLogoutOnInactivity = true
     let inactivityTimer;
-    const logoutAfterMs = 2 * 60 * 60 * 1000;
+    const _2Hrs = 2 * 60 * 60 * 1000;
+    const _5Mins = 5 * 60 * 1000;
     function resetLogoutTimer() {
         clearTimeout(inactivityTimer);
         inactivityTimer = setTimeout(() => {
@@ -210,7 +211,7 @@
                 },
                 confirmButtonText: "Keep me logged in",
                 timerProgressBar: true,
-                timer: 5000,
+                timer: _5Mins,
                 allowOutsideClick: false,
                 didOpen: () => { willLogoutOnInactivity = true },
                 didDestroy: () => {
@@ -223,7 +224,7 @@
                     willLogoutOnInactivity = false;
                 }
             })
-        }, logoutAfterMs)
+        }, _2Hrs)
     }
 
     $(document).ready(function () {
