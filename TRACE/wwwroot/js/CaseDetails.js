@@ -1144,7 +1144,7 @@ function submitDrinardAction() {
             _showSuccessSweetAlert(
                 title = 'Case Time Status Updated!',
                 text = `Case have been ${action.toLowerCase()} successfully.`,
-                //() => { location.reload(); }
+                () => { location.reload(); }
             );
             toggleCaseStatusTogglerButtons(
                 enablePause = (action != "Pause")

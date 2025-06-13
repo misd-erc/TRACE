@@ -2505,6 +2505,7 @@ canvas {
 
 .subfolders {
     list-style: none;
+    padding-left:17px;
 }
 
 .folder-item .bx {
