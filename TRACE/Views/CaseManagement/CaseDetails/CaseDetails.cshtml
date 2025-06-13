@@ -510,7 +510,10 @@
 
                         applicantstbody.innerHTML += `
                             <div class="thefile">
-                                <div class="file-options">⋮</div>
+                                <div class="file-options" onclick="toggleMenu(this)">⋮</div>
+                                <div class="file-menu">
+                                    <div class="menu-item" onclick="downloadFile('${event.attachmentName}')"><i class="bxr bx-folder-down-arrow"></i> Download</div>
+                                </div>
                                 <img src="${fileIcon}" class="filetype-img" />
                                 <p>${event.attachmentName}</p>
                             </div>`;
@@ -525,7 +528,6 @@
                 console.error('Error fetching case files:', error);
             });
     }
-
 
     async function getMilestoneFolderName(milestoneId) {
         try {
@@ -652,4 +654,25 @@
         window.location.href = '/' + controllerName + `/create?id=${erccaseId}`;
     }
 
+
+</script>
+<script>
+    function toggleMenu(trigger) {
+        document.querySelectorAll('.file-menu').forEach(menu => {
+            if (menu !== trigger.nextElementSibling) {
+                menu.style.display = 'none';
+            }
+        });
+
+        const menu = trigger.nextElementSibling;
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.thefile')) {
+            document.querySelectorAll('.file-menu').forEach(menu => {
+                menu.style.display = 'none';
+            });
+        }
+    });
 </script>
