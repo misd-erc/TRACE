@@ -31,6 +31,7 @@
                     <div class="form-input-div">
                         <label asp-for="CaseCategoryId" class="control-label"></label><span style="color:red">*</span>
                         <select asp-for="CaseCategoryId" class="form-control" asp-items="ViewBag.CaseCategoryId" id="CaseCategoryIdDropdown">
+                            <option value="">-- Select Category --</option>
                         </select>
                     </div>
                     <div class="form-input-div">
@@ -42,7 +43,7 @@
                     </div>
                     <div class="form-input-div">
                         <label asp-for="Title" class="control-label"></label><span style="color:red">*</span>
-                        <textarea asp-for="Title" class="form-control"></textarea>
+                        <textarea asp-for="Title" id="title-input" class="form-control"></textarea>
                     </div>
                     <div class="form-input-div">
                         <label>Remarks</label>
@@ -50,60 +51,60 @@
                     </div>
                     <div class="form-input-div">
                         <label asp-for="MeterSin" class="control-label">Meter Sin</label>
-                        <input asp-for="MeterSin" class="form-control" />
+                        <input asp-for="MeterSin" id="meter-sin" class="form-control" />
                     </div>
                 </div>
 
                 <div class="grid grid-five-fr gap-10">
                     <div class="form-input-div">
                     <label asp-for="DateFiled" class="control-label">Date Filed</label><span style="color:red">*</span>
-                        <input asp-for="DateFiled" class="form-control" type="date" />
+                        <input asp-for="DateFiled" id="date-filed-input" class="form-control" type="date" />
                     </div>
                     <div class="form-input-div">
                         <label asp-for="DateDocketed" class="control-label">Date Docketed</label>
-                        <input asp-for="DateDocketed" class="form-control" type="date" />
+                        <input asp-for="DateDocketed" id="date-docketed" class="form-control" type="date" />
                    
                     </div>
                     <div class="form-input-div">
                         <label asp-for="NoOfFolders" class="control-label">No. of Folders</label><span style="color:red">*</span>
-                        <input asp-for="NoOfFolders" class="form-control" type="number" />
+                        <input asp-for="NoOfFolders" id="no-of-folders-input" class="form-control" type="number" />
                     </div>
                     <div class="form-input-div">
                         <label asp-for="AmountClaimed" class="control-label">Amount Claimed</label>
-                        <input asp-for="AmountClaimed" class="form-control" type="text" />
+                        <input asp-for="AmountClaimed" id="amount-claimed" class="form-control" type="text" />
                     </div>
                     <div class="form-input-div">
                         <label asp-for="AmountSettled" class="control-label">Amount Settled</label>
-                        <input asp-for="AmountSettled" class="form-control" type="text" />
+                    <input asp-for="AmountSettled" id="amount-settled" class="form-control" type="text" />
                    
                     </div>
                     <div class="form-input-div">
                         <label asp-for="TargetPaissuance" class="control-label">Target PA Issuance</label>
-                        <input asp-for="TargetPaissuance" class="form-control" type="date" />
+                        <input asp-for="TargetPaissuance" id="target-pa-issuance" class="form-control" type="date" />
                     </div>
                     <div class="form-input-div">
                         <label asp-for="TargetPaissuance" class="control-label">TARGET FA Issuance</label>
-                        <input asp-for="TargetPaissuance" class="form-control" type="date" />
+                        <input asp-for="TargetPaissuance" id="target-fa-issuance"  class="form-control" type="date" />
                    
                     </div>
                     <div class="form-input-div">
                         <label asp-for="PadeliberationDate" class="control-label">PA Deliberation Date</label>
-                        <input asp-for="PadeliberationDate" class="form-control" type="date" />
+                        <input asp-for="PadeliberationDate" id="pa-deliberation-date" class="form-control" type="date" />
                  
                     </div>
                     <div class="form-input-div">
                         <label asp-for="FadeliberationDate" class="control-label">FA Deliberation Date</label>
-                        <input asp-for="FadeliberationDate" class="form-control" type="date" />
+                        <input asp-for="FadeliberationDate" id="fa-delibiration-date" class="form-control" type="date" />
                    
                     </div>
                     <div class="form-input-div">
                         <label asp-for="PatargetOrder" class="control-label">PA Target Order</label>
-                        <input asp-for="PatargetOrder" class="form-control" type="date" />
+                        <input asp-for="PatargetOrder" id="pa-target-order" class="form-control" type="date" />
                    
                     </div>
                     <div class="form-input-div">
                         <label asp-for="FatargetOrder" class="control-label">FA Target Order</label>
-                        <input asp-for="FatargetOrder" class="form-control" type="date" />
+                        <input asp-for="FatargetOrder" id="fa-target-order" class="form-control" type="date" />
                    
                     </div>
                     <div class="form-input-div">
@@ -112,7 +113,7 @@
                     </div>
                     <div class="form-input-div">
                         <label asp-for="SubmittedForResolution" class="control-label">Submitted for Resolution</label>
-                        <input asp-for="SubmittedForResolution" class="form-control" type="date" />
+                        <input asp-for="SubmittedForResolution" id="submitted-for-resolution" class="form-control" type="date" />
                     </div>
                 </div>
         </div>
@@ -141,6 +142,10 @@
         });
 
         $(document).ready(function () {
+            _setInputMeterSin();
+            _setInputNumeric("#amount-claimed");
+            _setInputNumeric("#amount-settled");
+
              $('#CaseCategoryIdDropdown').change(function () {
             var categoryId = $(this).val();
             $('#CasenatureIdDropdown').empty();
@@ -183,7 +188,23 @@
 
             $("#createForm").submit(function (event) {
                 event.preventDefault();
-                console.log($(this).serializeArray());
+
+                if (!_dropdownHasSelected("#CaseCategoryIdDropdown", "Case Category", 0)) return;
+                if (!_dropdownHasSelected("#CasenatureIdDropdown", "Case Nature", 0)) return;
+                if (!_inputHasValue("#title-input", "Title")) return;
+                if (!_isDateInputValid("#date-filed-input", "Date Filed", isRequired = true)) return;
+                if (!_inputHasValue("#no-of-folders-input", "No. of Folders")) return;
+               ["#date-docketed", "#target-pa-issuance", "#target-fa-issuance", 
+               "#pa-deliberation-date", "#fa-delibiration-date", "#pa-target-order", 
+               "#fa-target-order", "#submitted-for-resolution"].forEach(function(selector) {
+                   const keyName = selector.replace("#", "").split("-").map(function(word){
+                       return word[0].toUpperCase() + word.slice(1);
+                   }).join(" ")
+                   _isDateInputValid(selector, keyName);
+               });
+               _inputHasValidNumber("#amount-claimed", "Amount Claimed")
+               _inputHasValidNumber("#amount-claimed", "Amount Settled")
+
                 $.ajax({
                     url: $(this).attr("action"),
                     type: "POST",
@@ -247,5 +268,100 @@
                 });
         }
 
+        function _showErrorAlert(title) {
+            Swal.fire({
+                title: title,
+                icon: "error",
+                confirmButtonText: "OK",
+                customClass: {
+                    popup: "swal2-popup",
+                    confirmButton: "swal2-confirm"
+                }
+            });
+        }
+
+        function _isDateInputValid(selector, keyName, isRequired = false) {
+            const date = $(selector).val();
+            if (!date) {
+                if (isRequired) _showErrorAlert(`"${keyName}" is Required.`);
+                return false;
+            }
+            const isValidFormat = /^\d{4}-\d{2}-\d{2}$/.test(date);
+            const isValidValue = !isNaN(Date.parse(date));
+            if (!isValidFormat || !isValidValue) {
+                _showErrorAlert(`"${keyName}" is Invalid.`);
+                return false;
+            }
+
+            return true;
+        }
+        function _inputHasValidNumber(selector, keyName, isRequired = false){
+            const value = $(selector).val();
+            if (!value) {
+                if (isRequired) _showErrorAlert(`"${keyName}" is Required.`);
+                return false;
+            }
+            if (isNaN(value)){
+                _showErrorAlert(`"${keyName}" is Invalid.`);
+                return false;
+            }
+            return true;
+        }
+
+        function _inputHasValue(selector, keyName){
+            const value = $(selector).val();
+            if (!value) {
+                _showErrorAlert(`"${keyName}" is Required.`);
+                return false;
+            }
+            return true;
+        }
+      
+        function _dropdownHasSelected(selector, keyName, minIndex = -1) {
+            const selectElement = $(selector);
+            const value = selectElement.val();
+            const index = selectElement[0].selectedIndex;
+            if (!value || index <= minIndex) {
+                _showErrorAlert(`"${keyName}" is Required.`);
+                return false;
+            }
+            return true;
+        }
+
+        function _setInputNumeric(selector) {
+            var input = $(selector);
+            input.on("input", function() {
+                let value = this.value.replace(/[^0-9.]/g, '');
+                const parts = value.split(".");
+                console.log(parts)
+                if (parts.length >= 2){
+                    const wholeNum = parts[0] || 0
+                    const decimal = parts.slice(1).join('')
+                    value = `${parseInt(wholeNum)}.${decimal}`;
+                } else {
+                    value = parseInt(value || 0);
+                }
+                this.value = value;
+            })
+            input.on("paste", function(e) {
+                const pasteData = e.originalEvent.clipboardData.getData('text')
+                if (!/^\d*\.?d*$/.test(pasteData)){
+                    e.preventDefault();
+                }
+            })
+        }
+
+        function _setInputMeterSin() {
+            var input = $("#meter-sin")
+            input.on("input", function() {
+                this.value = this.value.replace(/[^a-zA-Z0-9-]/g, '');
+            })
+            input.on("paste", function(e) {
+                const pasteData = e.originalEvent.clipboardData.getData('text')
+                if (!/[^a-zA-Z0-9-]+$/.test(pasteData)){
+                    e.preventDefault();
+                }
+            })
+        }
     </script>
 }

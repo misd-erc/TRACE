@@ -110,8 +110,7 @@
               "RelativeToolTip": "TRACE\\Views\\Hearing\\Create.cshtml",
               "ViewState": "AgIAAGYAAAAAAAAAAAAAAHYAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-11T05:22:50.226Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T05:22:50.226Z"
             },
             {
               "$type": "Document",
@@ -123,8 +122,7 @@
               "RelativeToolTip": "TRACE\\wwwroot\\js\\CaseDetails.js",
               "ViewState": "AgIAACcEAAAAAAAAAAAuwDgEAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-11T05:20:00.913Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T05:20:00.913Z"
             },
             {
               "$type": "Document",
@@ -136,8 +134,7 @@
               "RelativeToolTip": "TRACE\\Controllers\\ExternalController.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAUwCwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T01:51:59.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T01:51:59.393Z"
             },
             {
               "$type": "Document",
@@ -147,7 +144,7 @@
               "RelativeDocumentMoniker": "TRACE\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "TRACE\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAMIAAAAAAAAAAAAiwOMAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-11T01:51:23.681Z",
               "EditorCaption": ""
@@ -162,8 +159,7 @@
               "RelativeToolTip": "TRACE\\Views\\Shared\\_Layout.cshtml.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-06-11T01:51:19.633Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T01:51:19.633Z"
             },
             {
               "$type": "Document",
@@ -175,8 +171,7 @@
               "RelativeToolTip": "TRACE\\wwwroot\\js\\DashboardModules.js",
               "ViewState": "AgIAAG4AAAAAAAAAAAAIwAsAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-11T01:48:48.45Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T01:48:48.45Z"
             },
             {
               "$type": "Document",
@@ -188,8 +183,7 @@
               "RelativeToolTip": "TRACE\\Views\\Home\\Dashboard.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-11T01:48:03.676Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T01:48:03.676Z"
             },
             {
               "$type": "Document",
@@ -201,8 +195,7 @@
               "RelativeToolTip": "TRACE\\Controllers\\UserManagementController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T01:46:53.13Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T01:46:53.13Z"
             },
             {
               "$type": "Document",
@@ -214,8 +207,7 @@
               "RelativeToolTip": "TRACE\\Controllers\\UsersController.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAgwCQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T01:45:08.575Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T01:45:08.575Z"
             },
             {
               "$type": "Document",
@@ -227,8 +219,7 @@
               "RelativeToolTip": "TRACE\\wwwroot\\js\\userManagement.js",
               "ViewState": "AgIAAAkAAAAAAAAAAAAiwB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-11T01:39:56.163Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T01:39:56.163Z"
             },
             {
               "$type": "Document",
@@ -240,8 +231,7 @@
               "RelativeToolTip": "TRACE\\appsettings.json",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAA0AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-10T23:24:46.906Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-10T23:24:46.906Z"
             },
             {
               "$type": "Document",
@@ -253,8 +243,7 @@
               "RelativeToolTip": "TRACE\\Controllers\\CaseMilestoneController.cs",
               "ViewState": "AgIAAOoAAAAAAAAAAAAUwPMAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T07:35:58.747Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-09T07:35:58.747Z"
             }
           ]
         },
