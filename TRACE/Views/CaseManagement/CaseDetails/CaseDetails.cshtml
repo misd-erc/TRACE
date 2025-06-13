@@ -464,14 +464,12 @@
 
         const foldername = document.getElementById('foldername');
 
-        // Determine and display the folder name
         if (foldername) {
             if (module === "Hearing") {
                 foldername.innerHTML = 'Hearing Files > ' + _dataid;
             } else if (module === "Event") {
                 foldername.innerHTML = 'Activities and Events Files > ' + _dataid;
             } else {
-                // Milestone — fetch folder name
                 const milestoneName = await getMilestoneFolderName(param);
                 foldername.innerHTML = 'Milestone Files > ' + milestoneName;
             }
