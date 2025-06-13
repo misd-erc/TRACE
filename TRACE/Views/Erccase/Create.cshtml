@@ -336,7 +336,8 @@
                 console.log(parts)
                 if (parts.length >= 2){
                     const wholeNum = parts[0] || 0
-                    const decimal = parts.slice(1).join('')
+                    let decimal = parts.slice(1).join('')
+                    decimal = decimal.substring(0, 2)
                     value = `${parseInt(wholeNum)}.${decimal}`;
                 } else {
                     value = parseInt(value || 0);
