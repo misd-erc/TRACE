@@ -428,7 +428,8 @@
                         moduleParam = item.milestone;
                         dataIdParam = 0;
                     } else {
-                        folderLabel = item.milestone ? `${item.milestone}` : item.dataId;
+                        const folderName = await getEventorHearingfolderName(item.dataId, item.module);
+                        folderLabel = folderName ? `${item.dataId} - ${folderName}` : `${item.dataId}`;
                         moduleParam = item.module;
                         dataIdParam = item.dataId;
                     }
@@ -466,9 +467,11 @@
 
         if (foldername) {
             if (module === "Hearing") {
-                foldername.innerHTML = 'Hearing Files > ' + _dataid;
+                const hearingdatetime = await getEventorHearingfolderName(_dataid, 'Hearing');
+                foldername.innerHTML = 'Hearing Files > ' + _dataid + " - " + hearingdatetime;
             } else if (module === "Event") {
-                foldername.innerHTML = 'Activities and Events Files > ' + _dataid;
+                const eventtyperino = await getEventorHearingfolderName(_dataid, 'Event');
+                foldername.innerHTML = 'Activities and Events Files > ' + eventtyperino;
             } else {
                 const milestoneName = await getMilestoneFolderName(param);
                 foldername.innerHTML = 'Milestone Files > ' + milestoneName;
@@ -530,7 +533,7 @@
             const result = await response.json();
 
             if (result.success) {
-                console.log("Milestone name:", result.milestone);
+                // console.log("Milestone name:", result.milestone);
                 return result.milestone;
             } else {
                 console.warn(result.message || "Milestone not found");
@@ -538,6 +541,26 @@
             }
         } catch (error) {
             console.error("Error fetching milestone name:", error);
+            return null;
+        }
+    }
+
+    async function getEventorHearingfolderName(dataId, modulee) {
+        try {
+            console.log(modulee);
+            const response = await fetch(`/CaseBlobDocument/GetFolderName?id=${dataId}&module=${modulee}`);
+            const result = await response.json();
+            // console.log("API Result:", result)
+            if (result.success) {
+                // console.log("Folder name:", result.foldername);
+                return result.foldername;
+                
+            } else {
+                console.warn(result.message || "Folder not founderino");
+                return null;
+            }
+        } catch (error) {
+            console.error("Error fetching folder name:", error);
             return null;
         }
     }
