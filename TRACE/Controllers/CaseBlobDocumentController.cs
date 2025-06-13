@@ -83,15 +83,16 @@ namespace TRACE.Controllers
         public async Task<IActionResult> Download(string fileName)
         {
             DownloadFiles downloadFiles = new DownloadFiles();
-            var downloadInfo = await downloadFiles.DownloadBlobAsync(fileName);
+            var localFilePath = await downloadFiles.DownloadBlobDocumentsAsync(fileName);
 
-            if (downloadInfo == null)
+            if (string.IsNullOrEmpty(localFilePath) || !System.IO.File.Exists(localFilePath))
             {
                 return NotFound("File not found in Blob Storage.");
             }
 
-            // Return file stream
-            return File(downloadInfo.Content, "application/octet-stream", Path.GetFileName(fileName));
+            byte[] fileBytes = await System.IO.File.ReadAllBytesAsync(localFilePath);
+            System.IO.File.Delete(localFilePath);
+            return File(fileBytes, "application/octet-stream", Path.GetFileName(fileName));
         }
 
         // GET: CaseBlobDocument/Details/5
