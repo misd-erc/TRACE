@@ -217,6 +217,8 @@ public partial class ErcdbContext : DbContext
     public virtual DbSet<CaseMilestoneTemplateMember> CaseMilestoneTemplateMember { get; set; }
     public virtual DbSet<Notification> Notifications { get; set; }
     public virtual DbSet<TimePauseHistory> TimePauseHistories { get; set; }
+    public virtual DbSet<DistributionUtility> DistributionUtilities { get; set; }
+    public virtual DbSet<DuinCase> DuinCases { get; set; }
     public DbSet<CaseMilestoneTemplateMember> CaseMilestoneTemplateMembers { get; set; }
 
 
@@ -490,6 +492,35 @@ public partial class ErcdbContext : DbContext
                 .HasForeignKey(d => d.AdviceStatusId)
                 .HasConstraintName("FK_Advices_AdviceStatuses");
         });
+        modelBuilder.Entity<DistributionUtility>(entity =>
+        {
+            entity.HasKey(e => e.DuId).HasName("PK__Distribu__0218E060ABF13282");
+
+            entity.Property(e => e.DuId).HasColumnName("DuID");
+            entity.Property(e => e.AddressLine1).HasMaxLength(500);
+            entity.Property(e => e.AddressLine2).HasMaxLength(500);
+            entity.Property(e => e.CityId).HasColumnName("CityID");
+            entity.Property(e => e.DuName).HasMaxLength(250);
+            entity.Property(e => e.EntityCategoryId).HasColumnName("EntityCategoryID");
+            entity.Property(e => e.Region).HasMaxLength(100);
+            entity.Property(e => e.ShortName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.ZipCode)
+                .HasMaxLength(10)
+                .IsUnicode(false);
+        });
+        modelBuilder.Entity<DuinCase>(entity =>
+        {
+            entity.HasKey(e => e.DuinCasesId).HasName("PK__DUinCase__B483035075A3D8CC");
+
+            entity.ToTable("DUinCases");
+
+            entity.Property(e => e.DuinCasesId).HasColumnName("DUinCasesID");
+            entity.Property(e => e.CaseId).HasColumnName("CaseID");
+            entity.Property(e => e.DuId).HasColumnName("DuID");
+        });
+
 
         modelBuilder.Entity<AdviceStatus>(entity =>
         {

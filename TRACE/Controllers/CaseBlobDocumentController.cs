@@ -48,20 +48,21 @@ namespace TRACE.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCaseBlobDocumentByModule(string module,int ercId, int dataid)
+        public async Task<IActionResult> GetCaseBlobDocumentByModule(string module, int ercId, int dataid)
         {
             List<CaseBlobDocument> documents = new List<CaseBlobDocument>();
+
             if (module == "Event")
             {
-                 documents = await _context.CaseBlobDocument
-                .Where(x => x.Module == "Event" && x.Ercid == ercId)
-                .ToListAsync();
+                documents = await _context.CaseBlobDocument
+                    .Where(x => x.Module == "Event" && x.Ercid == ercId && x.DataId == dataid)
+                    .ToListAsync();
             }
             else if (module == "Hearing")
             {
                 documents = await _context.CaseBlobDocument
-               .Where(x => x.Module == "Hearing" && x.Ercid == ercId)
-               .ToListAsync();
+                    .Where(x => x.Module == "Hearing" && x.Ercid == ercId && x.DataId == dataid)
+                    .ToListAsync();
             }
             else
             {
@@ -69,7 +70,6 @@ namespace TRACE.Controllers
                     .Where(x => x.Milestone == module && x.Ercid == ercId && !string.IsNullOrEmpty(x.Milestone))
                     .ToListAsync();
             }
-
 
             if (documents == null || documents.Count == 0)
             {
@@ -83,15 +83,16 @@ namespace TRACE.Controllers
         public async Task<IActionResult> Download(string fileName)
         {
             DownloadFiles downloadFiles = new DownloadFiles();
-            var downloadInfo = await downloadFiles.DownloadBlobAsync(fileName);
+            var localFilePath = await downloadFiles.DownloadBlobDocumentsAsync(fileName);
 
-            if (downloadInfo == null)
+            if (string.IsNullOrEmpty(localFilePath) || !System.IO.File.Exists(localFilePath))
             {
                 return NotFound("File not found in Blob Storage.");
             }
 
-            // Return file stream
-            return File(downloadInfo.Content, "application/octet-stream", Path.GetFileName(fileName));
+            byte[] fileBytes = await System.IO.File.ReadAllBytesAsync(localFilePath);
+            System.IO.File.Delete(localFilePath);
+            return File(fileBytes, "application/octet-stream", Path.GetFileName(fileName));
         }
 
         // GET: CaseBlobDocument/Details/5
@@ -296,7 +297,46 @@ namespace TRACE.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> GetFolderName(int id, string module)
+        {
+            if (module == "Hearing")
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    string sql = @"
+                        SELECT 
+                            FORMAT(CAST(HearingDate AS datetime) + CAST(Time AS datetime), 'yyyy-MM-dd HH:mm') AS HearingDateTime
+                        FROM ercdb.cases.Hearings
+                        WHERE HearingID = @Id";
+                    var hearingdate = await connection.QueryFirstOrDefaultAsync<string>(sql, new { Id = id });
 
+                    if (hearingdate != null)
+                        return Ok(new { success = true, foldername = hearingdate });
+                    else
+                        return NotFound(new { success = false, message = "Hearing not found." });
+                }
+            }
+            else
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    string sql = @"
+                        SELECT cet.EventType
+                        FROM ercdb.cases.CaseEvents ce
+                        JOIN ercdb.cases.CaseEventTypes cet ON ce.CaseEventTypeID = cet.CaseEventTypeID
+                        WHERE ce.CaseEventID = @Id";
+
+                    var eventType = await connection.QueryFirstOrDefaultAsync<string>(sql, new { Id = id });
+
+                    if (eventType != null)
+                        return Ok(new { success = true, foldername = eventType });
+                    else
+                        return NotFound(new { success = false, message = "EventTypeID not found." });
+                }
+            }
+
+        }
 
 
         private bool CaseBlobDocumentExists(int id)

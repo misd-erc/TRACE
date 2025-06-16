@@ -169,7 +169,7 @@
                     </div>
                     <div class="grid grid-files" id="Files">
                         <div class="no-document">
-                            No Data Available
+                            Choose Folder!
                         </div>
                     </div>
                 </div>
@@ -428,7 +428,8 @@
                         moduleParam = item.milestone;
                         dataIdParam = 0;
                     } else {
-                        folderLabel = item.milestone ? `${item.milestone}` : item.dataId;
+                        const folderName = await getEventorHearingfolderName(item.dataId, item.module);
+                        folderLabel = folderName ? `${item.dataId} - ${folderName}` : `${item.dataId}`;
                         moduleParam = item.module;
                         dataIdParam = item.dataId;
                     }
@@ -464,14 +465,14 @@
 
         const foldername = document.getElementById('foldername');
 
-        // Determine and display the folder name
         if (foldername) {
             if (module === "Hearing") {
-                foldername.innerHTML = 'Hearing Files > ' + _dataid;
+                const hearingdatetime = await getEventorHearingfolderName(_dataid, 'Hearing');
+                foldername.innerHTML = 'Hearing Files > ' + _dataid + " - " + hearingdatetime;
             } else if (module === "Event") {
-                foldername.innerHTML = 'Activities and Events Files > ' + _dataid;
+                const eventtyperino = await getEventorHearingfolderName(_dataid, 'Event');
+                foldername.innerHTML = 'Activities and Events Files > ' + eventtyperino;
             } else {
-                // Milestone — fetch folder name
                 const milestoneName = await getMilestoneFolderName(param);
                 foldername.innerHTML = 'Milestone Files > ' + milestoneName;
             }
@@ -509,7 +510,10 @@
 
                         applicantstbody.innerHTML += `
                             <div class="thefile">
-                                <div class="file-options">⋮</div>
+                                <div class="file-options" onclick="toggleMenu(this)">⋮</div>
+                                <div class="file-menu">
+                                    <div class="menu-item" onclick="downloadFile('${event.attachmentName}')"><i class="bxr bx-folder-down-arrow"></i> Download</div>
+                                </div>
                                 <img src="${fileIcon}" class="filetype-img" />
                                 <p>${event.attachmentName}</p>
                             </div>`;
@@ -525,14 +529,13 @@
             });
     }
 
-
     async function getMilestoneFolderName(milestoneId) {
         try {
             const response = await fetch(`/CaseMilestone/GetFolderMilestoneName?id=${milestoneId}`);
             const result = await response.json();
 
             if (result.success) {
-                console.log("Milestone name:", result.milestone);
+                // console.log("Milestone name:", result.milestone);
                 return result.milestone;
             } else {
                 console.warn(result.message || "Milestone not found");
@@ -540,6 +543,26 @@
             }
         } catch (error) {
             console.error("Error fetching milestone name:", error);
+            return null;
+        }
+    }
+
+    async function getEventorHearingfolderName(dataId, modulee) {
+        try {
+            console.log(modulee);
+            const response = await fetch(`/CaseBlobDocument/GetFolderName?id=${dataId}&module=${modulee}`);
+            const result = await response.json();
+            // console.log("API Result:", result)
+            if (result.success) {
+                // console.log("Folder name:", result.foldername);
+                return result.foldername;
+                
+            } else {
+                console.warn(result.message || "Folder not founderino");
+                return null;
+            }
+        } catch (error) {
+            console.error("Error fetching folder name:", error);
             return null;
         }
     }
@@ -631,4 +654,25 @@
         window.location.href = '/' + controllerName + `/create?id=${erccaseId}`;
     }
 
+
+</script>
+<script>
+    function toggleMenu(trigger) {
+        document.querySelectorAll('.file-menu').forEach(menu => {
+            if (menu !== trigger.nextElementSibling) {
+                menu.style.display = 'none';
+            }
+        });
+
+        const menu = trigger.nextElementSibling;
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.thefile')) {
+            document.querySelectorAll('.file-menu').forEach(menu => {
+                menu.style.display = 'none';
+            });
+        }
+    });
 </script>

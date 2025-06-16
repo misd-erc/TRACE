@@ -659,6 +659,9 @@ namespace TRACE.Controllers
 
                 if (ModelState.IsValid)
                 {
+                    var currentUserName = _currentUserHelper.Email;
+                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                    erccase.DocketedBy = user.Username;
                     _context.Add(erccase);
                     await _context.SaveChangesAsync();
 

@@ -1,0 +1,30 @@
+@model TRACE.Models.DuinCase
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>DuinCase</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DuId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DuId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CaseId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.DuinCasesId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
