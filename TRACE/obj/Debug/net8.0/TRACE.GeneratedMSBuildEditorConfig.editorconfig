@@ -396,8 +396,48 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGVudE1hbmFnZW1lbnRcQ29udGVudE1hbmFnZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Dev/OJT/TRACE/TRACE/Views/DistributionUtility/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzdHJpYnV0aW9uVXRpbGl0eVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/OJT/TRACE/TRACE/Views/DistributionUtility/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzdHJpYnV0aW9uVXRpbGl0eVxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/OJT/TRACE/TRACE/Views/DistributionUtility/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzdHJpYnV0aW9uVXRpbGl0eVxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/OJT/TRACE/TRACE/Views/DistributionUtility/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzdHJpYnV0aW9uVXRpbGl0eVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/OJT/TRACE/TRACE/Views/DistributionUtility/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzdHJpYnV0aW9uVXRpbGl0eVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Dev/OJT/TRACE/TRACE/Views/DocumentManagement/DocumentManagement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdW1lbnRNYW5hZ2VtZW50XERvY3VtZW50TWFuYWdlbWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/OJT/TRACE/TRACE/Views/DuinCase/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRHVpbkNhc2VcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/OJT/TRACE/TRACE/Views/DuinCase/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRHVpbkNhc2VcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/OJT/TRACE/TRACE/Views/DuinCase/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRHVpbkNhc2VcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/OJT/TRACE/TRACE/Views/DuinCase/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRHVpbkNhc2VcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/OJT/TRACE/TRACE/Views/DuinCase/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRHVpbkNhc2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Dev/OJT/TRACE/TRACE/Views/Erccase/Create.cshtml]

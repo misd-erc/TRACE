@@ -19,33 +19,32 @@
 <div class="genrep shadow border-radius-5">
     <div class="grid grid-three-fr gap-10">
         <div class="form-input-div">
-            <label>Inventory of Cases</label>
-            <select>
+            <label class="control-label">Inventory of Cases</label>
+            <select asp-items="ViewBag.ErccaseId" id="erc-case-dropdown" class="form-control">
                 <option selected disabled>Select Case</option>
             </select>
         </div>
         <div class="form-input-div">
             <label>Current Milestones</label>
-            <select>
+            <select asp-items="ViewBag.CaseMilestoneId" id="case-milestone-dropdown" class="form-control">
                 <option selected disabled>Select Milestone</option>
             </select>
         </div>
         <div class="form-input-div">
             <label>Applicant/Respondent</label>
-            <select>
+            <select asp-items="ViewBag.CorrespondentId" id="correspondent-dropdown" class="form-control">
                 <option selected disabled>Select Applicants/Respondents</option>
             </select>
         </div>
         <div class="form-input-div">
             <label>Year</label>
-            <select>
+            <select id="year-dropdown" class="form-control">
                 <option selected disabled>Choose Year</option>
-                <option>2025</option>
             </select>
         </div>
         <div class="form-input-div">
             <label>Region</label>
-            <select>
+            <select id="region-dropdown" class="form-control">
                 <option selected disabled>Choose Region</option>
             </select>
         </div>
@@ -53,19 +52,13 @@
             <label class="control-label">Case Categories</label>
             <div class="checktype limit">
                 <div>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
-                    <span class="flex h-center gap-5"><input type="checkbox" />Pull all Categories from db</span>
+                    @foreach(var category in ViewBag.CaseCategoryId)
+                    {
+                        <span class="flex h-center gap-5">
+                            <input type="checkbox" name="CaseCategories", value="@category.Value"/>
+                            @category.Text
+                        </span>
+                    }
                 </div>
             </div>
         </div>
@@ -75,3 +68,89 @@
         <button>GENERATE REPORT</button>
     </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        const philippineRegions = [
+            "Region I – Ilocos Region",
+            "Region II – Cagayan Valley",
+            "Region III – Central Luzon",
+            "Region IV-A – CALABARZON",
+            "Region IV-B – MIMAROPA",
+            "Region V – Bicol Region",
+            "Region VI – Western Visayas",
+            "Region VII – Central Visayas",
+            "Region VIII – Eastern Visayas",
+            "Region IX – Zamboanga Peninsula",
+            "Region X – Northern Mindanao",
+            "Region XI – Davao Region",
+            "Region XII – SOCCSKSARGEN",
+            "Region XIII – Caraga",
+            "NCR – National Capital Region",
+            "CAR – Cordillera Administrative Region",
+            "BARMM – Bangsamoro Autonomous Region in Muslim Mindanao"
+        ];
+
+        function addSearchFilter(
+            elementId,
+            apiEndpoint,
+            searchCategory,
+            placeholderValue = "Search"
+        ) {
+            const element = document.getElementById(elementId);
+            
+            const choices = new Choices(element, {
+                searchEnabled: true,
+                searchChoices: false,
+                placeholder: true,
+                placeholderValue: placeholderValue,
+                shouldSort: false
+            });
+
+            element.addEventListener('search', function (event) {
+                const searchTerm = event.detail.value;
+                if (searchTerm.length < 2) return;
+                fetch(`${apiEndpoint}?category=${encodeURIComponent(searchCategory)}&term=${encodeURIComponent(searchTerm)}`)
+                .then(response => response.json())
+                .then(data => {
+                    choices.clearChoices();
+                    choices.setChoices(data.map(item => ({
+                        value: item.id,
+                        label: item.text,
+                        selected: false,
+                        disabled: false
+                    })), 'value', 'label', true);
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                });
+            });
+
+        }
+        $(document).ready(function () {
+            addSearchFilter("erc-case-dropdown", "/casereports/Search", "case");
+            addSearchFilter("case-milestone-dropdown", "/casereports/Search", "milestone");
+            addSearchFilter("correspondent-dropdown", "/casereports/Search", "respondent");
+
+            const currentYear = new Date().getFullYear();
+            const yearDropdown = document.getElementById("year-dropdown");
+            for (let year = currentYear; year >= 2000; year--) {
+                yearDropdown.appendChild(createOption(year, year));
+            }
+            const regionDropdown = document.getElementById("region-dropdown");
+            philippineRegions.forEach(region => {
+                regionDropdown.appendChild(createOption(region, region));
+            });
+        });
+        function createOption(value, text){
+            const element = document.createElement("option")
+            element.value = value
+            element.textContent = text
+            return element
+        }
+    </script>
+}
