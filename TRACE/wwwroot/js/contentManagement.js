@@ -104,7 +104,7 @@ function loadCaseCompanies() {
         },
 
         error: function () {
-            alert("Error loading case categories.");
+            alert("Error loading companies.");
         }
     });
 }
