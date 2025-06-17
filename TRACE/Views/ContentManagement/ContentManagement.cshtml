@@ -285,10 +285,10 @@
         function deletemilestonemember(milestoneId, templateId) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "This will permanently delete the milestone template mapping.",
+                text: "This will permanently remove the milestone template mapping.",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, remove it!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     const formData = new FormData();
@@ -301,7 +301,7 @@
                     })
                         .then(response => {
                             if (response.ok) {
-                                Swal.fire('Deleted!', 'The mapping has been removed.', 'success')
+                                Swal.fire('Removed!', 'The mapping has been removed.', 'success')
                                     .then(() => location.reload());
                             } else {
                                 Swal.fire('Error!', 'Something went wrong.', 'error');
