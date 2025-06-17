@@ -66,6 +66,21 @@ function _setInputDescription(elementId) {
         $(this).val(sanitized);
     });
 }
+function _setInputAddress(elementId) {
+    $(elementId).on('paste', function (e) {
+        const clipboardData = (e.originalEvent || e).clipboardData;
+        const pastedText = clipboardData.getData('text');
+        const isValid = /^[A-Za-z0-9\s.,#\/\-\\\n\r]+$/.test(pastedText);
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+
+    $(elementId).on('input', function () {
+        const sanitized = $(this).val().replace(/[^A-Za-z0-9\s.,#\/\-\\\n\r]/g, '');
+        $(this).val(sanitized);
+    });
+}
 
 function _setInputNumeric(selector) {
     var input = $(selector);
@@ -91,7 +106,21 @@ function _setInputNumeric(selector) {
         }
     })
 }
-
+function _setInputInteger(selector) {
+    var input = $(selector);
+    input.on("input", function () {
+        let value = this.value.replace(/[^0-9]/g, '');
+        this.value = value;
+    })
+    input.on("paste", function (e) {
+        const clipboardData = (e.originalEvent || e).clipboardData;
+        const pastedText = clipboardData.getData('text');
+        const isValid = /^\d+$/.test(pastedText)
+        if (!isValid) {
+            e.preventDefault();
+        }
+    })
+}
 // Input Validation
 
 function _showErrorAlert(title) {

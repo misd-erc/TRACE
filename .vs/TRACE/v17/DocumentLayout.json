@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "D:\\Dev\\OJT\\TRACE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|d:\\dev\\ojt\\trace\\trace\\views\\reports\\generatereports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\reports\\generatereports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|d:\\dev\\ojt\\trace\\trace\\views\\casestatus\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\casestatus\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|d:\\dev\\ojt\\trace\\trace\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|d:\\dev\\ojt\\trace\\trace\\views\\caseapplicant\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\caseapplicant\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|d:\\dev\\ojt\\trace\\trace\\views\\casestatus\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\casestatus\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,8 +17,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 105,
-          "SelectedChildIndex": 11,
+          "DockedWidth": 171,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,40 +62,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\CaseApplicant\\Create.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\CaseApplicant\\Create.cshtml",
-              "ToolTip": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\CaseApplicant\\Create.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\CaseApplicant\\Create.cshtml",
-              "ViewState": "AgIAABQAAAAAAAAAAAAcwCIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-16T06:02:47.32Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GenerateReports.cshtml",
-              "DocumentMoniker": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\Reports\\GenerateReports.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\Reports\\GenerateReports.cshtml",
-              "ToolTip": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\Reports\\GenerateReports.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\Reports\\GenerateReports.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJoAAAALAAAAAAAAAA==",
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\CaseStatus\\Edit.cshtml",
+              "RelativeDocumentMoniker": "TRACE\\Views\\CaseStatus\\Edit.cshtml",
+              "ToolTip": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\CaseStatus\\Edit.cshtml",
+              "RelativeToolTip": "TRACE\\Views\\CaseStatus\\Edit.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-16T03:39:57.354Z",
+              "WhenOpened": "2025-06-17T02:35:03.029Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ReportsController.cs",
-              "DocumentMoniker": "D:\\Dev\\OJT\\TRACE\\TRACE\\Controllers\\ReportsController.cs",
-              "RelativeDocumentMoniker": "TRACE\\Controllers\\ReportsController.cs",
-              "ToolTip": "D:\\Dev\\OJT\\TRACE\\TRACE\\Controllers\\ReportsController.cs",
-              "RelativeToolTip": "TRACE\\Controllers\\ReportsController.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAQwAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T03:57:15.594Z"
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\CaseStatus\\Create.cshtml",
+              "RelativeDocumentMoniker": "TRACE\\Views\\CaseStatus\\Create.cshtml",
+              "ToolTip": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\CaseStatus\\Create.cshtml",
+              "RelativeToolTip": "TRACE\\Views\\CaseStatus\\Create.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAC4AAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-17T02:34:51.441Z",
+              "EditorCaption": ""
             }
           ]
         },

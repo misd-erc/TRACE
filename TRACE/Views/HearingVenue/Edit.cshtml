@@ -19,12 +19,12 @@
             <input type="hidden" asp-for="HearingVenueId" />
             <div class="form-group">
                 <label asp-for="VenueName" class="control-label"></label>
-                <input asp-for="VenueName" class="form-control" />
+                <input asp-for="VenueName" id="venue-name-input" maxlength="100" class="form-control" />
                 <span asp-validation-for="VenueName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StreetAddress" class="control-label"></label>
-                <input asp-for="StreetAddress" class="form-control" />
+                <input asp-for="StreetAddress" id="street-address-input" maxlength="255" class="form-control" />
                 <span asp-validation-for="StreetAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -46,9 +46,11 @@
 
     <script>
         $(document).ready(function () {
+            _setInputAlphabet("#venue-name-input")
+            _setInputAddress("#street-address-input")
             $("#editForm").submit(function (event) {
                 event.preventDefault();
-
+                if(!_inputHasValue("#venue-name-input", "Venue Name")) return
                 $.ajax({
                     url: $(this).attr("action"),
                     type: "POST",

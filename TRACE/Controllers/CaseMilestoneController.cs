@@ -217,7 +217,7 @@ namespace TRACE.Controllers
                 }
                 return Json(new { success = true, message = "Success! Data has been updated." });
             }
-            return Json(new { success = true, message = "Success! Data has been updated." });
+            return Json(new { success = false, message = "Error! Data has not been updated." });
         }
 
         // GET: CaseMilestone/Delete/5
