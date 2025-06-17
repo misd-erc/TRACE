@@ -139,7 +139,7 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CaseMilestoneId,Milestone,Description")] CaseMilestone caseMilestone)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(caseMilestone);
                 await _context.SaveChangesAsync();
@@ -187,7 +187,7 @@ namespace TRACE.Controllers
                 return Json(new { success = false, message = "Error! Data not found." });
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 try
                 {
@@ -203,6 +203,7 @@ namespace TRACE.Controllers
                     eventLog.Category = "Case Milestone";
                     _context.EventLogs.Add(eventLog);
                     await _context.SaveChangesAsync();
+                    return Json(new { success = true, message = "Success! Data has been updated." });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -214,8 +215,7 @@ namespace TRACE.Controllers
                     {
                         throw;
                     }
-                }
-                return Json(new { success = true, message = "Success! Data has been updated." });
+                }            
             }
             return Json(new { success = false, message = "Error! Data has not been updated." });
         }
