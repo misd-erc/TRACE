@@ -117,41 +117,27 @@ namespace TRACE.Controllers
         {
             if (id != caseEventType.CaseEventTypeId)
             {
-                 return Json(new { success = true, message = "Success! Data has been updated." });
+                 return Json(new { success = true, message = "Error! Missing CaseID" });
             }
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(caseEventType);
-                    await _context.SaveChangesAsync();
-                    EventLog eventLog = new EventLog();
-                    eventLog.EventDatetime = DateTime.Now;
-                    var currentUserName = _currentUserHelper.Email;
-                    var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
-                    eventLog.UserId = user.Username;
-                    eventLog.Event = "EDIT";
-                    eventLog.Source = "CONTENT MANAGEMENT";
-                    eventLog.Category = "Case Event Type";
-                    _context.EventLogs.Add(eventLog);
-                    await _context.SaveChangesAsync();
-                    return Json(new { success = true, message = "Success! Data has been updated." });
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CaseEventTypeExists(caseEventType.CaseEventTypeId))
-                    {
-                        return Json(new { success = true, message = "Success! Data has been updated." });
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-             
+                _context.Update(caseEventType);
+                await _context.SaveChangesAsync();
+                EventLog eventLog = new EventLog();
+                eventLog.EventDatetime = DateTime.Now;
+                var currentUserName = _currentUserHelper.Email;
+                var user = _context.Users.FirstOrDefault(x => x.Email == currentUserName);
+                eventLog.UserId = user.Username;
+                eventLog.Event = "EDIT";
+                eventLog.Source = "CONTENT MANAGEMENT";
+                eventLog.Category = "Case Event Type";
+                _context.EventLogs.Add(eventLog);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, message = "Success! Data has been updated." });
+
             }
-            return Json(new { success = true, message = "Success! Data has been updated." });
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseEventType/Delete/5
