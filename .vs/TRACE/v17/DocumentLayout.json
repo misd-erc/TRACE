@@ -9,6 +9,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|d:\\dev\\ojt\\trace\\trace\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|d:\\dev\\ojt\\trace\\trace\\views\\caseapplicant\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\caseapplicant\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 105,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,13 +66,25 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\CaseApplicant\\Create.cshtml",
+              "RelativeDocumentMoniker": "TRACE\\Views\\CaseApplicant\\Create.cshtml",
+              "ToolTip": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\CaseApplicant\\Create.cshtml",
+              "RelativeToolTip": "TRACE\\Views\\CaseApplicant\\Create.cshtml",
+              "ViewState": "AgIAABQAAAAAAAAAAAAcwCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-16T06:02:47.32Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "GenerateReports.cshtml",
               "DocumentMoniker": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\Reports\\GenerateReports.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\Reports\\GenerateReports.cshtml",
               "ToolTip": "D:\\Dev\\OJT\\TRACE\\TRACE\\Views\\Reports\\GenerateReports.cshtml",
               "RelativeToolTip": "TRACE\\Views\\Reports\\GenerateReports.cshtml",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAAAG4AAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJoAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-16T03:39:57.354Z",
               "EditorCaption": ""
@@ -81,10 +97,9 @@
               "RelativeDocumentMoniker": "TRACE\\Controllers\\ReportsController.cs",
               "ToolTip": "D:\\Dev\\OJT\\TRACE\\TRACE\\Controllers\\ReportsController.cs",
               "RelativeToolTip": "TRACE\\Controllers\\ReportsController.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAmwC0AAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T03:57:15.594Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-16T03:57:15.594Z"
             }
           ]
         },
@@ -92,6 +107,10 @@
           "DockedWidth": 104,
           "SelectedChildIndex": -1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"

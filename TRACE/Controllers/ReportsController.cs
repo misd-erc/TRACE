@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TRACE.Context;
 using TRACE.Helpers;
-using TRACE.Models;
 
 namespace TRACE.Controllers
 {

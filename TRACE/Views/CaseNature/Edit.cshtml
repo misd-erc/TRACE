@@ -19,13 +19,13 @@
 
             <div class="form-group">
                 <label asp-for="Nature" class="control-label"></label>
-                <input asp-for="Nature" class="form-control" />
+                <input asp-for="Nature" id="nature-input" maxlength="50" class="form-control" />
                 <span asp-validation-for="Nature" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <input asp-for="Description"id="description-input" maxlength="500" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
 
@@ -58,8 +58,11 @@
 
     <script>
         $(document).ready(function () {
+            _setInputAlphabet("#nature-input")
+            _setInputDescription("#description-input")
             $("#editForm").submit(function (event) {
                 event.preventDefault();
+                if (!_inputHasValue("#nature-input", "Nature")) return;
 
                 $.ajax({
                     url: $(this).attr("action"),

@@ -129,8 +129,15 @@
                     console.error('Error fetching search results:', error);
                 });
             });
-
         }
+        
+        function createOption(value, text){
+            const element = document.createElement("option")
+            element.value = value
+            element.textContent = text
+            return element
+        }
+
         $(document).ready(function () {
             addSearchFilter("erc-case-dropdown", "/casereports/Search", "case");
             addSearchFilter("case-milestone-dropdown", "/casereports/Search", "milestone");
@@ -146,11 +153,5 @@
                 regionDropdown.appendChild(createOption(region, region));
             });
         });
-        function createOption(value, text){
-            const element = document.createElement("option")
-            element.value = value
-            element.textContent = text
-            return element
-        }
     </script>
 }
