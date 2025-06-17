@@ -221,6 +221,8 @@ public partial class ErcdbContext : DbContext
     public virtual DbSet<DuinCase> DuinCases { get; set; }
     public DbSet<CaseMilestoneTemplateMember> CaseMilestoneTemplateMembers { get; set; }
 
+    public virtual DbSet<UserRole> UserRoles { get; set; }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=ErcDatabase");
@@ -323,7 +325,10 @@ public partial class ErcdbContext : DbContext
                 .HasMaxLength(250)
                 .IsUnicode(false);
         });
-
+        modelBuilder.Entity<UserRole>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__UserRole__3214EC070BED8CF0");
+        });
         modelBuilder.Entity<Notification>(entity =>
         {
             entity.ToTable("Notifications", "cases");
