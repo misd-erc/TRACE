@@ -26,6 +26,7 @@ wwwroot\js\contentManagement.js
 wwwroot\js\DashboardModules.js
 wwwroot\js\dbchart.js
 wwwroot\js\drin-theme.js
+wwwroot\js\FormInputValidation.js
 wwwroot\js\HearingsModule.js
 wwwroot\js\Notifications.js
 wwwroot\js\settingsTab.js

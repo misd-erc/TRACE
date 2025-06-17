@@ -333,7 +333,6 @@
             input.on("input", function() {
                 let value = this.value.replace(/[^0-9.]/g, '');
                 const parts = value.split(".");
-                console.log(parts)
                 if (parts.length >= 2){
                     const wholeNum = parts[0] || 0
                     let decimal = parts.slice(1).join('')

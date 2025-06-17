@@ -75,6 +75,11 @@ namespace TRACE.Controllers
         {
             if (ModelState.IsValid)
             {
+                var existingCategory = _context.HearingCategories.FirstOrDefault(x => x.Category == hearingCategory.Category);
+                if (existingCategory != null)
+                {
+                    return Json(new { success = false, message = "'" + hearingCategory.Category + "' already exist!" });
+                }
                 _context.Add(hearingCategory);
                 EventLog eventLog = new EventLog();
                 eventLog.EventDatetime = DateTime.Now;

@@ -83,6 +83,11 @@ namespace TRACE.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var existingMilestone = _context.CaseMilestoneTemplates.FirstOrDefault(x => x.TemplateName == caseMilestoneTemplate.TemplateName);
+                if (existingMilestone != null)
+                {
+                    return Json(new { success = false, message = "'" + caseMilestoneTemplate.TemplateName + "' already exists!" });
+                }
                 _context.Add(caseMilestoneTemplate);
 
                 var currentUserName = _currentUserHelper.Email;

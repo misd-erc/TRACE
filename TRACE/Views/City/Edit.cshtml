@@ -19,7 +19,7 @@
 
             <div class="form-group mb-3">
                 <label asp-for="CityName" class="form-label fw-bold">City Name</label>
-                <input asp-for="CityName" class="form-control" />
+                <input asp-for="CityName" id="city-name-input" maxlength="50" class="form-control" />
                 <span asp-validation-for="CityName" class="text-danger"></span>
             </div>
 
@@ -43,8 +43,11 @@
 
     <script>
         $(document).ready(function () {
+            _setInputAlphabet("#city-name-input")
+
             $("#editForm").submit(function (event) {
                 event.preventDefault();
+                if (!_inputHasValue("#city-name-input", "City Name")) return
 
                 $.ajax({
                     url: $(this).attr("action"),

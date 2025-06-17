@@ -20,19 +20,19 @@
 
             <div class="form-group">
                 <label asp-for="CompanyName" class="control-label"></label>
-                <input asp-for="CompanyName" class="form-control" />
+                <input asp-for="CompanyName" id="company-name-input" maxlength="100" class="form-control" />
                 <span asp-validation-for="CompanyName" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="AddressLine1" class="control-label"></label>
-                <input asp-for="AddressLine1" class="form-control" />
+                <input asp-for="AddressLine1" id="address-line1-input" maxlength="255" class="form-control" />
                 <span asp-validation-for="AddressLine1" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="AddressLine2" class="control-label"></label>
-                <input asp-for="AddressLine2" class="form-control" />
+                <input asp-for="AddressLine2" id="address-line2-input" maxlength="255" class="form-control" />
                 <span asp-validation-for="AddressLine2" class="text-danger"></span>
             </div>
 
@@ -44,7 +44,7 @@
 
             <div class="form-group">
                 <label asp-for="ZipCode" class="control-label"></label>
-                <input asp-for="ZipCode" class="form-control" />
+                <input asp-for="ZipCode" id="zipcode-input" maxlength="4" class="form-control" />
                 <span asp-validation-for="ZipCode" class="text-danger"></span>
             </div>
 
@@ -76,8 +76,16 @@
 
     <script>
         $(document).ready(function () {
+            _setInputAlphabet("#company-name-input");
+            _setInputAddress("#address-line1-input");
+            _setInputAddress("#address-line2-input");
+            _setInputInteger("zipcode-input");
+
             $("#editForm").submit(function (event) {
                 event.preventDefault();
+
+                if (!_inputHasValue("#company-name-input", "Company Name")) return;
+                if (!_inputHasValue("#address-line1-input", "Address Line 1")) return;
 
                 $.ajax({
                     url: $(this).attr("action"),

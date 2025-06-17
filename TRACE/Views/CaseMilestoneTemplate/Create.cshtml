@@ -18,7 +18,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="TemplateName" class="control-label"></label>
-                <input asp-for="TemplateName" class="form-control" />
+                <input asp-for="TemplateName" id="template-name-input" maxlength="100" class="form-control" />
                 <span asp-validation-for="TemplateName" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -37,8 +37,11 @@
 
     <script>
         $(document).ready(function () {
+            _setInputAlphabet("template-name-input")
+
             $("#createForm").submit(function (event) {
                 event.preventDefault();
+                if (!_inputHasValue("#template-name-input", "Template Name")) return
 
                 $.ajax({
                     url: $(this).attr("action"),

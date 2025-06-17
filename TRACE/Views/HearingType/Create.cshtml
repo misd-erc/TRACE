@@ -19,12 +19,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="TypeOfHearing" class="control-label"></label>
-                <input asp-for="TypeOfHearing" class="form-control" />
+                <input asp-for="TypeOfHearing" id="hearing-type-input" maxlength="50" class="form-control" />
                 <span asp-validation-for="TypeOfHearing" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <input asp-for="Description" id="description-input" maxlength="500" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -41,9 +41,12 @@
 
     <script>
         $(document).ready(function () {
+            _setInputAlphabet("#hearing-type-input")
+            _setInputDescription("#description-input")
+
             $("#createForm").submit(function (event) {
                 event.preventDefault();
-
+                if (!_inputHasValue("#hearing-type-input", "Hearing Type")) return
                 $.ajax({
                     url: $(this).attr("action"),
                     type: "POST",
