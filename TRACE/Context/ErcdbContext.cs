@@ -222,6 +222,8 @@ public partial class ErcdbContext : DbContext
     public DbSet<CaseMilestoneTemplateMember> CaseMilestoneTemplateMembers { get; set; }
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
+    public virtual DbSet<UserRolesPerModule> UserRolesPerModules { get; set; }
+
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -429,6 +431,25 @@ public partial class ErcdbContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.GroupName)
                 .HasMaxLength(150)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<UserRolesPerModule>(entity =>
+        {
+            entity.HasKey(e => e.RoleId).HasName("PK__UserRole__8AFACE3A35205927");
+
+            entity.ToTable("UserRolesPerModule", "cases");
+
+            entity.Property(e => e.RoleId).HasColumnName("RoleID");
+            entity.Property(e => e.AssignedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.CanCreate).HasDefaultValue(false);
+            entity.Property(e => e.CanEdit).HasDefaultValue(false);
+            entity.Property(e => e.CanView).HasDefaultValue(false);
+            entity.Property(e => e.ModuleName).HasMaxLength(100);
+            entity.Property(e => e.RoleName)
+                .HasMaxLength(50)
                 .IsUnicode(false);
         });
 
