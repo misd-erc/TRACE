@@ -78,36 +78,68 @@ function loadCaseCategories() {
 }
 
 function loadCaseCompanies() {
+    const rowsPerPage = 6;
+    let currentPage = 1;
+
     $(".cms-modal .modal-content .modal-btn")
         .html("<i class='bx bx-plus'></i> Add New Company")
         .attr("onclick", "window.location.href='/Companies/Create'");
+
     $.ajax({
         url: "/Companies/GetCompanies",
         type: "GET",
         dataType: "json",
         success: function (response) {
-            /*console.log(response);*/
             if (response && response.data && response.data.length > 0) {
-                let rows = "";
-                response.data.forEach(item => {
-                    rows += `
-            <tr>
-                <td>${item.companyName}</td>
-                <td>${item.shortName}</td>
-                <td><a href="/Companies/Edit/${item.companyId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
-            </tr>`;
+                const data = response.data;
+
+                function renderPage(page) {
+                    currentPage = page;
+                    const start = (page - 1) * rowsPerPage;
+                    const end = start + rowsPerPage;
+                    const paginatedItems = data.slice(start, end);
+
+                    let rows = "";
+                    paginatedItems.forEach(item => {
+                        rows += `
+                            <tr>
+                                <td>${item.companyName}</td>
+                                <td>${item.shortName}</td>
+                                <td><a href="/Companies/Edit/${item.companyId}"><button><i class='bx bxs-edit-alt'></i> Edit</button></a></td>
+                            </tr>`;
+                    });
+
+                    $("#DynamicTable tbody").html(rows);
+                }
+
+                const totalPages = Math.ceil(data.length / rowsPerPage);
+                let dropdownHtml = `<label for="compageSelect">Page: </label><select id="compageSelect">`;
+                for (let i = 1; i <= totalPages; i++) {
+                    dropdownHtml += `<option value="${i}">Page ${i}</option>`;
+                }
+                dropdownHtml += `</select>`;
+                $("#compage").html(dropdownHtml);
+
+                $(document).off("change", "#compageSelect").on("change", "#compageSelect", function () {
+                    const selectedPage = parseInt($(this).val());
+                    renderPage(selectedPage);
                 });
-                $("#DynamicTable tbody").html(rows);
+
+                renderPage(1);
+
             } else {
                 $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
+                $("#compage").html("");
             }
         },
-
         error: function () {
             alert("Error loading companies.");
         }
     });
 }
+
+
+
 function loadCaseEventTypes() {
     $(".cms-modal .modal-content .modal-btn")
         .html("<i class='bx bx-plus'></i> Add New Case Event Type")
