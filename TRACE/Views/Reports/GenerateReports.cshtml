@@ -10,10 +10,6 @@
         <h3>Case Report Generation</h3>
         <p>Filter and generate reports based on your criteria.</p>
     </div>
-
-    <div class="btn-div">
-        <button class="flex h-center gap-5"><i class='bxr bx-arrow-up-stroke-square'></i> EXPORT</button>
-    </div>
 </div>
 
 <div class="genrep shadow border-radius-5">
@@ -66,6 +62,35 @@
     <div class="save-btn-div genrep-btn">
         <button class="red-btn">RESET FILTERS</button>
         <button>GENERATE REPORT</button>
+    </div>
+</div>
+
+<div class="main-head-div flex h-center space-between" style="margin:20px 0px 20px 0px;">
+    <div class="title-div">
+        <h3>Result Preview</h3>
+    </div>
+</div>
+
+<div class="genrep shadow border-radius-5">
+    <div class="btn-div">
+        <button class="flex h-center gap-5"><i class='bxr bx-arrow-up-stroke-square'></i> EXPORT</button>
+    </div>
+
+    <div class="case-table-div">
+        <table id="casesTable" class="my-cases-table">
+            <thead>
+                <tr>
+                    <th class="wider">CASE NO.</th>
+                    <th>APPLICANT/RESPONDENT</th>
+                    <th>MILESTONE</th>
+                    <th>YEAR</th>
+                    <th>CATEGORY</th>
+                    <th>REGION</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
 </div>
 

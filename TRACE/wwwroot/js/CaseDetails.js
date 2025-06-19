@@ -549,6 +549,7 @@ function fetchCaseHearingWithErcId(caseId) {
                         <td data-label="REMARKS">${caseData.Remarks}</td>
                         <td data-label="ACTION" class="actions">
                             <i class='bx bx-folder-up-arrow' title="Attach Files" onclick="openFilesHearingModal(${caseData.HearingID})"></i>
+                            <i class='bx bxs-edit' title="Edit"></i>
                         </td>
                     </tr>
                     `;
