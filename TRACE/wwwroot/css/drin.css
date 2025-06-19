@@ -2797,4 +2797,15 @@ canvas {
     color: var(--font-color);
 }
 
+.searchcompany{
+    height:40px;
+    margin:0px 0px 20px 0px;
+    background: var(--body-color);
+    color:var(--font-color);
+    padding:5px 10px;
+    border:none;
+    outline:none;
+    border:2px solid var(--font-color);
+}
+
 /*CMS PAGINATION*/

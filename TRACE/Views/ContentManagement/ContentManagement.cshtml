@@ -58,7 +58,7 @@
         <div class="modal-heading flex h-center space-between">
             <div class="flex h-center gap-20">
                 <h3 id="modalTitle">Content Details</h3>
-                <div class="filter-design border-radius-5 flex h-center">
+                <div id="pahirapsabuhaynialdrid" class="filter-design border-radius-5 flex h-center">
                     <i class='bx bx-search'></i>
                     <input type="text" id="searchFilter" placeholder="Search filter" />
                 </div>
@@ -66,7 +66,10 @@
             <span class="cms-modal-close" onclick="closeModal()">&times;</span>
         </div>
         <div class="modal-content">
-            <button class="modal-btn"></button>
+            <div class="flex h-center gap-10">
+                <button class="modal-btn"></button>
+                <div id="search-container"></div>
+            </div>
             <div class="table-wrapper">
                 <table id="DynamicTable" class="cms-table" style="border-collapse:collapse;">
                     <thead>

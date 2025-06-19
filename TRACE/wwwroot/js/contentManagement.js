@@ -26,6 +26,16 @@ function openModal(contentName) {
     const modal = document.getElementById('cmsModal');
     modal.style.display = 'block';
 
+    console.log(contentName);
+    if (contentName === "Company") {
+        const offthissearch = document.getElementById("pahirapsabuhaynialdrid");
+        offthissearch.style.display = "none";
+    }
+    else {
+        const offthissearch = document.getElementById("pahirapsabuhaynialdrid");
+        offthissearch.style.display = "block";
+    }
+
     document.querySelector('.mini-loader-overlay').style.display = 'flex';
 
     setTimeout(() => {
@@ -43,6 +53,8 @@ function closeModal() {
     $(".cms-modal .modal-content .modal-btn")
         .html("")
         .removeAttr("onclick");
+
+    $("#search-container").html(` `);
 }
 
 function loadCaseCategories() {
@@ -80,6 +92,7 @@ function loadCaseCategories() {
 function loadCaseCompanies() {
     const rowsPerPage = 6;
     let currentPage = 1;
+    let allData = []; // For storing full dataset
 
     $(".cms-modal .modal-content .modal-btn")
         .html("<i class='bx bx-plus'></i> Add New Company")
@@ -91,13 +104,20 @@ function loadCaseCompanies() {
         dataType: "json",
         success: function (response) {
             if (response && response.data && response.data.length > 0) {
-                const data = response.data;
+                allData = response.data;
 
-                function renderPage(page) {
+                // Add search bar if not already added
+                if ($("#companySearchInput").length === 0) {
+                    $("#search-container").html(`
+                        <input type="text" id="companySearchInput" placeholder="Search Company..." class="searchcompany" />
+                    `);
+                }
+
+                function renderPage(dataSubset, page) {
                     currentPage = page;
                     const start = (page - 1) * rowsPerPage;
                     const end = start + rowsPerPage;
-                    const paginatedItems = data.slice(start, end);
+                    const paginatedItems = dataSubset.slice(start, end);
 
                     let rows = "";
                     paginatedItems.forEach(item => {
@@ -110,22 +130,33 @@ function loadCaseCompanies() {
                     });
 
                     $("#DynamicTable tbody").html(rows);
+
+                    // Update page selector
+                    const totalPages = Math.ceil(dataSubset.length / rowsPerPage);
+                    let dropdownHtml = `<label for="compageSelect">Page: </label><select id="compageSelect">`;
+                    for (let i = 1; i <= totalPages; i++) {
+                        dropdownHtml += `<option value="${i}" ${i === page ? "selected" : ""}>Page ${i}</option>`;
+                    }
+                    dropdownHtml += `</select>`;
+                    $("#compage").html(dropdownHtml);
+
+                    // Page change
+                    $(document).off("change", "#compageSelect").on("change", "#compageSelect", function () {
+                        renderPage(dataSubset, parseInt($(this).val()));
+                    });
                 }
 
-                const totalPages = Math.ceil(data.length / rowsPerPage);
-                let dropdownHtml = `<label for="compageSelect">Page: </label><select id="compageSelect">`;
-                for (let i = 1; i <= totalPages; i++) {
-                    dropdownHtml += `<option value="${i}">Page ${i}</option>`;
-                }
-                dropdownHtml += `</select>`;
-                $("#compage").html(dropdownHtml);
-
-                $(document).off("change", "#compageSelect").on("change", "#compageSelect", function () {
-                    const selectedPage = parseInt($(this).val());
-                    renderPage(selectedPage);
+                // Global search filter
+                $(document).off("input", "#companySearchInput").on("input", "#companySearchInput", function () {
+                    const searchText = $(this).val().toLowerCase();
+                    const filteredData = allData.filter(item =>
+                        (item.companyName && item.companyName.toLowerCase().includes(searchText)) ||
+                        (item.shortName && item.shortName.toLowerCase().includes(searchText))
+                    );
+                    renderPage(filteredData, 1);
                 });
 
-                renderPage(1);
+                renderPage(allData, 1);
 
             } else {
                 $("#DynamicTable tbody").html("<tr><td colspan='3'>No Data available.</td></tr>");
@@ -137,6 +168,7 @@ function loadCaseCompanies() {
         }
     });
 }
+
 
 
 
