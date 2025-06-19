@@ -27,7 +27,7 @@
             <li onclick="showTabcase('activities', event)"><i class='bx bxs-calendar'></i> Activities/Events</li>
             <li onclick="showTabcase('respondents', event)"><i class='bx bxs-user-pin'></i> Respondents</li>
             <li onclick="showTabcase('applicants', event)"><i class='bx bx-user-pin'></i> Applicants</li>
-            <li onclick="showTabcase('intervenor', event)"><i class='bx bx-user-pin'></i> Intervenor</li>
+            <li onclick="showTabcase('intervenor', event)"><i class='bx bx-user-plus'></i>  Intervenor</li>
             <li onclick="showTabcase('documents', event)"><i class='bx bxs-file'></i>Attached Documents</li>
             <li onclick="showTabcase('assignpersonnel', event)"><i class='bx bxs-user-check'></i> Assigned Personnel</li>
             <li onclick="showTabcase('relatedcases', event)"><i class='bx bxs-folder-open'></i> Related Cases</li>
@@ -131,6 +131,24 @@
                     </tr>
                 </thead>
                 <tbody id="applicantstbody">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="intervenor" class="cms-content">
+            <div class="cdeets flex h-center space-between">
+                <h3>Intervenor</h3>
+                <button onclick="Create('CaseApplicant')">+ Add Intervenor</button>
+            </div>
+            <i class="helper">You can manage intervenor for this case.</i>
+            <table class="my-cases-table">
+                <thead>
+                    <tr>
+                        <th>INTERVENOR</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody id="intervenorbody">
                 </tbody>
             </table>
         </div>
