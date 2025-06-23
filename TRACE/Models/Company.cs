@@ -21,6 +21,8 @@ public partial class Company
 
     public string? ShortName { get; set; }
 
+    public string? Region { get; set; }
+
     public virtual ICollection<CaseApplicant> CaseApplicants { get; set; } = new List<CaseApplicant>();
 
     public virtual ICollection<CaseRespondent> CaseRespondents { get; set; } = new List<CaseRespondent>();
@@ -38,4 +40,5 @@ public partial class Company
     public virtual ICollection<OutgoingRecipient> OutgoingRecipients { get; set; } = new List<OutgoingRecipient>();
 
     public virtual ICollection<PreFilingCorrespondent> PreFilingCorrespondents { get; set; } = new List<PreFilingCorrespondent>();
+
 }

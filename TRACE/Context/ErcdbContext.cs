@@ -976,6 +976,9 @@ public partial class ErcdbContext : DbContext
             entity.Property(e => e.CityId).HasColumnName("CityID");
             entity.Property(e => e.CompanyName).HasMaxLength(250);
             entity.Property(e => e.EntityCategoryId).HasColumnName("EntityCategoryID");
+            entity.Property(e => e.Region)
+                .HasMaxLength(50)
+                .IsUnicode(false);
             entity.Property(e => e.ShortName)
                 .HasMaxLength(50)
                 .IsUnicode(false);
