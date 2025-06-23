@@ -99,7 +99,7 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CaseRespondentId,ErccaseId,Remarks,CorrespondentId,CompanyId")] CaseRespondent caseRespondent)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(caseRespondent);
                 EventLog eventLog = new EventLog();
@@ -112,12 +112,12 @@ namespace TRACE.Controllers
                 eventLog.Category = "Create Case Respondents";
                 _context.EventLogs.Add(eventLog);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
             ViewData["CompanyId"] = new SelectList(_context.Companies, "CompanyId", "CompanyId", caseRespondent.CompanyId);
             ViewData["CorrespondentId"] = new SelectList(_context.Correspondents, "CorrespondentId", "CorrespondentId", caseRespondent.CorrespondentId);
             ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "ErccaseId", caseRespondent.ErccaseId);
-            return View(caseRespondent);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: CaseRespondents/Edit/5
