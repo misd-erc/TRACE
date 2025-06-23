@@ -13,9 +13,11 @@ using TRACE.Models;
 
 using Dapper;
 using System.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TRACE.Controllers
 {
+    [Authorize]
     public class MilestonesAchievedController : Controller
     {
         private readonly ErcdbContext _context;
