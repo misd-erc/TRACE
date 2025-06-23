@@ -38,7 +38,7 @@
 
             <div class="form-group">
                 <label asp-for="CityId" class="control-label"></label>
-                <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId"></select>
+                <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId" id="_city"></select>
                 <span asp-validation-for="CityId" class="text-danger"></span>
             </div>
 
@@ -76,6 +76,18 @@
 
     <script>
         $(document).ready(function () {
+            const element = document.getElementById('_city');
+            const choices = new Choices(element, {
+                searchEnabled: true,
+                searchFuzzy: false,
+                removeItemButton: true,
+                placeholder: true,
+                placeholderValue: 'Search City',
+                searchChoices: true,
+                searchResultLimit: 9,
+                position: 'bottom',
+            });
+
             _setInputAlphabet("#company-name-input");
             _setInputAddress("#address-line1-input");
             _setInputAddress("#address-line2-input");

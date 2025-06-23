@@ -26,7 +26,9 @@ namespace TRACE.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCompanies()
         {
-            var categories = await _context.Companies.ToListAsync();
+            var categories = await _context.Companies
+                .OrderByDescending(c => c.CompanyId)
+                .ToListAsync();
 
             if (categories == null || !categories.Any())
             {
@@ -35,6 +37,7 @@ namespace TRACE.Controllers
 
             return Json(new { success = true, data = categories });
         }
+
 
         // GET: Companies
         public async Task<IActionResult> Index()
