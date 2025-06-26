@@ -15,32 +15,55 @@
             <input type="hidden" asp-for="RoleId" />
             <div class="form-group">
                 <label asp-for="RoleName" class="control-label"></label>
-                <input asp-for="RoleName" class="form-control" />
+                <select asp-for="RoleName">
+                    <option value="" disabled>SELECT ROLE</option>
+                    <option value="STAFF">STAFF</option>
+                    <option value="SYSTEM ADMIN">SYSTEM ADMIN</option>
+                </select>
                 <span asp-validation-for="RoleName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ModuleName" class="control-label"></label>
-                <input asp-for="ModuleName" class="form-control" />
+                <select asp-for="ModuleName">
+                    <option value="" disabled>SELECT MODULE</option>
+                    <option value="ASSIGN TASK">ASSIGN TASK</option>
+                    <option value="NOTES">NOTES</option>
+                    <option value="HEARING">HEARING</option>
+                    <option value="RELATED CASES">RELATED CASES</option>
+                </select>
                 <span asp-validation-for="ModuleName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CanView" class="control-label"></label>
-                <input asp-for="CanView" class="form-control" />
+                <select asp-for="CanView">
+                    <option value=1 >TRUE</option>
+                    <option value=0 >FALSE</option>
+                    
+                </select>
                 <span asp-validation-for="CanView" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CanEdit" class="control-label"></label>
-                <input asp-for="CanEdit" class="form-control" />
+                <select asp-for="CanEdit">
+                    <option value=1>TRUE</option>
+                    <option value=0>FALSE</option>
+
+                </select>
                 <span asp-validation-for="CanEdit" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CanCreate" class="control-label"></label>
-                <input asp-for="CanCreate" class="form-control" />
+                <select asp-for="CanCreate">
+                    <option value=1>TRUE</option>
+                    <option value=0>FALSE</option>
+
+                </select>
                 <span asp-validation-for="CanCreate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label asp-for="AssignedAt" class="control-label"></label>
                 <input asp-for="AssignedAt" class="form-control" />
+
                 <span asp-validation-for="AssignedAt" class="text-danger"></span>
             </div>
             <div class="form-group">
