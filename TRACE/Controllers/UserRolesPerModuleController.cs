@@ -63,9 +63,10 @@ namespace TRACE.Controllers
             {
                 _context.Add(userRolesPerModule);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "User role created successfully!" });
             }
-            return View(userRolesPerModule);
+
+            return Json(new { success = false, message = "Invalid input. Please check the form fields." });
         }
 
         // GET: UserRolesPerModule/Edit/5

@@ -54,13 +54,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ModuleName)
                 </td>
-                <td style="background-color:@(item.CanView.GetValueOrDefault() ? "lightgreen" : "lightcoral")">
+                <td style="color: #000; background-color:@(item.CanView.GetValueOrDefault() ? "lightgreen" : "lightcoral")">
                     @(item.CanView.GetValueOrDefault() ? "Yes" : "No")
                 </td>
-                <td style="background-color:@(item.CanEdit.GetValueOrDefault() ? "lightgreen" : "lightcoral")">
+                <td style="color: #000;background-color:@(item.CanEdit.GetValueOrDefault() ? "lightgreen" : "lightcoral")">
                     @(item.CanEdit.GetValueOrDefault() ? "Yes" : "No")
                 </td>
-                <td style="background-color:@(item.CanCreate.GetValueOrDefault() ? "lightgreen" : "lightcoral")">
+                <td style="color: #000;background-color:@(item.CanCreate.GetValueOrDefault() ? "lightgreen" : "lightcoral")">
                     @(item.CanCreate.GetValueOrDefault() ? "Yes" : "No")
                 </td>
                 <td>
