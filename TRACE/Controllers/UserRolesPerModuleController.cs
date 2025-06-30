@@ -93,9 +93,7 @@ namespace TRACE.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("RoleId,RoleName,ModuleName,CanView,CanEdit,CanCreate,AssignedAt")] UserRolesPerModule userRolesPerModule)
         {
             if (id != userRolesPerModule.RoleId)
-            {
-                return NotFound();
-            }
+                return Json(new { success = false, message = "Invalid Role ID." });
 
             if (ModelState.IsValid)
             {
@@ -103,21 +101,18 @@ namespace TRACE.Controllers
                 {
                     _context.Update(userRolesPerModule);
                     await _context.SaveChangesAsync();
+                    return Json(new { success = true, message = "Role updated successfully!" });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!UserRolesPerModuleExists(userRolesPerModule.RoleId))
-                    {
-                        return NotFound();
-                    }
+                        return Json(new { success = false, message = "Role not found." });
                     else
-                    {
                         throw;
-                    }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(userRolesPerModule);
+
+            return Json(new { success = false, message = "Please check your input." });
         }
 
         // GET: UserRolesPerModule/Delete/5
