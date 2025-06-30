@@ -21,6 +21,7 @@
     <div class="case-card shadow border-radius-5">
         <div class="form-div  create-lc">
             <h2>I. User Information</h2>
+            <i>These part of the user profile can only be updated through Azure AD.</i>
             <div class="grid grid-three-fr gap-10">
                 <div class="form-input-div">
                     <label asp-for="Email" class="control-label"></label>
@@ -49,8 +50,9 @@
                 <div class="form-input-div">
                     <label asp-for="UserCategory" class="control-label"></label>
                     <select asp-for="UserCategory" class="form-control">
-                        <option value="Service Administrator">Service Administrator</option>
-                        <option value="Staff">Staff</option>
+                        <option value="SYSTEM ADMINISTRATOR">SYSTEM ADMINISTRATOR</option>
+                        <option value="HANDLING OFFICER">HANDLING OFFICER</option>
+                        <option value="STAFF">STAFF</option>
                     </select>
                     <span asp-validation-for="UserCategory" class="text-danger"></span>
                 </div>
@@ -153,9 +155,6 @@
                 }
             });
         });
-
-
-
 
     </script>
 }

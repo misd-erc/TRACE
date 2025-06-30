@@ -102,7 +102,7 @@
                         <span class="user-email">@CurrentUser.Email</span>
                         <span class="user-department">@await CurrentUser.GetDepartmentAsync()</span>
                     </div>
-                    @* <a href="#"><span class='bx bxs-user-circle'></span> Account Settings</a> *@
+                     <a href="#"><span class='bx bxs-user-circle'></span> Account Settings</a>
                     <a id="logout-link"><span class='bx bx-log-out'></span> Logout</a>
                     @* href="@Url.Action("Logout", "External")" *@
                 </div>
@@ -143,7 +143,7 @@
                         <span>User Management</span>
                     </li>
                     <li onclick="location.href='@Url.Action("UserLogs", "UserLogs")'">
-                        <i class='bx bxs-user-circle'  ></i>
+                        <i class='bx bx-file-search'></i>
                         <span>User Audit</span>
                     </li>
                     <li class="has-dropdown" onclick="toggleCollapse(event)">

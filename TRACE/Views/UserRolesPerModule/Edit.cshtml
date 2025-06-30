@@ -1,12 +1,14 @@
 @model TRACE.Models.UserRolesPerModule
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit User Roles Per Module";
 }
 
-<h1>Edit</h1>
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > <a href="/usermanagement">User Management</a> > <a href="/UserRolesPerModule">User Roles Per Module</a> > Edit
+</div>
 
-<h4>UserRolesPerModule</h4>
+<h1>Edit User RolesPer Module</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,47 +18,53 @@
             <div class="form-group">
                 <label asp-for="RoleName" class="control-label"></label>
                 <select asp-for="RoleName">
-                    <option value="" disabled>SELECT ROLE</option>
+                    <option value="" disabled selected>SELECT ROLE</option>
                     <option value="STAFF">STAFF</option>
-                    <option value="SYSTEM ADMIN">SYSTEM ADMIN</option>
+                    <option value="HANDLING OFFICER">HANDLING OFFICER</option>
+                    <option value="SYSTEM ADMINISTRATOR">SYSTEM ADMINISTRATOR</option>
                 </select>
                 <span asp-validation-for="RoleName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ModuleName" class="control-label"></label>
                 <select asp-for="ModuleName">
-                    <option value="" disabled>SELECT MODULE</option>
-                    <option value="ASSIGN TASK">ASSIGN TASK</option>
-                    <option value="NOTES">NOTES</option>
-                    <option value="HEARING">HEARING</option>
-                    <option value="RELATED CASES">RELATED CASES</option>
+                    <option value="" disabled selected>SELECT MODULE</option>
+                    <option value="APPLICANTS">CASE - APPLICANTS</option>
+                    <option value="ASSIGN PERSONNEL">CASE - ASSIGN PERSONNEL</option>
+                    <option value="ASSIGN TASK">CASE - ASSIGN TASK</option>
+                    <option value="ATTACHFILES">CASE - ATTACHED DOCUMENTS</option>
+                    <option value="APPLICANTS">CASE - CASE</option>
+                    <option value="EVENTS">CASE - EVENTS/ACTIVITIES</option>
+                    <option value="HEARING">CASE - HEARING</option>
+                    <option value="INTERVENOR">CASE - INTERVENOR</option>
+                    <option value="MILESTONE">CASE - MILESTONE</option>
+                    <option value="NOTES">CASE - NOTES</option>
+                    <option value="RELATED CASES">CASE - RELATED CASES</option>
+                    <option value="RESPONDENTS">CASE - RESPONDENTS</option>
                 </select>
                 <span asp-validation-for="ModuleName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CanView" class="control-label"></label>
-                <select asp-for="CanView">
-                    <option value=1 >TRUE</option>
-                    <option value=0 >FALSE</option>
-                    
+                <select asp-for="CanView" class="form-control">
+                    <option value="true">YES</option>
+                    <option value="false">NO</option>
                 </select>
                 <span asp-validation-for="CanView" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CanEdit" class="control-label"></label>
-                <select asp-for="CanEdit">
-                    <option value=1>TRUE</option>
-                    <option value=0>FALSE</option>
-
+                <select asp-for="CanEdit" class="form-control">
+                    <option value="true">YES</option>
+                    <option value="false">NO</option>
                 </select>
                 <span asp-validation-for="CanEdit" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CanCreate" class="control-label"></label>
-                <select asp-for="CanCreate">
-                    <option value=1>TRUE</option>
-                    <option value=0>FALSE</option>
-
+                <select asp-for="CanCreate" class="form-control">
+                    <option value="true">YES</option>
+                    <option value="false">NO</option>
                 </select>
                 <span asp-validation-for="CanCreate" class="text-danger"></span>
             </div>
@@ -71,10 +79,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

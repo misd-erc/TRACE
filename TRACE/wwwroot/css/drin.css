@@ -2413,6 +2413,16 @@ canvas {
     accent-color: var(--secondary-color);
 }
 
+.user-role-action i{
+    font-size:20px;
+    color: var(--primary-color);
+
+}
+
+.user-role-action i:hover {
+    color: var(--secondary-color);
+}
+
 /*USER MANAGEMENT*/
 
 

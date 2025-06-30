@@ -1,65 +1,82 @@
 @model IEnumerable<TRACE.Models.UserRolesPerModule>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "User Roles Per Module";
 }
 
-<h1>Index</h1>
+<div class="crumbs">
+    <a href="/dashboard">Dashboard</a> > <a href="/usermanagement">User Management</a> > User Roles Per Module
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.RoleName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModuleName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CanView)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CanEdit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CanCreate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AssignedAt)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoleName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModuleName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CanView)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CanEdit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CanCreate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssignedAt)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RoleId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.RoleId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.RoleId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="main-head-div flex h-center space-between">
+    <div class="title-div">
+        <h3>User Roles Per Module</h3>
+        <p>Manage user roles per module.</p>
+    </div>
+    <div class="btn-div">
+        <a asp-action="Create"><button>+ CREATE NEW</button></a>
+    </div>
+</div>
+
+
+<div class="case-card shadow border-radius-5 flex space-between">
+    <div class="case-table-div">
+        <table class="my-cases-table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoleName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModuleName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CanView)?
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CanEdit)?
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CanCreate)?
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AssignedAt)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModuleName)
+                </td>
+                <td style="background-color:@(item.CanView.GetValueOrDefault() ? "lightgreen" : "lightcoral")">
+                    @(item.CanView.GetValueOrDefault() ? "Yes" : "No")
+                </td>
+                <td style="background-color:@(item.CanEdit.GetValueOrDefault() ? "lightgreen" : "lightcoral")">
+                    @(item.CanEdit.GetValueOrDefault() ? "Yes" : "No")
+                </td>
+                <td style="background-color:@(item.CanCreate.GetValueOrDefault() ? "lightgreen" : "lightcoral")">
+                    @(item.CanCreate.GetValueOrDefault() ? "Yes" : "No")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AssignedAt)
+                </td>
+                <td class="user-role-action">
+                    <a asp-action="Edit" asp-route-id="@item.RoleId" title="Edit">
+                        <i class='bx bx-edit-alt'></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.RoleId" title="Remove">
+                        <i class='bx bx-trash'></i>
+                    </a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+    </div>
+</div>
