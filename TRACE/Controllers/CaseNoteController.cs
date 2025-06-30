@@ -85,6 +85,7 @@ namespace TRACE.Controllers
                 caseNote.NotedBy = user.Username;
                 _context.Add(caseNote);
 
+                _context.SaveChanges();
 
                 EventLog eventLog = new EventLog();
                 eventLog.EventDatetime = DateTime.Now;
@@ -92,9 +93,9 @@ namespace TRACE.Controllers
                 eventLog.UserId = user.Username;
                 eventLog.Event = "CREATE";
                 eventLog.Source = "CASE MANAGEMENT";
-                eventLog.Category = "Case Note";
+                eventLog.Category = "User Created Case Note "+ caseNote.CaseNoteId+" (CASEID "+caseNote.Erccase+")";
                 _context.EventLogs.Add(eventLog);
-
+                
 
                 await _context.SaveChangesAsync();
                 return Json(new { success = true, message = "Success! Data has been saved." });
