@@ -120,55 +120,59 @@
             "BARMM – Bangsamoro Autonomous Region in Muslim Mindanao"
         ];
 
-        function addSearchFilter(
-            elementId,
-            apiEndpoint,
-            searchCategory,
-            placeholderValue = "Search"
-        ) {
-            const element = document.getElementById(elementId);
-            
-            const choices = new Choices(element, {
-                searchEnabled: true,
-                searchChoices: false,
-                placeholder: true,
-                placeholderValue: placeholderValue,
-                shouldSort: false
-            });
-
-            element._choices = choices;
-
-            element.addEventListener('search', function (event) {
-                const searchTerm = event.detail.value;
-                if (searchTerm.length < 2) return;
-                fetch(`${apiEndpoint}?category=${encodeURIComponent(searchCategory)}&term=${encodeURIComponent(searchTerm)}`)
-                .then(response => response.json())
-                .then(data => {
-                    choices.clearChoices();
-                    choices.setChoices(data.map(item => ({
-                        value: item.id,
-                        label: item.text,
-                        selected: false,
-                        disabled: false
-                    })), 'value', 'label', true);
-                })
-                .catch(error => {
-                    console.error('Error fetching search results:', error);
-                });
-            });
-        }
-        
-        function createOption(value, text){
-            const element = document.createElement("option")
-            element.value = value
-            element.textContent = text
-            return element
-        }
+        let ercChoice, milestoneChoice, correspondentChoice;
 
         $(document).ready(function () {
-            addSearchFilter("erc-case-dropdown", "/casereports/Search", "case");
-            addSearchFilter("case-milestone-dropdown", "/casereports/Search", "milestone");
-            addSearchFilter("correspondent-dropdown", "/casereports/Search", "respondent");
+
+            function addSearchFilter(
+                elementId,
+                apiEndpoint,
+                searchCategory,
+                placeholderValue = "Search"
+            ) {
+                const element = document.getElementById(elementId);
+
+                const choices = new Choices(element, {
+                    searchEnabled: true,
+                    searchChoices: false,
+                    placeholder: true,
+                    placeholderValue: placeholderValue,
+                    shouldSort: false
+                });
+
+                element._choices = choices;
+
+                element.addEventListener('search', function (event) {
+                    const searchTerm = event.detail.value;
+                    if (searchTerm.length < 2) return;
+                    fetch(`${apiEndpoint}?category=${encodeURIComponent(searchCategory)}&term=${encodeURIComponent(searchTerm)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        choices.clearChoices();
+                        choices.setChoices(data.map(item => ({
+                            value: item.id,
+                            label: item.text,
+                            selected: false,
+                            disabled: false
+                        })), 'value', 'label', true);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching search results:', error);
+                    });
+                });
+                return choices;
+            }
+
+            function createOption(value, text){
+                const element = document.createElement("option")
+                element.value = value
+                element.textContent = text
+                return element
+            }
+
+            ercChoice = addSearchFilter("erc-case-dropdown", "/casereports/Search", "case");
+            milestoneChoice = addSearchFilter("case-milestone-dropdown", "/casereports/Search", "milestone");
+            correspondentChoice = addSearchFilter("correspondent-dropdown", "/casereports/Search", "respondent");
 
             const currentYear = new Date().getFullYear();
             const yearDropdown = document.getElementById("year-dropdown");
@@ -180,29 +184,41 @@
                 regionDropdown.appendChild(createOption(region, region));
             });
 
-        });
 
-        document.getElementById("generate-report-btn").addEventListener("click", function () {
-            const ercCaseDropdown = document.getElementById("erc-case-dropdown").value;
-            const milestoneDropdown = document.getElementById("case-milestone-dropdown").value;
-            const correspondentDropdown = document.getElementById("correspondent-dropdown").value;
-
-            const year = document.getElementById("year-dropdown").value;
-            const regionFull  = document.getElementById("region-dropdown").value;
-            const regionCode = regionFull.split("–")[0].trim();
-
-            const caseCategories = [];
-            document.querySelectorAll("input[name='CaseCategories']:checked").forEach(cb => {
-                caseCategories.push(cb.value);
+            document.getElementById("reset-filters-btn").addEventListener("click", function () {
+                ercChoice.removeActiveItems();
+                milestoneChoice.removeActiveItems();
+                correspondentChoice.removeActiveItems();
+                document.getElementById("year-dropdown").value = "";
+                document.getElementById("region-dropdown").value = "";
+                document.querySelectorAll("input[name='CaseCategories']").forEach(cb => {
+                    cb.checked = false;
+                });
             });
 
-            console.log("Case ID:" + ercCaseDropdown);
-            console.log("Case Milestone:" + milestoneDropdown);
-            console.log("Correspondent:" + correspondentDropdown);
-            console.log("Year:" + year);
-            console.log("Region:" + regionCode);
+            document.getElementById("generate-report-btn").addEventListener("click", function () {
+                const ercCaseDropdown = document.getElementById("erc-case-dropdown").value;
+                const milestoneDropdown = document.getElementById("case-milestone-dropdown").value;
+                const correspondentDropdown = document.getElementById("correspondent-dropdown").value;
 
-            console.log("Case Categories: " + caseCategories);
+                const year = document.getElementById("year-dropdown").value;
+                const regionFull  = document.getElementById("region-dropdown").value;
+                const regionCode = regionFull.split("–")[0].trim();
+
+                const caseCategories = [];
+                document.querySelectorAll("input[name='CaseCategories']:checked").forEach(cb => {
+                    caseCategories.push(cb.value);
+                });
+
+                console.log("Case ID:" + ercCaseDropdown);
+                console.log("Case Milestone:" + milestoneDropdown);
+                console.log("Correspondent:" + correspondentDropdown);
+                console.log("Year:" + year);
+                console.log("Region:" + regionCode);
+
+                console.log("Case Categories: " + caseCategories);
+
+            });
 
         });
     </script>
