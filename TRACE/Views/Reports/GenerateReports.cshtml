@@ -127,7 +127,7 @@
             placeholderValue = "Search"
         ) {
             const element = document.getElementById(elementId);
-
+            
             const choices = new Choices(element, {
                 searchEnabled: true,
                 searchChoices: false,
@@ -136,28 +136,27 @@
                 shouldSort: false
             });
 
+            element._choices = choices;
+
             element.addEventListener('search', function (event) {
                 const searchTerm = event.detail.value;
                 if (searchTerm.length < 2) return;
                 fetch(`${apiEndpoint}?category=${encodeURIComponent(searchCategory)}&term=${encodeURIComponent(searchTerm)}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        choices.clearChoices();
-                        choices.setChoices(data.map(item => ({
-                            value: item.id,
-                            label: item.text,
-                            selected: false,
-                            disabled: false
-                        })), 'value', 'label', true);
-                    })
-                    .catch(error => {
-                        console.error('Error fetching search results:', error);
-                    });
+                .then(response => response.json())
+                .then(data => {
+                    choices.clearChoices();
+                    choices.setChoices(data.map(item => ({
+                        value: item.id,
+                        label: item.text,
+                        selected: false,
+                        disabled: false
+                    })), 'value', 'label', true);
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                });
             });
-
-            return choices;
         }
-
         
         function createOption(value, text){
             const element = document.createElement("option")
@@ -165,8 +164,6 @@
             element.textContent = text
             return element
         }
-
-        let caseChoices, milestoneChoices, correspondentChoices;
 
         $(document).ready(function () {
             addSearchFilter("erc-case-dropdown", "/casereports/Search", "case");
@@ -183,36 +180,29 @@
                 regionDropdown.appendChild(createOption(region, region));
             });
 
+        });
 
-            document.getElementById('reset-filters-btn').addEventListener('click', function () {
-                caseChoices.removeActiveItems();
-                milestoneChoices.removeActiveItems();
-                correspondentChoices.removeActiveItems();
-                document.getElementById('year-dropdown').selectedIndex = 0;
-                document.getElementById('region-dropdown').selectedIndex = 0;
+        document.getElementById("generate-report-btn").addEventListener("click", function () {
+            const ercCaseDropdown = document.getElementById("erc-case-dropdown").value;
+            const milestoneDropdown = document.getElementById("case-milestone-dropdown").value;
+            const correspondentDropdown = document.getElementById("correspondent-dropdown").value;
 
-                document.querySelectorAll('input[name="CaseCategories"]').forEach(cb => cb.checked = false);
+            const year = document.getElementById("year-dropdown").value;
+            const regionFull  = document.getElementById("region-dropdown").value;
+            const regionCode = regionFull.split("–")[0].trim();
+
+            const caseCategories = [];
+            document.querySelectorAll("input[name='CaseCategories']:checked").forEach(cb => {
+                caseCategories.push(cb.value);
             });
 
-            document.getElementById('generate-report-btn').addEventListener('click', function () {
-                const selectedCase = document.getElementById('erc-case-dropdown').value;
-                const selectedMilestone = document.getElementById('case-milestone-dropdown').value;
-                const selectedCorrespondent = document.getElementById('correspondent-dropdown').value;
-                const selectedYear = document.getElementById('year-dropdown').value;
-                const selectedRegion = document.getElementById('region-dropdown').value;
+            console.log("Case ID:" + ercCaseDropdown);
+            console.log("Case Milestone:" + milestoneDropdown);
+            console.log("Correspondent:" + correspondentDropdown);
+            console.log("Year:" + year);
+            console.log("Region:" + regionCode);
 
-                const selectedCategories = [];
-                document.querySelectorAll('input[name="CaseCategories"]:checked').forEach(cb => {
-                    selectedCategories.push(cb.value);
-                });
-
-                console.log("Selected Case:", selectedCase);
-                console.log("Selected Milestone:", selectedMilestone);
-                console.log("Selected Correspondent:", selectedCorrespondent);
-                console.log("Selected Year:", selectedYear);
-                console.log("Selected Region:", selectedRegion);
-                console.log("Selected Categories:", selectedCategories);
-            });
+            console.log("Case Categories: " + caseCategories);
 
         });
     </script>
