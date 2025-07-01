@@ -17,31 +17,31 @@
         <div class="form-input-div">
             <label class="control-label">Inventory of Cases</label>
             <select asp-items="ViewBag.ErccaseId" id="erc-case-dropdown" class="form-control">
-                <option selected disabled>Select Case</option>
+                <option value="" selected disabled>Select Case</option>
             </select>
         </div>
         <div class="form-input-div">
             <label>Current Milestones</label>
             <select asp-items="ViewBag.CaseMilestoneId" id="case-milestone-dropdown" class="form-control">
-                <option selected disabled>Select Milestone</option>
+                <option value="" selected disabled>Select Milestone</option>
             </select>
         </div>
         <div class="form-input-div">
             <label>Applicant/Respondent</label>
             <select asp-items="ViewBag.CorrespondentId" id="correspondent-dropdown" class="form-control">
-                <option selected disabled>Select Applicants/Respondents</option>
+                <option value="" selected disabled>Select Applicants/Respondents</option>
             </select>
         </div>
         <div class="form-input-div">
             <label>Year</label>
             <select id="year-dropdown" class="form-control">
-                <option selected disabled>Choose Year</option>
+                <option value="" selected disabled>Choose Year</option>
             </select>
         </div>
         <div class="form-input-div">
             <label>Region</label>
             <select id="region-dropdown" class="form-control">
-                <option selected disabled>Choose Region</option>
+                <option value="" selected disabled>Choose Region</option>
             </select>
         </div>
         <div class="form-input-div">
@@ -60,8 +60,8 @@
         </div>
     </div>
     <div class="save-btn-div genrep-btn">
-        <button class="red-btn">RESET FILTERS</button>
-        <button>GENERATE REPORT</button>
+        <button class="red-btn" type="button" id="reset-filters-btn">RESET FILTERS</button>
+        <button type="button" id="generate-report-btn">GENERATE REPORT</button>
     </div>
 </div>
 
@@ -127,7 +127,7 @@
             placeholderValue = "Search"
         ) {
             const element = document.getElementById(elementId);
-            
+
             const choices = new Choices(element, {
                 searchEnabled: true,
                 searchChoices: false,
@@ -140,21 +140,24 @@
                 const searchTerm = event.detail.value;
                 if (searchTerm.length < 2) return;
                 fetch(`${apiEndpoint}?category=${encodeURIComponent(searchCategory)}&term=${encodeURIComponent(searchTerm)}`)
-                .then(response => response.json())
-                .then(data => {
-                    choices.clearChoices();
-                    choices.setChoices(data.map(item => ({
-                        value: item.id,
-                        label: item.text,
-                        selected: false,
-                        disabled: false
-                    })), 'value', 'label', true);
-                })
-                .catch(error => {
-                    console.error('Error fetching search results:', error);
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        choices.clearChoices();
+                        choices.setChoices(data.map(item => ({
+                            value: item.id,
+                            label: item.text,
+                            selected: false,
+                            disabled: false
+                        })), 'value', 'label', true);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching search results:', error);
+                    });
             });
+
+            return choices;
         }
+
         
         function createOption(value, text){
             const element = document.createElement("option")
@@ -162,6 +165,8 @@
             element.textContent = text
             return element
         }
+
+        let caseChoices, milestoneChoices, correspondentChoices;
 
         $(document).ready(function () {
             addSearchFilter("erc-case-dropdown", "/casereports/Search", "case");
@@ -177,6 +182,38 @@
             philippineRegions.forEach(region => {
                 regionDropdown.appendChild(createOption(region, region));
             });
+
+
+            document.getElementById('reset-filters-btn').addEventListener('click', function () {
+                caseChoices.removeActiveItems();
+                milestoneChoices.removeActiveItems();
+                correspondentChoices.removeActiveItems();
+                document.getElementById('year-dropdown').selectedIndex = 0;
+                document.getElementById('region-dropdown').selectedIndex = 0;
+
+                document.querySelectorAll('input[name="CaseCategories"]').forEach(cb => cb.checked = false);
+            });
+
+            document.getElementById('generate-report-btn').addEventListener('click', function () {
+                const selectedCase = document.getElementById('erc-case-dropdown').value;
+                const selectedMilestone = document.getElementById('case-milestone-dropdown').value;
+                const selectedCorrespondent = document.getElementById('correspondent-dropdown').value;
+                const selectedYear = document.getElementById('year-dropdown').value;
+                const selectedRegion = document.getElementById('region-dropdown').value;
+
+                const selectedCategories = [];
+                document.querySelectorAll('input[name="CaseCategories"]:checked').forEach(cb => {
+                    selectedCategories.push(cb.value);
+                });
+
+                console.log("Selected Case:", selectedCase);
+                console.log("Selected Milestone:", selectedMilestone);
+                console.log("Selected Correspondent:", selectedCorrespondent);
+                console.log("Selected Year:", selectedYear);
+                console.log("Selected Region:", selectedRegion);
+                console.log("Selected Categories:", selectedCategories);
+            });
+
         });
     </script>
 }
