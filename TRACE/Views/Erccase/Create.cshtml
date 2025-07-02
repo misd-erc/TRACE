@@ -42,10 +42,10 @@
 
                     </div>
                 <div class="form-input-div">
-                    <label asp-for="SubCaseNature" class="control-label"></label><span style="color:red">*</span>
-                    <select asp-for="SubCaseNature" class="form-control" id="SubCaseNatureDropdown">
-                        <option value="">-- Select SubNature --</option>
-                    </select>
+                    <label asp-for="SubCaseNature" class="control-label"></label><span style="color:red"></span>
+                    <select asp-for="SubCaseNatureId" class="form-control" id="SubCasenatureDropdown">
+                            <option value="">-- Select Sub Nature --</option>
+                        </select>
 
                 </div>
                     <div class="form-input-div">
@@ -155,6 +155,7 @@
 
                  $('#CaseCategoryIdDropdown').change(function () {
                 var categoryId = $(this).val();
+               
                 $('#CasenatureIdDropdown').empty();
 
                 $('#CasenatureIdDropdown').empty().append('<option>Loading...</option>');
@@ -172,23 +173,8 @@
 
 
 
-                     $('#CasenatureIdDropdown').change(function () {
-                    var natureId = $(this).val();
-                    $('#SubCasenatureDropdown').empty();
+                  
 
-                    $('#SubCasenatureDropdown').empty().append('<option>Loading...</option>');
-
-                    $.getJSON('/Erccase/GetSubCaseNatures', { natureId: natureId }, function (data) {
-                        $('#SubCasenatureDropdown').empty().append('<option value="">-- Select SubNature --</option>');
-                        $.each(data, function (i, item) {
-                            $('#SubCasenatureDropdown').append($('<option>', {
-                                value: item.caseNatureId,
-                                text: item.nature
-                            }));
-                        });
-                    });
-            
-            });
             const element = document.getElementById('CaseCategoryIdDropdown');
             const choices = new Choices(element, {
                 searchEnabled: true,
@@ -284,20 +270,27 @@
             });
 
             // NEW: Populate SubCaseNatureDropdown when CaseNatureIdDropdown changes
-            $('#CasenatureIdDropdown').change(function () {
-                var natureId = $(this).val();
-                $('#SubCasenatureDropdown').empty().append('<option>Loading...</option>');
+             $('#CasenatureIdDropdown').change(function () {
+                        var natureId = $(this).val();
+                        console.log("asdfga")
+                        var $subDropdown = $('#SubCasenatureDropdown');
+                        $subDropdown.empty().append('<option>Loading...</option>');
 
-                $.getJSON('/Erccase/GetSubCaseNatures', { natureId: natureId }, function (data) {
-                    $('#SubCasenatureDropdown').empty().append('<option value="">-- Select SubNature --</option>');
-                    $.each(data, function (i, item) {
-                        $('#SubCasenatureDropdown').append($('<option>', {
-                            value: item.caseNatureId,
-                            text: item.nature
-                        }));
+                        if (natureId) {
+                            $.getJSON('/Erccase/GetSubCaseNatures', { natureId: natureId }, function (data) {
+                                $subDropdown.empty().append('<option value="">-- Select SubNature --</option>');
+                                $.each(data, function (i, item) {
+                                   
+                                    $subDropdown.append($('<option>', {
+                                        value: item.caseNatureId,
+                                        text: item.subNatureName
+                                    }));
+                                });
+                            });
+                        } else {
+                            $subDropdown.empty().append('<option value="">-- Select SubNature --</option>');
+                        }
                     });
-                });
-            });
         });
 
         function fetchLastCase(casecategoryId) {
