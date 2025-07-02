@@ -86,7 +86,7 @@ namespace TRACE.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _context.Add(subCaseNature);
+                _context.SubCaseNature.Add(subCaseNature);
                 await _context.SaveChangesAsync();
 
                 var currentUserName = _currentUserHelper.Email;

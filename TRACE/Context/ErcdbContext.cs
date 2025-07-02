@@ -1742,7 +1742,7 @@ public partial class ErcdbContext : DbContext
             entity.Property(e => e.Title)
                 .HasMaxLength(5000)
                 .IsUnicode(false);
-
+            entity.Property(e => e.SubCaseNature).HasColumnName("SubCaseNature");
             entity.HasOne(d => d.CaseCategory).WithMany(p => p.Erccases)
                 .HasForeignKey(d => d.CaseCategoryId)
                 .HasConstraintName("FK_Cases_CaseCategories");
@@ -1754,6 +1754,7 @@ public partial class ErcdbContext : DbContext
             entity.HasOne(d => d.CaseStatus).WithMany(p => p.Erccases)
                 .HasForeignKey(d => d.CaseStatusId)
                 .HasConstraintName("FK_Cases_CaseStatuses");
+
         });
 
         modelBuilder.Entity<ErrorLog>(entity =>

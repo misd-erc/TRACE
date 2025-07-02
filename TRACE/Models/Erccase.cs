@@ -67,6 +67,8 @@ public partial class Erccase
     public DateOnly? FatargetOrder { get; set; }
 
     public string? AssignedTo { get; set; }
+    public int SubCaseNature { get; set; }
+
 
     public virtual ICollection<CaseApplicant> CaseApplicants { get; set; } = new List<CaseApplicant>();
 
@@ -97,4 +99,5 @@ public partial class Erccase
     public virtual ICollection<RelatedCase> RelatedCaseErccases { get; set; } = new List<RelatedCase>();
 
     public virtual ICollection<ExternalCase> ExternalCases { get; set; } = new List<ExternalCase>();
+    public virtual ICollection<SubCaseNature> SubCaseNatures { get; set; } = new List<SubCaseNature>();
 }

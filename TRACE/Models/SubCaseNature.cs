@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TRACE.Models
 {
@@ -19,5 +20,7 @@ namespace TRACE.Models
         public DateTime? CreatedAt { get; set; }
 
         public virtual CaseNature CaseNature { get; set; } = null!;
+        [NotMapped]
+        public long ErccaseId { get; set; }
     }
 }
