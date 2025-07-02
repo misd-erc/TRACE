@@ -368,22 +368,27 @@ public partial class ErcdbContext : DbContext
         });
         modelBuilder.Entity<SubCaseNature>(entity =>
         {
-            entity.HasKey(e => e.SubNatureId).HasName("PK__SubCaseN__8F906AC2B3939BE6");
+            entity.HasKey(e => e.SubNatureId)
+                  .HasName("PK__SubCaseN__8F906AC2B3939BE6");
 
             entity.ToTable("SubCaseNatures", "cases");
 
             entity.Property(e => e.SubNatureId).HasColumnName("SubNatureID");
             entity.Property(e => e.CaseNatureId).HasColumnName("CaseNatureID");
-            entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.IsInternal).HasDefaultValue(false);
             entity.Property(e => e.SubNatureName).HasMaxLength(255);
+            entity.Property(e => e.Description);
+            entity.Property(e => e.IsInternal).HasDefaultValue(false);
+            entity.Property(e => e.CreatedAt)
+                  .HasColumnType("datetime")
+                  .HasDefaultValueSql("(getdate())");
 
-            entity.HasOne(d => d.CaseNature).WithMany(p => p.SubCaseNatures)
-                .HasForeignKey(d => d.CaseNatureId)
-                .HasConstraintName("FK_SubCaseNatures_Casenatures");
+            entity.HasOne(d => d.CaseNature)
+                  .WithMany(p => p.SubCaseNatures)
+                  .HasForeignKey(d => d.CaseNatureId)
+                  .HasConstraintName("FK_SubCaseNatures_Casenatures");
         });
+
+
         modelBuilder.Entity<CaseBlobDocument>(entity =>
         {
             entity.HasKey(e => e.DocumentId).HasName("PK__CaseBlob__1ABEEF6F67F88418");

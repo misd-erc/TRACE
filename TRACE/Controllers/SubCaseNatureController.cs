@@ -86,6 +86,7 @@ namespace TRACE.Controllers
         {
             if (!ModelState.IsValid)
             {
+                
                 _context.SubCaseNature.Add(subCaseNature);
                 await _context.SaveChangesAsync();
 

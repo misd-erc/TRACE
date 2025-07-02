@@ -81,6 +81,7 @@ public partial class Erccase
     public virtual ICollection<CaseEvent> CaseEvents { get; set; } = new List<CaseEvent>();
 
     public virtual CaseNature? CaseNature { get; set; }
+    public virtual SubCaseNature? SubCaseNatures { get; set; }
 
     public virtual ICollection<CaseNote> CaseNotes { get; set; } = new List<CaseNote>();
 
@@ -99,5 +100,4 @@ public partial class Erccase
     public virtual ICollection<RelatedCase> RelatedCaseErccases { get; set; } = new List<RelatedCase>();
 
     public virtual ICollection<ExternalCase> ExternalCases { get; set; } = new List<ExternalCase>();
-    public virtual ICollection<SubCaseNature> SubCaseNatures { get; set; } = new List<SubCaseNature>();
 }
