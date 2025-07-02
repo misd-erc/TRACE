@@ -10,12 +10,10 @@ public partial class Erccase
 
     public string CaseNo { get; set; } = null!;
 
-    [Display(Name = "Choose Case Category")]
     public long CaseCategoryId { get; set; }
 
     public string? Title { get; set; }
 
-    [Display(Name = "Choose Case Nature")]
     public long? CaseNatureId { get; set; }
 
     public DateOnly DateFiled { get; set; }
@@ -67,8 +65,8 @@ public partial class Erccase
     public DateOnly? FatargetOrder { get; set; }
 
     public string? AssignedTo { get; set; }
-    public int SubCaseNature { get; set; }
 
+    public long? SubCaseNature { get; set; }
 
     public virtual ICollection<CaseApplicant> CaseApplicants { get; set; } = new List<CaseApplicant>();
 
@@ -81,7 +79,6 @@ public partial class Erccase
     public virtual ICollection<CaseEvent> CaseEvents { get; set; } = new List<CaseEvent>();
 
     public virtual CaseNature? CaseNature { get; set; }
-    public virtual SubCaseNature? SubCaseNatures { get; set; }
 
     public virtual ICollection<CaseNote> CaseNotes { get; set; } = new List<CaseNote>();
 
