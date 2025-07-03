@@ -224,7 +224,7 @@ public partial class ErcdbContext : DbContext
     public virtual DbSet<UserRole> UserRoles { get; set; }
     public virtual DbSet<UserRolesPerModule> UserRolesPerModules { get; set; }
 
-
+    public virtual DbSet<Intervenor> Intervenors { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=ErcDatabase");
@@ -301,7 +301,12 @@ public partial class ErcdbContext : DbContext
                         j.IndexerProperty<long>("AccountGroupId").HasColumnName("AccountGroupID");
                     });
         });
+        modelBuilder.Entity<Intervenor>(entity =>
+        {
+            entity.ToTable("Intervenor");
 
+            entity.Property(e => e.IntervenorId).ValueGeneratedNever();
+        });
         modelBuilder.Entity<TimePauseHistory>(entity =>
         {
             entity.ToTable("TimePauseHistory");
@@ -1755,7 +1760,7 @@ public partial class ErcdbContext : DbContext
             entity.HasOne(d => d.CaseNature).WithMany(p => p.Erccases)
                 .HasForeignKey(d => d.CaseNatureId)
                 .HasConstraintName("FK_ERCCases_CaseNatures");
-
+            
             entity.HasOne(d => d.CaseStatus).WithMany(p => p.Erccases)
                 .HasForeignKey(d => d.CaseStatusId)
                 .HasConstraintName("FK_Cases_CaseStatuses");
