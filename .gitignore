@@ -58,3 +58,5 @@ TRACE/bin/Debug/net8.0/TRACE.staticwebassets.runtime.json
 /TRACE/BlobStorage/DownloadFiles.cs
 /TRACE/BlobStorage/InsertFiles.cs
 .vs/TRACE/v17/DocumentLayout.backup.json
+TRACE/BlobStorage/BlobStorage/DownloadFiles.cs
+TRACE/BlobStorage/BlobStorage/InsertFiles.cs
