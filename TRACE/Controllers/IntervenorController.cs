@@ -63,7 +63,7 @@ namespace TRACE.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IntervenorId,CaseId,CompanyId")] Intervenor intervenor)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(intervenor);
                 await _context.SaveChangesAsync();

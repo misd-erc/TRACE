@@ -1,89 +1,79 @@
 @model TRACE.Models.Intervenor
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add Intervenor";
 }
 
-<h1>Create Intervenor</h1>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form id="createForm" asp-action="Create" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @* <div class="form-group">
-                <label asp-for="IntervenorId" class="control-label"></label>
-                <input asp-for="IntervenorId" class="form-control" />
-                <span asp-validation-for="IntervenorId" class="text-danger"></span>
-            </div> *@
-            <div class="form-group" style="display:none;">
-                <label asp-for="CaseId" class="control-label"></label>
-                <input asp-for="CaseId" class="form-control"  >
-                <span asp-validation-for="CaseId" class="text-danger"></span>
-            </div>
-            <div class="form-input-div">
-                <label asp-for="CompanyId" class="control-label">Correspondent Name</label>
-                <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.Company" id="_company"></select>
-            </div>
-           
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="crumbs">
+    <a href="javascript:history.back();">Go Back</a> > Add Intervenor
+</div>
+<form id="createForm" asp-action="Create" method="post">
+    <div class="main-head-div flex h-center space-between">
+        <div class="title-div">
+            <h3>ADD INTERVENOR</h3>
+            <p>This page is for adding intervenor for the selected erc case</p>
+        </div>
+
+        <div class="btn-div">
+            <input type="submit" value="ADD INTERVENOR" class="btn btn-primary" />
+        </div>
     </div>
-</div>
+    <div class="case-card shadow border-radius-5">
+        <div class="form-div  create-lc">
+            <div class="grid grid-three-fr gap-10">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-input-div">
+                    <label asp-for="CompanyId" class="control-label">Correspondent Name</label>
+                    <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.Company" id="_company"></select>
+                </div>
 
-<div>
-</div>
+                <div class="form-input-div">
+                    <label asp-for="CaseId" class="control-label" style="display:none"> </label>
+                    <input asp-for="CaseId" type="hidden" class="form-control" id="ErccaseId" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Get the URL parameter
-            const urlParams = new URLSearchParams(window.location.search);
-            const erccaseId = urlParams.get('id');
+        $(document).ready(function () {
+            const element2 = document.getElementById('_company');
+            const choices2 = new Choices(element2, {
+                searchEnabled: true,
+                searchChoices: false,
+                placeholder: true,
+                placeholderValue: 'Search Company',
+                shouldSort: false
+            });
 
-            // Set the hidden input field value if erccaseId exists
-            if (erccaseId) {
-                const inputElement = document.getElementById('CaseId');
-                if (inputElement) {
-                    inputElement.value = erccaseId;
-                } else {
-                    console.error('ErccaseId input not found');
-                }
-            }
+            element2.addEventListener('search', function (event) {
+                const searchTerm = event.detail.value;
 
-            const element2 = document.getElementById('company');
-            if (element2) {
-                element2.addEventListener('input', function (event) {
-                    const searchTerm = event.target.value;
+                if (searchTerm.length < 2) return;
 
-                    if (searchTerm.length < 2) return;
+                fetch(`/CaseRespondents/Search1?term=${encodeURIComponent(searchTerm)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        choices2.clearChoices();
 
-                    fetch(`/CaseRespondents/Search1?term=${encodeURIComponent(searchTerm)}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (typeof choices2 !== 'undefined') {
-                                choices2.clearChoices();
-                                choices2.setChoices(data.map(item => ({
-                                    value: item.id,
-                                    label: item.text,
-                                    selected: false,
-                                    disabled: false
-                                })), 'value', 'label', true);
-                            } else {
-                                console.error("choices2 is not defined");
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error fetching search results:', error);
-                        });
-                });
-            }
+                        choices2.setChoices(data.map(item => ({
+                            value: item.id,
+                            label: item.text,
+                            selected: false,
+                            disabled: false
+                        })), 'value', 'label', true);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching search results:', error);
+                    });
+            });
 
-            // Handle form submission
+
             $("#createForm").submit(function (event) {
                 event.preventDefault();
 
@@ -129,6 +119,26 @@
                 });
             });
         });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const erccaseId = urlParams.get('id');
+
+            // Set the hidden input field value if erccaseId exists
+            if (erccaseId) {
+                const inputElement = document.getElementById('ErccaseId');
+
+                if (inputElement) {
+                    inputElement.value = erccaseId;
+                } else {
+                    console.error('ErccaseId input not found');
+                }
+            }
+        });
+
     </script>
 
 }
