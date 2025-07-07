@@ -20,7 +20,6 @@ wwwroot\images\icons\pptx.png
 wwwroot\images\icons\XL.png
 wwwroot\images\login-bg.jpg
 wwwroot\images\whitetech.jpg
-wwwroot\js\CaseDetails.js
 wwwroot\js\CM-AllCases.js
 wwwroot\js\contentManagement.js
 wwwroot\js\DashboardModules.js
@@ -90,3 +89,4 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\js\CaseDetails.js

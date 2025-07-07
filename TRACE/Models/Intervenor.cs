@@ -7,5 +7,7 @@
         public long? CaseId { get; set; }
 
         public long? CompanyId { get; set; }
+
+        public Company Company { get; set; }
     }
 }

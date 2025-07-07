@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
         GetCaseRelatedByErcID(caseId);
         fetchCaseRespondentWithErcId(caseId);
         fetchCaseApplicantWithErcId(caseId);
-        fetchTimePauseHistory(caseId)
+        fetchTimePauseHistory(caseId);
+        GetIntervenorByErcID(caseId);
     } else {
         console.error('No case ID found in URL.');
     }
@@ -698,6 +699,42 @@ function GetCaseRelatedByErcID(caseId) {
             console.error('Error fetching case details:', error);
         });
 }
+function GetIntervenorByErcID(caseId) {
+    fetch(`/Intervenor/GetIntervenorByErcID?id=${caseId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(result => {
+            const casehearing = document.getElementById('intervenorbody');
+            casehearing.innerHTML = '';
+
+            if (result.success && result.data.length > 0) {
+                result.data.forEach(item => {
+                    casehearing.innerHTML += `
+                        <tr>
+                            <td data-label="INTERVENOR">${item.companyName}</td>
+                            <td data-label="ACTION" class="actions">
+                                <i class='bx bxs-x-circle' title="Archive" onclick="deleteItem('Intervenor',${item.intervenorId})"></i>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else {
+                casehearing.innerHTML = `
+                    <tr>
+                        <td colspan="6">No Data Found</td>
+                    </tr>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching case details:', error);
+        });
+}
+
 function CasenoteEdit(caseNoteID) {
     window.location.href = `/casenote/edit?id=${caseNoteID}`;
 }
@@ -1181,3 +1218,23 @@ function closeFilesHearingModal() {
     document.getElementById('hearingattachments').classList.add('filehearing-hidden');
 }
 
+function deleteItem (controller, id) {
+    if (!confirm('Are you sure you want to delete this ' + controller + ' ?')) return;
+
+    $.ajax({
+        url: `/${controller}/Delete/${id}`, // Matches [ActionName("Delete")]
+        type: 'POST',
+        success: function (response) {
+            if (response.success) {
+                alert(response.message);
+                // Optionally refresh your list/table
+                location.reload(); // or call GetIntervenorByErcID()
+            } else {
+                alert(response.message);
+            }
+        },
+        error: function () {
+            alert('Error deleting intervenor.');
+        }
+    });
+}

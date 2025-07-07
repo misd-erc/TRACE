@@ -24,23 +24,28 @@ namespace TRACE.Controllers
         {
             return View(await _context.Intervenors.ToListAsync());
         }
-
-        // GET: Intervenor/Details/5
-        public async Task<IActionResult> Details(int? id)
+        [HttpGet]
+        public async Task<IActionResult> GetIntervenorByErcID(int id)
         {
-            if (id == null)
+            var intervenors = await _context.Intervenors
+                .Where(x => x.CaseId == id)
+                .Include(x => x.Company) 
+                .OrderByDescending(x => x.IntervenorId)
+                .Select(x => new
+                {
+                    x.IntervenorId,
+                    x.CaseId,
+                    x.CompanyId,
+                    CompanyName = x.Company.CompanyName 
+                })
+                .ToListAsync();
+
+            if (intervenors == null || !intervenors.Any())
             {
-                return NotFound();
+                return Json(new { success = false, message = "No categories found." });
             }
 
-            var intervenor = await _context.Intervenors
-                .FirstOrDefaultAsync(m => m.IntervenorId == id);
-            if (intervenor == null)
-            {
-                return NotFound();
-            }
-
-            return View(intervenor);
+            return Json(new { success = true, data = intervenors });
         }
 
         // GET: Intervenor/Create
@@ -136,20 +141,20 @@ namespace TRACE.Controllers
             return View(intervenor);
         }
 
-        // POST: Intervenor/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var intervenor = await _context.Intervenors.FindAsync(id);
             if (intervenor != null)
             {
                 _context.Intervenors.Remove(intervenor);
+                await _context.SaveChangesAsync();
+                return Json(new { success = true, message = "Deleted successfully." });
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Json(new { success = false, message = "Intervenor not found." });
         }
+
 
         private bool IntervenorExists(int id)
         {
