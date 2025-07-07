@@ -305,7 +305,7 @@ public partial class ErcdbContext : DbContext
         {
             entity.ToTable("Intervenor");
 
-            entity.Property(e => e.IntervenorId).ValueGeneratedNever();
+            entity.Property(e => e.IntervenorId).ValueGeneratedOnAdd();
         });
         modelBuilder.Entity<TimePauseHistory>(entity =>
         {

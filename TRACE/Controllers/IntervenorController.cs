@@ -46,6 +46,8 @@ namespace TRACE.Controllers
         // GET: Intervenor/Create
         public IActionResult Create()
         {
+            ViewData["ErccaseId"] = new SelectList(_context.Erccases, "ErccaseId", "CaseNo");
+            ViewData["Company"] = new SelectList(_context.Companies, "CompanyId", "CompanyName");
             return View();
         }
 
@@ -60,9 +62,9 @@ namespace TRACE.Controllers
             {
                 _context.Add(intervenor);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Json(new { success = true, message = "Success! Data has been saved." });
             }
-            return View(intervenor);
+            return Json(new { success = false, message = "Error! Please check your input." });
         }
 
         // GET: Intervenor/Edit/5
