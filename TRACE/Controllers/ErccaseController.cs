@@ -1,14 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Graph.Models;
+using Microsoft.Graph.Models.Security;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using TRACE.BlobStorage;
 using TRACE.Context;
 using TRACE.Helpers;
@@ -90,6 +93,80 @@ namespace TRACE.Controllers
 
                 var result = await connection.QueryAsync<dynamic>(sql, parameters);
                 return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GenerateReport(
+            int? ERCCaseID,
+            int? CaseMilestoneID,
+            int? CaseRespondentID,
+            int? Year,
+            string? Region,
+            string? CaseCategoryIDList)
+        {
+            try
+            {
+                string query = @"
+                                   SELECT 
+                                            EC.[ERCCaseID],
+                                            EC.[CaseNo],
+                                            EC.[CaseCategoryID],
+                                            EC.[DateFiled],
+                                            CR.CaseRespondentID,
+                                            CR.CompanyID,
+                                            CR.[ERCCaseID] AS CR_ERCCaseID,
+                                            C.[Region],
+                                            MA.[MilestoneAchievedID],
+                                            MA.[CaseMilestoneID],
+                                            CM.[Milestone]
+                                        FROM 
+                                            [ercdb].[cases].[ERCCases] EC
+                                        LEFT JOIN 
+                                            [ercdb].[cases].[CaseRespondents] CR ON EC.[ERCCaseID] = CR.[ERCCaseID]
+                                        LEFT JOIN 
+                                            [ercdb].[contacts].[Companies] C ON C.[CompanyID] = CR.CompanyID
+                                        OUTER APPLY (
+                                            SELECT TOP 1 *
+                                            FROM [ercdb].[cases].[MilestonesAchieved] MA
+                                            WHERE MA.[ERCCaseID] = EC.[ERCCaseID]
+                                              AND (@CaseMilestoneID IS NULL OR MA.[CaseMilestoneID] = @CaseMilestoneID)
+                                            ORDER BY MA.[MilestoneAchievedID] DESC
+                                        ) MA
+                                        LEFT JOIN 
+                                            [ercdb].[cases].[CaseMilestones] CM ON CM.[CaseMilestoneID] = MA.[CaseMilestoneID]
+                                        WHERE 
+                                            (@ERCCaseID IS NULL OR EC.[ERCCaseID] = @ERCCaseID)
+                                            AND (@CaseRespondentID IS NULL OR CR.CaseRespondentID = @CaseRespondentID)
+                                            AND (@Year IS NULL OR YEAR(EC.[DateFiled]) = @Year)
+                                            AND (@Region IS NULL OR C.[Region] = @Region)
+                                            AND (
+                                                @CaseCategoryIDList IS NULL
+                                                OR EC.[CaseCategoryID] IN (
+                                                    SELECT Value FROM dbo.SplitString(@CaseCategoryIDList, ',')
+                                                )
+                                            );
+
+                                    ";
+
+                using var connection = new SqlConnection(_connectionString);
+                var result = await connection.QueryAsync(query, new
+                {
+                    ERCCaseID,
+                    CaseMilestoneID,
+                    CaseRespondentID,
+                    Year,
+                    Region,
+                    CaseCategoryIDList
+                });
+              
+
+                    return Ok(result);
+                
             }
             catch (Exception ex)
             {

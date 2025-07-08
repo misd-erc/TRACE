@@ -98,6 +98,7 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
         const philippineRegions = [
@@ -217,6 +218,51 @@
                 console.log("Region:" + regionCode);
 
                 console.log("Case Categories: " + caseCategories);
+
+
+                    $.ajax({
+                                url: '/Erccase/GenerateReport',
+                                method: 'GET',
+                               data: {
+                                ERCCaseID: ercCaseDropdown || null,
+                                CaseMilestoneID: milestoneDropdown || null,
+                                CaseRespondentID: correspondentDropdown || null,
+                                Year: year || null,
+                                Region: regionCode || null,
+                                CaseCategoryIDList: (Array.isArray(caseCategories) ? caseCategories.join(",") : caseCategories)
+                                },
+                                success: function (response) {
+                                    console.log(" Report data received:", response);
+
+                                    // Example: populate a table
+                                    if (Array.isArray(response) && response.length > 0) {
+                                        let html = '';
+                                        response.forEach(row => {
+                                            html += `
+                                                <tr>
+                                                    <td>${row.erccaseID}</td>
+                                                    <td>${row.caseNo}</td>
+                                                    <td>${row.caseCategoryID}</td>
+                                                    <td>${row.dateFiled}</td>
+                                                    <td>${row.caseRespondentID}</td>
+                                                    <td>${row.region}</td>
+                                                    <td>${row.milestone}</td>
+                                                </tr>`;
+                                        });
+
+                                        $('#casesTable tbody').html(html);
+                                    } else {
+                                        $('#casesTable tbody').html('<tr><td colspan="7">No results found</td></tr>');
+                                    }
+                                },
+                                error: function (xhr) {
+                                    const message = xhr.responseJSON?.message || xhr.statusText;
+                                    console.error("❌ Error fetching report:", message);
+                                    alert("Error: " + message);
+                                }
+                            });
+
+        
 
             });
 
