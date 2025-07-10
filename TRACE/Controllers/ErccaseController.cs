@@ -9,6 +9,7 @@ using Microsoft.Graph.Models.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -109,52 +110,11 @@ namespace TRACE.Controllers
             string? Region,
             string? CaseCategoryIDList)
         {
-            try
-            {
-                string query = @"
-                                   SELECT 
-                                            EC.[ERCCaseID],
-                                            EC.[CaseNo],
-                                            EC.[CaseCategoryID],
-                                            EC.[DateFiled],
-                                            CR.CaseRespondentID,
-                                            CR.CompanyID,
-                                            CR.[ERCCaseID] AS CR_ERCCaseID,
-                                            C.[Region],
-                                            MA.[MilestoneAchievedID],
-                                            MA.[CaseMilestoneID],
-                                            CM.[Milestone]
-                                        FROM 
-                                            [ercdb].[cases].[ERCCases] EC
-                                        LEFT JOIN 
-                                            [ercdb].[cases].[CaseRespondents] CR ON EC.[ERCCaseID] = CR.[ERCCaseID]
-                                        LEFT JOIN 
-                                            [ercdb].[contacts].[Companies] C ON C.[CompanyID] = CR.CompanyID
-                                        OUTER APPLY (
-                                            SELECT TOP 1 *
-                                            FROM [ercdb].[cases].[MilestonesAchieved] MA
-                                            WHERE MA.[ERCCaseID] = EC.[ERCCaseID]
-                                              AND (@CaseMilestoneID IS NULL OR MA.[CaseMilestoneID] = @CaseMilestoneID)
-                                            ORDER BY MA.[MilestoneAchievedID] DESC
-                                        ) MA
-                                        LEFT JOIN 
-                                            [ercdb].[cases].[CaseMilestones] CM ON CM.[CaseMilestoneID] = MA.[CaseMilestoneID]
-                                        WHERE 
-                                            (@ERCCaseID IS NULL OR EC.[ERCCaseID] = @ERCCaseID)
-                                            AND (@CaseRespondentID IS NULL OR CR.CaseRespondentID = @CaseRespondentID)
-                                            AND (@Year IS NULL OR YEAR(EC.[DateFiled]) = @Year)
-                                            AND (@Region IS NULL OR C.[Region] = @Region)
-                                            AND (
-                                                @CaseCategoryIDList IS NULL
-                                                OR EC.[CaseCategoryID] IN (
-                                                    SELECT Value FROM dbo.SplitString(@CaseCategoryIDList, ',')
-                                                )
-                                            );
+            using var connection = new SqlConnection(_connectionString);
 
-                                    ";
-
-                using var connection = new SqlConnection(_connectionString);
-                var result = await connection.QueryAsync(query, new
+            var results = await connection.QueryAsync(
+                "[cases].[sp_GetFilteredERCCases_OR]",
+                new
                 {
                     ERCCaseID,
                     CaseMilestoneID,
@@ -162,16 +122,12 @@ namespace TRACE.Controllers
                     Year,
                     Region,
                     CaseCategoryIDList
-                });
-              
+                },
+               commandType: CommandType.StoredProcedure,
+                 commandTimeout: 120
+            );
 
-                    return Ok(result);
-                
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = "Error fetching data", error = ex.Message });
-            }
+            return Ok(results); // returns JSON automatically
         }
 
         [HttpGet]

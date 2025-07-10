@@ -224,12 +224,12 @@
                                 url: '/Erccase/GenerateReport',
                                 method: 'GET',
                                data: {
-                                ERCCaseID: ercCaseDropdown || null,
-                                CaseMilestoneID: milestoneDropdown || null,
-                                CaseRespondentID: correspondentDropdown || null,
-                                Year: year || null,
-                                Region: regionCode || null,
-                                CaseCategoryIDList: (Array.isArray(caseCategories) ? caseCategories.join(",") : caseCategories)
+                                ERCCaseID: ercCaseDropdown || "",
+                                CaseMilestoneID: milestoneDropdown || "",
+                                CaseRespondentID: correspondentDropdown || "",
+                                Year: year || "",
+                                Region: regionCode || "",
+                                CaseCategoryIDList: (Array.isArray(caseCategories) ? caseCategories.join(",") : caseCategories) || ""
                                 },
                                 success: function (response) {
                                     console.log(" Report data received:", response);
@@ -240,13 +240,12 @@
                                         response.forEach(row => {
                                             html += `
                                                 <tr>
-                                                    <td>${row.erccaseID}</td>
-                                                    <td>${row.caseNo}</td>
-                                                    <td>${row.caseCategoryID}</td>
-                                                    <td>${row.dateFiled}</td>
-                                                    <td>${row.caseRespondentID}</td>
-                                                    <td>${row.region}</td>
-                                                    <td>${row.milestone}</td>
+                                                    <td>${row.CaseNo}</td>
+                                                    <td>${row.CompanyID}</td>
+                                                    <td>${row.Milestone}</td>
+                                                    <td>${row.DateFiled}</td>
+                                                    <td>${row.CaseRespondentID}</td>
+                                                    <td>${row.Region}</td>
                                                 </tr>`;
                                         });
 
