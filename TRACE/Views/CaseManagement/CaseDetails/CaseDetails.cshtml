@@ -71,7 +71,7 @@
         
             <div class="cdeets flex h-center space-between">
                 <h3>Activities/Events</h3>
-                <button onclick="Create('CaseEvent')">+ Add Activities/Events</button>
+                <button onclick="Create('CaseEvent')" data-module="EVENTS"  class="permission-btn">+ Add Activities/Events</button>
             </div>
             <i class="helper">You can manage and view recent activities and events of this case.</i>
             <table class="my-cases-table">
@@ -100,7 +100,7 @@
         <div id="respondents" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Respondents</h3>
-                <button onclick="Create('CaseRespondents')">+ Add Respondents</button>
+                <button onclick="Create('CaseRespondents')" data-module="RESPONDENTS" class="permission-btn">+ Add Respondents</button>
             </div>
             <i class="helper">You can manage respondents for this case.</i>
             <table class="my-cases-table">
@@ -120,7 +120,7 @@
         <div id="applicants" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Applicants</h3>
-                <button onclick="Create('CaseApplicant')">+ Add Applicants</button>
+                <button onclick="Create('CaseApplicant')" data-module="APPLICANTS" class="permission-btn">+ Add Applicants</button>
             </div>
             <i class="helper">You can manage applicants for this case.</i>
             <table class="my-cases-table">
@@ -138,7 +138,7 @@
         <div id="intervenor" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Intervenor</h3>
-                <button onclick="Create('Intervenor')">+ Add Intervenor</button>
+                <button onclick="Create('Intervenor')" data-module="INTERVENORS" class="permission-btn">+ Add Intervenor</button>
             </div>
             <i class="helper">You can manage intervenor for this case.</i>
             <table class="my-cases-table">
@@ -156,7 +156,7 @@
         <div id="documents" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Update Milestones and Attach Documents</h3>
-                <button onclick="Create('MilestonesAchieved')">Update Milestone</button>
+                <button onclick="Create('MilestonesAchieved')" data-module="MILESTONEACHIEVED" class="permission-btn">Update Milestone</button>
             </div>
             <i class="helper">You can manage and download file attachments, as well as update case milestones.</i>
             <div class="file-manager-wrapper grid grid-cms">
@@ -200,7 +200,7 @@
         <div id="assignpersonnel" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Current Assigned Personnel</h3>
-                <button onclick="CreateAssignment()">+ Assign Personnel</button>
+                <button onclick="CreateAssignment()" data-module="ASSIGNMENTS" class="permission-btn">+ Assign Personnel</button>
             </div>
             <i class="helper">List of users assigned to this case.</i>
             <div class="nopaginationdiv">
@@ -240,7 +240,7 @@
         <div id="relatedcases" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Related Cases</h3>
-                <button onclick="CreateRelatedCase()">+ Related Case</button>
+                <button onclick="CreateRelatedCase()" data-module="CASERELATED" class="permission-btn">+ Related Case</button>
             </div>
             <i class="helper">You can view and manage related cases for reference.</i>
             <table class="my-cases-table">
@@ -259,7 +259,7 @@
         <div id="hearings" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Hearings</h3>
-                <button id="createhearing" onclick="CreateHearing()">+ New Hearing</button>
+                <button id="createhearing" onclick="CreateHearing()" data-module="HEARINGS" class="permission-btn">+ New Hearing</button>
             </div>
             <i class="helper">You can manage hearings for this case.</i>
             <table class="my-cases-table">
@@ -282,7 +282,7 @@
         <div id="tasks" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Tasks</h3>
-                <button onclick="CreateTask()">+ Assign New Task</button>
+                <button onclick="CreateTask()" data-module="TASKS" class="permission-btn">+ Assign New Task</button>
             </div>
             <i class="helper">Manage tasks for this case.</i>
             <div class="nopaginationdiv">
@@ -321,7 +321,7 @@
         <div id="notes" class="cms-content">
             <div class="cdeets flex h-center space-between">
                 <h3>Notes</h3>
-                <button onclick="CreateNote()">+ New Note</button>
+                <button onclick="CreateNote()" data-module="NOTES" class="permission-btn">+ New Note</button>
             </div>
             <i class="helper">You can manage and view notes for this case.</i>
             <table class="my-cases-table">
@@ -383,8 +383,54 @@
         </div>
     </div>
 </div>
+<style>
+    .permission-btn {
+        display: none;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+       $(document).ready(function () {
+        var permissionCache = {}; // Cache to avoid duplicate requests
 
+        $('.permission-btn').each(function () {
+            var $btn = $(this);
+            var module = $btn.data('module');
+            var action = $btn.data('action') || 'create'; // default to create
 
+            if (permissionCache[module]) {
+                applyPermission($btn, permissionCache[module], action);
+            } else {
+                $.get('/Users/GetPriviledge?ModuleName=' + module, function (response) {
+                    if (response.success && response.data) {
+                        permissionCache[module] = response.data;
+                        applyPermission($btn, response.data, action);
+                    } else {
+                        $btn.hide();
+                    }
+                }).fail(function () {
+                    $btn.hide();
+                });
+            }
+        });
+
+        function applyPermission($btn, perm, action) {
+            let allow = false;
+
+            if (action === 'create' && perm.canCreate) allow = true;
+            if (action === 'edit' && perm.canEdit) allow = true;
+            if (action === 'view' && perm.canView) allow = true;
+
+            if (allow) {
+                $btn.show();
+                console.log("Permission granted for:", action, "on", $btn.data('module'));
+            } else {
+                $btn.hide();
+            }
+        }
+    });
+
+</script>
 <script>
     const loggedInUsername = "@username";
 </script>
@@ -697,3 +743,4 @@
         }
     });
 </script>
+

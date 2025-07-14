@@ -73,7 +73,7 @@
 
 <div class="genrep shadow border-radius-5">
     <div class="btn-div">
-        <button class="flex h-center gap-5"><i class='bxr bx-arrow-up-stroke-square'></i> EXPORT</button>
+        <button class="flex h-center gap-5" id="exportBtn"><i class='bxr bx-arrow-up-stroke-square'></i> EXPORT</button>
     </div>
 
     <div class="case-table-div">
@@ -99,6 +99,32 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.getElementById('exportBtn').addEventListener('click', function () {
+            const table = document.getElementById('casesTable');
+            let csv = [];
+
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                let rowData = [];
+                row.querySelectorAll('th, td').forEach(cell => {
+                    // Escape quotes and wrap in double quotes
+                    rowData.push('"' + cell.innerText.replace(/"/g, '""') + '"');
+                });
+                csv.push(rowData.join(','));
+            });
+
+            const csvString = csv.join('\n');
+            const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", "CASE REPORT.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
 
     <script>
         const philippineRegions = [
@@ -244,7 +270,7 @@
                                                     <td>${row.CompanyID}</td>
                                                     <td>${row.Milestone}</td>
                                                     <td>${row.DateFiled}</td>
-                                                    <td>${row.CaseRespondentID}</td>
+                                                    <td>${row.Description}</td>
                                                     <td>${row.Region}</td>
                                                 </tr>`;
                                         });

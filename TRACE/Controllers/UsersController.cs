@@ -38,7 +38,6 @@ namespace TRACE.Controllers
 
             return View();
         }
-
         [HttpGet]
         public async Task<IActionResult> GetAllUsers([FromServices] CurrentUserHelper currentUserHelper)
         {
@@ -53,6 +52,39 @@ namespace TRACE.Controllers
             }
 
             return Json(new { success = true, data = users });
+        }
+
+        [HttpGet]
+        public Task<IActionResult> GetPriviledge(string ModuleName)
+        {
+            string Username = _currentUserHelper.GetCurrentUsername();
+
+            // Get user
+            var user = _context.Users.FirstOrDefault(x => x.Username == Username);
+
+            // Check user
+            if (user == null)
+                return Task.FromResult<IActionResult>(
+                    Json(new { success = false, message = "User not found." }));
+
+            // Normalize values
+            string userCategory = user.UserCategory?.Trim().ToLower();
+            string module = ModuleName?.Trim().ToLower();
+
+            // Get role permission
+            var currentrole = _context.UserRolesPerModules
+                .FirstOrDefault(x =>
+                    x.RoleName.Trim().ToLower().Contains( userCategory )&&
+                    x.ModuleName.Trim().ToLower() == module);
+
+            // Check permission
+            if (currentrole == null)
+                return Task.FromResult<IActionResult>(
+                    Json(new { success = false, message = "No matching role found." }));
+
+            // Return permission data
+            return Task.FromResult<IActionResult>(
+                Json(new { success = true, data = currentrole }));
         }
 
 
