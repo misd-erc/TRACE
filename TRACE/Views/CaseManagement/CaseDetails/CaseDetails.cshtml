@@ -338,7 +338,7 @@
                         <td data-label="TITLE">IMPORTANT READ!</td>
                         <td data-label="DESCRIPTION">Please read the comments in source code left by FE developer</td>
                         <td data-label="DATE">03/07/2025</td>
-                        <td data-label="ACTION" class="actions">
+                        <td data-label="ACTION" class="actions permission-check" data-module="NOTES">
                             <i class='bx bxs-edit' title="Edit"></i>
                             <i class='bx bxs-x-circle' title="Archive"></i>
                         </td>
@@ -391,30 +391,32 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
        $(document).ready(function () {
-        var permissionCache = {}; // Cache to avoid duplicate requests
+        const permissionCache = {};
 
-        $('.permission-btn').each(function () {
-            var $btn = $(this);
-            var module = $btn.data('module');
-            var action = $btn.data('action') || 'create'; // default to create
+        const $permissionElements = $('.permission-btn, .permission-check');
+
+        $permissionElements.each(function () {
+            const $el = $(this);
+            const module = $el.data('module');
+            const action = $el.data('action') || 'create';
 
             if (permissionCache[module]) {
-                applyPermission($btn, permissionCache[module], action);
+                applyPermission($el, permissionCache[module], action);
             } else {
                 $.get('/Users/GetPriviledge?ModuleName=' + module, function (response) {
                     if (response.success && response.data) {
                         permissionCache[module] = response.data;
-                        applyPermission($btn, response.data, action);
+                        applyPermission($el, response.data, action);
                     } else {
-                        $btn.hide();
+                        $el.hide();
                     }
                 }).fail(function () {
-                    $btn.hide();
+                    $el.hide();
                 });
             }
         });
 
-        function applyPermission($btn, perm, action) {
+        function applyPermission($el, perm, action) {
             let allow = false;
 
             if (action === 'create' && perm.canCreate) allow = true;
@@ -422,10 +424,9 @@
             if (action === 'view' && perm.canView) allow = true;
 
             if (allow) {
-                $btn.show();
-                console.log("Permission granted for:", action, "on", $btn.data('module'));
+                $el.show();
             } else {
-                $btn.hide();
+                $el.hide();
             }
         }
     });
