@@ -30,7 +30,15 @@ builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddInMemoryTokenCaches();
 
 builder.Services.AddAuthorization();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("https://localhost:44333") // <- your frontend URL
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -58,6 +66,7 @@ builder.Services.AddScoped<EventLogger>();
 builder.Services.AddHttpClient<GetGroupMemberHelper>();
 
 var app = builder.Build();
+app.UseCors("AllowFrontend");
 
 if (!app.Environment.IsDevelopment())
 {

@@ -31,8 +31,10 @@ namespace TRACE.Controllers
             return View(await _context.CaseDetails.ToListAsync());
         }
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetCaseDetails(int id)
         {
+            
             try
             {
                 using var connection = new SqlConnection(_connectionString);

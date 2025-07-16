@@ -34,6 +34,7 @@ namespace TRACE.Controllers
             return View(await _context.CaseMilestones.ToListAsync());
         }
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> CheckMilestoneIsAchieved(int erccaseId, int casemilestoneId)
         {
             try
@@ -63,6 +64,7 @@ namespace TRACE.Controllers
 
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetMilestoneOfCases(int id)
         {
             try

@@ -31,6 +31,7 @@ namespace TRACE.Controllers
             return View(await ercdbContext.ToListAsync());
         }
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetCaseEventByErcID(int id)
         {
             var categories = await _context.CaseEvents

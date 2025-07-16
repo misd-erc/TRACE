@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\controllers\\casedetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\casedetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\views\\casemanagement\\casedetails\\casedetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\casemanagement\\casedetails\\casedetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\views\\casedetails\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\views\\casedetails\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\views\\reports\\generatereports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\controllers\\erccasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\erccasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\wwwroot\\js\\casedetails.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\controllers\\usermanagementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -81,10 +81,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\controllers\\userrolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\controllers\\userrolecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\models\\userrolespermodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|solutionrelative:trace\\models\\userrolespermodule.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01C1F7C5-3128-47C6-A5FF-3A326F216906}|TRACE\\TRACE.csproj|c:\\users\\acer\\documents\\github\\trace\\trace\\views\\userrole\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -158,7 +154,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 271,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -166,65 +162,38 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseDetails\\Create.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\CaseDetails\\Create.cshtml",
-              "ToolTip": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseDetails\\Create.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\CaseDetails\\Create.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-14T00:53:08.058Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ErccaseController.cs",
-              "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
-              "RelativeDocumentMoniker": "TRACE\\Controllers\\ErccaseController.cs",
-              "ToolTip": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
-              "RelativeToolTip": "TRACE\\Controllers\\ErccaseController.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAkwHsAAAAmAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "CaseDetailsController.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseDetailsController.cs",
+              "RelativeDocumentMoniker": "TRACE\\Controllers\\CaseDetailsController.cs",
+              "ToolTip": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CaseDetailsController.cs",
+              "RelativeToolTip": "TRACE\\Controllers\\CaseDetailsController.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAlwCwAAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-16T05:47:35.832Z",
+              "WhenOpened": "2025-07-16T07:17:26.755Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "GenerateReports.cshtml",
-              "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\Reports\\GenerateReports.cshtml",
-              "RelativeDocumentMoniker": "TRACE\\Views\\Reports\\GenerateReports.cshtml",
-              "ToolTip": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\Reports\\GenerateReports.cshtml",
-              "RelativeToolTip": "TRACE\\Views\\Reports\\GenerateReports.cshtml",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAwwGcAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-03T03:00:28.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "UsersController.cs",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\UsersController.cs",
               "ToolTip": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\UsersController.cs",
               "RelativeToolTip": "TRACE\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAwwEgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAwwEMAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T01:45:08.575Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-11T01:45:08.575Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CaseDetails.cshtml",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseManagement\\CaseDetails\\CaseDetails.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\CaseManagement\\CaseDetails\\CaseDetails.cshtml",
               "ToolTip": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\CaseManagement\\CaseDetails\\CaseDetails.cshtml",
               "RelativeToolTip": "TRACE\\Views\\CaseManagement\\CaseDetails\\CaseDetails.cshtml",
-              "ViewState": "AgIAAIABAAAAAAAAAAAAAIYBAABDAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAQwDwAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-14T00:53:30.576Z",
               "EditorCaption": ""
@@ -243,15 +212,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "CaseDetails.js",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\CaseDetails.js",
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\CaseDetails.js",
               "ToolTip": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\CaseDetails.js",
               "RelativeToolTip": "TRACE\\wwwroot\\js\\CaseDetails.js",
-              "ViewState": "AgIAAKkAAAAAAAAAAAAkwLkAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAA8DAAAAAAAAAAAQwBkDAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-07-08T15:33:17.656Z"
+              "WhenOpened": "2025-07-08T15:33:17.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GenerateReports.cshtml",
+              "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\Reports\\GenerateReports.cshtml",
+              "RelativeDocumentMoniker": "TRACE\\Views\\Reports\\GenerateReports.cshtml",
+              "ToolTip": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\Reports\\GenerateReports.cshtml",
+              "RelativeToolTip": "TRACE\\Views\\Reports\\GenerateReports.cshtml",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAwwGcAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T03:00:28.059Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ErccaseController.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
+              "RelativeDocumentMoniker": "TRACE\\Controllers\\ErccaseController.cs",
+              "ToolTip": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ErccaseController.cs",
+              "RelativeToolTip": "TRACE\\Controllers\\ErccaseController.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAkwHsAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-16T05:47:35.832Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -401,7 +396,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 21,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\UserRolesPerModule\\Index.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\UserRolesPerModule\\Index.cshtml",
@@ -413,7 +408,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 20,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\UserRole\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\UserRole\\Create.cshtml",
@@ -422,18 +417,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-06-26T08:51:19.537Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "UserRolesPerModule.cs",
-              "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Models\\UserRolesPerModule.cs",
-              "RelativeDocumentMoniker": "TRACE\\Models\\UserRolesPerModule.cs",
-              "ToolTip": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Models\\UserRolesPerModule.cs",
-              "RelativeToolTip": "TRACE\\Models\\UserRolesPerModule.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-26T08:53:45.408Z"
             },
             {
               "$type": "Document",
@@ -449,7 +432,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 22,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\Users\\Index.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\Users\\Index.cshtml",
@@ -461,7 +444,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 23,
               "Title": "ContentManagement.cshtml",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\ContentManagement\\ContentManagement.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\ContentManagement\\ContentManagement.cshtml",
@@ -473,7 +456,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 24,
               "Title": "UserManagement.cshtml",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\UserManagement\\UserManagement.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\UserManagement\\UserManagement.cshtml",
@@ -485,7 +468,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 25,
               "Title": "CompaniesController.cs",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\CompaniesController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\CompaniesController.cs",
@@ -497,7 +480,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 27,
               "Title": "Company.cs",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Models\\Company.cs",
               "RelativeDocumentMoniker": "TRACE\\Models\\Company.cs",
@@ -509,7 +492,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 30,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\Shared\\_Layout.cshtml",
@@ -521,7 +504,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 32,
               "Title": "_Layout.cshtml.css",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\Shared\\_Layout.cshtml.css",
               "RelativeDocumentMoniker": "TRACE\\Views\\Shared\\_Layout.cshtml.css",
@@ -533,7 +516,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 26,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\Companies\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\Companies\\Create.cshtml",
@@ -545,7 +528,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 33,
               "Title": "DashboardModules.js",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\DashboardModules.js",
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\DashboardModules.js",
@@ -557,7 +540,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 31,
               "Title": "ExternalController.cs",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Controllers\\ExternalController.cs",
               "RelativeDocumentMoniker": "TRACE\\Controllers\\ExternalController.cs",
@@ -569,7 +552,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 28,
               "Title": "UserRole.cs",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Models\\UserRole.cs",
               "RelativeDocumentMoniker": "TRACE\\Models\\UserRole.cs",
@@ -581,7 +564,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 34,
               "Title": "Dashboard.cshtml",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\Home\\Dashboard.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\Home\\Dashboard.cshtml",
@@ -593,7 +576,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 29,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\Views\\Hearing\\Create.cshtml",
               "RelativeDocumentMoniker": "TRACE\\Views\\Hearing\\Create.cshtml",
@@ -605,7 +588,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 35,
               "Title": "userManagement.js",
               "DocumentMoniker": "C:\\Users\\Acer\\Documents\\GitHub\\TRACE\\TRACE\\wwwroot\\js\\userManagement.js",
               "RelativeDocumentMoniker": "TRACE\\wwwroot\\js\\userManagement.js",
