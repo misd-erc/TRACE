@@ -229,7 +229,7 @@
                 const correspondentDropdown = document.getElementById("correspondent-dropdown").value;
 
                 const year = document.getElementById("year-dropdown").value;
-                const regionFull  = document.getElementById("region-dropdown").value;
+                const regionFull = document.getElementById("region-dropdown").value;
                 const regionCode = regionFull.split("–")[0].trim();
 
                 const caseCategories = [];
@@ -237,59 +237,60 @@
                     caseCategories.push(cb.value);
                 });
 
-                console.log("Case ID:" + ercCaseDropdown);
-                console.log("Case Milestone:" + milestoneDropdown);
-                console.log("Correspondent:" + correspondentDropdown);
-                console.log("Year:" + year);
-                console.log("Region:" + regionCode);
-
-                console.log("Case Categories: " + caseCategories);
-
-
-                    $.ajax({
-                                url: '/Erccase/GenerateReport',
-                                method: 'GET',
-                               data: {
+                // SweetAlert confirmation
+                Swal.fire({
+                    title: 'Generate Report?',
+                    text: 'Do you want to proceed with generating the report?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, generate it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Proceed with AJAX request
+                        $.ajax({
+                            url: '/Erccase/GenerateReport',
+                            method: 'GET',
+                            data: {
                                 ERCCaseID: ercCaseDropdown || "",
                                 CaseMilestoneID: milestoneDropdown || "",
                                 CaseRespondentID: correspondentDropdown || "",
                                 Year: year || "",
                                 Region: regionCode || "",
                                 CaseCategoryIDList: (Array.isArray(caseCategories) ? caseCategories.join(",") : caseCategories) || ""
-                                },
-                                success: function (response) {
-                                    console.log(" Report data received:", response);
+                            },
+                            success: function (response) {
+                                console.log("Report data received:", response);
 
-                                    // Example: populate a table
-                                    if (Array.isArray(response) && response.length > 0) {
-                                        let html = '';
-                                        response.forEach(row => {
-                                            html += `
-                                                <tr>
-                                                    <td>${row.CaseNo}</td>
-                                                    <td>${row.CompanyID}</td>
-                                                    <td>${row.Milestone}</td>
-                                                    <td>${row.DateFiled}</td>
-                                                    <td>${row.Description}</td>
-                                                    <td>${row.Region}</td>
-                                                </tr>`;
-                                        });
+                                if (Array.isArray(response) && response.length > 0) {
+                                    let html = '';
+                                    response.forEach(row => {
+                                        html += `
+                                            <tr>
+                                                <td>${row.CaseNo ?? 'N/A'}</td>
+                                                <td>${row.CompanyID ?? 'N/A'}</td>
+                                                <td>${row.Milestone ?? 'N/A'}</td>
+                                                <td>${row.DateFiled ? new Date(row.DateFiled).toLocaleDateString() : 'N/A'}</td>
+                                                <td>${row.Description ?? 'N/A'}</td>
+                                                <td>${row.Region ?? 'N/A'}</td>
+                                            </tr>`;
+                                    });
 
-                                        $('#casesTable tbody').html(html);
-                                    } else {
-                                        $('#casesTable tbody').html('<tr><td colspan="7">No results found</td></tr>');
-                                    }
-                                },
-                                error: function (xhr) {
-                                    const message = xhr.responseJSON?.message || xhr.statusText;
-                                    console.error("❌ Error fetching report:", message);
-                                    alert("Error: " + message);
+                                    $('#casesTable tbody').html(html);
+                                } else {
+                                    $('#casesTable tbody').html('<tr><td colspan="7">No results found</td></tr>');
                                 }
-                            });
-
-        
-
+                            },
+                            error: function (xhr) {
+                                const message = xhr.responseJSON?.message || xhr.statusText;
+                                console.error("Error fetching report:", message);
+                                Swal.fire('Error', message, 'error');
+                            }
+                        });
+                    }
+                });
             });
+
 
         });
     </script>
