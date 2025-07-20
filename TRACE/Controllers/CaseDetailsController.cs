@@ -32,7 +32,7 @@ namespace TRACE.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetCaseDetails(int id)
+        public async Task<IActionResult> GetCaseDetails(string id)
         {
             
             try
@@ -63,7 +63,7 @@ namespace TRACE.Controllers
                         LEFT JOIN ercdb.cases.CaseApplicants ca ON ca.ERCCaseID = a.ERCCaseID
                         LEFT JOIN contacts.Correspondents acor ON ca.CorrespondentID = acor.CorrespondentID
 
-                        WHERE a.ERCCaseID = @id;";
+                        WHERE a.CaseNo = @id;";
 
                 var result = await connection.QueryAsync<dynamic>(sql, new { id });
                 return Json(result);
