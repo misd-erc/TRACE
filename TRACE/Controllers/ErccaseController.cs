@@ -206,7 +206,9 @@ namespace TRACE.Controllers
                                 LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
                                 LEFT JOIN cases.CaseAssignments ca ON c.ERCCaseID = ca.ERCCaseID
 
-                                WHERE ca.UserID = @AssignedTo AND ca.IsActive = 1
+                                WHERE 
+                                (ca.UserID = @AssignedTo AND ca.IsActive = 1)
+                                OR (c.DocketedBy = @AssignedTo)
 
                                 GROUP BY 
                                     c.ERCCaseID, c.CaseNo, c.Title, cc.Category, cn.Nature, 
@@ -413,7 +415,9 @@ namespace TRACE.Controllers
                         LEFT JOIN LatestMilestone lm ON c.ERCCaseID = lm.ERCCaseID AND lm.rn = 1
                         LEFT JOIN cases.CaseMilestones cm ON lm.CaseMilestoneID = cm.CaseMilestoneID
 
-                        WHERE ca.UserID = @AssignedTo AND ca.IsActive = 1
+                        WHERE 
+                        (ca.UserID = @AssignedTo AND ca.IsActive = 1)
+                        OR (c.DocketedBy = @AssignedTo)
 
                         ORDER BY c.ERCCaseID DESC
 
