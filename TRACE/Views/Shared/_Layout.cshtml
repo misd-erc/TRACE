@@ -114,7 +114,7 @@
         <div class="upper">
             <div class="main-menu">
                 <ul>
-                    <li onclick="location.href='@Url.Action("Dashboard", "Home")'">
+                    <li onclick="location.href='@Url.Action("Dashboard", "Home")'" data-module="DASHBOARD" class="permission-btn">
                         <img src="~/images/icons/dashboard.png" />
                         <span>Dashboard</span>
                     </li>
@@ -126,23 +126,23 @@
                         <li onclick="location.href='@Url.Action("AllCases", "CaseManagement")'">All Cases</li>
                         @await Component.InvokeAsync("MyCasesLink")
                     </ul>
-                    <li onclick="location.href='@Url.Action("DocumentManagement", "DocumentManagement")'">
+                    <li onclick="location.href='@Url.Action("DocumentManagement", "DocumentManagement")'" data-module="DOCUMENT" class="permission-btn">
                         <img src="~/images/icons/document.png" />
                         <span>Document Management</span>
                     </li>
-                    <li onclick="location.href='@Url.Action("Hearings", "Hearings")'">
+                    <li onclick="location.href='@Url.Action("Hearings", "Hearings")'" >
                         <img src="~/images/icons/hearing.png" />
                         <span>Hearings</span>
                     </li>
-                    <li onclick="location.href='@Url.Action("ContentManagement", "ContentManagement")'">
+                    <li onclick="location.href='@Url.Action("ContentManagement", "ContentManagement")'" data-module="CONTENT" class="permission-btn">
                         <i class='bx bxs-book-content'></i>
                         <span>Content Management</span>
                     </li>
-                    <li onclick="location.href='@Url.Action("Index", "Users")'">
+                    <li onclick="location.href='@Url.Action("Index", "Users")'" data-module="USERMANAGEMENT" class="permission-btn">
                         <i class='bx bxs-user-detail'></i>
                         <span>User Management</span>
                     </li>
-                    <li onclick="location.href='@Url.Action("UserLogs", "UserLogs")'">
+                    <li onclick="location.href='@Url.Action("UserLogs", "UserLogs")'" data-module="USERAUDIT" class="permission-btn">
                         <i class='bx bx-file-search'></i>
                         <span>User Audit</span>
                     </li>
@@ -151,7 +151,7 @@
                         <span>Reports <i class='bx bx-chevron-down'></i></span>
                     </li>
                     <ul class="cads-dropdown">
-                        <li onclick="location.href='@Url.Action("GenerateReports", "Reports")'">Generate Case Reports</li>
+                        <li onclick="location.href='@Url.Action("GenerateReports", "Reports")'" data-module="REPORT" class="permission-btn">Generate Case Reports</li>
                     </ul>
                 </ul>
             </div>
@@ -236,6 +236,46 @@
 
 
     $(document).ready(function () {
+         const permissionCache = {};
+
+        const $permissionElements = $('.permission-btn, .permission-check');
+
+        $permissionElements.each(function () {
+            const $el = $(this);
+            const module = $el.data('module');
+            const action = $el.data('action') || 'create';
+
+            if (permissionCache[module]) {
+                applyPermission($el, permissionCache[module], action);
+            } else {
+                $.get('/Users/GetPriviledge?ModuleName=' + module, function (response) {
+                    if (response.success && response.data) {
+                        permissionCache[module] = response.data;
+                        applyPermission($el, response.data, action);
+                    } else {
+                        $el.hide();
+                    }
+                }).fail(function () {
+                    $el.hide();
+                });
+            }
+        });
+
+        function applyPermission($el, perm, action) {
+            let allow = false;
+
+            if (action === 'create' && perm.canCreate) allow = true;
+            if (action === 'edit' && perm.canEdit) allow = true;
+            if (action === 'view' && perm.canView) allow = true;
+
+            if (allow) {
+                $el.show();
+            } else {
+                $el.hide();
+            }
+        }
+
+
         $("#searchInput").on("input", function () {
             var query = $(this).val().trim();
 
