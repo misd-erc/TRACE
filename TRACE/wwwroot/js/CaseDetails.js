@@ -358,7 +358,7 @@ function fetchCaseApplicantWithErcId(caseId) {
                     applicantstbody.innerHTML += `
                             <tr>
                                 <td data-label="APPLICANT">${event.FullName}</td>
-                                <td data-label="ACTION" class="actions">
+                                <td data-label="ACTION" class="actions permission-check" data-module="APPLICANTS">
                                     <i class='bx bxs-x-circle'></i>
                                 </td>
                             </tr>
@@ -444,7 +444,7 @@ function fetchCaseAssignmentWithErcId(caseId) {
                             <td data-label="ASSIGNED PERSONEL">${event.UserID}</td>
                             <td data-label="DATE ASSIGNED">${formattedDate}</td>
                             <td data-label="ASSIGNED BY">${event.AssignedBy}</td>
-                            <td data-label="ACTION" class="actions">
+                            <td data-label="ACTION" class="actions permission-check" data-module="ASSIGNMENTS">
                                 <i class='bx bxs-x-circle' title="Archive" onclick="archiveUserAssign(${event.CaseAssignmentID})"></i>
                             </td>
                         </tr>
@@ -548,7 +548,7 @@ function fetchCaseHearingWithErcId(caseId) {
 
                         <td data-label="TYPE">${hearingTypeDescriptions} (${hearingTypes})</td>
                         <td data-label="REMARKS">${caseData.Remarks}</td>
-                        <td data-label="ACTION" class="actions">
+                        <td data-label="ACTION" class="actions permission-check" data-module="HEARINGS">
                             <i class='bx bx-folder-up-arrow' title="Attach Files" onclick="openFilesHearingModal(${caseData.HearingID})"></i>
                             <i class='bx bxs-edit' title="Edit"></i>
                         </td>
@@ -676,7 +676,7 @@ function GetCaseRelatedByErcID(caseId) {
                                 <tr>
                                     <td data-label="CASE NO.">${caseData.RelatedCaseNo}</td>
                                     <td data-label="CASE TITLE"><a href='/CaseDetails?id=${caseData.RelatedCaseID}'>${caseData.RelatedCaseTitle}</a></td>
-                                    <td data-label="ACTION" class="actions">
+                                    <td data-label="ACTION" class="actions permission-check" data-module="CASERELATED">
                                         <i class='bx bxs-x-circle' title="Archive"></i>
                                     </td>
                                 </tr>
@@ -716,7 +716,7 @@ function GetIntervenorByErcID(caseId) {
                     casehearing.innerHTML += `
                         <tr>
                             <td data-label="INTERVENOR">${item.companyName}</td>
-                            <td data-label="ACTION" class="actions">
+                            <td data-label="ACTION" class="actions permission-check" data-module="INTERVENORS">
                                 <i class='bx bxs-x-circle' title="Archive" onclick="deleteItem('Intervenor',${item.intervenorId})"></i>
                             </td>
                         </tr>
