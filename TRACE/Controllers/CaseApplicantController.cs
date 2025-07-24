@@ -49,8 +49,8 @@ namespace TRACE.Controllers
                         ca.CorrespondentID,
                         ca.CompanyID,
                         COALESCE(co.Salutation, '') + ' ' + COALESCE(co.FirstName, '') + ' ' + COALESCE(co.LastName, '') AS FullName
-                    FROM [ercdb].[cases].[CaseApplicants] ca
-                    INNER JOIN [ercdb].[contacts].Correspondents co
+                    FROM [icdms2025].[cases].[CaseApplicants] ca
+                    INNER JOIN [icdms2025].[contacts].Correspondents co
                         ON ca.CorrespondentID = co.CorrespondentID
                     WHERE ca.ERCCaseID = @id";
 

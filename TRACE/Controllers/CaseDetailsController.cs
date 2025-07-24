@@ -56,11 +56,11 @@ namespace TRACE.Controllers
 
                         FROM cases.ERCCases a
 
-                        LEFT JOIN ercdb.cases.CaseRespondents cr ON cr.ERCCaseID = a.ERCCaseID
+                        LEFT JOIN icdms2025.cases.CaseRespondents cr ON cr.ERCCaseID = a.ERCCaseID
                         LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID
                         LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
 
-                        LEFT JOIN ercdb.cases.CaseApplicants ca ON ca.ERCCaseID = a.ERCCaseID
+                        LEFT JOIN icdms2025.cases.CaseApplicants ca ON ca.ERCCaseID = a.ERCCaseID
                         LEFT JOIN contacts.Correspondents acor ON ca.CorrespondentID = acor.CorrespondentID
 
                           WHERE a.ERCCaseID = @id;";
@@ -87,9 +87,9 @@ namespace TRACE.Controllers
                 var sql = @"
                     SELECT 
                             a.*,
-                            (SELECT [Description] FROM ercdb.cases.CaseCategories WHERE CaseCategoryID = a.CaseCategoryID) AS CaseCategory,
-                            (SELECT [Description] FROM ercdb.cases.CaseNatures WHERE CaseNatureID = a.CaseNatureID) AS CaseNature,
-                            (SELECT [Status] FROM ercdb.cases.CaseStatuses WHERE CaseStatusID = a.CaseStatusID) AS CaseStatus,
+                            (SELECT [Description] FROM icdms2025.cases.CaseCategories WHERE CaseCategoryID = a.CaseCategoryID) AS CaseCategory,
+                            (SELECT [Description] FROM icdms2025.cases.CaseNatures WHERE CaseNatureID = a.CaseNatureID) AS CaseNature,
+                            (SELECT [Status] FROM icdms2025.cases.CaseStatuses WHERE CaseStatusID = a.CaseStatusID) AS CaseStatus,
                             (CASE WHEN a.PrayedForPA = 1 THEN 'Yes' ELSE 'No' END) AS hasPrayedForPA,
 
                             comp.CompanyName,
@@ -100,12 +100,12 @@ namespace TRACE.Controllers
 
                         FROM cases.ERCCases a
 
-                        LEFT JOIN ercdb.cases.CaseRespondents cr ON cr.ERCCaseID = a.ERCCaseID
-                        LEFT JOIN ercdb.contacts.Companies comp ON cr.CompanyID = comp.CompanyID
-                        LEFT JOIN ercdb.contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
+                        LEFT JOIN icdms2025.cases.CaseRespondents cr ON cr.ERCCaseID = a.ERCCaseID
+                        LEFT JOIN icdms2025.contacts.Companies comp ON cr.CompanyID = comp.CompanyID
+                        LEFT JOIN icdms2025.contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID
 
-                        LEFT JOIN ercdb.cases.CaseApplicants ca ON ca.ERCCaseID = a.ERCCaseID
-                        LEFT JOIN ercdb.contacts.Correspondents acor ON ca.CorrespondentID = acor.CorrespondentID
+                        LEFT JOIN icdms2025.cases.CaseApplicants ca ON ca.ERCCaseID = a.ERCCaseID
+                        LEFT JOIN icdms2025.contacts.Correspondents acor ON ca.CorrespondentID = acor.CorrespondentID
 
                         WHERE a.CaseNo = @id;";
 

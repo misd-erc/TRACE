@@ -52,11 +52,11 @@ namespace TRACE.Controllers
                                 rc.RelatedBy,
                                 rc.DatetimeRelated
                             FROM 
-                                [ercdb].[cases].[RelatedCases] rc
+                                [icdms2025].[cases].[RelatedCases] rc
                             LEFT JOIN 
-                                [ercdb].[cases].[ERCCases] e1 ON rc.ERCCaseID = e1.ERCCaseID
+                                [icdms2025].[cases].[ERCCases] e1 ON rc.ERCCaseID = e1.ERCCaseID
                             LEFT JOIN 
-                                [ercdb].[cases].[ERCCases] e2 ON rc.ERCCaseRelatedID = e2.ERCCaseID
+                                [icdms2025].[cases].[ERCCases] e2 ON rc.ERCCaseRelatedID = e2.ERCCaseID
                             WHERE 
                                 rc.ERCCaseID = @id";
 

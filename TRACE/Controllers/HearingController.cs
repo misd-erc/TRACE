@@ -61,22 +61,22 @@ namespace TRACE.Controllers
                         h.HearingLinks,
                         -- Concatenate HearingType with a comma separator, handling null values
                         STUFF((SELECT ', ' + ISNULL(ht.TypeOfHearing, '')
-                               FROM [ercdb].[cases].[HearingsInHearingType] htm
-                               LEFT JOIN [ercdb].[cases].[HearingTypes] ht ON htm.HearingTypeID = ht.HearingTypeID
+                               FROM [icdms2025].[cases].[HearingsInHearingType] htm
+                               LEFT JOIN [icdms2025].[cases].[HearingTypes] ht ON htm.HearingTypeID = ht.HearingTypeID
                                WHERE htm.HearingID = h.HearingID
                                FOR XML PATH('')), 1, 2, '') AS HearingTypes,
                         -- Concatenate HearingTypeDescription with a comma separator, handling null values
                         STUFF((SELECT ', ' + ISNULL(ht.Description, '')
-                               FROM [ercdb].[cases].[HearingsInHearingType] htm
-                               LEFT JOIN [ercdb].[cases].[HearingTypes] ht ON htm.HearingTypeID = ht.HearingTypeID
+                               FROM [icdms2025].[cases].[HearingsInHearingType] htm
+                               LEFT JOIN [icdms2025].[cases].[HearingTypes] ht ON htm.HearingTypeID = ht.HearingTypeID
                                WHERE htm.HearingID = h.HearingID
                                FOR XML PATH('')), 1, 2, '') AS HearingTypeDescriptions
                     FROM 
-                        [ercdb].[cases].[Hearings] h
+                        [icdms2025].[cases].[Hearings] h
                     LEFT JOIN 
-                        [ercdb].[cases].[HearingVenues] hv ON h.HearingVenueID = hv.HearingVenueID
+                        [icdms2025].[cases].[HearingVenues] hv ON h.HearingVenueID = hv.HearingVenueID
                     LEFT JOIN 
-                        [ercdb].[cases].[HearingCategories] hc ON h.HearingCategoryID = hc.HearingCategoryID
+                        [icdms2025].[cases].[HearingCategories] hc ON h.HearingCategoryID = hc.HearingCategoryID
                     WHERE 
                         h.ERCCaseID = @id
 

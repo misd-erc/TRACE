@@ -1851,7 +1851,6 @@ C:\Users\Acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\staticwebassets.buil
 C:\Users\Acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\Acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\Acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.csproj.Up2Date
 C:\Users\Acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\TRACE.dll
 C:\Users\Acer\Documents\GitHub\TRACE\TRACE\obj\Debug\net8.0\refint\TRACE.dll

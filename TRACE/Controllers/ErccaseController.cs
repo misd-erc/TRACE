@@ -80,9 +80,9 @@ namespace TRACE.Controllers
                         cc.Category,
                         COUNT(ec.ERCCaseID) AS TotalCases
                     FROM 
-                        [ercdb].[cases].[ERCCases] ec
+                        [icdms2025].[cases].[ERCCases] ec
                     JOIN 
-                        [ercdb].[cases].[CaseCategories] cc
+                        [icdms2025].[cases].[CaseCategories] cc
                         ON ec.CaseCategoryID = cc.CaseCategoryID
                     WHERE 
                         1 = 1
@@ -158,10 +158,10 @@ namespace TRACE.Controllers
                         (SELECT [Status] FROM cases.CaseStatuses WHERE CaseStatusID = c.CaseStatusID) AS CaseStatus,
                         comp.CompanyName,  
                         cor.LastName + ' ' + cor.FirstName AS CorrespondentLastName  
-                        FROM ercdb.cases.CaseRespondents cr
+                        FROM icdms2025.cases.CaseRespondents cr
                         JOIN cases.ERCCases c ON cr.ERCCaseID = c.ERCCaseID
                         LEFT JOIN contacts.Companies comp ON cr.CompanyID = comp.CompanyID  
-                        LEFT JOIN ercdb.cases.CaseApplicants ca ON cr.ERCCaseID = ca.ERCCaseID  
+                        LEFT JOIN icdms2025.cases.CaseApplicants ca ON cr.ERCCaseID = ca.ERCCaseID  
                         LEFT JOIN contacts.Correspondents cor ON cr.CorrespondentID = cor.CorrespondentID";
 
                 var result = await connection.QueryAsync<dynamic>(sql);
@@ -199,7 +199,7 @@ namespace TRACE.Controllers
                                     ISNULL(STRING_AGG(comp.CompanyName, ', '), 'N/A') AS CompanyName
 
                                 FROM cases.ERCCases c
-                                LEFT JOIN ercdb.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
+                                LEFT JOIN icdms2025.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
                                 LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
                                 LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
                                 LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
@@ -259,9 +259,9 @@ namespace TRACE.Controllers
                                 END AS GroupedStatus,
                                 COUNT(ec.ERCCaseID) AS TotalCases
                             FROM 
-                                [ercdb].[cases].[ERCCases] ec
+                                [icdms2025].[cases].[ERCCases] ec
                             JOIN 
-                                [ercdb].[cases].[CaseStatuses] cs ON ec.CaseStatusID = cs.CaseStatusID
+                                [icdms2025].[cases].[CaseStatuses] cs ON ec.CaseStatusID = cs.CaseStatusID
                             WHERE
                                 cs.Status LIKE '%Pending%' OR
                                 cs.Status LIKE '%Ongoing%' OR
@@ -331,7 +331,7 @@ namespace TRACE.Controllers
                                 ISNULL(cor.LastName + ' ' + cor.FirstName, 'N/A') AS CorrespondentLastName  
 
                             FROM cases.ERCCases c
-                            LEFT JOIN ercdb.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
+                            LEFT JOIN icdms2025.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
                             LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
                             LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
                             LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
@@ -465,7 +465,7 @@ namespace TRACE.Controllers
 	                        ISNULL (ca.UserID, 'N/A') AS AssignedTo
 
                         FROM cases.ERCCases c
-                        LEFT JOIN ercdb.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
+                        LEFT JOIN icdms2025.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
                         LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
                         LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
                         LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID
@@ -521,7 +521,7 @@ namespace TRACE.Controllers
                             ISNULL(ca.UserID, 'N/A') AS AssignedTo
 
                         FROM cases.ERCCases c
-                        LEFT JOIN ercdb.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
+                        LEFT JOIN icdms2025.cases.CaseRespondents cr ON c.ERCCaseID = cr.ERCCaseID
                         LEFT JOIN cases.CaseCategories cc ON c.CaseCategoryID = cc.CaseCategoryID
                         LEFT JOIN cases.CaseNatures cn ON c.CaseNatureID = cn.CaseNatureID
                         LEFT JOIN cases.CaseStatuses cs ON c.CaseStatusID = cs.CaseStatusID

@@ -3,4 +3,9 @@
 https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\Acer\Documents\GitHub\TRACE\Deploymentfiles</_PublishTargetUrl>
+    <History>True|2025-07-24T05:08:15.6850236Z||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
 </Project>

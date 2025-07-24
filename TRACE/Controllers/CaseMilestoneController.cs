@@ -48,7 +48,7 @@ namespace TRACE.Controllers
                    [CaseMilestoneID],
                    [DatetimeAchieved],
                    [PercentAchieved]
-            FROM [ercdb].[cases].[MilestonesAchieved]
+            FROM [icdms2025].[cases].[MilestonesAchieved]
             WHERE ERCCaseID = @erccaseId AND CaseMilestoneID = @casemilestoneId";
 
                 // Pass both parameters correctly
@@ -79,12 +79,12 @@ namespace TRACE.Controllers
                         cm.Milestone,
                         cm.Description
                     FROM 
-                        [ercdb].[cases].[CaseMilestoneTemplateMembers] cmtm
+                        [icdms2025].[cases].[CaseMilestoneTemplateMembers] cmtm
                     JOIN 
-                        [ercdb].[cases].[CaseMilestones] cm 
+                        [icdms2025].[cases].[CaseMilestones] cm 
                         ON cmtm.CaseMilestoneID = cm.CaseMilestoneID
                     INNER JOIN 
-                        [ercdb].[cases].[CaseMilestoneTemplates] cmt 
+                        [icdms2025].[cases].[CaseMilestoneTemplates] cmt 
                         ON cmtm.CaseMilestoneTemplateID = cmt.CaseMilestoneTemplateID
                     WHERE 
                         cmt.CaseCategoryID = @id";
@@ -274,7 +274,7 @@ namespace TRACE.Controllers
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                string sql = "SELECT Milestone FROM ercdb.cases.CaseMilestones WHERE CaseMilestoneID = @Id";
+                string sql = "SELECT Milestone FROM icdms2025.cases.CaseMilestones WHERE CaseMilestoneID = @Id";
                 var milestoneName = await connection.QueryFirstOrDefaultAsync<string>(sql, new { Id = id });
 
                 if (milestoneName != null)

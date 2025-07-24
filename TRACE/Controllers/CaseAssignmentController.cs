@@ -56,9 +56,9 @@ namespace TRACE.Controllers
                                 ho.OfficerType,
                                 ho.Description AS OfficerDescription
                             FROM 
-                                [ercdb].[cases].[CaseAssignments] ca
+                                [icdms2025].[cases].[CaseAssignments] ca
                             LEFT JOIN 
-                                [ercdb].[cases].[HandlingOfficerTypes] ho ON ca.HandlingOfficerTypeID = ho.HandlingOfficerTypeID
+                                [icdms2025].[cases].[HandlingOfficerTypes] ho ON ca.HandlingOfficerTypeID = ho.HandlingOfficerTypeID
                             WHERE 
                                 ca.ERCCaseID = @id AND ca.IsActive=1";
 
@@ -91,9 +91,9 @@ namespace TRACE.Controllers
                                 ho.OfficerType,
                                 ho.Description AS OfficerDescription
                             FROM 
-                                [ercdb].[cases].[CaseAssignments] ca
+                                [icdms2025].[cases].[CaseAssignments] ca
                             LEFT JOIN 
-                                [ercdb].[cases].[HandlingOfficerTypes] ho ON ca.HandlingOfficerTypeID = ho.HandlingOfficerTypeID
+                                [icdms2025].[cases].[HandlingOfficerTypes] ho ON ca.HandlingOfficerTypeID = ho.HandlingOfficerTypeID
                             WHERE 
                                 ca.ERCCaseID = @id AND ca.IsActive=0";
 
@@ -214,7 +214,7 @@ namespace TRACE.Controllers
                 await connection.OpenAsync();
 
                 var sql = @"
-                    UPDATE [ercdb].[cases].[CaseAssignments] 
+                    UPDATE [icdms2025].[cases].[CaseAssignments] 
                     SET IsActive = 0, 
                         DateRemoved = GETDATE() 
                     WHERE CaseAssignmentID = @id";

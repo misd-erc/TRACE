@@ -265,7 +265,7 @@ namespace TRACE.Controllers
                 {
                     sql = @"
                         SELECT DataId, Module
-                        FROM [ercdb].[cases].[CaseBlobDocuments]
+                        FROM [icdms2025].[cases].[CaseBlobDocuments]
                         WHERE ERCId = @caseid AND Module = @module
                         GROUP BY DataId, Module";
                     parameters.Add("@module", module);
@@ -274,7 +274,7 @@ namespace TRACE.Controllers
                 {
                     sql = @"
                         SELECT DataId, Milestone, Module
-                        FROM [ercdb].[cases].[CaseBlobDocuments]
+                        FROM [icdms2025].[cases].[CaseBlobDocuments]
                         WHERE ERCId = @caseid AND Module IS NULL AND Milestone IS NOT NULL
                         GROUP BY DataId, Milestone, Module";
                 }
@@ -309,7 +309,7 @@ namespace TRACE.Controllers
                     string sql = @"
                         SELECT 
                             FORMAT(CAST(HearingDate AS datetime) + CAST(Time AS datetime), 'yyyy-MM-dd HH:mm') AS HearingDateTime
-                        FROM ercdb.cases.Hearings
+                        FROM icdms2025.cases.Hearings
                         WHERE HearingID = @Id";
                     var hearingdate = await connection.QueryFirstOrDefaultAsync<string>(sql, new { Id = id });
 
@@ -325,8 +325,8 @@ namespace TRACE.Controllers
                 {
                     string sql = @"
                         SELECT cet.EventType
-                        FROM ercdb.cases.CaseEvents ce
-                        JOIN ercdb.cases.CaseEventTypes cet ON ce.CaseEventTypeID = cet.CaseEventTypeID
+                        FROM icdms2025.cases.CaseEvents ce
+                        JOIN icdms2025.cases.CaseEventTypes cet ON ce.CaseEventTypeID = cet.CaseEventTypeID
                         WHERE ce.CaseEventID = @Id";
 
                     var eventType = await connection.QueryFirstOrDefaultAsync<string>(sql, new { Id = id });
