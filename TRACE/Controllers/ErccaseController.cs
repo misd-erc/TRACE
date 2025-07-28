@@ -432,6 +432,32 @@ namespace TRACE.Controllers
                 return BadRequest(new { message = "Error fetching data", error = ex.Message });
             }
         }
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> GetAllOngoingAndPromulgatedCases(string status)
+        {
+            try
+            {
+                var listcases = _context.Erccases.Where(x => x.CaseStatusId == 2 || x.CaseStatusId == 5 || x.CaseStatusId == 6 || x.CaseStatusId == 7);
+                if (status == "motion")
+                {
+                     listcases = _context.Erccases.Where(x => x.CaseStatusId == 2 || x.CaseStatusId == 5 || x.CaseStatusId == 6 || x.CaseStatusId == 7);
+
+                }
+                else
+                {
+                    listcases = _context.Erccases.Where(x => x.CaseStatusId != 2 && x.CaseStatusId != 5 && x.CaseStatusId != 6 && x.CaseStatusId != 7);
+                }
+                var result = await listcases.ToListAsync();
+                return Json(result);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Error fetching data", error = ex.Message });
+            }
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> GetAllDocketedCases()

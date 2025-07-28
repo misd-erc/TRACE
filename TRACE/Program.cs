@@ -35,7 +35,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowedOrigins", policy =>
     {
-        policy.WithOrigins("https://localhost:44333", "https://localhost:44324")
+        policy.WithOrigins("https://localhost:44333", "https://localhost:44324", "https://icdms-uat.erc.ph", "https://localhost:44339")
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();

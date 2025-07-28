@@ -182,7 +182,66 @@ namespace TRACE.Controllers
             return Ok(new { success = true, message = "Success! Data has been saved.", data = uploadedFiles });
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ActionResult> PostCaseBlobDocumenFromKiosk([FromForm] CaseBlobDocumentRequest request)
+        {
+            if (request.Files == null || request.Files.Length == 0)
+            {
+                return BadRequest("No files uploaded.");
+            }
 
+            if (!int.TryParse(request.CaseNumber, out int caseNumberParsed))
+            {
+                return BadRequest("Invalid CaseNumber format.");
+            }
+
+            var uploadedFiles = new List<CaseBlobDocument>();
+            var fileUploadService = new FileUploadService(); // Move service initialization outside loop
+
+            foreach (var file in request.Files)
+            {
+                if (file.Length == 0) continue;
+
+                var attachmentLink = await fileUploadService.UploadDocumentFileAsync(file);
+                var dataId = 0;
+                if (!string.IsNullOrWhiteSpace(request.DataId))
+                {
+                    dataId = int.Parse(request.DataId);
+                }
+                else
+                {
+                    dataId = 0;
+                }
+                var documentMetadata = new CaseBlobDocument
+                {
+                    AttachmentName = file.FileName,
+                    AttachmentLink = attachmentLink,
+                    Ercid = caseNumberParsed,
+                    UploadedAt = DateTime.UtcNow,
+                    Module = request.Module,
+                    Milestone = request.Milestone,
+
+                    DataId = dataId,
+                };
+
+                _context.CaseBlobDocument.Add(documentMetadata);
+                await _context.SaveChangesAsync();
+                uploadedFiles.Add(documentMetadata);
+            }
+
+            try
+            {
+                await _context.SaveChangesAsync(); // Save once after loop
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                Console.WriteLine($"Concurrency error: {ex.Message}");
+                return Conflict("There was a concurrency error. Please try again.");
+            }
+
+            return Ok(new { success = true, message = "Success! Data has been saved.", data = uploadedFiles });
+        }
 
 
 
